@@ -1,0 +1,92 @@
+group 'com.lion'
+version = '1.0.0'
+
+// 声明gradle脚本自身需要使用的资源
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+        dockerVersion = '1.2'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("se.transmode.gradle:gradle-docker:${dockerVersion}")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'scala'
+    apply plugin: 'eclipse'
+    apply plugin: 'docker'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src/main/scala']
+            }
+            java {
+                srcDirs = ['src/main/java']
+            }
+        }
+        test {
+            scala {
+                srcDirs = ['src/test/scala']
+            }
+            java {
+                srcDirs = ['src/test/java']
+            }
+        }
+    }
+
+    ext {
+        springBootAdminVersion = '2.1.1'
+        springCloudVersion = 'Greenwich.RC1'
+        swaggerVersion = '2.9.2'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    configurations {
+        // 排除 tomcat 依赖，使用 undertow
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+
+    dependencies {
+        implementation('org.scala-lang:scala-library:2.11.12')
+        compileOnly('org.projectlombok:lombok')
+        implementation('org.springframework.boot:spring-boot-starter-undertow')
+        implementation('org.springframework.boot:spring-boot-starter-actuator')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    // 添加docker插件task
+    task buildDocker(type: Docker, dependsOn: build) {
+        applicationName = jar.baseName
+        dockerfile = file('src/main/docker/Dockerfile')
+        doFirst {
+            copy {
+                from jar
+                into stageDir
+            }
+        }
+    }
+
+}
