@@ -1,0 +1,62 @@
+server:
+  port: 8300
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: lion-config-server
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 192.168.1.200
+    port: 5672
+    username: admin
+    password: admin
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://localhost:8101/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+---
+
+#本地配置方式
+spring:
+  profiles: native
+  cloud:
+    config:
+      label: master
+      server:
+        native:
+          search-locations: classpath:/config
+
+---
+
+#服务端git配置方式
+spring:
+  profiles: git
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://github.com/micyo202/configuration
+          search-paths: lion
+          #username:
+          #password:

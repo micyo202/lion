@@ -1,0 +1,15 @@
+zuul:
+  routes:
+    #配置路由规则（经典写法）
+    #api-a:
+      #path: /api-a/**
+      #serviceId: lion-demo-consumer
+    #api-b:
+      #path: /api-b/**
+      #serviceId: lion-demo-ribbon
+    #配置路由规则（简化写法）
+    lion-demo-consumer: /consumer/**
+    lion-demo-ribbon: /ribbon/**
+    #排除某些路由
+    #ignored-patterns:
+    #- /lion-demo-ribbon/init
