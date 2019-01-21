@@ -1,8 +1,0 @@
-turbine:
-  aggregator:
-    cluster-config: default
-  # 配置 Eureka 中的 serviceId 列表，指定要监控的服务，多个服务用“,”隔开
-  app-config: lion-zuul-server,lion-demo-consumer,lion-demo-ribbon
-  # 指定集群名称
-  cluster-name-expression: new String("default")
-  combine-host-port: true
