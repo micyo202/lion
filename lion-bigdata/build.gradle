@@ -1,0 +1,7 @@
+group 'com.lion.bigdata'
+description '大数据模块'
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+}

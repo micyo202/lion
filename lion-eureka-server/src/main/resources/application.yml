@@ -1,0 +1,29 @@
+server:
+  port: 8101
+
+spring:
+  application:
+    name: lion-eureka-server
+
+eureka:
+  server:
+    #关闭自我保护
+    #enable-self-preservation: false
+    #清理服务器
+    eviction-interval-timer-in-ms: 6000
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

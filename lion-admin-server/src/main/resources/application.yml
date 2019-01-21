@@ -1,0 +1,32 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: lion-admin-server
+  security:
+    user:
+      name: admin
+      password: admin
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    #注册给eureka的时候告诉eureka自己的用户名、密码
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://localhost:8101/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
