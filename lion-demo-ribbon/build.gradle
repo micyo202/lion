@@ -1,0 +1,16 @@
+group 'com.lion.demo.ribbon'
+description 'RestTemplate + Ribbon + Hystrix 示例代码'
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    implementation('org.springframework.cloud:spring-cloud-bus')
+    implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+}
