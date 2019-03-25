@@ -1,2 +1,9 @@
 language: java
-jdk: oraclejdk8
+
+jdk:
+  - oraclejdk8
+  
+before_script:
+- chmod a+x gradlew
+
+sccript: ./gradlew build
