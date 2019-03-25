@@ -24,6 +24,7 @@
 
 # Gradle files
 .gradle/
+build/
 
 # Mac OS files
 .DS_Store
