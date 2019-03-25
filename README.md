@@ -1,6 +1,7 @@
 # Lion 项目简介
 
-[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)](https://github.com/micyo202/lion)
+[![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.0.0-cyan.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-blue.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://github.com/micyo202/lion)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-red.svg)](https://github.com/micyo202/lion)
