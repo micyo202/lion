@@ -1,4 +1,5 @@
 language: java
+sudo: false
 
 jdk:
   - oraclejdk8
@@ -6,4 +7,9 @@ jdk:
 before_script:
   - chmod a+x gradlew
 
-sccript: ./gradlew build
+script:
+  - ./gradlew check
+  - ./gradlew codeCoverageReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
