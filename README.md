@@ -135,4 +135,5 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
     - lion-demo-provider（端口：8601、8602、8603...）
     - lion-demo-consumer（端口：8701、8702、8703...）
     - ~~lion-demo-ribbon（端口：8781）~~
-    - ~~lion-demo-scala（端口：8782）~~
+    - ~~lion-demo-sample（端口：8782）~~
+    - ~~lion-demo-scala（端口：8783）~~
