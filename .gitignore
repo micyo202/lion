@@ -19,15 +19,29 @@
 *.tar.gz
 *.rar
 
+# Eclipse files
+.classpath
+.project
+.settings
+.metadata
+
 # IntelliJ IDEA files
+.iml
+.ipr
+.iws
 .idea/
 
 # Gradle files
 .gradle/
-build/
 
 # Mac OS files
 .DS_Store
+
+# Compiled files
+build/
+out/
+bin/
+target/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
