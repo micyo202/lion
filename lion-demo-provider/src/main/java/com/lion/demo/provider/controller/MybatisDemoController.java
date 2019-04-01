@@ -1,9 +1,9 @@
 package com.lion.demo.provider.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.lion.demo.provider.mapper.DemoCustomMapper;
-import com.lion.demo.provider.mapper.DemoMapper;
-import com.lion.demo.provider.model.Demo;
+import com.lion.demo.provider.mapper.UserInfoCustomMapper;
+import com.lion.demo.provider.mapper.UserInfoMapper;
+import com.lion.demo.provider.model.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -32,10 +32,10 @@ import java.util.UUID;
 public class MybatisDemoController {
 
     @Autowired
-    private DemoMapper demoMapper;
+    private UserInfoMapper userInfoMapper;
 
     @Autowired
-    private DemoCustomMapper demoCustomMapper;
+    private UserInfoCustomMapper userInfoCustomMapper;
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -51,18 +51,16 @@ public class MybatisDemoController {
             id = id.replaceAll("-", "");
         }
 
-        Demo demo = new Demo();
-        demo.setId(id);
-        demo.setUsername("MybatisDemo");
-        demo.setPassword("000000");
-        demo.setName("姓名Mybatis");
-        demo.setSex(false);
-        demo.setAge(18);
-        demo.setJointime(new Date());
-        demo.setType("demo");
-        demo.setValid(true);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(id);
+        userInfo.setUserName("MybatisDemo");
+        userInfo.setUserPassword("000000");
+        userInfo.setUserBirthday(new Date());
+        userInfo.setUserType(1);
+        userInfo.setUserStatus(true);
+        userInfo.setUserJointime(new Date());
 
-        demoMapper.insertSelective(demo);
+        userInfoMapper.insertSelective(userInfo);
 
         return "插入成功";
     }
@@ -70,7 +68,7 @@ public class MybatisDemoController {
     @ApiOperation("Mybatis自定义API接口，注解SQL方式查询")
     @RequestMapping(value = "/mybatis/custom/list", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisCustomList() {
-        List<Object> list = demoCustomMapper.selectAll();
+        List<Object> list = userInfoCustomMapper.selectAll();
         return list;
     }
 
@@ -78,7 +76,7 @@ public class MybatisDemoController {
     @RequestMapping(value = "/mybatis/sql/page", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisSqlPage() {
         PageHelper.offsetPage(0, 5);
-        List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.DemoCustomMapper.getAll");
+        List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.UserInfoCustomMapper.getAll");
         return list;
     }
 
