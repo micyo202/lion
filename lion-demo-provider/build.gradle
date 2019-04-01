@@ -34,6 +34,7 @@ buildscript {
     }
 }
 
+// 引入 mybatis-generator 插件
 apply plugin: "com.arenagod.gradle.MybatisGenerator"
 
 configurations {
