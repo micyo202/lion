@@ -6,17 +6,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * DemoCustomMapper
+ * UserInfoCustomMapper
  * TODO
  *
- * @author Yanzheng 严正
- * @date 2019/01/09
+ * @author Yanzheng
+ * @date 2019/04/01
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Service("demoCustomMapper")
-public interface DemoCustomMapper {
+@Service("userInfoCustomMapper")
+public interface UserInfoCustomMapper {
 
-    @Select("SELECT * FROM demo")
+    @Select("SELECT * FROM user_info")
     List<Object> selectAll();
 
 }
