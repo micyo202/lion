@@ -1,8 +1,10 @@
 group 'com.lion.zipkin.server'
 description '链路跟踪服务'
 
+mainClassName = 'com.lion.zipkin.server.ZipkinServerApplication'
+
 ext {
-    zipkinVersion = '2.11.12'
+    zipkinVersion = '2.12.7'
 }
 
 dependencies {
@@ -10,7 +12,7 @@ dependencies {
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 
     implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
-    implementation("io.zipkin.java:zipkin-server:${zipkinVersion}"){
+    implementation("io.zipkin.java:zipkin-server:${zipkinVersion}") {
         exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2')
     }
     implementation("io.zipkin.java:zipkin-autoconfigure-ui:${zipkinVersion}")

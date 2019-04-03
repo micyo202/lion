@@ -1,6 +1,8 @@
 group 'com.lion.config.server'
 description '配置中心'
 
+mainClassName = 'com.lion.config.server.ConfigServerApplication'
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
