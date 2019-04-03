@@ -1,6 +1,8 @@
 group 'com.lion.zuul.server'
 description '路由网关服务'
 
+mainClassName = 'com.lion.zuul.server.ZuulServerApplication'
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
