@@ -1,6 +1,8 @@
 group 'com.lion.demo.consumer'
 description '服务消费者demo'
 
+mainClassName = 'com.lion.demo.consumer.ConsumerDemoApplication'
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')

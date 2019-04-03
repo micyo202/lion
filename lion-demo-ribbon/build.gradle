@@ -1,6 +1,8 @@
 group 'com.lion.demo.ribbon'
 description 'RestTemplate + Ribbon + Hystrix 示例代码'
 
+mainClassName = 'com.lion.demo.ribbon.RibbonDemoApplication'
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
