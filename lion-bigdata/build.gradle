@@ -1,7 +1,15 @@
 group 'com.lion.bigdata'
 description '大数据模块'
 
+mainClassName = 'com.lion.bigdata.BigDataApplication'
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    implementation('org.springframework.cloud:spring-cloud-bus')
+    implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 }

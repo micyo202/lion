@@ -4,7 +4,7 @@ version = '1.0.0'
 // 声明gradle脚本自身需要使用的资源
 buildscript {
     ext {
-        springBootVersion = '2.1.1.RELEASE'
+        springBootVersion = '2.1.2.RELEASE'
         dockerVersion = '1.2'
     }
     repositories {
@@ -19,54 +19,60 @@ buildscript {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'scala'
-    apply plugin: 'eclipse'
-    apply plugin: 'maven'
-    apply plugin: 'docker'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'application'
+    apply plugin: 'docker'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     sourceSets {
         main {
-            scala {
-                srcDirs = ['src/main/scala']
-            }
             java {
                 srcDirs = ['src/main/java']
             }
+            scala {
+                srcDirs = ['src/main/scala']
+            }
         }
         test {
-            scala {
-                srcDirs = ['src/test/scala']
-            }
             java {
                 srcDirs = ['src/test/java']
+            }
+            scala {
+                srcDirs = ['src/test/scala']
             }
         }
     }
 
     ext {
-        springBootAdminVersion = '2.1.1'
-        springCloudVersion = 'Greenwich.RC1'
+        springBootAdminVersion = '2.1.2'
+        springCloudVersion = 'Greenwich.RELEASE'
         swaggerVersion = '2.9.2'
     }
 
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/milestone" }
+        jcenter()
     }
 
     configurations {
         // 排除 tomcat 依赖，使用 undertow
         implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        // 排除 logback 依赖，使用 log4j2
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
     dependencies {
         implementation('org.scala-lang:scala-library:2.11.12')
-        compileOnly('org.projectlombok:lombok')
+
         implementation('org.springframework.boot:spring-boot-starter-undertow')
+        implementation('org.springframework.boot:spring-boot-starter-log4j2')
+        implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml')  // 添加识别 yml 依赖（用于识别 log4j2.yml 文件）
+
+        compileOnly('org.projectlombok:lombok')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
         testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
@@ -77,10 +83,11 @@ subprojects {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
-    
+
     // 添加docker插件task
-    task buildDocker(type: Docker, dependsOn: build) {
-        applicationName = jar.baseName
+    task buildDocker(type: Docker) {
+        //applicationName = applicationName
+        tagVersion = version
         dockerfile = file('src/main/docker/Dockerfile')
         doFirst {
             copy {
