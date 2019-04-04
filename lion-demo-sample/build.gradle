@@ -1,8 +1,6 @@
 group 'com.lion.demo.sample'
 description '其他相关示例代码'
 
-mainClassName = 'com.lion.demo.sample.SampleDemoApplication'
-
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')

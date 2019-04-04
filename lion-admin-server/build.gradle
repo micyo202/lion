@@ -1,8 +1,6 @@
 group 'com.lion.admin.server'
 description '服务监控管理'
 
-mainClassName = 'com.lion.admin.server.AdminServerApplication'
-
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')

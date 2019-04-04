@@ -1,8 +1,6 @@
 group 'com.lion.gateway.server'
 description '路由网关'
 
-mainClassName = 'com.lion.gateway.server.GatewayServerApplication'
-
 dependencies {
     //implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')

@@ -1,8 +1,6 @@
 group 'com.lion.blockchain'
 description '区块链模块'
 
-mainClassName = 'com.lion.blockchain.BlockChainApplication'
-
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')

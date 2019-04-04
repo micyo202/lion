@@ -1,8 +1,6 @@
 group 'com.lion.demo.provider'
 description '服务提供者demo'
 
-mainClassName = 'com.lion.demo.provider.ProviderDemoApplication'
-
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
