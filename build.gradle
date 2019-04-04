@@ -21,8 +21,8 @@ subprojects {
     apply plugin: 'scala'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'application'
     apply plugin: 'docker'
+    apply plugin: 'jacoco'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -73,6 +73,7 @@ subprojects {
         implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml')  // 添加识别 yml 依赖（用于识别 log4j2.yml 文件）
 
         compileOnly('org.projectlombok:lombok')
+        annotationProcessor('org.projectlombok:lombok')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
         testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
@@ -85,7 +86,7 @@ subprojects {
     }
 
     // 添加docker插件task
-    task buildDocker(type: Docker) {
+    task buildDocker(type: Docker, dependsOn: build) {
         //applicationName = applicationName
         tagVersion = version
         dockerfile = file('src/main/docker/Dockerfile')
@@ -96,5 +97,20 @@ subprojects {
             }
         }
     }
+
+    // 添加jacoco测试覆盖率
+    jacocoTestReport {
+        reports {
+            xml.enabled false
+            csv.enabled false
+            html.enabled true
+
+            xml.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoXml.xml")
+            csv.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoCsv.csv")
+            html.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoHtml")
+        }
+    }
+
+    check.dependsOn jacocoTestReport
 
 }
