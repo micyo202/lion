@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class BlockChainDemo {
+
     private static ArrayList<Block> blockchain = new ArrayList<>();
     private static int difficulty = 5;
 
