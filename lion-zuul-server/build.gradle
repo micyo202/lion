@@ -10,4 +10,8 @@ dependencies {
     implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
 
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+
+    // 添加灰度发布依赖
+    implementation('io.jmnarloch:ribbon-discovery-filter-spring-cloud-starter:2.1.0')
+
 }

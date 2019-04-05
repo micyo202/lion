@@ -59,9 +59,9 @@ subprojects {
     }
 
     configurations {
-        // 排除 tomcat 依赖，使用 undertow
+        // 排除 tomcat 依赖（使用 undertow）
         implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-        // 排除 logback 依赖，使用 log4j2
+        // 排除 logback 依赖（使用 log4j2）
         implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
@@ -70,7 +70,7 @@ subprojects {
 
         implementation('org.springframework.boot:spring-boot-starter-undertow')
         implementation('org.springframework.boot:spring-boot-starter-log4j2')
-        implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml')  // 添加识别 yml 依赖（用于识别 log4j2.yml 文件）
+        implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml')  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
 
         compileOnly('org.projectlombok:lombok')
         annotationProcessor('org.projectlombok:lombok')

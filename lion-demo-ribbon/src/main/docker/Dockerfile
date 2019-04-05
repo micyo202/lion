@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM openjdk:8-jdk-alpine
 MAINTAINER https://github.com/micyo202
 VOLUME /tmp
 ADD lion-demo-ribbon.jar app.jar

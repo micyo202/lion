@@ -12,3 +12,5 @@ include 'lion-demo-provider'
 include 'lion-demo-consumer'
 include 'lion-demo-ribbon'
 include 'lion-demo-sample'
+include 'lion-demo-gray'
+
