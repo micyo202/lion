@@ -1,13 +1,18 @@
-# Lion 项目简介
+# Lion
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/lion.png" alt="lion" title="lion">
+</p>
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.0.0-brown.svg)](https://github.com/micyo202/lion)
-[![Since](https://img.shields.io/badge/Since-2019-blue.svg)](https://github.com/micyo202/lion)
+[![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](https://github.com/micyo202/lion)
+[![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://github.com/micyo202/lion)
-[![Scala](https://img.shields.io/badge/Scala-2.11.12-red.svg)](https://github.com/micyo202/lion)
-[![Gradle](https://img.shields.io/badge/Gradle-5.3.1-green.svg)](https://github.com/micyo202/lion)
-[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-ff69b4.svg)](https://github.com/micyo202/lion)
-[![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-orange.svg)](https://github.com/micyo202/lion)
+[![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://github.com/micyo202/lion)
+[![Gradle](https://img.shields.io/badge/Gradle-5.3.1-01BC7E.svg)](https://github.com/micyo202/lion)
+[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-FF69B4.svg)](https://github.com/micyo202/lion)
+[![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-5DBF3D.svg)](https://github.com/micyo202/lion)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
@@ -22,10 +27,10 @@
 
 ## 引言
 
-为了帮助初学者快速理解入门微服务，这里简单介绍一下微服务的基本概念及常用组件说明，希望能给初学者带来帮助，如有解释不当的地方还望及时指出，谢谢！（对微服务相关知识已有了解的可直接跳过引言）
+为了帮助初学者快速理解入门微服务，这里简单介绍一下微服务的基本概念及常用组件说明，希望能给初学者带来帮助，如有解释不当的地方还望及时指出，谢谢！（对微服务相关知识已有了解的可直接跳过引言部分）
 
 ### 系统架构设计
-知道什么是微服务架构，你得先知道什么系统架构设计。
+要知道什么是微服务架构，你得先知道什么系统架构设计。
 
 系统架构设计描述了在应用系统的内部，如何根据业务、技术、组织、灵活性、可扩展性以及可维护性等多种因素，将应用系统划分成不同的部分，并使这些部分彼此之间相互分工、相互协作，从而为用户提供某种特定的价值方式。
 
@@ -47,10 +52,24 @@ SOA实现 | 微服务架构实现
 集成方式复制（ESB/WS/SOAP） | 集成方便简单（HTTP/REST/JSON）
 单块架构系统，相互依赖，部署复杂 | 服务能独立部署
 
+### Dubbo VS Spring Cloud
+核心要素 | Dubbo | Spring Cloud
+--- | --- | ---
+服务注册中心 | Zookeeper、Redis | Spring Cloud Netflix Eureka、Consul
+服务调度方式 | RPC | REST API
+服务网关 | 无 | Spring Cloud Netflix Zuul
+断路器 | 不完善 | Spring Cloud Netflix Hystrix
+分布式配置 | 无 | Spring Cloud Config
+分布式追踪系统 | 无 | Spring Cloud Sleuth
+消息总线 | 无 | Spring Cloud Bus
+数据流 | 无 | Spring Cloud Stream（基于Redis、RabbitMQ、Kafka实现的消息微服务）
+批量任务 | 无 | Spring Cloud Task
+
 ### 为什么选用Spring Cloud而不是Dubbo？
 Dubbo只是实现了服务治理，而Spring Cloud子项目分别覆盖了微服务架构下的众多部件，而服务治理只是其中的一个方面。
 Dubbo提供了各种Filter，可以通过扩展Filter来完善。
 我们必须采用与一站式时代、泛 SOA 时代不同的技术栈，而 Spring Cloud 就是其中的佼佼者。
+
 从核心要素来看，Spring Cloud 更胜一筹，在开发过程中只要整合Spring Cloud的子项目就可以顺利的完成各种组件的融合，而Dubbo缺需要通过实现各种Filter来做定制，开发成本以及技术难度略高。
 
 ### 什么是Spring Cloud？
@@ -119,7 +138,7 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 - Hive 3.1.1
 - Spark 2.4.0
 
-- Gradle 4.10 
+- Gradle 5.3.1
 - IntelliJ IDEA 2018.3 / Eclipse 2018-12
 
 ## 二、组件情况
@@ -141,19 +160,20 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 - 分布式事物：3PC+TCC（待实现）
 
 ## 三、服务启动顺序
-以下服务从上往下按顺序启动
+以下服务从上往下按顺序启动（注：带**删除线**的服务为相关测试模块不用启动）
 
 - lion-eureka-server（端口：8101、8102...）
 - lion-admin-server（端口：8200）
 - lion-config-server（端口：8300，*启动后请等待lion-config-server成功注册到eureka后再启动之后各服务，否则会找不到配置服务*）
 - lion-zipkin-server（端口：9411）
-- lion-zuul-service（端口：8400）
-- ~~lion-gateway-service（端口：8450）~~
+- lion-zuul-server（端口：8400）
+- ~~lion-gateway-server（端口：8450）~~
 - lion-turbine-server（端口：8500）
-- lion-bigdata（端口：8801）
-- lion-blockchain （端口：8802）   
+- ~~lion-bigdata（端口：8801）~~
+- ~~lion-blockchain （端口：8802）~~
 - lion-demo-provider（端口：8601、8602、8603...）
 - lion-demo-consumer（端口：8701、8702、8703...）
 - ~~lion-demo-ribbon（端口：8781）~~
 - ~~lion-demo-sample（端口：8782）~~
-- ~~lion-demo-scala（端口：8783）~~
+- ~~lion-demo-gray（端口：8783）~~
+- ~~lion-demo-scala（端口：8784）~~
