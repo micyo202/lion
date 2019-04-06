@@ -10,6 +10,7 @@ zuul:
     #配置路由规则（简化写法）
     lion-demo-consumer: /consumer/**
     lion-demo-ribbon: /ribbon/**
+    lion-demo-gray: /gray/**
     #排除某些路由
     #ignored-patterns:
     #- /lion-demo-ribbon/init
