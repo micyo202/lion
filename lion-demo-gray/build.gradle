@@ -1,0 +1,13 @@
+group 'com.lion.demo.gray'
+description '灰度发布示例模块'
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    implementation('org.springframework.cloud:spring-cloud-bus')
+    implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+
+    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
+}
