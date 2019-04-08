@@ -27,13 +27,13 @@ import java.util.Date;
 public class UserJpa implements Serializable {
 
     @Id
-    @Column(nullable = false, length = 36)
+    @Column(nullable = false, length = 32)
     private String id;
 
-    @Column(nullable = false, length = 36)
+    @Column(nullable = false, length = 32)
     private String username;
 
-    @Column(nullable = false, length = 36)
+    @Column(nullable = false, length = 32)
     private String password;
 
     @Column
