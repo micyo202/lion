@@ -17,6 +17,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 //@EnableTransactionManagement
 @MapperScan("com.lion.demo.provider.mapper")
+//@MapperScan("com.lion.demo.provider..*.mapper")
 public class ProviderDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProviderDemoApplication.class, args);
