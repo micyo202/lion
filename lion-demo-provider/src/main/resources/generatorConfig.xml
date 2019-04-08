@@ -34,14 +34,6 @@
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
-        <!-- 对注释进行控制 -->
-        <commentGenerator>
-            <!-- suppressDate是去掉生成日期那行注释 -->
-            <property name="suppressDate" value="false"/>
-            <!-- suppressAllComments是去掉所有的注解 -->
-            <property name="suppressAllComments" value="true"/>
-        </commentGenerator>
-
         <!--jdbc的数据库连接 -->
         <!-- <jdbcConnection driverClass="${mbg.db.driverClassName}" connectionURL="${mbg.db.url}"
                         userId="${mbg.db.username}" password="${mbg.db.password}"/> -->
