@@ -6,7 +6,7 @@ jdk:
 
 script:
   - ./gradlew -v
-  - travis_wait 60 ./gradlew clean check
+  - travis_wait 5 ./gradlew clean check
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
