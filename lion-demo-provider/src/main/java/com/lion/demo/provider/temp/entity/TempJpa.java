@@ -1,4 +1,4 @@
-package com.lion.demo.provider.model;
+package com.lion.demo.provider.temp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,40 +12,30 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * UserJpa
- * 使用 Spring Data Jpa 方式
+ * TempJpa
+ * TODO
  *
  * @author Yanzheng
- * @date 2019/03/29
+ * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Entity
+@Table(name = "temp_jpa")
 @Data
-@Table(name = "user_jpa")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserJpa implements Serializable {
+public class TempJpa implements Serializable {
 
     @Id
     @Column(nullable = false, length = 32)
     private String id;
-
-    @Column(nullable = false, length = 32)
-    private String username;
-
-    @Column(nullable = false, length = 32)
-    private String password;
-
-    @Column
-    private Date birthday;
-
-    @Column
-    private int type;
-
-    @Column
-    private boolean status;
-
-    @Column
-    private Date jointime;
+    @Column(length = 32)
+    private String name;
+    private Integer type;
+    private Boolean status;
+    @Column(name = "create_time")
+    private Date createTime;
+    @Column(name = "update_time")
+    private Date updateTime;
 
 }
