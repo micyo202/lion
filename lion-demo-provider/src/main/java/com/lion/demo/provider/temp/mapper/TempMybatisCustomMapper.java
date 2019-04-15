@@ -1,4 +1,4 @@
-package com.lion.demo.provider.mapper;
+package com.lion.demo.provider.temp.mapper;
 
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
@@ -6,17 +6,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * UserInfoCustomMapper
+ * TempMybatisCustomMapper
  * TODO
  *
  * @author Yanzheng
- * @date 2019/04/01
+ * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Service("userInfoCustomMapper")
-public interface UserInfoCustomMapper {
+@Service("tempMybatisCustomMapper")
+public interface TempMybatisCustomMapper {
 
-    @Select("SELECT * FROM user_info")
+    @Select("SELECT * FROM temp_mybatis")
     List<Object> selectAll();
 
 }
