@@ -1,9 +1,9 @@
-package com.lion.demo.provider.controller;
+package com.lion.demo.provider.temp.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.lion.demo.provider.mapper.UserInfoCustomMapper;
-import com.lion.demo.provider.mapper.UserInfoMapper;
-import com.lion.demo.provider.model.UserInfo;
+import com.lion.demo.provider.temp.mapper.TempMybatisCustomMapper;
+import com.lion.demo.provider.temp.mapper.TempMybatisMapper;
+import com.lion.demo.provider.temp.model.TempMybatis;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -20,22 +20,22 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * MybatisDemoController
+ * TempMybatisController
  * TODO
  *
- * @author Yanzheng 严正
- * @date 2019/01/09
+ * @author Yanzheng
+ * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Api("Mybatis相关示例代码类说明文档")
 @RestController
-public class MybatisDemoController {
+public class TempMybatisController {
 
     @Autowired
-    private UserInfoMapper userInfoMapper;
+    private TempMybatisMapper tempMybatisMapper;
 
     @Autowired
-    private UserInfoCustomMapper userInfoCustomMapper;
+    private TempMybatisCustomMapper tempMybatisCustomMapper;
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -51,16 +51,17 @@ public class MybatisDemoController {
             id = id.replaceAll("-", "");
         }
 
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(id);
-        userInfo.setUserName("MybatisDemo");
-        userInfo.setUserPassword("000000");
-        userInfo.setUserBirthday(new Date());
-        userInfo.setUserType(1);
-        userInfo.setUserStatus(true);
-        userInfo.setUserJointime(new Date());
+        String randomStr = Math.ceil(Math.random() * 100) + "";
 
-        userInfoMapper.insertSelective(userInfo);
+        TempMybatis tempMybatis = new TempMybatis();
+        tempMybatis.setId(id);
+        tempMybatis.setName("name-" + randomStr);
+        tempMybatis.setType(9);
+        tempMybatis.setStatus(true);
+        tempMybatis.setCreateTime(new Date());
+        tempMybatis.setUpdateTime(new Date());
+
+        tempMybatisMapper.insertSelective(tempMybatis);
 
         return "插入成功";
     }
@@ -68,7 +69,7 @@ public class MybatisDemoController {
     @ApiOperation("Mybatis自定义API接口，注解SQL方式查询")
     @RequestMapping(value = "/mybatis/custom/list", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisCustomList() {
-        List<Object> list = userInfoCustomMapper.selectAll();
+        List<Object> list = tempMybatisCustomMapper.selectAll();
         return list;
     }
 
@@ -76,7 +77,7 @@ public class MybatisDemoController {
     @RequestMapping(value = "/mybatis/sql/page", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisSqlPage() {
         PageHelper.offsetPage(0, 5);
-        List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.UserInfoCustomMapper.getAll");
+        List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.temp.TempMybatisCustomMapper.getAll");
         return list;
     }
 
