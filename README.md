@@ -17,13 +17,22 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目初期孵化中...
+本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目期孵化中...
 
 利用Spring Boot Admin来监控各个独立Service的运行状态，利用Hystrix Dashboard来查看近实时的接口运行状态和调用频率，利用Zipkin进行查看链路跟踪等。
 
+基于Eureka来实现的服务注册与调用，在SpringCloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
+
+因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了Hystrix的作为熔断器，避免了服务之间的“雪崩”效应
+
 项目整合了 **spring-boot 2.1.2 + jpa + mybatis**框架
 
-项目初期构建，正在不断完善中，敬请期待...
+项目使用travis-ci进行持续性CI，保证了最新提交代码的build passing，使用codecov进行自动化测试代码的覆盖率。
+
+项目后期项目也会不断更新与时俱进，敬请期待...
+
+## 说明
+网上有关SpringCloud的教程很多，相关的项目也很多，但很少有整合完整的好项目，即便有也是基于1.x的版本，在这个技术迭代更新发展速度很快的时代，这样的项目不利于实际开发和落地。由此**lion**诞生了，它是一套完整的微服务体系框架，几乎包含了微服务所有常用组件，为了让中小型公司解决技术瓶颈，快速将现有技术架构改为微服务体系架构，只需在本框架上进行相关业务开发即可，大大减少了微服务架构的入门门槛，达到拿来就用，使架构师及开发人员不用过多的关注架构本身，只需专注业务开发即可，节省了大量时间。
 
 ## 引言
 
@@ -151,24 +160,26 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 - 路由网关：~~gateway~~ / zuul
 - 集群监控：hystrix dashboard -> turbine
 - 链路追踪：spring cloud sletuh -> zipkin
-- 安全认证：spring security -> oauth2（待实现）
-- ORM框架：jpa + mybatis
+- 安全认证：spring security -> oauth2
+- ORM框架：mybatis + jpa 
 - 数据源监控：druid
 - api文档输出：swagger2
 - 分布式锁：redis（待实现）
 - 消息队列：rabbitmq
 - 分布式事物：3PC+TCC（待实现）
 
-## 三、服务启动顺序
-以下服务从上往下按顺序启动（注：带**删除线**的服务为相关测试模块无需启动）
+## 三、服务说明
+以下服务请优先按顺序启动lion-eureka-server、lion-config-server服务，再启动其他服务（注：带**删除线**的服务为相关测试模块无需启动）
 
 - lion-eureka-server（端口：8101、8102...）
-- lion-admin-server（端口：8200）
 - lion-config-server（端口：8300，*启动后请等待lion-config-server成功注册到eureka后再启动之后各服务，否则会找不到配置服务*）
+- lion-admin-server（端口：8200）
 - lion-zipkin-server（端口：9411）
 - lion-zuul-server（端口：8400）
 - ~~lion-gateway-server（端口：8450）~~
 - lion-turbine-server（端口：8500）
+- lion-upms（端口：8800）
+- lion-auth（端口：8888）
 - ~~lion-bigdata（端口：8801）~~
 - ~~lion-blockchain （端口：8802）~~
 - lion-demo-provider（端口：8601、8602、8603...）
