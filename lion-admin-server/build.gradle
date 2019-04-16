@@ -1,10 +1,12 @@
 group 'com.lion.admin.server'
 description '服务监控管理'
 
-dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+apply plugin: 'org.springframework.boot'
 
-    implementation('de.codecentric:spring-boot-admin-starter-server')
-    implementation('org.springframework.boot:spring-boot-starter-security')
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    implementation 'de.codecentric:spring-boot-admin-starter-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
