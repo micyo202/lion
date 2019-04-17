@@ -1,0 +1,24 @@
+group 'com.lion.demo.sample'
+description '其他相关示例代码'
+
+apply plugin: 'org.springframework.boot'
+
+ext {
+    apnsVersion = '1.0.0.Beta6'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-bus'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+
+    // 苹果推送APNS
+    testImplementation "com.notnoop.apns:apns:${apnsVersion}"
+}

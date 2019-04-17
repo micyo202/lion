@@ -1,0 +1,142 @@
+server:
+  port: 8601
+
+spring:
+  application:
+    name: lion-demo-provider
+  #消息总线配置
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 192.168.1.200
+    port: 5672
+    username: admin
+    password: admin
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    #base-url: http://localhost:9411
+    sender:
+      type: rabbit
+  datasource:
+    druid:
+      #JDBC配置
+      url: jdbc:mysql://192.168.1.200:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #配置初始化大小/最大/最小
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      #获取连接等待超时时间
+      max-wait: 60000
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1
+      validation-query-timeout: 30000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      filters:
+        - stat
+        - wall
+        - log4j
+      #监控配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        #开启session监控统计功能
+        session-stat-enable: true
+        #最大session数
+        session-stat-max-count: 100000
+        #使得druid能够知道当前的session的用户是谁
+        principal-session-name: admin
+        #使得druid能够知道当前的cookie的用户是谁
+        principal-cookie-name: admin
+        #监控单个url调用的sql列表
+        profile-enable: true
+      #spring监控配置，多个使用,隔开
+      aop-patterns: com.lion.demo.provider.*
+      filter:
+        #慢SQL记录
+        stat:
+          merge-sql: true
+          log-slow-sql: true
+          slow-sql-millis: 10000
+        #sql防火墙监控开启
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            alter-table-allow: false
+            truncate-allow: false
+            drop-table-allow: false
+            #是否允许非以上基本语句的其他语句，缺省关闭，通过这个选项就能够屏蔽DDL
+            none-base-statement-allow: false
+            #检查UPDATE语句是否无where条件，这是有风险的，但不是SQL注入类型的风险
+            update-where-none-check: true
+            #是否允许SELECT ... INTO OUTFILE语句，这个是mysql注入攻击的常见手段，缺省是禁止的
+            select-into-outfile-allow: false
+            #是否允许调用Connection.getMetadata方法，这个方法调用会暴露数据库的表信息
+            metadata-allow: true
+          #对被认为是攻击的SQL进行LOG.error输出
+          log-violation: true
+          #对被认为是攻击的SQL抛出SQLExcepton
+          throw-exception: true
+      #管理界面用户
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+        #白名单
+        allow: 127.0.0.1
+        #黑名单
+        #deny: 192.168.1.1
+  #配置JPA
+  jpa:
+    database: mysql
+    generate-ddl: true
+    show-sql: true
+    open-in-view: true
+    #设置数据库引擎为InnoDB否则不支持事物
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+#mybats映射sqlMap文件
+mybatis:
+  #mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  #type-aliases-package: com.lion.demo.provider..*.model
+
+#分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
