@@ -15,6 +15,16 @@ spring:
     username: admin
     password: admin
 
+security:
+  oauth2:
+    client:
+      client-id: lion-zuul-server
+      access-token-uri: http://localhost:${server.port}/auth/oauth/token
+      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:${server.port}/auth/user/principal
+      prefer-token-info: false
+
 management:
   endpoints:
     web:
