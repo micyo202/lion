@@ -1,11 +1,13 @@
 group 'com.lion.config.server'
 description '配置中心'
 
-dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+apply plugin: 'org.springframework.boot'
 
-    implementation('org.springframework.cloud:spring-cloud-config-server')
-    implementation('org.springframework.cloud:spring-cloud-bus')
-    implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+    implementation 'org.springframework.cloud:spring-cloud-bus'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 }

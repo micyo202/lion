@@ -1,22 +1,24 @@
 group 'com.lion.zipkin.server'
 description '链路跟踪服务'
 
+apply plugin: 'org.springframework.boot'
+
 ext {
     zipkinVersion = '2.12.3'
 }
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
-    implementation("io.zipkin.java:zipkin-server:${zipkinVersion}")
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation "io.zipkin.java:zipkin-server:${zipkinVersion}"
     //exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2')
 
-    implementation("io.zipkin.java:zipkin-autoconfigure-ui:${zipkinVersion}")
-    implementation("io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:${zipkinVersion}")
-    implementation("io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch:${zipkinVersion}")
+    implementation "io.zipkin.java:zipkin-autoconfigure-ui:${zipkinVersion}"
+    implementation "io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:${zipkinVersion}"
+    implementation "io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch:${zipkinVersion}"
 
-    implementation("io.zipkin.java:zipkin-autoconfigure-storage-mysql:${zipkinVersion}")
-    implementation('mysql:mysql-connector-java:8.0.13')
+    implementation "io.zipkin.java:zipkin-autoconfigure-storage-mysql:${zipkinVersion}"
+    implementation "mysql:mysql-connector-java:${mysqlVersion}"
 }
