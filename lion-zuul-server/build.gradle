@@ -1,17 +1,25 @@
 group 'com.lion.zuul.server'
 description '路由网关服务'
 
+apply plugin: 'org.springframework.boot'
+
+ext {
+    ribbonDiscoveryFilterVersion = '2.1.0'
+}
+
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation('org.springframework.cloud:spring-cloud-starter-config')
-    implementation('org.springframework.cloud:spring-cloud-bus')
-    implementation('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-bus'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
     // 添加灰度发布依赖
-    implementation('io.jmnarloch:ribbon-discovery-filter-spring-cloud-starter:2.1.0')
+    implementation "io.jmnarloch:ribbon-discovery-filter-spring-cloud-starter:${ribbonDiscoveryFilterVersion}"
 
 }
