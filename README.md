@@ -1,7 +1,7 @@
 # Lion
 
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/lion.png" alt="lion" title="lion">
+  <img src="https://github.com/micyo202/lion/raw/master/images/logo.png" alt="logo" title="logo">
 </p>
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
@@ -17,9 +17,11 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目期孵化中...
+#### 注：本项目是基于SpringCloud微服务架构的，若需要查看基于Dubbo的RPC项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
-利用Spring Boot Admin来监控各个独立Service的运行状态，利用Hystrix Dashboard来查看近实时的接口运行状态和调用频率，利用Zipkin进行查看链路跟踪等。
+本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目孵化中...
+
+利用Spring Boot Admin来监控各个独立Service的运行状态，利用Turbine来查看近实时的接口运行状态和调用频率，利用Zipkin进行查看链路跟踪等。
 
 基于Eureka来实现的服务注册与调用，在SpringCloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
 
@@ -31,8 +33,14 @@
 
 项目后期项目也会不断更新与时俱进，敬请期待...
 
+## 项目架构图
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/frame.png" alt="frame" title="frame">
+</p>
+
 ## 说明
-网上有关SpringCloud的教程很多，相关的项目也很多，但很少有整合完整的好项目，即便有也是基于1.x的版本，在这个技术迭代更新发展速度很快的时代，这样的项目不利于实际开发和落地。由此**lion**诞生了，它是一套完整的微服务体系框架，几乎包含了微服务所有常用组件，为了让中小型公司解决技术瓶颈，快速将现有技术架构改为微服务体系架构，只需在本框架上进行相关业务开发即可，大大减少了微服务架构的入门门槛，达到拿来就用，使架构师及开发人员不用过多的关注架构本身，只需专注业务开发即可，节省了大量时间。
+网上有关SpringCloud的教程很多，相关的项目也很多，但很少有整合完整的好项目，即便有也是基于1.x的版本，在这个技术迭代更新发展速度很快的时代，这样的项目不利于实际开发和落地。因此**lion**诞生了，它是一套完整的微服务体系框架，几乎包含了微服务所有常用组件，为了让中小型公司解决当下技术瓶颈，快速将现有技术架构拆分改造为微服务体系架构，只需在本框架上进行相关业务开发即可，大大减少了微服务架构的入门门槛，达到拿来就用，使架构师及开发人员不用过多的关注架构本身，只需专注业务开发即可，节省了大量时间。
 
 ## 引言
 
@@ -129,35 +137,37 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 ## 一、项目开发环境&工具
 - MacOS Mojave / Windows 10
 - CentOS 7
-
 - JDK 1.8
 - Scala 2.11.12
-
-- MySql 8.0.13
-- MongoDB 4.0.4
-- Redis 5.0.2
-- Elasticsearch 6.5.2
-- Solr 7.5.0
-
-- RabbitMQ 3.7.9
-- Kafka 2.1.0
-
-- Hadoop 3.1.1
-- Hbase 2.1.1
-- Hive 3.1.1
-- Spark 2.4.0
-
-- Gradle 5.3.1
 - IntelliJ IDEA 2018.3 / Eclipse 2018-12
 
-## 二、组件情况
+## 二、相关软件
+名称 | 链接 | 使用
+--- | --- | ---
+MySql 8.0.13 | [https://www.mysql.com](https://www.mysql.com) | √
+MongoDB 4.0.4 | [http://www.mongodb.org](http://www.mongodb.org) | ×
+Redis 5.0.2 | [https://redis.io](https://redis.io) | √
+Elasticsearch 6.5.2 | [https://www.elastic.co/cn/](https://www.elastic.co/cn/) | √
+Kibana 6.5.2 | [https://www.elastic.co/cn/](https://www.elastic.co/cn/) | √
+Logstash 6.5.2 | [https://www.elastic.co/cn/](https://www.elastic.co/cn/) | √
+Solr 7.5.0 | [http://lucene.apache.org/solr/](http://lucene.apache.org/solr/) | ×
+RabbitMQ 3.7.9 | [https://www.rabbitmq.com](https://www.rabbitmq.com) | √
+Zookeeper 3.4.13 | [https://zookeeper.apache.org](https://zookeeper.apache.org) | √
+Kafka 2.1.0 | [http://kafka.apache.org](http://kafka.apache.org) | ×
+Hadoop 3.1.1 | [http://hadoop.apache.org](http://hadoop.apache.org) | √
+Hbase 2.1.1 | [https://hbase.apache.org](https://hbase.apache.org) | √
+Hive 3.1.1 | [http://hive.apache.org](http://hive.apache.org) | ×
+Spark 2.4.0 | [http://spark.apache.org](http://spark.apache.org) | √
+Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
+
+## 三、组件说明
 - 服务注册、发现: eureka
 - 服务监控：spring boot admin
 - 配置中心：spring cloud config -> native / git
 - 消息总线：spring cloud bus -> amqp
-- 负载均衡：feign / ~~ribbon~~
+- 负载均衡：feign / ribbon
 - 断路器: hystrix
-- 路由网关：~~gateway~~ / zuul
+- 路由网关：gateway / zuul
 - 集群监控：hystrix dashboard -> turbine
 - 链路追踪：spring cloud sletuh -> zipkin
 - 安全认证：spring security -> oauth2
@@ -168,23 +178,84 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 - 消息队列：rabbitmq
 - 分布式事物：3PC+TCC（待实现）
 
-## 三、服务说明
-以下服务请优先按顺序启动lion-eureka-server、lion-config-server服务，再启动其他服务（注：带**删除线**的服务为相关测试模块无需启动）
+## 四、项目树结构
+```lua
+lion -- 根目录
+├── lion-eureka-server -- 服务注册/发现
+├── lion-admin-server -- 服务监控
+├── lion-config-server -- 配置中心
+├── lion-zuul-server -- 路由服务
+├── lion-zipkin-server -- 链路追踪服务
+├── lion-gateway-server -- 二代路由服务（暂不使用）
+├── lion-turbine-server -- 服务调用实时监控
+├── lion-common -- 通用工具类模块
+├── lion-upms -- 用户权限管理系统
+├── lion-auth -- 安全认证服务器
+├── lion-bigdata -- 大数据模块
+├── lion-blockchain -- 区块链模块
+├── lion-demo -- 示例代码模块
+|    ├── lion-demo-provider -- 服务提供者
+|    ├── lion-demo-consumer -- 服务消费者
+|    ├── lion-demo-ribbon -- ribbon + hystrix示例模块
+|    ├── lion-demo-sample -- 综合案例包含灰度、权限认证、scala混编等
+```
+
+## 五、项目准备
+- 在运行该项目前，请确保先正常启动：[RabbitMQ 3.7.9](https://www.rabbitmq.com)、[MySql 8.0.13](https://www.mysql.com)、[Redis 5.0.2](https://redis.io)这3个必备服务，否则项目无法运行
+
+- 建议使用[IntelliJ IDEA](https://www.jetbrains.com/idea/)作为IDE开发工具（注：该工具需要购买，激活步骤详情可参考我个人简书上的方法，请移步至[https://www.jianshu.com/p/3c87487e7121](https://www.jianshu.com/p/3c87487e7121)）
+
+## 六、项目部署
+1.下载项目，并且导入到IDE开发工具中
+
+2.使用 Gradle 构建项目
+
+3.创建2个数据库分别为 lion、zipkin 并分别执行根目录 database 中的 lion.sql、zipkin.sql 文件，创建整个项目必要的表（如：用户表、权限表、菜单资源表等...）
+
+4.修改项目的 resources/application.yml 配置文件中的datasource druid数据库连接信息
+
+5.修改项目的 resources/log4j2.yml 配置文件中的 -log.path value 日志输出路径
+
+6.完成以上步骤就可以正常部署启动服务了
+
+7.项目开发详细代码，可参考lion-demo下的示例模块
+
+## 七、服务启动
+以下服务请优先按顺序启动lion-eureka-server、lion-config-server服务，再启动其他服务（注：带~~删除线~~的服务为相关示例模块可根据需要选择启动）
 
 - lion-eureka-server（端口：8101、8102...）
 - lion-config-server（端口：8300，*启动后请等待lion-config-server成功注册到eureka后再启动之后各服务，否则会找不到配置服务*）
 - lion-admin-server（端口：8200）
-- lion-zipkin-server（端口：9411）
 - lion-zuul-server（端口：8400）
+- lion-zipkin-server（端口：9411）
 - ~~lion-gateway-server（端口：8450）~~
 - lion-turbine-server（端口：8500）
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
 - ~~lion-bigdata（端口：8801）~~
 - ~~lion-blockchain （端口：8802）~~
-- lion-demo-provider（端口：8601、8602、8603...）
-- lion-demo-consumer（端口：8701、8702、8703...）
-- ~~lion-demo-ribbon（端口：8781）~~
-- ~~lion-demo-sample（端口：8782）~~
-- ~~lion-demo-gray（端口：8783）~~
-- ~~lion-demo-scala（端口：8784）~~
+- ~~lion-demo（相关demo示例）~~
+    - ~~lion-demo-provider（端口：8601、8602、8603...）~~
+    - ~~lion-demo-consumer（端口：8701、8702、8703...）~~
+    - ~~lion-demo-ribbon（端口：8781）~~
+    - ~~lion-demo-sample（端口：8782）~~
+
+## 八、效果预览
+
+#### 服务监控
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/lion-admin-server.png" alt="lion-admin-server" title="lion-admin-server">
+</p>
+
+#### 链路追踪
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/lion-zipkin-server.png" alt="lion-zipkin-server" title="lion-zipkin-server">
+</p>
+
+#### 服务调用情况
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/lion-turbine-server.png" alt="lion-turbine-server" title="lion-turbine-server">
+</p>
+
+## 九、许可证
+[MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)
