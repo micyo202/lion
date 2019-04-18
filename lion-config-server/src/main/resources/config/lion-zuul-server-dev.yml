@@ -11,9 +11,7 @@ zuul:
     lion-demo-provider: /demo/provider/**
     lion-demo-consumer: /demo/consumer/**
     lion-demo-ribbon: /demo/ribbon/**
-    lion-demo-gray: /demo/gray/**
     lion-demo-sample: /demo/sample/**
-    lion-demo-scala: /demo/scala/**
     lion-bigdata: /bigdata/**
     lion-blockchain: /blockchain/**
     lion-upms: /upms/**
