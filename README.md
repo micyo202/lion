@@ -8,16 +8,16 @@
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
 [![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
-[![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://github.com/micyo202/lion)
-[![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://github.com/micyo202/lion)
-[![Gradle](https://img.shields.io/badge/Gradle-5.3.1-01BC7E.svg)](https://github.com/micyo202/lion)
-[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-FF69B4.svg)](https://github.com/micyo202/lion)
-[![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-5DBF3D.svg)](https://github.com/micyo202/lion)
+[![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
+[![Gradle](https://img.shields.io/badge/Gradle-5.3.1-01BC7E.svg)](https://gradle.org)
+[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
+[![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-#### 注：本项目是基于SpringCloud微服务架构的，若需要查看基于Dubbo的RPC项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
+#### 注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
 本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目孵化中...
 
@@ -40,11 +40,12 @@
 </p>
 
 ## 说明
+
 网上有关SpringCloud的教程很多，相关的项目也很多，但很少有整合完整的好项目，即便有也是基于1.x的版本，在这个技术迭代更新发展速度很快的时代，这样的项目不利于实际开发和落地。因此**lion**诞生了，它是一套完整的微服务体系框架，几乎包含了微服务所有常用组件，为了让中小型公司解决当下技术瓶颈，快速将现有技术架构拆分改造为微服务体系架构，只需在本框架上进行相关业务开发即可，大大减少了微服务架构的入门门槛，达到拿来就用，使架构师及开发人员不用过多的关注架构本身，只需专注业务开发即可，节省了大量时间。
 
 ## 引言
 
-为了帮助初学者快速理解入门微服务，这里简单介绍一下微服务的基本概念及常用组件说明，希望能给初学者带来帮助，如有解释不当的地方还望及时指出，谢谢！（对微服务相关知识已有了解的可直接跳过引言部分）
+为了帮助初学者快速理解入门微服务，这里简单介绍一下微服务的基本概念及常用组件说明，希望能给初学者带来帮助，如有解释不当的地方还望及时指出，谢谢！（**对微服务相关知识已有了解的可直接跳过引言部分**）
 
 ### 系统架构设计
 要知道什么是微服务架构，你得先知道什么系统架构设计。
