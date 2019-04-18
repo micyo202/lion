@@ -1,4 +1,4 @@
-package com.lion.demo.provider;
+package com.lion.demo.provider.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,19 +12,19 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * ProviderDemoSwagger2
- * Swagger2 配置
+ * Swagger2Config
+ * TODO
  *
- * @author Yanzheng 严正
- * @date 2019/01/08
+ * @author Yanzheng
+ * @date 2019/04/17
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 @EnableSwagger2
-public class ProviderDemoSwagger2 {
+public class Swagger2Config {
 
     /**
-     * 访问地址：http://localhost:8601/swagger-ui.html
+     * 访问地址：http://ip:port/swagger-ui.html
      */
     @Bean
     public Docket createRestApi() {
@@ -46,8 +46,9 @@ public class ProviderDemoSwagger2 {
                 .description("描述：用于 lion-demo-provider 接口查看")
                 .termsOfServiceUrl("https://github.com/micyo202")
                 //创建人
-                .contact(new Contact("Yanzheng 严正", "https://github.com/micyo202", "micyo202@163.com"))
-                .version("版本号：1.0")
+                .contact(new Contact("Yanzheng", "https://github.com/micyo202", "micyo202@163.com"))
+                .version("版本号：1.0.0")
                 .build();
     }
+
 }

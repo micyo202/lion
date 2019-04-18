@@ -25,7 +25,7 @@ public class ProviderDemoController {
 
     @ApiOperation("hi基本示例接口，返回hi文本内容")
     @ApiParam(name = "name", value = "名字", defaultValue = "lion")
-    @RequestMapping(value = "/hi", method = RequestMethod.GET)
+    @RequestMapping(value = "/sayHi", method = RequestMethod.GET)
     public String sayHi(String name) {
         return "Hi: '" + name + "', i am from port: " + port;
     }
