@@ -24,8 +24,8 @@ public class ConsumerDemoController {
     @Autowired
     ProviderDemoClientFeign providerDemoClientFeign;
 
-    @RequestMapping("/hello")
-    public String hello(@RequestParam(defaultValue = "lion") String name) {
+    @RequestMapping("/hi")
+    public String hi(@RequestParam(defaultValue = "lion") String name) {
         return providerDemoClientFeign.sayHiFromProvider(name);
     }
 
