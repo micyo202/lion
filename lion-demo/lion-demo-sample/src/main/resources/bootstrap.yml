@@ -13,6 +13,9 @@ spring:
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 10
+    #灰度版本
+    metadata-map:
+      tag: v1.0
   client:
     registry-fetch-interval-seconds: 5
     service-url:
