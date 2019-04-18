@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * WebSecurityConfiguration
  * security配置
@@ -22,7 +24,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -56,18 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                .authorizeRequests()
-                .antMatchers("/actuator/**", "/druid/**", "/oauth/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf().disable();
 
     }
 

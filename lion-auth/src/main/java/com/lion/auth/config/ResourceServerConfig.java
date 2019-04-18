@@ -19,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    private static final String[] PATTERN_URLS = {
+            "/actuator/**",
+            "/druid/**",
+            "/oauth/**"
+    };
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
@@ -27,7 +33,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
                 .authorizeRequests()
-                .antMatchers("/actuator/**", "/druid/**", "/oauth/**").permitAll()
+                .antMatchers(PATTERN_URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
