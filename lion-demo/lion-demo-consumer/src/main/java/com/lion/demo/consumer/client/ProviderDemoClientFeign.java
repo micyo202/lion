@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "lion-demo-provider", fallback = ProviderDemoClientFeignHystrix.class)
 public interface ProviderDemoClientFeign {
 
-    @RequestMapping(value = "/hi")
+    @RequestMapping(value = "/sayHi")
     String sayHiFromProvider(@RequestParam(value = "name") String name);
 
 }
