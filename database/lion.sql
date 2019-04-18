@@ -57,7 +57,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('lion-zuul-server', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'server', 'password,authorization_code,refresh_token,implicit', NULL, '', NULL, NULL, NULL, NULL);
+INSERT INTO `oauth_client_details` VALUES ('lion_client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'server', 'password,authorization_code,refresh_token,implicit', NULL, '', NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
