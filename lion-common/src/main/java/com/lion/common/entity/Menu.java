@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Menu
@@ -20,16 +21,20 @@ public class Menu implements Serializable {
 
     private Integer id;
     private String code;
+    private Integer pId;
     private String pCode;
-    private String pId;
     private String name;
     private String url;
-    private Integer isMenu;
+    private Boolean isMenu;
     private Integer level;
     private Integer sort;
     private Integer status;
     private String icon;
     private Date createTime;
     private Date updateTime;
+    /**
+     * 子菜单
+     */
+    private List<Menu> children;
 
 }
