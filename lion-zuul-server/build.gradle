@@ -17,6 +17,8 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 
+    implementation project(':lion-common')
+
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
     // 添加灰度发布依赖
