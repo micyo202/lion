@@ -26,7 +26,7 @@ public class UserController {
 
     @RequestMapping("/principal")
     public Principal principal(Principal principal) {
-        //获取当前用户信息
+        //获取用户凭证信息
         return principal;
     }
 

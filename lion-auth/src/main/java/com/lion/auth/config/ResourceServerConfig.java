@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * ResourceServerConfig
- * 资源服务
+ * 资源服务器
  *
  * @author Yanzheng
  * @date 2019/04/11
@@ -21,22 +21,22 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] PATTERN_URLS = {
             "/actuator/**",
-            "/druid/**",
-            "/oauth/**"
+            "/druid/**"
     };
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+
         http
                 .csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                //.authenticationEntryPoint(new UnauthorizedEntryPoint())
                 .and()
                 .authorizeRequests()
                 .antMatchers(PATTERN_URLS).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+                .anyRequest().authenticated();
+
     }
 
 }
