@@ -18,7 +18,7 @@ spring:
 security:
   oauth2:
     client:
-      client-id: lion-zuul-server
+      client-id: lion_client
       access-token-uri: http://localhost:${server.port}/auth/oauth/token
       user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
     resource:
