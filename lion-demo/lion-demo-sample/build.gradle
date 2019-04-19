@@ -19,6 +19,8 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
 
@@ -31,7 +33,7 @@ dependencies {
 
     implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
     implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
-    
+
     // 苹果推送APNS
     testImplementation "com.notnoop.apns:apns:${apnsVersion}"
 }
