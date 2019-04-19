@@ -135,12 +135,17 @@ pagehelper:
 security:
   oauth2:
     client:
-      client-id: lion-zuul-server
+      client-id: lion_client
       access-token-uri: http://localhost:8888/oauth/token
       user-authorization-uri: http://localhost:8888/oauth/authorize
     resource:
       user-info-uri: http://localhost:8888/user/principal
       prefer-token-info: false
+
+#配置无需认证的url
+pattern:
+  permit:
+    urls: /product/**,/gray/**,/scala/**
 
 management:
   endpoints:
