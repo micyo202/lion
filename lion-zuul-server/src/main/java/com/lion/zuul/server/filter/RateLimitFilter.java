@@ -3,6 +3,7 @@ package com.lion.zuul.server.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.util.concurrent.RateLimiter;
+import com.lion.common.entity.Result;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -52,20 +53,17 @@ public class RateLimitFilter extends ZuulFilter {
             System.out.println("进入lion-zuul-server服务，执行RateLimitFilter，获取不到令牌。");
             requestContext.setSendZuulResponse(false);
             requestContext.setResponseStatusCode(HttpStatus.BAD_REQUEST.value());
-            Map<String, Object> map = new HashMap<>();
-            map.put("status", "400");
-            map.put("msg", "前方拥挤，请稍后在试！");
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonString = null;
             try {
-                jsonString = objectMapper.writeValueAsString(map);
+                jsonString = objectMapper.writeValueAsString(Result.failure(400, "前方拥挤，轻稍后再试！"));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
             requestContext.getResponse().setContentType("application/json;charset=UTF-8");
             requestContext.setResponseBody(jsonString);
         }
-        System.out.println("进入lion-uul-server服务，执行RateLimitFilter，获取令牌成功！");
+        System.out.println("进入lion-zuul-server服务，执行RateLimitFilter，获取令牌成功！");
         return null;
     }
 }

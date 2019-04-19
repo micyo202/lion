@@ -1,6 +1,7 @@
 package com.lion.zuul.server.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lion.common.entity.Result;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -9,8 +10,6 @@ import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_DECORATION_FILTER_ORDER;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
@@ -58,11 +57,8 @@ public class PreFilter extends ZuulFilter {
             requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
 
             try {
-                Map<String, Object> map = new HashMap<>();
-                map.put("status", "401");
-                map.put("msg", "token为空，无权访问！");
                 ObjectMapper objectMapper = new ObjectMapper();
-                String jsonString = objectMapper.writeValueAsString(map);
+                String jsonString = objectMapper.writeValueAsString(Result.failure(401, "token为空，无权访问！"));
                 requestContext.getResponse().setContentType("application/json;charset=UTF-8");
                 requestContext.setResponseBody(jsonString);
             } catch (IOException e) {

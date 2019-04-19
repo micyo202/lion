@@ -1,6 +1,7 @@
 package com.lion.zuul.server.fallback;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lion.common.entity.Result;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,8 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * CustomFallbackProvider
@@ -62,11 +61,8 @@ public class CustomFallbackProvider implements FallbackProvider {
              */
             @Override
             public InputStream getBody() throws IOException {
-                Map<String, Object> map = new HashMap<>();
-                map.put("status", "9999");
-                map.put("msg", "系统错误，请求失败！");
                 ObjectMapper objectMapper = new ObjectMapper();
-                String jsonString = objectMapper.writeValueAsString(map);
+                String jsonString = objectMapper.writeValueAsString(Result.failure(500, "调用服务失败！"));
                 return new ByteArrayInputStream(jsonString.getBytes("UTF-8"));
             }
 
