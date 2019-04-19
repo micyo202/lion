@@ -43,14 +43,12 @@ public class AccessFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        String tag = request.getParameter("tag");
         // 灰度发布示例
-        if (request.getParameter("tag") != null) {
+        if (null != tag && !tag.isEmpty()) {
             // put the serviceId in `RequestContext`
             RibbonFilterContextHolder.getCurrentContext()
-                    .add("tag", "v1.0");
-        } else {
-            RibbonFilterContextHolder.getCurrentContext()
-                    .add("tag", "v2.0");
+                    .add("tag", tag);
         }
 
         return null;
