@@ -64,8 +64,8 @@ public class SampleController {
         return "拥有User权限可访问......";
     }
 
-    // 获取权限信息
-    @RequestMapping("/getPrinciple")
+    // 获取用户凭证信息
+    @RequestMapping("/principle")
     public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
         log.info(oAuth2Authentication.toString());
