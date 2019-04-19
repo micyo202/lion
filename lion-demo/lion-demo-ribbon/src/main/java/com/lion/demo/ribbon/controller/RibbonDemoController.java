@@ -34,7 +34,7 @@ public class RibbonDemoController {
     @RequestMapping("/hi")
     @HystrixCommand(fallbackMethod = "hiHystrix")
     public String hi(String name) {
-        return restTemplate.getForObject("http://lion-demo-provider/hi", String.class);
+        return restTemplate.getForObject("http://lion-demo-provider/sayHi", String.class);
     }
 
     public String hiHystrix(String name) {
