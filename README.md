@@ -243,19 +243,32 @@ lion -- 根目录
 
 ## 八、效果预览
 
-#### 服务监控
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/lion-admin-server.png" alt="lion-admin-server" title="lion-admin-server">
+  <img src="https://github.com/micyo202/lion/raw/master/images/eureka.png" alt="eureka" title="eureka">
 </p>
 
-#### 链路追踪
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/lion-zipkin-server.png" alt="lion-zipkin-server" title="lion-zipkin-server">
+  <img src="https://github.com/micyo202/lion/raw/master/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
 </p>
 
-#### 服务调用情况
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/lion-turbine-server.png" alt="lion-turbine-server" title="lion-turbine-server">
+  <img src="https://github.com/micyo202/lion/raw/master/images/admin-details.png" alt="admin-details" title="admin-details">
+</p>
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/zipkin.png" alt="zipkin" title="zipkin">
+</p>
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/turbine.png" alt="turbine" title="turbine">
+</p>
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/druid.png" alt="druid" title="druid">
+</p>
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/swagger.png" alt="swagger" title="swagger">
 </p>
 
 ## 九、许可证
