@@ -30,7 +30,7 @@ allprojects {
             inheritOutputDirs = true
         }
     }
-    
+
 }
 
 subprojects {
@@ -40,7 +40,6 @@ subprojects {
     apply plugin: "com.arenagod.gradle.MybatisGenerator"    // 引入 mybatis-generator 插件
     apply plugin: 'docker'
     apply plugin: 'jacoco'
-
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
