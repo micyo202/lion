@@ -11,28 +11,11 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 15/04/2019 15:12:14
+ Date: 19/04/2019 16:38:27
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for jdbc
--- ----------------------------
-DROP TABLE IF EXISTS `jdbc`;
-CREATE TABLE `jdbc` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of jdbc
--- ----------------------------
-BEGIN;
-INSERT INTO `jdbc` VALUES (1);
-INSERT INTO `jdbc` VALUES (1);
-INSERT INTO `jdbc` VALUES (1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for oauth_client_details
@@ -57,7 +40,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('lion_client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'server', 'password,authorization_code,refresh_token,implicit', NULL, '', NULL, NULL, NULL, NULL);
+INSERT INTO `oauth_client_details` VALUES ('lion_client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'all', 'password,refresh_token,authorization_code,client_credentials,implicit', NULL, NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -71,7 +54,7 @@ CREATE TABLE `sys_menu` (
   `p_id` varchar(255) DEFAULT NULL COMMENT '父菜单ID',
   `name` varchar(255) DEFAULT NULL COMMENT '名称',
   `url` varchar(255) DEFAULT NULL COMMENT '请求地址',
-  `is_menu` int(11) DEFAULT NULL COMMENT '是否是菜单(1.菜单。2.按钮)',
+  `is_menu` tinyint(1) DEFAULT NULL COMMENT '是否是菜单(1.菜单。2.按钮)',
   `level` int(11) DEFAULT NULL COMMENT '菜单层级',
   `sort` int(11) DEFAULT NULL COMMENT '菜单排序',
   `status` int(11) DEFAULT NULL,
@@ -80,13 +63,18 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `FK_CODE` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_menu` VALUES (1, '1', NULL, NULL, '首页', '/index', 1, 1, 1, 1, NULL, '2019-04-15 11:16:02', NULL);
+INSERT INTO `sys_menu` VALUES (1, '1', '0', '0', '系统管理', '/manager', 1, 1, 1, 1, NULL, '2019-04-15 11:16:02', NULL);
+INSERT INTO `sys_menu` VALUES (2, '2', '1', '1', '用户管理', '/manager/user', 1, 2, 1, 1, NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (3, '3', '1', '1', '角色管理', '/manager/role', 1, 2, 2, 1, NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (4, '4', '1', '1', '菜单管理', '/manager/menu', 1, 2, 3, 1, NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (5, '5', '1', '1', '用户角色管理', '/manager/user_role', 1, 2, 4, 1, NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (6, '6', '1', '1', '角色菜单管理', '/manager/role_menu', 1, 2, 5, 1, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -112,7 +100,7 @@ CREATE TABLE `sys_role` (
 BEGIN;
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'super', NULL, '2017-06-20 15:08:45', NULL, 1);
 INSERT INTO `sys_role` VALUES (2, '管理员', 'admin', NULL, '2017-06-20 15:07:13', '2017-06-26 12:46:09', 1);
-INSERT INTO `sys_role` VALUES (3, '用户', 'user', NULL, '2017-06-28 18:50:39', '2017-07-21 09:41:28', 1);
+INSERT INTO `sys_role` VALUES (3, '一般用户', 'user', NULL, '2017-06-28 18:50:39', '2017-07-21 09:41:28', 1);
 COMMIT;
 
 -- ----------------------------
@@ -132,7 +120,12 @@ CREATE TABLE `sys_role_menu` (
 -- Records of sys_role_menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role_menu` VALUES (1, 1, 1, '2019-04-15 11:18:26', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (1, 2, 1, '2019-04-15 11:18:26', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (2, 2, 2, '2019-04-19 13:41:36', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (3, 2, 3, '2019-04-19 13:41:39', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (4, 2, 4, '2019-04-19 13:41:42', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (5, 2, 5, '2019-04-19 13:41:45', 'DBA');
+INSERT INTO `sys_role_menu` VALUES (6, 2, 6, '2019-04-19 13:42:20', 'DBA');
 COMMIT;
 
 -- ----------------------------
@@ -161,10 +154,10 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` VALUES (1, NULL, 'super', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '超级管理员', '2017-06-22 14:26:09', 1, NULL, NULL, 1, '2017-06-20 15:12:16', '2017-09-12 14:39:48');
-INSERT INTO `sys_user` VALUES (2, NULL, 'admin', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '管理员', NULL, 1, NULL, NULL, 1, '2017-06-26 17:31:41', NULL);
-INSERT INTO `sys_user` VALUES (3, NULL, 'test1', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, 'test1', NULL, 1, NULL, NULL, 1, '2017-09-18 16:11:15', NULL);
-INSERT INTO `sys_user` VALUES (4, NULL, 'test2', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, 'test2', NULL, 1, NULL, NULL, 1, '2017-09-21 17:09:51', NULL);
+INSERT INTO `sys_user` VALUES (1, NULL, 'super', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '超级管理员', '1989-06-22 12:00:00', 1, NULL, NULL, 1, '2017-06-20 15:12:16', '2019-04-19 13:30:26');
+INSERT INTO `sys_user` VALUES (2, NULL, 'admin', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '管理员', '1990-08-08 12:00:00', 1, NULL, NULL, 1, '2017-06-26 17:31:41', NULL);
+INSERT INTO `sys_user` VALUES (3, NULL, 'user', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '普通用户', '1991-05-01 12:00:00', 1, NULL, NULL, 1, '2017-09-18 16:11:15', NULL);
+INSERT INTO `sys_user` VALUES (4, NULL, 'test', '{bcrypt}$2a$10$zt3xDTDmnFFZdzaTZSPUhu.ZhvQYijtGpj4y5BrkBn/6lKi/SQQZ2', NULL, '测试用户', '1996-07-20 12:00:18', 0, NULL, NULL, 1, '2017-09-21 17:09:51', NULL);
 COMMIT;
 
 -- ----------------------------
