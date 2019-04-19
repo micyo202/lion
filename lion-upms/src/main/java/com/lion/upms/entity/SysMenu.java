@@ -31,15 +31,15 @@ public class SysMenu implements Serializable {
      */
     private String code;
     /**
+     * 父菜单ID
+     */
+    @Column(name = "p_id")
+    private Integer pId;
+    /**
      * 菜单父编码
      */
     @Column(name = "p_code")
     private String pCode;
-    /**
-     * 父菜单ID
-     */
-    @Column(name = "p_id")
-    private String pId;
     /**
      * 名称
      */
@@ -52,7 +52,7 @@ public class SysMenu implements Serializable {
      * 是否是菜单
      */
     @Column(name = "is_menu")
-    private Integer isMenu;
+    private Boolean isMenu;
     /**
      * 菜单层级
      */
