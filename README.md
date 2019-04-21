@@ -19,7 +19,7 @@
 
 #### 注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
-本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编，支持**Docker**容器化部署，规划将包含**大数据**、**区块链**等相关模块，项目孵化中...
+本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、限流、灰度发布等，规划将包含**大数据**、**区块链**等相关模块，项目孵化中...
 
 利用Spring Boot Admin来监控各个独立Service的运行状态，利用Turbine来查看近实时的接口运行状态和调用频率，利用Zipkin进行查看链路跟踪等。
 
