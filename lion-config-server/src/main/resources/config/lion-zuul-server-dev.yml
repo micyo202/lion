@@ -1,4 +1,8 @@
 zuul:
+  host:
+    max-total-connections: 500
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
   routes:
     #配置路由规则（经典写法）
     #api-a:
