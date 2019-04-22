@@ -243,30 +243,37 @@ lion -- 根目录
 
 ## 八、效果预览
 
+#### 服务注册/发现中心
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/eureka.png" alt="eureka" title="eureka">
 </p>
 
+#### 服务监控
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
 </p>
 
+#### 服务监控详情
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/admin-details.png" alt="admin-details" title="admin-details">
 </p>
 
+#### 链路追踪服务
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/zipkin.png" alt="zipkin" title="zipkin">
 </p>
 
+#### 服务实时调用情况
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/turbine.png" alt="turbine" title="turbine">
 </p>
 
+#### 数据源监控
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/druid.png" alt="druid" title="druid">
 </p>
 
+#### API 文档
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/swagger.png" alt="swagger" title="swagger">
 </p>
