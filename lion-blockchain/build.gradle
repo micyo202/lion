@@ -5,9 +5,9 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config:${nacosVersion}"
+    
     implementation 'org.springframework.cloud:spring-cloud-bus'
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 

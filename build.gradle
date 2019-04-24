@@ -30,7 +30,7 @@ allprojects {
             inheritOutputDirs = true
         }
     }
-
+    
 }
 
 subprojects {
@@ -67,10 +67,11 @@ subprojects {
         springBootAdminVersion = '2.1.2'
         springCloudVersion = 'Greenwich.RELEASE'
 
-        swaggerVersion = '2.9.2'
+        nacosVersion = '0.9.0.RELEASE'
         scalaVersion = '2.11.12'
         lombokVersion = '1.18.6'
         jacksonVersion = '2.9.8'
+        swaggerVersion = '2.9.2'
         mysqlVersion = '8.0.13'
         druidVersion = '1.1.16'
         mybatisVersion = '1.3.2'
