@@ -187,7 +187,6 @@ lion -- 根目录
 ├── lion-config-server -- 配置中心
 ├── lion-zuul-server -- 路由服务
 ├── lion-zipkin-server -- 链路追踪服务
-├── lion-gateway-server -- 二代路由服务（暂不使用）
 ├── lion-turbine-server -- 服务调用实时监控
 ├── lion-common -- 通用工具类模块
 ├── lion-upms -- 用户权限管理系统
@@ -229,7 +228,6 @@ lion -- 根目录
 - lion-admin-server（端口：8200）
 - lion-zuul-server（端口：8400）
 - lion-zipkin-server（端口：9411）
-- ~~lion-gateway-server（端口：8450）~~
 - lion-turbine-server（端口：8500）
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
