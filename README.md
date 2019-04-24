@@ -162,9 +162,8 @@ Spark 2.4.0 | [http://spark.apache.org](http://spark.apache.org) | √
 Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 
 ## 三、组件说明
-- 服务注册、发现: eureka
+- 服务注册/发现、配置中心: nacos
 - 服务监控：spring boot admin
-- 配置中心：spring cloud config -> native / git
 - 消息总线：spring cloud bus -> amqp
 - 负载均衡：feign / ribbon
 - 断路器: hystrix
@@ -182,9 +181,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 ## 四、项目树结构
 ```lua
 lion -- 根目录
-├── lion-eureka-server -- 服务注册/发现
 ├── lion-admin-server -- 服务监控
-├── lion-config-server -- 配置中心
 ├── lion-zuul-server -- 路由服务
 ├── lion-zipkin-server -- 链路追踪服务
 ├── lion-turbine-server -- 服务调用实时监控
@@ -221,14 +218,10 @@ lion -- 根目录
 7.项目开发详细代码，可参考lion-demo下的示例模块
 
 ## 七、服务启动
-以下服务请优先按顺序启动lion-eureka-server、lion-config-server服务，再启动其他服务（注：带~~删除线~~的服务为相关示例模块可根据需要选择启动）
-
-- lion-eureka-server（端口：8101、8102...）
-- lion-config-server（端口：8300，*启动后请等待lion-config-server成功注册到eureka后再启动之后各服务，否则会找不到配置服务*）
 - lion-admin-server（端口：8200）
 - lion-zuul-server（端口：8400）
 - lion-zipkin-server（端口：9411）
-- lion-turbine-server（端口：8500）
+- lion-turbine-server（端口：8500）[最后启动]
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
 - ~~lion-bigdata（端口：8801）~~
