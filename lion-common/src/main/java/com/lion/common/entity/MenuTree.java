@@ -13,6 +13,7 @@ import java.util.Set;
  * @date 2019/04/19
  * Copyright 2019 Yanzheng. All rights reserved.
  */
+@SuppressWarnings("unchecked")
 public class MenuTree implements Serializable {
 
     /**
