@@ -2,7 +2,7 @@ package com.lion.bigdata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * BigDataApplication
@@ -13,7 +13,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 public class BigDataApplication {
 
     public static void main(String[] args) {

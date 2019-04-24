@@ -2,7 +2,7 @@ package com.lion.zipkin.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import zipkin2.server.internal.EnableZipkinServer;
 
 /**
@@ -14,7 +14,7 @@ import zipkin2.server.internal.EnableZipkinServer;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 @EnableZipkinServer
 public class ZipkinServerApplication {
     public static void main(String[] args) {

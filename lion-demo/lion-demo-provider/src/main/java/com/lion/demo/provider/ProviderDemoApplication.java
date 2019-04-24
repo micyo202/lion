@@ -3,7 +3,7 @@ package com.lion.demo.provider;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * ProviderDemoApplication
@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 //@EnableTransactionManagement
 @MapperScan("com.lion.demo.provider..*.mapper")
 public class ProviderDemoApplication {
