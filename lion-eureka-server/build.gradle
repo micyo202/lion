@@ -1,8 +1,0 @@
-group 'com.lion.eureka.server'
-description '服务注册、发现中心'
-
-apply plugin: 'org.springframework.boot'
-
-dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-}
