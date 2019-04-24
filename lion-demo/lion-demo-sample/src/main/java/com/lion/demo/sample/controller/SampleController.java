@@ -27,14 +27,14 @@ public class SampleController {
     @Value("${server.port}")
     String port;
 
-    // 灰度版本，从zuul服务发起：http://localhost:8400/demo/sample/gray?tag=v1.0
-    @Value("${eureka.instance.metadata-map.tag}")
-    String tag;
+    // 灰度版本，从zuul服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
+    @Value("${spring.cloud.nacos.discovery.metadata.version}")
+    String version;
 
     // 灰度发布测试
     @RequestMapping("/gray")
     public String hi() {
-        return "灰度版本：" + tag + " 端口：" + port;
+        return "灰度版本：" + version + " 端口：" + port;
     }
 
     // 权限认证 - 无需token即可访问
