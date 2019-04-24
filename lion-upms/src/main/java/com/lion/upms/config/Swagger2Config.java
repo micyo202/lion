@@ -24,9 +24,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2Config {
 
-    @Value("${security.oauth2.client.access-token-uri}")
-    private String AUTH_SERVER;
-
     /**
      * 访问地址：http://ip:port/swagger-ui.html
      */
