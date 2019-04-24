@@ -1,77 +1,67 @@
-server:
-  port: 9411
-
-spring:
-  profiles:
-    active: dev
-  application:
-    name: lion-zipkin-server
-  sleuth:
-    enabled: false
-    sampler:
-      probability: 1.0
-
-zipkin:
-  collector:
-    rabbitmq:
-      addresses: 192.168.1.200:5672
-      username: admin
-      password: admin
-      queue: zipkin
-
-eureka:
-  instance:
-    lease-renewal-interval-in-seconds: 10
-  client:
-    registry-fetch-interval-seconds: 5
-    service-url:
-      defaultZone: http://localhost:8101/eureka/
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-  metrics:
-    web:
-      server:
-        auto-time-requests: false
-
----
-
-#开发环境使用mysql存储
-spring:
-  profiles: dev
-
-zipkin:
-  storage:
-    type: mysql
-    mysql:
-      jdbc-url: jdbc:mysql://192.168.1.200:3306/zipkin?useUnicode=true&characterEncoding=utf8&useSSL=false
-      host: 192.168.1.200
-      port: 3306
-      username: root
-      password: root
-      db: zipkin
-      max-active: 10
-      use-ssl: false
-
----
-
-#生产环境使用elasticsearch存储
-spring:
-  profiles: prod
-
-zipkin:
-  storage:
-    type: elasticsearch
-    elasticsearch:
-      hosts: 192.168.1.200:9200
-      max-requests: 64
-      timeout: 10000
-      index: zipkin
-      index-shards: 5
-      index-replicas: 1
+#server:
+#  port: 9411
+#
+#spring:
+#  profiles:
+#    active: dev
+#  sleuth:
+#    enabled: false
+#    sampler:
+#      probability: 1.0
+#
+#zipkin:
+#  collector:
+#    rabbitmq:
+#      addresses: 192.168.1.200:5672
+#      username: admin
+#      password: admin
+#      queue: zipkin
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+#  metrics:
+#    web:
+#      server:
+#        auto-time-requests: false
+#
+#---
+#
+##开发环境使用mysql存储
+#spring:
+#  profiles: dev
+#
+#zipkin:
+#  storage:
+#    type: mysql
+#    mysql:
+#      jdbc-url: jdbc:mysql://192.168.1.200:3306/zipkin?useUnicode=true&characterEncoding=utf8&useSSL=false
+#      host: 192.168.1.200
+#      port: 3306
+#      username: root
+#      password: root
+#      db: zipkin
+#      max-active: 10
+#      use-ssl: false
+#
+#---
+#
+##生产环境使用elasticsearch存储
+#spring:
+#  profiles: prod
+#
+#zipkin:
+#  storage:
+#    type: elasticsearch
+#    elasticsearch:
+#      hosts: 192.168.1.200:9200
+#      max-requests: 64
+#      timeout: 10000
+#      index: zipkin
+#      index-shards: 5
+#      index-replicas: 1
