@@ -234,9 +234,14 @@ lion -- 根目录
 
 ## 八、效果预览
 
-#### 服务注册/发现中心
+#### 服务注册/发现、配置中心
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/eureka.png" alt="eureka" title="eureka">
+  <img src="https://github.com/micyo202/lion/raw/master/images/nacos-config.png" alt="nacos-config" title="nacos-config">
+</p>
+
+#### 服务详情
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/nacos-details.png" alt="nacos-details" title="nacos-details">
 </p>
 
 #### 服务监控
