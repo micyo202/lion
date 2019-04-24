@@ -19,17 +19,17 @@
 
 #### 注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
-本项目是使用Gradle构建，基于SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE体系实现的一套完整微服务架构，采用Oauth2统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、限流、灰度发布等，规划将包含**大数据**、**区块链**等相关模块。
+本项目是使用**Gradle**构建，基于**SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE**体系实现的一套完整微服务架构，采用**Oauth2**统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、**限流**、**灰度发布**等，规划将包含**大数据**、**区块链**等相关模块。
 
-利用Spring Boot Admin来监控各个独立Service的运行状态，利用Turbine来查看近实时的接口运行状态和调用频率，利用Zipkin进行查看链路跟踪等。
+利用**Spring Boot Admin**来监控各个独立Service的运行状态，利用**Turbine**来查看近实时的接口运行状态和调用频率，利用**Zipkin**进行查看链路跟踪等。
 
-基于Nacos来实现的服务注册与调用，在SpringCloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
+基于**Nacos**来实现的服务注册与调用，在SpringCloud中使用**Feign**, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
 
 因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了Hystrix的作为熔断器，避免了服务之间的“雪崩”效应。
 
 项目整合了 **spring-boot 2.1.2 + jpa + mybatis**框架。
 
-项目使用travis-ci进行持续性CI，保证了最新提交代码的build passing，使用codecov进行自动化测试代码的覆盖率。
+项目使用**travis-ci**进行持续性**CI**，保证了最新提交代码的**build passing**，使用**codecov**进行自动化测试代码的覆盖率。
 
 项目后期项目也会不断更新与时俱进，敬请期待...
 
@@ -222,6 +222,7 @@ lion -- 根目录
 7.项目开发详细代码，可参考lion-demo下的示例模块
 
 ## 七、服务启动
+注：带~~删除线~~的服务为相关示例模块可根据需要选择启动
 - lion-admin-server（端口：8200）
 - lion-zuul-server（端口：8400）
 - lion-zipkin-server（端口：9411）
