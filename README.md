@@ -1,11 +1,11 @@
 # Lion
 
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/logo.png" alt="logo" title="logo">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/logo.png" alt="logo" title="logo">
 </p>
 
-[![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
-[![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
+[![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=eureka)](https://travis-ci.org/micyo202/lion)
+[![Codecov](https://codecov.io/gh/micyo202/lion/branch/eureka/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
 [![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -13,7 +13,7 @@
 [![Gradle](https://img.shields.io/badge/Gradle-5.3.1-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
-[![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
+[![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/eureka/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
@@ -36,7 +36,7 @@
 ## 项目架构图
 
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/frame.png" alt="frame" title="frame">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/frame.png" alt="frame" title="frame">
 </p>
 
 ## 说明
@@ -243,38 +243,38 @@ lion -- 根目录
 
 #### 服务注册/发现中心
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/eureka.png" alt="eureka" title="eureka">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/eureka.png" alt="eureka" title="eureka">
 </p>
 
 #### 服务监控
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
 </p>
 
 #### 服务监控详情
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/admin-details.png" alt="admin-details" title="admin-details">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/admin-details.png" alt="admin-details" title="admin-details">
 </p>
 
 #### 链路追踪服务
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/zipkin.png" alt="zipkin" title="zipkin">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/zipkin.png" alt="zipkin" title="zipkin">
 </p>
 
 #### 服务实时调用情况
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/turbine.png" alt="turbine" title="turbine">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/turbine.png" alt="turbine" title="turbine">
 </p>
 
 #### 数据源监控
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/druid.png" alt="druid" title="druid">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/druid.png" alt="druid" title="druid">
 </p>
 
 #### API 文档
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/swagger.png" alt="swagger" title="swagger">
+  <img src="https://github.com/micyo202/lion/raw/eureka/images/swagger.png" alt="swagger" title="swagger">
 </p>
 
 ## 九、许可证
-[MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)
+[MIT License](https://github.com/micyo202/lion/blob/eureka/LICENSE)
