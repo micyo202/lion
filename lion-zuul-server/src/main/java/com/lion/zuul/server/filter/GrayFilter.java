@@ -1,16 +1,16 @@
 package com.lion.zuul.server.filter;
 
+import com.lion.zuul.server.gray.support.RibbonFilterContextHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import io.jmnarloch.spring.cloud.ribbon.support.RibbonFilterContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.*;
 
 /**
- * AccessFilter
+ * GrayFilter
  * 灰度发布控制过滤器
  *
  * @author Yanzheng
@@ -18,7 +18,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 //@Component
-public class AccessFilter extends ZuulFilter {
+public class GrayFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
@@ -41,14 +41,15 @@ public class AccessFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        String tag = request.getParameter("tag");
+        String version = request.getParameter("version");
         // 灰度发布示例
-        if (null != tag && !tag.isEmpty()) {
+        if (null != version && !version.isEmpty()) {
             // put the serviceId in `RequestContext`
             RibbonFilterContextHolder.getCurrentContext()
-                    .add("tag", tag);
+                    .add("version", version);
         }
 
         return null;
