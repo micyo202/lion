@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * SampleApplicationTests
+ * SampleDemoApplicationTests
  * TODO
  *
  * @author Yanzheng
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SampleDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SampleApplicationTests {
+public class SampleDemoApplicationTests {
 
     @LocalServerPort
     private int port;
@@ -37,11 +37,11 @@ public class SampleApplicationTests {
         String url = "http://localhost:" + port;
         ResponseEntity<String> response1 = this.restTemplate.getForEntity(
                 url + "/gray", String.class);
-        System.out.println(String.format("1测试结果为：%s", response1.getBody()));
+        System.out.println(String.format("/gray 调用测试结果为：%s", response1.getBody()));
 
         ResponseEntity<String> response2 = this.restTemplate.getForEntity(
                 url + "/product/1", String.class);
-        System.out.println(String.format("2测试结果为：%s", response2.getBody()));
+        System.out.println(String.format("/product/1 调用测试结果为：%s", response2.getBody()));
     }
 
 }
