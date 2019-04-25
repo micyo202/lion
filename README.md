@@ -29,13 +29,11 @@
 
 项目整合了 **spring-boot 2.1.2 + jpa + mybatis**框架。
 
-项目使用**travis-ci**进行持续性**CI**，保证了最新提交代码的**build passing**，使用**codecov**进行自动化测试代码的覆盖率。
+项目使用**Travis CI**进行持续性**CI**，保证了最新提交代码的**build passing**，使用**Codecov**进行自动化测试代码的覆盖率。
 
-项目后期也会不断更新与时俱进，敬请期待...
+项目后期会不断更新与时俱进，敬请期待...
 
----
-
-**项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看eureka版本，请切换分支到[eureka](https://github.com/micyo202/lion/tree/eureka)）**
+**项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看Eureka版，请切换分支到[Eureka](https://github.com/micyo202/lion/tree/eureka)）**
 
 ## 项目架构图
 
