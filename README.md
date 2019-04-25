@@ -200,7 +200,7 @@ lion -- 根目录
 ```
 
 ## 五、项目准备
-- 在运行该项目前，请确保先正常启动：[RabbitMQ 3.7.9](https://www.rabbitmq.com)、[MySql 8.0.13](https://www.mysql.com)、[Redis 5.0.2](https://redis.io)这3个必备服务，否则项目无法运行
+- 在运行该项目前，请确保先正常启动：[Nacos v1.0.0](https://nacos.io)、[RabbitMQ 3.7.9](https://www.rabbitmq.com)、[MySql 8.0.13](https://www.mysql.com)、[Redis 5.0.2](https://redis.io)这4个必备服务，否则项目无法运行
 
 - 建议使用[IntelliJ IDEA](https://www.jetbrains.com/idea/)作为IDE开发工具（注：该工具需要购买，激活步骤详情可参考我个人简书上的方法，请移步至[https://www.jianshu.com/p/3c87487e7121](https://www.jianshu.com/p/3c87487e7121)）
 
