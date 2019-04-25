@@ -1,13 +1,10 @@
 package com.lion.demo.sample;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * SampleDemoApplicationTests
@@ -17,8 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019/01/06
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = SampleDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = SampleDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SampleDemoApplicationTests {
 
     @LocalServerPort
