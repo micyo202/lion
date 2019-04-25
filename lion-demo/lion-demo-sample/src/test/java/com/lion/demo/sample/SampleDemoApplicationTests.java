@@ -1,9 +1,6 @@
 package com.lion.demo.sample;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -18,18 +15,18 @@ import org.springframework.http.ResponseEntity;
 //@SpringBootTest(classes = SampleDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SampleDemoApplicationTests {
 
-    @LocalServerPort
+    //@LocalServerPort
     private int port;
 
-    @Autowired
+    //@Autowired
     private TestRestTemplate restTemplate;
 
-    @Test
+    //@Test
     public void contextLoads() {
         System.out.println("加载配置文件...");
     }
 
-    @Test
+    //@Test
     public void testRequest() {
         String url = "http://localhost:" + port;
         ResponseEntity<String> response1 = this.restTemplate.getForEntity(
