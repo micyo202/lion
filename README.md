@@ -25,17 +25,17 @@
 
 基于**Nacos**来实现的服务注册与调用，在SpringCloud中使用**Feign**, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
 
-因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了Hystrix的作为熔断器，避免了服务之间的“雪崩”效应。
+因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了**Hystrix**的作为熔断器，避免了服务之间的“雪崩”效应。
 
 项目整合了 **spring-boot 2.1.2 + jpa + mybatis**框架。
 
 项目使用**travis-ci**进行持续性**CI**，保证了最新提交代码的**build passing**，使用**codecov**进行自动化测试代码的覆盖率。
 
-项目后期项目也会不断更新与时俱进，敬请期待...
+项目后期也会不断更新与时俱进，敬请期待...
 
 ---
 
-**项目已升级，采用Nacos作为服务注册/发现、配置中心，[nacos](https://nacos.io)版本v1.0.0，（若想查看eureka版本，请切换分支到[eureka](https://github.com/micyo202/lion/tree/eureka)）**
+**项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看eureka版本，请切换分支到[eureka](https://github.com/micyo202/lion/tree/eureka)）**
 
 ## 项目架构图
 
