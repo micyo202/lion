@@ -40,13 +40,14 @@ public class BigDataApplicationTests {
     @Test
     public void testRequest() {
         String url = "http://localhost:" + port;
-        ResponseEntity<String> response1 = this.restTemplate.getForEntity(
-                url + "/test", String.class, "张三");
-        System.out.println(String.format("1测试结果为：%s", response1.getBody()));
 
         ResponseEntity<String> response2 = this.restTemplate.getForEntity(
                 url + "/hi", String.class);
-        System.out.println(String.format("2测试结果为：%s", response2.getBody()));
+        System.out.println(String.format("/hi 调用测试结果为：%s", response2.getBody()));
+
+        ResponseEntity<String> response1 = this.restTemplate.getForEntity(
+                url + "/test", String.class, "张三");
+        System.out.println(String.format("/test 调用测试结果为：%s", response1.getBody()));
     }
 
 }
