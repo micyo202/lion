@@ -20,7 +20,6 @@ public class UpmsClientFallback implements UpmsClient {
         return Result.failure(100, "调用 getUserByUsername 失败...");
     }
 
-
     @Override
     public Result getRoleByUserId(Integer userId) {
         return Result.failure(100, "调用 getRoleByUserId 失败...");
