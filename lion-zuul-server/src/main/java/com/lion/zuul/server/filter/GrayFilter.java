@@ -11,7 +11,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 
 /**
  * GrayFilter
- * 灰度发布控制过滤器
+ * 灰度发布拦截器
  *
  * @author Yanzheng
  * @date 2019/04/05
@@ -27,7 +27,7 @@ public class GrayFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return PRE_DECORATION_FILTER_ORDER - 5;
+        return RIBBON_ROUTING_FILTER_ORDER - 1;
     }
 
     @Override
