@@ -17,9 +17,9 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
-    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
