@@ -3,6 +3,7 @@ package com.lion.demo.provider.temp.repository;
 import com.lion.demo.provider.temp.entity.TempJpa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
+@Transactional  // 在做update、delete时必须声明事物，否则会抛异常
 public interface TempRepository extends JpaRepository<TempJpa, String> {
 
     // 占位符风格
