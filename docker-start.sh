@@ -3,13 +3,16 @@
 
 echo "容器创建开始"
 
-# lion-eureka-server docker 启动命令：
-docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-eureka-server -p 8101:8101 -it com.lion.eureka.server/lion-eureka-server
-
-# lion-admin-server docer 启动命令
+# lion-admin-server docker 启动命令
 docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-admin-server -p 8200:8200 -it com.lion.admin.server/lion-admin-server
 
-# lion-config-server docer 启动命令
-docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-config-server -p 8300:8300 -it com.lion.config.server/lion-config-server
+# lion-upms docker 启动命令
+docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-upms -p 8800:8800 -it com.lion.upms/lion-upms
+
+# lion-auth docker 启动命令
+docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-auth -p 8888:8888 -it com.lion.auth/lion-auth
+
+# lion-zuul-server docker 启动命令
+docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-zuul-server -p 8400:8400 -it com.lion.zuul.server/lion-zuul-server
 
 echo "容器创建完成"
