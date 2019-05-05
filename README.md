@@ -36,7 +36,7 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
-**2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路源于：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
+**2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
 ## 项目架构图
 
