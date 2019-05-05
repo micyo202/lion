@@ -93,7 +93,7 @@ Dubbo只是实现了服务治理，而Spring Cloud子项目分别覆盖了微服
 Dubbo提供了各种Filter，可以通过扩展Filter来完善。
 我们必须采用与一站式时代、泛 SOA 时代不同的技术栈，而 Spring Cloud 就是其中的佼佼者。
 
-从核心要素来看，Spring Cloud 更胜一筹，在开发过程中只要整合Spring Cloud的子项目就可以顺利的完成各种组件的融合，而Dubbo缺需要通过实现各种Filter来做定制，开发成本略高。
+从核心要素来看，Spring Cloud 更胜一筹，在开发过程中只要整合Spring Cloud的子项目就可以顺利的完成各种组件的融合，而Dubbo却需要通过实现各种Filter来做定制，开发成本略高。
 
 ### 什么是Spring Cloud？
 Spring Cloud 是一系列框架的有序集合。
@@ -179,7 +179,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 - ORM框架：mybatis + jpa 
 - 数据源监控：druid
 - api文档输出：swagger2
-- 分布式锁：redis（待实现）
+- 分布式锁：redis（测试中，待发布...）
 - 消息队列：rabbitmq
 - 分布式事物：3PC+TCC（待实现）
 
@@ -193,6 +193,7 @@ lion -- 根目录
 ├── lion-common -- 通用工具类模块
 ├── lion-upms -- 用户权限管理系统
 ├── lion-auth -- 安全认证服务器
+├── lion-id -- 自增ID生成服务
 ├── lion-bigdata -- 大数据模块
 ├── lion-blockchain -- 区块链模块
 ├── lion-demo -- 示例代码模块
@@ -230,6 +231,7 @@ lion -- 根目录
 - lion-turbine-server（端口：8500）[最后启动]
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
+- lion-id（端口：8899）
 - ~~lion-bigdata（端口：8801）~~
 - ~~lion-blockchain （端口：8802）~~
 - ~~lion-demo（相关demo示例）~~
