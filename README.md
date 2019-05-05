@@ -19,6 +19,12 @@
 
 #### 注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
+---
+
+####项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看Eureka版，请切换分支到[Eureka](https://github.com/micyo202/lion/tree/eureka)）
+
+---
+
 本项目是使用**Gradle**构建，基于**SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE**体系实现的一套完整微服务架构，采用**Oauth2**统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、**限流**、**灰度发布**等，规划将包含**大数据**、**区块链**等相关模块。
 
 利用**Spring Boot Admin**来监控各个独立Service的运行状态，利用**Turbine**来查看近实时的接口运行状态和调用频率，利用**Zipkin**进行查看链路跟踪等。
@@ -33,7 +39,8 @@
 
 项目后期会不断更新与时俱进，敬请期待...
 
-**项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看Eureka版，请切换分支到[Eureka](https://github.com/micyo202/lion/tree/eureka)）**
+## 近期更新
+**2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路源于：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
 ## 项目架构图
 
@@ -90,7 +97,7 @@ Dubbo只是实现了服务治理，而Spring Cloud子项目分别覆盖了微服
 Dubbo提供了各种Filter，可以通过扩展Filter来完善。
 我们必须采用与一站式时代、泛 SOA 时代不同的技术栈，而 Spring Cloud 就是其中的佼佼者。
 
-从核心要素来看，Spring Cloud 更胜一筹，在开发过程中只要整合Spring Cloud的子项目就可以顺利的完成各种组件的融合，而Dubbo缺需要通过实现各种Filter来做定制，开发成本以及技术难度略高。
+从核心要素来看，Spring Cloud 更胜一筹，在开发过程中只要整合Spring Cloud的子项目就可以顺利的完成各种组件的融合，而Dubbo缺需要通过实现各种Filter来做定制，开发成本略高。
 
 ### 什么是Spring Cloud？
 Spring Cloud 是一系列框架的有序集合。
