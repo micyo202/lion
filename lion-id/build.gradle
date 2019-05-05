@@ -1,0 +1,33 @@
+group 'com.lion.id'
+description '自增ID生成服务'
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config:${nacosVersion}"
+
+    implementation 'org.springframework.cloud:spring-cloud-bus'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+
+    //implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation project(':lion-common')
+
+    implementation "mysql:mysql-connector-java:${mysqlVersion}"
+    implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
+    implementation "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
+
+    implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}"
+
+    implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+
+}
