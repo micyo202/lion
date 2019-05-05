@@ -19,8 +19,6 @@
 
 #### 注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)
 
----
-
 ####项目采用[Nacos v1.0.0](https://nacos.io)作为服务注册/发现、配置中心（若要查看Eureka版，请切换分支到[Eureka](https://github.com/micyo202/lion/tree/eureka)）
 
 ---
