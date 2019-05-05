@@ -11,4 +11,20 @@ configurations {
 
 dependencies {
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    //implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+
+    //implementation "mysql:mysql-connector-java:${mysqlVersion}"
+    //implementation "com.alibaba:druid:${druidVersion}"
+
+    //implementation "org.mybatis:mybatis:${mybatisVersion}"
+    //implementation "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
+
+    implementation "org.springframework:spring-context-support:${springFrameworkVersion}"
+
+    //implementation "org.springframework.data:spring-data-redis:2.1.4.RELEASE"
+
+    implementation "org.slf4j:slf4j-api:1.7.25"
+
+    //implementation "io.swagger:swagger-annotations:1.5.20"
+
 }

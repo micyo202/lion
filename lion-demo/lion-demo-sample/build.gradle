@@ -26,7 +26,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
     implementation "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
 
     implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}"
