@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 20/04/2019 16:25:17
+ Date: 05/05/2019 10:50:51
 */
 
 SET NAMES utf8mb4;
@@ -41,6 +41,28 @@ CREATE TABLE `oauth_client_details` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `oauth_client_details` VALUES ('lion_client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'all', 'password,refresh_token,authorization_code,client_credentials,implicit', NULL, NULL, NULL, NULL, NULL, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_id
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_id`;
+CREATE TABLE `sys_id` (
+  `id` bigint(20) NOT NULL,
+  `biz_tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `describe` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `max_id` bigint(20) DEFAULT NULL,
+  `step` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of sys_id
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_id` VALUES (1, 'user_tag', '用户ID生成规则', 0, 10, '2019-04-28 16:38:40');
+INSERT INTO `sys_id` VALUES (2, 'order_tag', '订单ID生成规则', 0, 1000, '2019-04-28 16:39:05');
 COMMIT;
 
 -- ----------------------------
