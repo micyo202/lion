@@ -122,8 +122,6 @@
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
-#    database: 0
-#
 ##开启hystrix断路器
 #feign:
 #  hystrix:

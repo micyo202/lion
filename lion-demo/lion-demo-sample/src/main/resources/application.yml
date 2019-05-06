@@ -116,7 +116,9 @@
 #      ddl-auto: update
 #      naming:
 #        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-#
+#  redis:
+#    host: 192.168.1.200
+#    port: 6379
 ##mybats映射sqlMap文件
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
@@ -143,7 +145,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /product/**,/gray/**,/scala/**
+#    urls: /product/**,/gray/**,/scala/**,/lock/**
 #
 #management:
 #  endpoints:
