@@ -12,7 +12,9 @@
 #    port: 5672
 #    username: admin
 #    password: admin
-#
+#  redis:
+#    host: 192.168.1.200
+#    port: 6379
 #security:
 #  oauth2:
 #    client:
@@ -45,6 +47,7 @@
 #    lion-blockchain: /blockchain/**
 #    lion-upms: /upms/**
 #    lion-auth: /auth/**
+#    lion-id: /id/**
 #    #排除某些路由
 #    #ignored-patterns:
 #    #- /lion-demo-ribbon/init
