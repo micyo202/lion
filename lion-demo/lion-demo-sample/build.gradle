@@ -21,10 +21,14 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
+    implementation project(':lion-common')
+
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
     implementation "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
