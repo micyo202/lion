@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * RedissonManager
- * 分布式锁Redis初始化
+ * 分布式锁管理类（初始化redis）
  *
  * @author Yanzheng
  * @date 2019/05/08
@@ -28,6 +28,9 @@ public class RedissonManager {
     public RedissonClient getRedisson() {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://" + host + ":" + port);
+        //.setTimeout(3000)
+        //.setConnectionPoolSize(10)
+        //.setConnectionMinimumIdleSize(8)
         return Redisson.create(config);
     }
 

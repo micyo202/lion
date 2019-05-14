@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * Locker
- * 自定义分布式锁注解
+ * 分布式锁注解类
  *
  * @author Yanzheng
  * @date 2019/05/08

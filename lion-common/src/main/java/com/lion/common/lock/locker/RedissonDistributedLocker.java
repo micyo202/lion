@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * RedissonDistributedLocker
- * 分布式锁，实现类
+ * 分布式锁方法实现类
  *
  * @author Yanzheng
  * @date 2019/05/08

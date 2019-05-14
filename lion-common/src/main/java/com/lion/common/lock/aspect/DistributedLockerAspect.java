@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * DistributedLockerAspect
- * 自定义分布式锁切面
+ * 分布式锁切面方法
  *
  * @author Yanzheng
  * @date 2019/05/08

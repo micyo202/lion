@@ -5,8 +5,8 @@ import org.redisson.api.RLock;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Locker
- * 获取锁管理类
+ * DistributedLocker
+ * 分布式锁接口方法
  *
  * @author Yanzheng
  * @date 2019/05/08
