@@ -18,10 +18,7 @@ dependencies {
 
     //implementation "org.mybatis:mybatis:${mybatisVersion}"
     //implementation "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
-
-    implementation "org.springframework:spring-context-support:${springFrameworkVersion}"
-    implementation "org.springframework:spring-aop:${springFrameworkVersion}"
-
+    
     implementation "org.springframework.data:spring-data-redis:2.1.4.RELEASE"
     implementation "org.redisson:redisson:3.10.6"
     implementation 'org.aspectj:aspectjweaver:1.9.2'
