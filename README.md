@@ -36,6 +36,8 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
+**2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，实现原理Redisson请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
+
 **2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
 ## 项目架构图
@@ -179,9 +181,9 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 - ORM框架：mybatis + jpa 
 - 数据源监控：druid
 - api文档输出：swagger2
-- 分布式锁：redis（测试中，待发布...）
+- 分布式锁：redis
 - 消息队列：rabbitmq
-- 分布式事物：3PC+TCC（待实现）
+- 分布式事物：3PC+TCC（待实现 Fescar[Seata]）
 
 ## 四、项目树结构
 ```lua
