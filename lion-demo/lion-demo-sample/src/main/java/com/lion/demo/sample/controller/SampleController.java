@@ -1,5 +1,7 @@
 package com.lion.demo.sample.controller;
 
+import com.lion.common.entity.Result;
+import com.lion.common.lock.annotation.Locker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -74,6 +76,20 @@ public class SampleController {
         log.info("authentication: " + authentication.getAuthorities().toString());
 
         return oAuth2Authentication;
+    }
+
+    // 分布式锁
+    @Locker
+    @RequestMapping("/lock")
+    public Result lock() {
+
+        try {
+            log.info("执行锁中业务逻辑");
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return Result.success("分布式锁执行成功！");
     }
 
 }
