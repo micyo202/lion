@@ -151,7 +151,7 @@ Spring Cloud Bus 被国内很多都翻译为消息总线，也挺形象的。大
 
 ## 二、相关软件
 名称 | 链接 | 使用
---- | --- | ---
+--- | --- | :-:
 MySql 8.0.13 | [https://www.mysql.com](https://www.mysql.com) | √
 MongoDB 4.0.4 | [http://www.mongodb.org](http://www.mongodb.org) | ×
 Redis 5.0.2 | [https://redis.io](https://redis.io) | √
