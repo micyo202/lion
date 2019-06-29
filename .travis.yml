@@ -1,12 +1,12 @@
 language: java
 sudo: required
 
-jdk:
-  - oraclejdk8
+jdk: oraclejdk8
 
 script:
+  - java -version
   - ./gradlew -v
-  - travis_wait 60 ./gradlew clean check
+  - travis_wait 60 ./gradlew -x test clean check
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
