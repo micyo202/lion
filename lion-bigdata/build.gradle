@@ -3,6 +3,10 @@ description '大数据模块'
 
 apply plugin: 'org.springframework.boot'
 
+configurations {
+    implementation.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
@@ -14,5 +18,14 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation "org.apache.hadoop:hadoop-common:${hadoopVersion}"
+    implementation "org.apache.hadoop:hadoop-client:${hadoopVersion}"
+    //implementation "org.apache.hadoop:hadoop-hdfs:${hadoopVersion}"
+
+    implementation "org.apache.spark:spark-core_2.12:${sparkVersion}"
+    implementation "org.apache.spark:spark-sql_2.12:${sparkVersion}"
+    implementation "org.apache.spark:spark-streaming_2.12:${sparkVersion}"
+    implementation "org.apache.spark:spark-mllib_2.12:${sparkVersion}"
 
 }
