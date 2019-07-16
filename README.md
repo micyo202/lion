@@ -36,7 +36,9 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
-**2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，实现原理Redisson请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
+**2019-06-30：添加HDFS相关操作API**
+
+**2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，该分布式锁是基于Redisson实现的，请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
 
 **2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
@@ -217,13 +219,15 @@ lion -- 根目录
 
 3.创建2个数据库分别为 lion、zipkin 并分别执行根目录 database 中的 lion.sql、zipkin.sql 文件，创建整个项目必要的表（如：用户表、权限表、菜单资源表等...）
 
-4.修改项目的 resources/application.yml 配置文件中的datasource druid数据库连接信息
+4.根据自己服务情况，修改项目中 resources/bootstrap.yml 配置下 nacos 的服务地址
 
-5.修改项目的 resources/log4j2.yml 配置文件中的 -log.path value 日志输出路径
+5.将项目中的所有 resources/application.yml 配置文件注释放开（或使用nacos配置中心进行管理），并修改其datasource druid数据库连接信息
 
-6.完成以上步骤就可以正常部署启动服务了
+6.修改项目的 resources/log4j2.yml 配置文件中的 -log.path value 日志输出路径
 
-7.项目开发详细代码，可参考lion-demo下的示例模块
+7.完成以上步骤就可以正常部署启动服务了
+
+8.项目开发详细代码，可参考lion-demo下的示例模块
 
 ## 七、服务启动
 注：带~~删除线~~的服务为相关示例模块可根据需要选择启动
