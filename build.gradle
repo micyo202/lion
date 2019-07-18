@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 group 'com.lion'
 version = '1.0.0'
 
@@ -68,17 +70,23 @@ subprojects {
         springCloudVersion = 'Greenwich.RELEASE'
         springFrameworkVersion = '5.1.4.RELEASE'
 
-        nacosVersion = '0.9.0.RELEASE'
         scalaVersion = '2.11.12'
-        lombokVersion = '1.18.6'
+        nacosVersion = '0.9.0.RELEASE'
         jacksonVersion = '2.9.8'
-        swaggerVersion = '2.9.2'
+        lombokVersion = '1.18.6'
+        aspectjVersion = '1.9.2'
         mysqlVersion = '8.0.13'
         druidVersion = '1.1.16'
         mybatisVersion = '3.4.6'
         mybatisSpringVersion = '1.3.2'
         generatorVersion = '1.3.7'
         pagehelperVersion = '1.2.10'
+        springRedisVersion = '2.1.4.RELEASE'
+        redissonVersion = '3.10.6'
+        springfoxSwaggerVersion = '2.9.2'
+        swaggerVersion = '1.5.20'
+        slf4jVersion = '1.7.25'
+        log4jVersion = '2.11.1'
         hadoopVersion = '3.1.1'
         sparkVersion = '2.4.0'
 
@@ -162,5 +170,13 @@ subprojects {
         delete "${rootDir}/out"
     }
     tasks.clean.dependsOn(cleanOutDir)
+
+    // 根据环境打包，命令：./gradlew clean bootJar -D profile=prod
+    /*
+    def profileName = System.getProperty("profile") ?: "dev"
+    processResources {
+        filter ReplaceTokens, tokens: [profileName: profileName]
+    }
+    */
 
 }

@@ -3,10 +3,6 @@ description '路由网关服务'
 
 apply plugin: 'org.springframework.boot'
 
-ext {
-    ribbonDiscoveryFilterVersion = '2.1.0'
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
