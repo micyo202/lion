@@ -11,20 +11,17 @@ configurations {
 
 dependencies {
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    //implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
 
-    //implementation "mysql:mysql-connector-java:${mysqlVersion}"
-    //implementation "com.alibaba:druid:${druidVersion}"
+    implementation "org.springframework.data:spring-data-redis:${springRedisVersion}"
+    implementation "org.redisson:redisson:${redissonVersion}"
+    implementation "org.aspectj:aspectjweaver:${aspectjVersion}"
 
-    //implementation "org.mybatis:mybatis:${mybatisVersion}"
-    //implementation "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
-    
-    implementation "org.springframework.data:spring-data-redis:2.1.4.RELEASE"
-    implementation "org.redisson:redisson:3.10.6"
-    implementation 'org.aspectj:aspectjweaver:1.9.2'
+    implementation "org.springframework:spring-web:${springFrameworkVersion}"
 
-    implementation "org.slf4j:slf4j-api:1.7.25"
+    //implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    implementation "org.slf4j:slf4j-nop:${slf4jVersion}"
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
 
-    //implementation "io.swagger:swagger-annotations:1.5.20"
+    //implementation "io.swagger:swagger-annotations:${swaggerVersion}"
 
 }
