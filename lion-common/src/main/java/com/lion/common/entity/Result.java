@@ -2,7 +2,6 @@ package com.lion.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.lion.common.util.Status;
 
 import java.io.Serializable;
 import java.util.HashMap;
