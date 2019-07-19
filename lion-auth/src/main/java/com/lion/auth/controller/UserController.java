@@ -1,7 +1,7 @@
 package com.lion.auth.controller;
 
 import com.lion.common.entity.Result;
-import com.lion.common.util.Status;
+import com.lion.common.entity.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.RequestMapping;
