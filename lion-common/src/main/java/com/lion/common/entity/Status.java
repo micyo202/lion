@@ -1,4 +1,4 @@
-package com.lion.common.util;
+package com.lion.common.entity;
 
 /**
  * Status
