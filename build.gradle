@@ -1,5 +1,3 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 group 'com.lion'
 version = '1.0.0'
 
@@ -173,6 +171,7 @@ subprojects {
 
     // 根据环境打包，命令：./gradlew clean bootJar -D profile=prod
     /*
+    import org.apache.tools.ant.filters.ReplaceTokens
     def profileName = System.getProperty("profile") ?: "dev"
     processResources {
         filter ReplaceTokens, tokens: [profileName: profileName]
