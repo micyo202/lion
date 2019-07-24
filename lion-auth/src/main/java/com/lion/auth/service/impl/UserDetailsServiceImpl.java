@@ -5,7 +5,7 @@ import com.lion.common.entity.Menu;
 import com.lion.common.entity.Result;
 import com.lion.common.entity.Role;
 import com.lion.common.entity.User;
-import com.lion.common.util.Status;
+import com.lion.common.entity.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
