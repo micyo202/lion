@@ -19,8 +19,9 @@ dependencies {
     implementation "org.springframework:spring-web:${springFrameworkVersion}"
 
     //implementation "org.slf4j:slf4j-api:${slf4jVersion}"
-    implementation "org.slf4j:slf4j-nop:${slf4jVersion}"
+    //implementation "org.slf4j:slf4j-nop:${slf4jVersion}"
     implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    implementation "org.mybatis:mybatis:${mybatisVersion}"
 
     //implementation "io.swagger:swagger-annotations:${swaggerVersion}"
 
