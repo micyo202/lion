@@ -19,11 +19,11 @@ import java.util.List;
 public interface TempRepository extends JpaRepository<TempJpa, String> {
 
     // 占位符风格
-    @Query(value = "SELECT * FROM temp_jpa WHERE status = ?1", nativeQuery = true)
+    @Query(value = "select * from temp_jpa where status = ?1", nativeQuery = true)
     List<TempJpa> findBySql(Boolean status);
 
     // 参数风格
-    //@Query(value = "SELECT * FROM temp_jpa WHERE status = :status", nativeQuery = true)
+    //@Query(value = "select * from temp_jpa where status = :status", nativeQuery = true)
     //List<TempJpa> findBySql(@Param("status") Boolean status);
 
 }
