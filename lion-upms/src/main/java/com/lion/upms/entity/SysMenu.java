@@ -19,8 +19,6 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_menu")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SysMenu implements Serializable {
 
     @Id
