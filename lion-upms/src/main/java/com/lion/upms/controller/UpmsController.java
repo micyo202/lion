@@ -7,10 +7,13 @@ import com.lion.upms.entity.SysUser;
 import com.lion.upms.repository.MenuRepository;
 import com.lion.upms.repository.RoleRepository;
 import com.lion.upms.repository.UserRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.List;
  * @date 2019/04/11
  * Copyright 2019 Yanzheng. All rights reserved.
  */
+@Api("用户权限管理")
 @RestController
 public class UpmsController {
 
@@ -35,7 +39,9 @@ public class UpmsController {
     @Autowired
     private MenuRepository menuRepository;
 
-    @RequestMapping("/getUserByUsername/{username}")
+    @ApiOperation("根据用户名获取用户对象信息")
+    @ApiParam(name = "username", value = "用户名", required = true)
+    @PostMapping("/getUserByUsername/{username}")
     public Result getUserByUsername(@PathVariable("username") String username) {
 
         SysUser sysUser = new SysUser();
@@ -50,13 +56,17 @@ public class UpmsController {
         return Result.success(user);
     }
 
-    @RequestMapping("/getRoleByUserId/{userId}")
+    @ApiOperation("根据用户ID获取角色列表信息")
+    @ApiParam(name = "userId", value = "用户ID", required = true)
+    @PostMapping("/getRoleByUserId/{userId}")
     public Result getRoleByUserId(@PathVariable("userId") Integer userId) {
         List<SysRole> roleList = roleRepository.getRoleByUserId(userId);
         return Result.success(roleList);
     }
 
-    @RequestMapping("/getMenuByRoleId/{roleId}")
+    @ApiOperation("根据角色ID获取菜单列表信息")
+    @ApiParam(name = "roleId", value = "角色ID", required = true)
+    @PostMapping("/getMenuByRoleId/{roleId}")
     public Result getMenuByRoleId(@PathVariable("roleId") Integer roleId) {
         List<SysMenu> menuList = menuRepository.getMenuByRoleId(roleId);
         return Result.success(menuList);
