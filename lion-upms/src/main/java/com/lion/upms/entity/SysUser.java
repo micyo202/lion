@@ -19,8 +19,6 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_user")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SysUser implements Serializable {
 
     @Id
