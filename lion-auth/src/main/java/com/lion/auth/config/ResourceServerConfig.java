@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * ResourceServerConfig
- * 资源服务器
+ * 资源服务配置
  *
  * @author Yanzheng
  * @date 2019/04/11
@@ -21,7 +21,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] PATTERN_URLS = {
             "/actuator/**",
-            "/druid/**"
+            "/druid/**",
+
+            "/webjars/**",
+            "/resources/**",
+            "/swagger-ui.html",
+            "/swagger-resources/**",
+            "/v2/api-docs"
     };
 
     @Override
