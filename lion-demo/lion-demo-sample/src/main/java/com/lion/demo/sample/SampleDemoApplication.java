@@ -16,10 +16,11 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.lion.demo.sample..*.mapper")
+//@MapperScan({"com.lion.common.mapper", "com.lion.demo.sample..*.mapper"})
+@MapperScan("com.lion.**.mapper")
 @ComponentScan("com.lion")
 public class SampleDemoApplication {
-
+    
     public static void main(String[] args) {
         SpringApplication.run(SampleDemoApplication.class, args);
     }
