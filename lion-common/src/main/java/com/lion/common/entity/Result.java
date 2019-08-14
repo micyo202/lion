@@ -2,6 +2,7 @@ package com.lion.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Map;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ToString
 @SuppressWarnings("unchecked")
 public class Result<T> implements Serializable {
 
@@ -131,14 +133,4 @@ public class Result<T> implements Serializable {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", description='" + description + '\'' +
-                ", data=" + data +
-                ", extra=" + extra +
-                '}';
-    }
 }
