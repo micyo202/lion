@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 192.168.1.200
+ Source Server         : MySQL_192.168.1.200_root
  Source Server Type    : MySQL
  Source Server Version : 80013
  Source Host           : 192.168.1.200:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 05/05/2019 10:50:51
+ Date: 13/08/2019 15:04:18
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `sys_id` (
 -- Records of sys_id
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_id` VALUES (1, 'user_tag', '用户ID生成规则', 0, 10, '2019-04-28 16:38:40');
+INSERT INTO `sys_id` VALUES (1, 'user_tag', '用户ID生成规则', 130, 140, '2019-04-28 16:38:40');
 INSERT INTO `sys_id` VALUES (2, 'order_tag', '订单ID生成规则', 0, 1000, '2019-04-28 16:39:05');
 COMMIT;
 
@@ -148,6 +148,30 @@ INSERT INTO `sys_role_menu` VALUES (3, 2, 3, '2019-04-19 13:41:39', 'DBA');
 INSERT INTO `sys_role_menu` VALUES (4, 2, 4, '2019-04-19 13:41:42', 'DBA');
 INSERT INTO `sys_role_menu` VALUES (5, 2, 5, '2019-04-19 13:41:45', 'DBA');
 INSERT INTO `sys_role_menu` VALUES (6, 2, 6, '2019-04-19 13:42:20', 'DBA');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_schedule
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_schedule`;
+CREATE TABLE `sys_schedule` (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '计划任务名称',
+  `cron` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '执行周期表达式',
+  `app_name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '所属应用名称',
+  `class_name` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '执行类',
+  `method` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '执行方法 各服务范围应一致',
+  `valid` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '有效标志',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='计划任务表';
+
+-- ----------------------------
+-- Records of sys_schedule
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_schedule` VALUES (1, '测试定时任务1', '0/10 * * * * ?', 'lion-demo-sample', 'scheduleDemo', 'firstMethod', '1');
+INSERT INTO `sys_schedule` VALUES (2, '测试定时任务2', '5/15 * * * * ?', 'lion-demo-sample', 'scheduleDemo', 'secondMethod', '1');
+INSERT INTO `sys_schedule` VALUES (3, '测试定时任务3', '30 0/1 * * * ?', 'lion-demo-sample', 'scheduleDemo', 'thirdMethod', '1');
 COMMIT;
 
 -- ----------------------------
