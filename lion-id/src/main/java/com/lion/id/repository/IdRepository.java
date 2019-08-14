@@ -19,11 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IdRepository extends JpaRepository<SysId, Integer> {
 
     // 占位符风格
-    @Query(value = "SELECT * FROM sys_id WHERE biz_tag = ?1", nativeQuery = true)
+    @Query(value = "select * from sys_id where biz_tag = ?1", nativeQuery = true)
     SysId getSysId(String bizTag);
 
     @Modifying
-    @Query(value = "UPDATE sys_id SET max_id=:maxId, step=:step WHERE biz_tag=:bizTag", nativeQuery = true)
+    @Query(value = "update sys_id set max_id=:maxId, step=:step where biz_tag=:bizTag", nativeQuery = true)
     int updateSysId(@Param("maxId") int maxId, @Param("step") int step, @Param("bizTag") String bizTag);
 
 }
