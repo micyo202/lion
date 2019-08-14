@@ -31,6 +31,9 @@ public class Swagger2Config {
     @Value("${security.oauth2.client.access-token-uri}")
     private String AUTH_SERVER;
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     /**
      * 访问地址：http://ip:port/swagger-ui.html
      */
@@ -40,7 +43,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 //设置包路径
-                .apis(RequestHandlerSelectors.basePackage("com.lion.demo.sample"))
+                .apis(RequestHandlerSelectors.basePackage("com." + appName.replace("-", ".")))
                 .paths(PathSelectors.any())
                 //.paths(PathSelectors.regex("/user.*"))
                 .build()
@@ -51,9 +54,9 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("标题：lion-demo-sample 使用 Swagger2 构建 API 接口文档")
+                .title("标题：" + appName + " 使用 Swagger2 构建 API 接口文档")
                 //描述
-                .description("描述：用于 lion-demo-sample 接口查看")
+                .description("描述：用于 " + appName + " 接口查看")
                 .termsOfServiceUrl("https://github.com/micyo202")
                 //创建人
                 .contact(new Contact("Yanzheng", "https://github.com/micyo202", "micyo202@163.com"))
@@ -69,7 +72,7 @@ public class Swagger2Config {
         GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(AUTH_SERVER);
 
         return new OAuthBuilder()
-                .name("Oauth2")
+                .name("OAuth2")
                 .grantTypes(Collections.singletonList(grantType))
                 .scopes(Arrays.asList(scopes()))
                 .build();
@@ -80,7 +83,7 @@ public class Swagger2Config {
      */
     private SecurityContext securityContext() {
         return SecurityContext.builder()
-                .securityReferences(Collections.singletonList(new SecurityReference("Oauth2", scopes())))
+                .securityReferences(Collections.singletonList(new SecurityReference("OAuth2", scopes())))
                 .forPaths(PathSelectors.any())
                 .build();
     }
