@@ -2,6 +2,9 @@ package com.lion.demo.sample.controller;
 
 import com.lion.common.entity.Result;
 import com.lion.common.lock.annotation.Locker;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,37 +24,45 @@ import java.security.Principal;
  * @date 2019/04/16
  * Copyright 2019 Yanzheng. All rights reserved.
  */
+@Api("示例代码控制器类")
 @RestController
 @Slf4j
 public class SampleController {
 
-    // 端口号
+    /**
+     * 端口号
+     */
     @Value("${server.port}")
-    String port;
+    private String port;
 
-    // 灰度版本，从zuul服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
+    /**
+     * 灰度版本，从zuul服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
+     */
     @Value("${spring.cloud.nacos.discovery.metadata.version}")
-    String version;
+    private String version;
 
-    // 灰度发布测试
+    @ApiOperation("灰度测试接口")
     @RequestMapping("/gray")
     public String hi() {
         return "灰度版本：" + version + " 端口：" + port;
     }
 
-    // 权限认证 - 无需token即可访问
+    @ApiOperation("权限认证 - 无需token即可访问")
+    @ApiParam(name = "id", value = "产品主键")
     @RequestMapping("/product/{id}")
     public String getProduct(@PathVariable String id) {
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return "product id : " + id;
     }
 
-    // 权限认证 - 需要token即可访问
+    @ApiOperation("权限认证 - 需要token即可访问")
+    @ApiParam(name = "id", value = "订单主键")
     @RequestMapping("/order/{id}")
     public String getOrder(@PathVariable String id) {
         return "order id : " + id;
     }
 
+    @ApiOperation("角色控制 - 需拥有admin角色")
     @RequestMapping("/admin")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     //@PreAuthorize("hasRole('ADMIN')")
@@ -59,6 +70,7 @@ public class SampleController {
         return "拥有Admin权限可访问!!!!!!";
     }
 
+    @ApiOperation("角色控制 - 需拥有user角色")
     @RequestMapping("/user")
     //@PreAuthorize("hasAuthority('ROLE_USER')")
     @PreAuthorize("hasRole('USER')")
@@ -66,7 +78,8 @@ public class SampleController {
         return "拥有User权限可访问......";
     }
 
-    // 获取用户凭证信息
+
+    @ApiOperation("获取用户凭证信息")
     @RequestMapping("/principle")
     public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
@@ -78,7 +91,7 @@ public class SampleController {
         return oAuth2Authentication;
     }
 
-    // 分布式锁
+    @ApiOperation("分布式锁")
     @Locker
     @RequestMapping("/lock")
     public Result lock() {
