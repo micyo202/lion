@@ -1,8 +1,6 @@
 package com.lion.id.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +20,6 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_id")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SysId implements Serializable {
 
     @Id
