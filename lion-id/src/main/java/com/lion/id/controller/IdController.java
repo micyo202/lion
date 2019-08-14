@@ -1,10 +1,14 @@
 package com.lion.id.controller;
 
+import com.lion.common.exception.LionException;
 import com.lion.id.entity.SysId;
 import com.lion.id.service.IdService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ExecutionException;
@@ -12,12 +16,13 @@ import java.util.concurrent.Future;
 
 /**
  * IdController
- * TODO
+ * 双 buffer 自增序列生成
  *
  * @author Yanzheng
  * @date 2019/04/28
  * Copyright 2019 Yanzheng. All rights reserved.
  */
+@Api("双buffer自增序列生成")
 @RestController
 public class IdController {
 
@@ -37,8 +42,9 @@ public class IdController {
     @Autowired
     IdService idService;
 
-    @RequestMapping("/generator")
-    public synchronized Integer generator() throws ExecutionException, InterruptedException {
+    @ApiOperation("自增序列生成方法")
+    @RequestMapping(value = "/generator", method = {RequestMethod.GET, RequestMethod.POST})
+    public Integer generator() {
 
         Integer id;
 
@@ -62,7 +68,11 @@ public class IdController {
 
         if (1 == buffer && isChange) {
             isChange = false;
-            sysId_buffer_1 = futureSysId.get();
+            try {
+                sysId_buffer_1 = futureSysId.get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw new LionException(100, e.getMessage());
+            }
 
             maxId = sysId_buffer_1.getMaxId();
             step = sysId_buffer_1.getStep();
@@ -70,7 +80,11 @@ public class IdController {
         }
         if (2 == buffer && isChange) {
             isChange = false;
-            sysId_buffer_2 = futureSysId.get();
+            try {
+                sysId_buffer_2 = futureSysId.get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw new LionException(100, e.getMessage());
+            }
 
             maxId = sysId_buffer_2.getMaxId();
             step = sysId_buffer_2.getStep();
@@ -80,7 +94,6 @@ public class IdController {
         id = sysId.getMaxId() + 1;
         sysId.setMaxId(id);
 
-        // ******
         int increaseRange = step - maxId;
         int increaseCount = step / (step - maxId);
 
