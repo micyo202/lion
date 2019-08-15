@@ -60,7 +60,7 @@ public class Swagger2Config {
                 .termsOfServiceUrl("https://github.com/micyo202")
                 //创建人
                 .contact(new Contact("Yanzheng", "https://github.com/micyo202", "micyo202@163.com"))
-                .version("版本号：1.0.0")
+                .version("版本号：1.1.0")
                 .build();
     }
 
