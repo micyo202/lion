@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BlockChainController {
 
     @Value("${server.port}")
-    String port;
+    private String port;
 
     @RequestMapping("/hi")
     public String hi() {

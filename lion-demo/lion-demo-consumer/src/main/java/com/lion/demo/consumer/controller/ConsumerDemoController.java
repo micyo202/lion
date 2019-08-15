@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerDemoController {
 
     @Value("${server.port}")
-    String port;
+    private String port;
 
     @Autowired
     ProviderDemoClientFeign providerDemoClientFeign;

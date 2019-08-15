@@ -21,11 +21,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    // 获取yml配置文件中不需要拦截的URL
+    /**
+     * 获取yml配置文件中不需要拦截的URL
+     */
     @Value("#{'${pattern.permit.urls}'}")
-    String[] permitUrls;
+    private String[] permitUrls;
 
-    // 不进行认证，直接放行的URL
+    /**
+     * 不进行认证，直接放行的URL
+     */
     private static final String[] PATTERN_URLS = {
             "/actuator/**",
             "/druid/**",
