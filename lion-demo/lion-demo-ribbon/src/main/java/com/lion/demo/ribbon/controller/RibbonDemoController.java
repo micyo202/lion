@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 public class RibbonDemoController {
 
     @Value("${foo}")
-    String foo;
+    private String foo;
 
     @RequestMapping("/foo")
     public String foo() {

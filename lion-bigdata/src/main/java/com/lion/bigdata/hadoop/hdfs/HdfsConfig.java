@@ -20,7 +20,7 @@ import java.net.URI;
 public class HdfsConfig {
 
     @Value("${hadoop.node-url}")
-    String nodeUrl;
+    private String nodeUrl;
 
     @Bean("fileSystem")
     public FileSystem fileSystem() {

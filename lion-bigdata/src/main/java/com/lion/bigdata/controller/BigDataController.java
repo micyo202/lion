@@ -21,7 +21,7 @@ import java.util.UUID;
 public class BigDataController {
 
     @Value("${server.port}")
-    String port;
+    private String port;
 
     @RequestMapping("/hi")
     public String hi() {

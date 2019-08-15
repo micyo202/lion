@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProviderDemoController {
 
     @Value("${server.port}")
-    String port;
+    private String port;
 
     @ApiOperation("hi基本示例接口，返回hi文本内容")
     @ApiParam(name = "name", value = "名字", defaultValue = "lion")
