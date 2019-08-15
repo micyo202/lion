@@ -21,7 +21,7 @@
 
 ---
 
-本项目是使用**Gradle**构建，基于**SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE**体系实现的一套完整微服务架构，采用**Oauth2**统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、**限流**、**灰度发布**等，规划将包含**大数据**、**区块链**等相关模块。
+本项目是使用**Gradle**构建，基于**SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE**体系实现的一套完整微服务架构，采用**OAuth2**统一授权认证，支持**Java**、**Scala**混编、**Docker**容器化部署、**限流**、**灰度发布**等，规划将包含**大数据**、**区块链**等相关模块。
 
 利用**Spring Boot Admin**来监控各个独立Service的运行状态，利用**Turbine**来查看近实时的接口运行状态和调用频率，利用**Zipkin**进行查看链路跟踪等。
 
@@ -36,6 +36,8 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
+**2019-08-09：添加定时任务功能，仅需在配置表 sys_schedule 中配置相关任务Bean方法，即可按配置的 cron 来执行**
+
 **2019-06-30：添加HDFS相关操作API**
 
 **2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，该分布式锁是基于Redisson实现的，请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
@@ -46,6 +48,12 @@
 
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/frame.png" alt="frame" title="frame">
+</p>
+
+## 数据库表关系图
+
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/database.png" alt="database" title="database">
 </p>
 
 ## 说明
