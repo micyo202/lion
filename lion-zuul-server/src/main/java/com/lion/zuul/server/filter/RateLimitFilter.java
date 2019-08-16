@@ -8,20 +8,20 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.SERVLET_DETECTION_FILTER_ORDER;
 
 /**
  * RateLimitFilter
- * 限流拦截器
+ * 限流拦截器（采用 Sentinel 实现）
  *
  * @author Yanzheng 严正
  * @date 2019/01/02
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Component
+@Deprecated
+//@Component
 public class RateLimitFilter extends ZuulFilter {
 
     // 塞入令牌
@@ -53,7 +53,7 @@ public class RateLimitFilter extends ZuulFilter {
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonString = null;
             try {
-                jsonString = objectMapper.writeValueAsString(Result.failure(400, "前方拥挤，轻稍后再试！"));
+                jsonString = objectMapper.writeValueAsString(Result.failure(429, "前方拥挤，轻稍后再试！（流量控制）"));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
