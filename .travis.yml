@@ -1,5 +1,7 @@
 language: java
+
 sudo: required
+dist: trusty
 
 jdk:
   - openjdk8
