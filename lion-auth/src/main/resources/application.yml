@@ -10,6 +10,9 @@
 #      enabled: true
 #      trace:
 #        enabled: true
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
 #  rabbitmq:
 #    host: 192.168.1.200
 #    port: 5672
@@ -122,9 +125,9 @@
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
-##开启hystrix断路器
+##开启sentinel断路器
 #feign:
-#  hystrix:
+#  sentinel:
 #    enabled: true
 #
 #management:
