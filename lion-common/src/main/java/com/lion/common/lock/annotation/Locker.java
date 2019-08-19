@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * Locker
  * 分布式锁注解类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/05/08
  * Copyright 2019 Yanzheng. All rights reserved.
  */

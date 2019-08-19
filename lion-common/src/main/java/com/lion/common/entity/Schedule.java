@@ -6,7 +6,7 @@ import lombok.Data;
  * Schedule
  * 定时任务实体类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/09
  * Copyright 2019 Yanzheng. All rights reserved.
  */
