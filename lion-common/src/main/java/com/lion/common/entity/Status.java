@@ -4,7 +4,7 @@ package com.lion.common.entity;
  * Status
  * 响应状态枚举
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */

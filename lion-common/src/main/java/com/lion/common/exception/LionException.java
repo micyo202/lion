@@ -4,7 +4,7 @@ package com.lion.common.exception;
  * LionException
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/07/17
  * Copyright 2019 Yanzheng. All rights reserved.
  */

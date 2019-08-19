@@ -10,7 +10,7 @@ import java.util.List;
  * ScheduleMapper
  * 定时任务Mapper方法
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/09
  * Copyright 2019 Yanzheng. All rights reserved.
  */

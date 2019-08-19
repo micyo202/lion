@@ -10,7 +10,7 @@ import java.util.Date;
  * Role
  * 角色实体
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * RedissonManager
  * 分布式锁管理类（初始化redis）
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/05/08
  * Copyright 2019 Yanzheng. All rights reserved.
  */
