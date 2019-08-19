@@ -4,7 +4,7 @@ package com.lion.bigdata.demo
   * HelloWorld
   * 自定义函数
   *
-  * @author Yanzheng
+  * @author Yanzheng https://github.com/micyo202
   * @date 2019/01/06
   *       Copyright 2019 Yanzheng. All rights reserved.
   */

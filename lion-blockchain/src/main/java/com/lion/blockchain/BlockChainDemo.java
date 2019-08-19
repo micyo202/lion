@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * BlockChainDemo
  * 区块链示例
  *
- * @author Yanzheng 严正
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/03
  * Copyright 2019 Yanzheng. All rights reserved.
  */

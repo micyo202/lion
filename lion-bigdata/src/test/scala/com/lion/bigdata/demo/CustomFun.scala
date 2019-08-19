@@ -4,7 +4,7 @@ package com.lion.bigdata.demo
   * CustomFun
   * 自定义函数
   *
-  * @author Yanzheng 严正
+  * @author Yanzheng https://github.com/micyo202
   * @date 2019/01/06
   */
 object CustomFun {

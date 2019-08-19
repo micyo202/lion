@@ -14,7 +14,7 @@ import java.util.Map;
  * HadoopController
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/06/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */
