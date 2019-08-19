@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  * IdApplication
  * 自增Id生成服务
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/28
  * Copyright 2019 Yanzheng. All rights reserved.
  */

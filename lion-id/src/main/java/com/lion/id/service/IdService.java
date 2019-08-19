@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
  * IdService
  * 异步线程任务
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/30
  * Copyright 2019 Yanzheng. All rights reserved.
  */

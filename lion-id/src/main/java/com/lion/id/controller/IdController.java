@@ -18,7 +18,7 @@ import java.util.concurrent.Future;
  * IdController
  * 双 buffer 自增序列生成
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/28
  * Copyright 2019 Yanzheng. All rights reserved.
  */
