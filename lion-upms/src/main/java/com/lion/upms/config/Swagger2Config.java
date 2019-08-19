@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Swagger2Config
  * Swagger2 API 文档配置
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/19
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -51,7 +51,7 @@ public class Swagger2Config {
                 .termsOfServiceUrl("https://github.com/micyo202")
                 //创建人
                 .contact(new Contact("Yanzheng", "https://github.com/micyo202", "micyo202@163.com"))
-                .version("版本号：1.1.0")
+                .version("版本号：1.2.0")
                 .build();
     }
 

@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * UpmsApplication
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
  * Copyright 2019 Yanzheng. All rights reserved.
  */
