@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  * AuthorizationServerConfiguration
  * 安全认证服务器
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/08
  * Copyright 2019 Yanzheng. All rights reserved.
  */
