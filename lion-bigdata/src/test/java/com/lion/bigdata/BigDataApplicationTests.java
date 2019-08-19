@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * BigDataApplicationTests
  * 大数据模块单元测试类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/06
  */
 @RunWith(SpringRunner.class)
