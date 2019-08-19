@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * AdminServerApplication
  * 服务监控管理
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/01
  * Copyright 2019 Yanzheng. All rights reserved.
  */
