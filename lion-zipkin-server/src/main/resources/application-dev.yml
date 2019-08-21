@@ -1,0 +1,13 @@
+##开发环境使用mysql存储
+#zipkin:
+#  storage:
+#    type: mysql
+#    mysql:
+#      jdbc-url: jdbc:mysql://192.168.1.200:3306/zipkin?useUnicode=true&characterEncoding=utf8&useSSL=false
+#      host: 192.168.1.200
+#      port: 3306
+#      username: root
+#      password: root
+#      db: zipkin
+#      max-active: 10
+#      use-ssl: false
