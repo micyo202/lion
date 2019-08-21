@@ -1,0 +1,11 @@
+##生产环境使用elasticsearch存储
+#zipkin:
+#  storage:
+#    type: elasticsearch
+#    elasticsearch:
+#      hosts: 192.168.1.200:9200
+#      max-requests: 64
+#      timeout: 10000
+#      index: zipkin
+#      index-shards: 5
+#      index-replicas: 1
