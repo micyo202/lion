@@ -19,8 +19,9 @@ dependencies {
 
     implementation "io.zipkin.java:zipkin-autoconfigure-ui:${zipkinVersion}"
     implementation "io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:${zipkinVersion}"
-    implementation "io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch:${zipkinVersion}"
 
     implementation "io.zipkin.java:zipkin-autoconfigure-storage-mysql:${zipkinVersion}"
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
+
+    implementation "io.zipkin.java:zipkin-autoconfigure-storage-elasticsearch:${zipkinVersion}"
 }
