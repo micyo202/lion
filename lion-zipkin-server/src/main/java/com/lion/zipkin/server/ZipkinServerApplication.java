@@ -9,7 +9,7 @@ import zipkin2.server.internal.EnableZipkinServer;
  * ZipkinServerApplication
  * 链路跟踪服务
  *
- * @author Yanzheng 严正
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/01
  * Copyright 2019 Yanzheng. All rights reserved.
  */
