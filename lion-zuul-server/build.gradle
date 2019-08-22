@@ -5,18 +5,27 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
-    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config:${nacosVersion}"
+
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${cloudAlibabaVersion}"
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${cloudAlibabaVersion}"
+    
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:${cloudAlibabaVersion}"
 
     implementation 'org.springframework.cloud:spring-cloud-bus'
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+    implementation "com.alibaba.csp:sentinel-zuul-adapter:${sentinelVersion}"
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+
+    //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
     implementation project(':lion-common')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
-    
+
 }
