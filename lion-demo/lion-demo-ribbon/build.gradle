@@ -1,20 +1,24 @@
 group 'com.lion.demo.ribbon'
-description 'RestTemplate + Ribbon + Hystrix 示例代码'
+description 'RestTemplate + Ribbon + Sentinel 示例代码'
 
 apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:${nacosVersion}"
-    implementation "org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config:${nacosVersion}"
+
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${cloudAlibabaVersion}"
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${cloudAlibabaVersion}"
+
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:${cloudAlibabaVersion}"
 
     implementation 'org.springframework.cloud:spring-cloud-bus'
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+
 }
