@@ -1,7 +1,7 @@
 # status: 共有8个级别，按照从低到高为：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 # monitorInterval: 设置配置文件的动态加载时间的，单位是秒
 Configuration:
-  status: warn
+  status: WARN
   monitorInterval: 60
   Properties: # 定义全局变量
     Property:
@@ -10,13 +10,13 @@ Configuration:
       - name: log.name
         value: lion-auth
       - name: log.pattern
-        value: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%5p %pid %X{logId} [%15.15t] %-30.30C{1.} %50F:%5L -> %m%n"
+        value: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%5p %pid %X{logId} %notEmpty{[%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}]} [%15.15t] %-30.30C{1.} %50F:%5L -> %m%n"
   Appenders:
     Console:  # 输出到控制台
       name: STDOUT
       target: SYSTEM_OUT
       PatternLayout:
-        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%highlight{%5p} %magenta{%pid} %red{%X{logId}} [%15.15t] %cyan{%-30.30C{1.}} %50F:%5L -> %m%n"
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%highlight{%5p} %magenta{%pid} %red{%X{logId}} %blue{%notEmpty{[%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}]}} [%15.15t] %cyan{%-30.30C{1.}} %50F:%5L -> %black{%m%n}"
     # 日志文件输出设置
     RollingFile:
       # 基本日志
@@ -69,7 +69,7 @@ Configuration:
           max: 100
   Loggers:
     Root:
-      level: info
+      level: INFO
       AppenderRef:
         - ref: STDOUT
         - ref: FILE
