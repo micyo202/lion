@@ -10,6 +10,7 @@ import com.lion.upms.repository.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import java.util.List;
 
 /**
  * UpmsController
- * TODO
+ * 用户权限管理模块
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/11
@@ -28,6 +29,7 @@ import java.util.List;
  */
 @Api("用户权限管理")
 @RestController
+@Slf4j
 public class UpmsController {
 
     @Autowired
@@ -50,6 +52,7 @@ public class UpmsController {
         SysUser user = userRepository.findOne(Example.of(sysUser)).orElse(null);
 
         if (user == null) {
+            log.warn("用户[" + username + "]不存在");
             return Result.failure(100, "用户不存在");
         }
 
