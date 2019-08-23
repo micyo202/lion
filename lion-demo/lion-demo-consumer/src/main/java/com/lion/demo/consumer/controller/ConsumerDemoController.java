@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * ConsumerDemoController
  * TODO
  *
- * @author Yanzheng 严正
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/05
  * Copyright 2019 Yanzheng. All rights reserved.
  */
