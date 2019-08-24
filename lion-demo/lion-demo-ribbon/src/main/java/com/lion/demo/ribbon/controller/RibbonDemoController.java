@@ -1,6 +1,6 @@
 package com.lion.demo.ribbon.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
  * RibbonDemoController
  * TODO
  *
- * @author Yanzheng 严正
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/03
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -32,13 +32,13 @@ public class RibbonDemoController {
     RestTemplate restTemplate;
 
     @RequestMapping("/hi")
-    @HystrixCommand(fallbackMethod = "hiHystrix")
+    @SentinelResource(value = "hi", fallback = "hiFallback")
     public String hi(String name) {
         return restTemplate.getForObject("http://lion-demo-provider/sayHi", String.class);
     }
 
-    public String hiHystrix(String name) {
-        return "Hi '" + name + "', fallback hystrix!";
+    public String hiFallback(String name) {
+        return "Hi '" + name + "', fallback sentinel!";
     }
 
 }
