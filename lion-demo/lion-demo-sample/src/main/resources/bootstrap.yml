@@ -6,7 +6,7 @@ spring:
       discovery:
         server-addr: localhost:8848
         metadata:
-          version: v1.0
+          version: 1.0
       config:
         server-addr: localhost:8848
         file-extension: yml
