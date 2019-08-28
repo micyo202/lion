@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * ScheduleDemo
  * 定时任务示例，在对应 sys_schedule 表中配置
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/12
  * Copyright 2019 Yanzheng. All rights reserved.
  */
