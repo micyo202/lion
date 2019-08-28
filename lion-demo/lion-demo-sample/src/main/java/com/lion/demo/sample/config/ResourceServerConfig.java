@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * ResourceServerConfig
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/16
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -48,6 +48,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         String[] excludeUrls = (String[]) ArrayUtils.addAll(PATTERN_URLS, permitUrls);
 
         http
+                .cors()
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(excludeUrls).permitAll()
