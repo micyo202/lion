@@ -1,7 +1,10 @@
 package com.lion.demo.sample.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.lion.common.entity.Result;
 import com.lion.common.lock.annotation.Locker;
+import com.lion.demo.sample.handler.BlockHandler;
+import com.lion.demo.sample.handler.FallbackHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -20,7 +23,7 @@ import java.security.Principal;
  * SampleController
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/16
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -45,6 +48,21 @@ public class SampleController {
     @RequestMapping("/gray")
     public String hi() {
         return "灰度版本：" + version + " 端口：" + port;
+    }
+
+    @ApiOperation("sentinel流量控制测试接口")
+    @RequestMapping("/sentinel/block")
+    @SentinelResource(value = "sentinelBlock", blockHandler = "sentinelBlockHandler", blockHandlerClass = BlockHandler.class)
+    public String sentinelBlock() {
+        return "This is sentinel control service flow!";
+    }
+
+    @ApiOperation("sentinel服务降级熔断测试接口")
+    @RequestMapping("/sentinel/fallback")
+    @SentinelResource(value = "sentinelFallback", fallback = "sentinelFallback", fallbackClass = FallbackHandler.class)
+    public String sentinelFallback() {
+        throw new RuntimeException();
+        //return "This is sentinel control service fallback!";
     }
 
     @ApiOperation("权限认证 - 无需token即可访问")
