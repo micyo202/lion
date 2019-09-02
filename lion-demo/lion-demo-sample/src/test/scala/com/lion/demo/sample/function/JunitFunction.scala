@@ -4,7 +4,7 @@ package com.lion.demo.sample.function
   * JunitFunction
   * 函数定义的方式
   *
-  * @author Yanzheng
+  * @author Yanzheng https://github.com/micyo202
   * @date 2019/03/29
   * Copyright 2019 Yanzheng. All rights reserved.
   */

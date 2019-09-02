@@ -8,7 +8,7 @@ import scala.collection.mutable
   * JunitMap
   * Map集合操作方法
   *
-  * @author Yanzheng
+  * @author Yanzheng https://github.com/micyo202
   * @date 2019/03/29
   * Copyright 2019 Yanzheng. All rights reserved.
   */
