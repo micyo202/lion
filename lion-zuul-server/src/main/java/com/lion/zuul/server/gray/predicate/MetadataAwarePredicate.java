@@ -1,8 +1,8 @@
 package com.lion.zuul.server.gray.predicate;
 
+import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.lion.zuul.server.gray.api.RibbonFilterContext;
 import com.lion.zuul.server.gray.support.RibbonFilterContextHolder;
-import org.springframework.cloud.alibaba.nacos.ribbon.NacosServer;
 
 import java.util.Collections;
 import java.util.Map;
