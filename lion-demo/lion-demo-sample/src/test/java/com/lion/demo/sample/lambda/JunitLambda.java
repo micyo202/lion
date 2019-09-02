@@ -10,7 +10,7 @@ import java.util.List;
  * JunitLambda
  * lambda表达式示例代码
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/03/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
