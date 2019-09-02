@@ -6,6 +6,14 @@ import org.springframework.web.bind.annotation.{RequestMapping, RequestParam, Re
 import scala.collection.JavaConverters._
 import scala.collection.mutable._
 
+/**
+  * SampleScalaTempController
+  * Scala示例代码Mybatis
+  *
+  * @author Yanzheng https://github.com/micyo202
+  * @date 2019/09/02
+  * Copyright 2019 Yanzheng. All rights reserved.
+  */
 @RestController
 @RequestMapping(Array("/scala"))
 class SampleScalaController {
