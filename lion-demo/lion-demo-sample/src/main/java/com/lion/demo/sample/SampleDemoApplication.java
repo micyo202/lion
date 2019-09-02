@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * SampleApplication
- * TODO
+ * 相关示例代码模块
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/03/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan("com.lion.**.mapper")
 @ComponentScan("com.lion")
 public class SampleDemoApplication {
-    
+
     public static void main(String[] args) {
         SpringApplication.run(SampleDemoApplication.class, args);
     }
