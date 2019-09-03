@@ -8,9 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * WebSecurityConfig
- * TODO
+ * 安全配置
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/14
  * Copyright 2019 Yanzheng. All rights reserved.
  */
