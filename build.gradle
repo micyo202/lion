@@ -1,5 +1,5 @@
 group 'com.lion'
-version = '1.1.0'
+version = '1.2.0'
 
 buildscript {
     ext {
@@ -67,9 +67,9 @@ subprojects {
         springBootAdminVersion = '2.1.2'
         springCloudVersion = 'Greenwich.RELEASE'
         springFrameworkVersion = '5.1.4.RELEASE'
-
+        cloudAlibabaVersion = '2.1.0.RELEASE'
+        
         scalaVersion = '2.11.12'
-        nacosVersion = '0.9.0.RELEASE'
         jacksonVersion = '2.9.8'
         lombokVersion = '1.18.6'
         aspectjVersion = '1.9.2'
@@ -82,6 +82,7 @@ subprojects {
         springRedisVersion = '2.1.4.RELEASE'
         redissonVersion = '3.10.6'
         swaggerVersion = '2.9.2'
+        sentinelVersion = '1.6.3'
         log4jVersion = '2.11.1'
         hadoopVersion = '3.1.1'
         sparkVersion = '2.4.0'
