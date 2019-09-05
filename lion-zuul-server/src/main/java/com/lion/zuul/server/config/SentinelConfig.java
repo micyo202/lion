@@ -63,7 +63,31 @@ public class SentinelConfig {
                 .setCount(2)
                 .setIntervalSec(1)
         );
+        rules.add(new GatewayFlowRule("id")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
+        rules.add(new GatewayFlowRule("bigdata")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
+        rules.add(new GatewayFlowRule("blockchain")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
         rules.add(new GatewayFlowRule("demo/provider")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
+        rules.add(new GatewayFlowRule("demo/consumer")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
+        rules.add(new GatewayFlowRule("demo/sample")
+                .setCount(2)
+                .setIntervalSec(1)
+        );
+        rules.add(new GatewayFlowRule("demo/ribbon")
                 .setCount(2)
                 .setIntervalSec(1)
         );
