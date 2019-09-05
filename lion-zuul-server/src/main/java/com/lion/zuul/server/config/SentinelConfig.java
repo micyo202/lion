@@ -54,7 +54,9 @@ public class SentinelConfig {
     private void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
         rules.add(new GatewayFlowRule("auth")
+                // 限流阈值
                 .setCount(2)
+                // 统计时间窗口，单位是秒，默认是 1 秒
                 .setIntervalSec(1)
         );
         rules.add(new GatewayFlowRule("upms")
