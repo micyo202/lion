@@ -1,4 +1,4 @@
-package com.lion.zuul.server.fallback;
+package com.lion.zuul.server.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lion.common.entity.Result;
@@ -62,7 +62,7 @@ public class CustomFallbackProvider implements FallbackProvider {
             @Override
             public InputStream getBody() throws IOException {
                 ObjectMapper objectMapper = new ObjectMapper();
-                String jsonString = objectMapper.writeValueAsString(Result.failure(500, "调用服务失败！"));
+                String jsonString = objectMapper.writeValueAsString(Result.failure(503, "调用失败，服务不可用！"));
                 return new ByteArrayInputStream(jsonString.getBytes("UTF-8"));
             }
 
