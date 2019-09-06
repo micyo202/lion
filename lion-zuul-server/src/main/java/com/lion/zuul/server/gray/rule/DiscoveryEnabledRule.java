@@ -7,6 +7,14 @@ import com.netflix.loadbalancer.CompositePredicate;
 import com.netflix.loadbalancer.PredicateBasedRule;
 import org.springframework.util.Assert;
 
+/**
+ * DiscoveryEnabledRule
+ * 灰度发现启用规则抽象类
+ *
+ * @author Yanzheng https://github.com/micyo202
+ * @date 2019/08/06
+ * Copyright 2019 Yanzheng. All rights reserved.
+ */
 public abstract class DiscoveryEnabledRule extends PredicateBasedRule {
 
     private final CompositePredicate predicate;
