@@ -1,4 +1,4 @@
-package com.lion.zuul.server.fallback;
+package com.lion.zuul.server.provider;
 
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.fallback.BlockResponse;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.fallback.ZuulBlockFallbackProvider;
@@ -24,7 +24,7 @@ public class CustomBlockFallbackProvider implements ZuulBlockFallbackProvider {
         if (cause instanceof BlockException) {
             return new BlockResponse(429, "前方拥挤，请稍后再试！（流量控制）", route);
         } else {
-            return new BlockResponse(500, "调用服务失败！", route);
+            return new BlockResponse(500, "服务调用失败！", route);
         }
     }
 
