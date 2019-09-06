@@ -11,6 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+/**
+ * RibbonDiscoveryRuleAutoConfiguration
+ * 灰度负载发现规则自动配置类
+ *
+ * @author Yanzheng https://github.com/micyo202
+ * @date 2019/08/06
+ * Copyright 2019 Yanzheng. All rights reserved.
+ */
 @Configuration
 @AutoConfigureBefore(RibbonClientConfiguration.class)
 @ConditionalOnProperty(value = "ribbon.filter.metadata.enabled", matchIfMissing = true)

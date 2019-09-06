@@ -8,6 +8,14 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * MetadataAwarePredicate
+ * 灰度元数据适配断言类
+ *
+ * @author Yanzheng https://github.com/micyo202
+ * @date 2019/08/06
+ * Copyright 2019 Yanzheng. All rights reserved.
+ */
 public class MetadataAwarePredicate extends DiscoveryEnabledPredicate {
 
     @Override

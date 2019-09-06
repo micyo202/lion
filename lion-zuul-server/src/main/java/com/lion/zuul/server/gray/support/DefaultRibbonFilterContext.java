@@ -6,6 +6,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * DefaultRibbonFilterContext
+ * 默认灰度负载过滤上下文实现类
+ *
+ * @author Yanzheng https://github.com/micyo202
+ * @date 2019/08/06
+ * Copyright 2019 Yanzheng. All rights reserved.
+ */
 public class DefaultRibbonFilterContext implements RibbonFilterContext {
 
     private final Map<String, String> attributes = new HashMap<>();
