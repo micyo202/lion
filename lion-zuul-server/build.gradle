@@ -26,6 +26,4 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
     implementation "com.alibaba.csp:sentinel-zuul-adapter:${sentinelVersion}"
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
-
 }
