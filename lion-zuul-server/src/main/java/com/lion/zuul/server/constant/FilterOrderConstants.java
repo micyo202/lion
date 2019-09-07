@@ -1,14 +1,14 @@
 package com.lion.zuul.server.constant;
 
 /**
- * FilterConstants
+ * FilterOrderConstants
  * 过滤器先后顺序号常量
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/19
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-public class FilterConstants {
+public class FilterOrderConstants {
 
     /**
      * 前置过滤器序号
