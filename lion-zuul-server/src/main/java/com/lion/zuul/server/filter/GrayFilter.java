@@ -1,6 +1,6 @@
 package com.lion.zuul.server.filter;
 
-import com.lion.zuul.server.constant.FilterConstants;
+import com.lion.zuul.server.constant.FilterOrderConstants;
 import com.lion.zuul.server.gray.support.RibbonFilterContextHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -37,7 +37,7 @@ public class GrayFilter extends ZuulFilter {
         /**
          * 过滤器执行顺序，数字越小，优先级越高，越靠前
          */
-        return FilterConstants.PRE_FILTER_ORDER + 20;
+        return FilterOrderConstants.PRE_FILTER_ORDER + 20;
     }
 
     @Override
