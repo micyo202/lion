@@ -1,5 +1,5 @@
 group 'com.lion'
-version = '1.2.0'
+version = '1.2.1'
 
 buildscript {
     ext {
@@ -27,7 +27,7 @@ allprojects {
 
     idea {
         module {
-            inheritOutputDirs = true
+            inheritOutputDirs = false
         }
     }
 
