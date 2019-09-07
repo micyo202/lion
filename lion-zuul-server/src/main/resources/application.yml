@@ -25,15 +25,6 @@
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
-#security:
-#  oauth2:
-#    client:
-#      client-id: lion_client
-#      access-token-uri: http://localhost:${server.port}/auth/oauth/token
-#      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
-#    resource:
-#      user-info-uri: http://localhost:${server.port}/auth/user/principal
-#      prefer-token-info: false
 #
 #zuul:
 #  host:
