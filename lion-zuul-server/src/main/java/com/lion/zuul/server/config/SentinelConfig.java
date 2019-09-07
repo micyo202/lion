@@ -6,8 +6,8 @@ import com.alibaba.csp.sentinel.adapter.gateway.zuul.fallback.ZuulBlockFallbackM
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulErrorFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPostFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPreFilter;
-import com.lion.zuul.server.constant.FilterConstants;
-import com.lion.zuul.server.fallback.CustomBlockFallbackProvider;
+import com.lion.zuul.server.constant.FilterOrderConstants;
+import com.lion.zuul.server.provider.CustomBlockFallbackProvider;
 import com.netflix.zuul.ZuulFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,17 +29,17 @@ public class SentinelConfig {
 
     @Bean
     public ZuulFilter sentinelZuulPreFilter() {
-        return new SentinelZuulPreFilter(FilterConstants.PRE_FILTER_ORDER);
+        return new SentinelZuulPreFilter(FilterOrderConstants.PRE_FILTER_ORDER);
     }
 
     @Bean
     public ZuulFilter sentinelZuulPostFilter() {
-        return new SentinelZuulPostFilter(FilterConstants.POST_FILTER_ORDER);
+        return new SentinelZuulPostFilter(FilterOrderConstants.POST_FILTER_ORDER);
     }
 
     @Bean
     public ZuulFilter sentinelZuulErrorFilter() {
-        return new SentinelZuulErrorFilter(FilterConstants.ERROR_FILTER_ORDER);
+        return new SentinelZuulErrorFilter(FilterOrderConstants.ERROR_FILTER_ORDER);
     }
 
     @PostConstruct
@@ -54,7 +54,7 @@ public class SentinelConfig {
     private void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
         rules.add(new GatewayFlowRule("auth")
-                // 限流阈值
+                // 限流阈值QPS
                 .setCount(2)
                 // 统计时间窗口，单位是秒，默认是 1 秒
                 .setIntervalSec(1)
