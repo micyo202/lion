@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.2.0-orange.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.2.1-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
@@ -41,6 +41,8 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
+**2019-09-06：更新 Zuul 路由模块，移除不必要的代码，添加 token 检查机制，优化模块代码**
+
 **2019-09-03：更新 Nacos，移除 Hystrix，采用 Sentinel 进行流量监控、服务熔断降级**
 
 **2019-08-09：添加定时任务功能，仅需在配置表 sys_schedule 中配置相关任务Bean方法，即可按配置的 cron 来执行**
