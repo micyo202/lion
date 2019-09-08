@@ -94,6 +94,7 @@ public class TokenFilter extends ZuulFilter {
 
         // 检查 access_token 的有效性
         final String formatKey = String.format("access:%s", accessToken);
+        // token 是否存在
         final Boolean hasKey = stringRedisTemplate.hasKey(formatKey);
         if (!hasKey) {
             try {
@@ -106,7 +107,7 @@ public class TokenFilter extends ZuulFilter {
             }
             return null;
         }
-
+        // token 是否有效
         final Long expire = stringRedisTemplate.getExpire(formatKey);
         if (0 >= expire) {
             try {
