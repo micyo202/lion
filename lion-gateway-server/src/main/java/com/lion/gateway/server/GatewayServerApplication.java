@@ -1,25 +1,23 @@
-package com.lion.zuul.server;
+package com.lion.gateway.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * ZuulServerApplication
+ * GatewayServerApplication
  * 路由网管服务
  *
- * @author Yanzheng https://github.com/micyo202
- * @date 2019/01/01
+ * @author Yanzheng
+ * @date 2019/09/06
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableZuulProxy
-public class ZuulServerApplication {
+public class GatewayServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZuulServerApplication.class, args);
+        SpringApplication.run(GatewayServerApplication.class, args);
     }
 
 }
