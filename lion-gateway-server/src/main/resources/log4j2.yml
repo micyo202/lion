@@ -8,7 +8,7 @@ Configuration:
       - name: log.path
         value: /Users/apple/Desktop/logs
       - name: log.name
-        value: lion-zuul-server
+        value: lion-gateway-server
       - name: log.pattern
         value: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%5p %pid %X{logId} %notEmpty{[%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}]} [%15.15t] %-30.30C{1.} %50F:%5L -> %m%n"
   Appenders:
