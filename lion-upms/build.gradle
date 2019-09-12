@@ -28,6 +28,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
     implementation "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
 
