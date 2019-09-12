@@ -5,7 +5,7 @@
 #### 获取access_token请求（/oauth/token） 
 - 请求所需参数：client_id、client_secret、scope、grant_type、username、password
 ```http request
-http://localhost:8888/oauth/token?client_id=lion-zuul-server&client_secret=secret&scope=server&grant_type=password&username=admin&password=123456
+http://localhost:8888/oauth/token?client_id=lion_client&client_secret=secret&scope=server&grant_type=password&username=admin&password=123456
 ```
 
 #### 检查token是否有效请求（/oauth/check_token） 
@@ -17,7 +17,7 @@ http://localhost:8888/oauth/check_token?token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
 #### 刷新token请求（/oauth/token） 
 - 请求所需参数：grant_type、refresh_token、client_id、client_secret
 ```http request
-http://localhost:8888/oauth/token?grant_type=refresh_token&refresh_token=fbde81ee-f419-42b1-1234-9191f1f95be9&client_id=lion-zuul-server&client_secret=secret
+http://localhost:8888/oauth/token?grant_type=refresh_token&refresh_token=fbde81ee-f419-42b1-1234-9191f1f95be9&client_id=lion_client&client_secret=secret
 ```
 
 #### 获取当前用户权限信息
