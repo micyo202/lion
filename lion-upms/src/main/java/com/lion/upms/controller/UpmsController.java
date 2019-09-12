@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,10 +42,25 @@ public class UpmsController {
     @Autowired
     private MenuRepository menuRepository;
 
+    private static final String CACHE_KEY = "CACHE_UPMS_";
+
     @ApiOperation("根据用户名获取用户对象信息")
     @ApiParam(name = "username", value = "用户名", required = true)
     @PostMapping("/getUserByUsername/{username}")
+    @Cacheable(cacheNames = CACHE_KEY + "USER")
     public Result getUserByUsername(@PathVariable("username") String username) {
+
+        // redis 自定义代码方式缓存使用
+        /*
+        String redisKey = "upms_user_" + username;
+        ValueOperations<String, SysUser> operations = redisTemplate.opsForValue();
+        Boolean hasKey = redisTemplate.hasKey(redisKey);
+        if (hasKey) {
+            SysUser user = operations.get(redisKey);
+            operations.set(redisKey, user, 1000 * 5, TimeUnit.MILLISECONDS);    // 设置缓存及有效时间
+            redisTemplate.delete(redisKey); // 删除缓存
+        }
+        */
 
         SysUser sysUser = new SysUser();
         sysUser.setUsername(username);
@@ -62,6 +78,7 @@ public class UpmsController {
     @ApiOperation("根据用户ID获取角色列表信息")
     @ApiParam(name = "userId", value = "用户ID", required = true)
     @PostMapping("/getRoleByUserId/{userId}")
+    @Cacheable(cacheNames = CACHE_KEY + "ROLE")
     public Result getRoleByUserId(@PathVariable("userId") Integer userId) {
         List<SysRole> roleList = roleRepository.getRoleByUserId(userId);
         return Result.success(roleList);
@@ -70,6 +87,7 @@ public class UpmsController {
     @ApiOperation("根据角色ID获取菜单列表信息")
     @ApiParam(name = "roleId", value = "角色ID", required = true)
     @PostMapping("/getMenuByRoleId/{roleId}")
+    @Cacheable(cacheNames = CACHE_KEY + "MENU")
     public Result getMenuByRoleId(@PathVariable("roleId") Integer roleId) {
         List<SysMenu> menuList = menuRepository.getMenuByRoleId(roleId);
         return Result.success(menuList);
