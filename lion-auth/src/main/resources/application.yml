@@ -6,10 +6,6 @@
 #  #main:
 #    #allow-bean-definition-overriding: true
 #  cloud:
-#    bus:
-#      enabled: true
-#      trace:
-#        enabled: true
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080

@@ -2,12 +2,7 @@
 #  port: 8601
 #
 #spring:
-#  #消息总线配置
 #  cloud:
-#    bus:
-#      enabled: true
-#      trace:
-#        enabled: true
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080

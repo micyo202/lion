@@ -5,10 +5,6 @@
 #
 #spring:
 #  cloud:
-#    bus:
-#      enabled: true
-#      trace:
-#        enabled: true
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080
