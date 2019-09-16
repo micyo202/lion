@@ -1,6 +1,6 @@
 rootProject.name = 'lion'
 include 'lion-admin-server'
-include 'lion-zuul-server'
+include 'lion-gateway-server'
 include 'lion-zipkin-server'
 include 'lion-common'
 include 'lion-upms'
