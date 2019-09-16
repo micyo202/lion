@@ -67,7 +67,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 内存验证clientId信息
         /*
         clients.inMemory()
-                .withClient("lion-zuul-server")
+                .withClient("lion-gateway-server")
                 .secret(finalSecret)
                 .scopes("server")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit");
