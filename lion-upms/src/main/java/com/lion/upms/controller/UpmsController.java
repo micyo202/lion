@@ -42,12 +42,12 @@ public class UpmsController {
     @Autowired
     private MenuRepository menuRepository;
 
-    private static final String CACHE_KEY = "CACHE_UPMS_";
+    private static final String CACHE_KEY = "CACHE_UPMS";
 
     @ApiOperation("根据用户名获取用户对象信息")
     @ApiParam(name = "username", value = "用户名", required = true)
     @PostMapping("/getUserByUsername/{username}")
-    @Cacheable(cacheNames = CACHE_KEY + "USER")
+    @Cacheable(cacheNames = CACHE_KEY + "_USER")
     public Result getUserByUsername(@PathVariable("username") String username) {
 
         // redis 自定义代码方式缓存使用
@@ -78,7 +78,7 @@ public class UpmsController {
     @ApiOperation("根据用户ID获取角色列表信息")
     @ApiParam(name = "userId", value = "用户ID", required = true)
     @PostMapping("/getRoleByUserId/{userId}")
-    @Cacheable(cacheNames = CACHE_KEY + "ROLE")
+    @Cacheable(cacheNames = CACHE_KEY + "_ROLE")
     public Result getRoleByUserId(@PathVariable("userId") Integer userId) {
         List<SysRole> roleList = roleRepository.getRoleByUserId(userId);
         return Result.success(roleList);
@@ -87,7 +87,7 @@ public class UpmsController {
     @ApiOperation("根据角色ID获取菜单列表信息")
     @ApiParam(name = "roleId", value = "角色ID", required = true)
     @PostMapping("/getMenuByRoleId/{roleId}")
-    @Cacheable(cacheNames = CACHE_KEY + "MENU")
+    @Cacheable(cacheNames = CACHE_KEY + "_MENU")
     public Result getMenuByRoleId(@PathVariable("roleId") Integer roleId) {
         List<SysMenu> menuList = menuRepository.getMenuByRoleId(roleId);
         return Result.success(menuList);
