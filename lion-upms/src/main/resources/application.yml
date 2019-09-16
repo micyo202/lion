@@ -122,6 +122,8 @@
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
+#  cache:
+#    type: redis
 ##mybats映射sqlMap文件
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
