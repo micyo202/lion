@@ -12,7 +12,7 @@ docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-upms -p 8800:8800 -it 
 # lion-auth docker 启动命令
 docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-auth -p 8888:8888 -it com.lion.auth/lion-auth
 
-# lion-zuul-server docker 启动命令
-docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-zuul-server -p 8400:8400 -it com.lion.zuul.server/lion-zuul-server
+# lion-gateway-server docker 启动命令
+docker run -d -e "SPRING_PROFILES_ACTIVE=dev" --name lion-gateway-server -p 8400:8400 -it com.lion.gateway.server/lion-gateway-server
 
 echo "容器创建完成"
