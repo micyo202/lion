@@ -39,7 +39,7 @@ public class SampleController {
     private String port;
 
     /**
-     * 灰度版本，从zuul服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
+     * 灰度版本，从gateway服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
      */
     @Value("${spring.cloud.nacos.discovery.metadata.version}")
     private String version;
