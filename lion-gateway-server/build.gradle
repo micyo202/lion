@@ -14,7 +14,7 @@ dependencies {
 
     implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:${cloudAlibabaVersion}"
 
-    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+    implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
