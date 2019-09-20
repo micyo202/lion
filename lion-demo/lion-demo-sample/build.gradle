@@ -22,9 +22,9 @@ dependencies {
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
-
     implementation project(':lion-common')
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
