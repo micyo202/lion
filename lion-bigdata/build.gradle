@@ -10,10 +10,10 @@ configurations {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${cloudAlibabaVersion}"
-    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${cloudAlibabaVersion}"
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
 
-    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:${cloudAlibabaVersion}"
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
@@ -30,5 +30,4 @@ dependencies {
     implementation "org.apache.spark:spark-sql_2.12:${sparkVersion}"
     implementation "org.apache.spark:spark-streaming_2.12:${sparkVersion}"
     implementation "org.apache.spark:spark-mllib_2.12:${sparkVersion}"
-
 }

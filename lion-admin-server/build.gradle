@@ -6,8 +6,8 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${cloudAlibabaVersion}"
-    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${cloudAlibabaVersion}"
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
 
     implementation 'de.codecentric:spring-boot-admin-starter-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
