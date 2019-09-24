@@ -67,7 +67,7 @@ subprojects {
         springBootAdminVersion = '2.1.2'
         springCloudVersion = 'Greenwich.RELEASE'
         springFrameworkVersion = '5.1.4.RELEASE'
-        cloudAlibabaVersion = '2.1.0.RELEASE'
+        springCloudAlibabaVersion = '2.1.0.RELEASE'
         
         scalaVersion = '2.11.12'
         jacksonVersion = '2.9.8'
@@ -124,6 +124,7 @@ subprojects {
         imports {
             mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
         }
     }
 
