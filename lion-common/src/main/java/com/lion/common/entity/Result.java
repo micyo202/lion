@@ -112,7 +112,7 @@ public class Result<T> implements Serializable {
 
     public static Result success(String msg) {
         Result result = new Result();
-        result.put("msg", msg);
+        result.setMsg(msg);
         return result;
     }
 
