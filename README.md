@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.2.1-orange.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.3.0-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
@@ -20,9 +20,10 @@
 
 **注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)**
 
-- [master分支](https://github.com/micyo202/lion)，使用 [Nacos](https://nacos.io) 作为服务注册/发现、配置中心；使用[Sentinel](https://github.com/alibaba/Sentinel)作为流量监控、服务降级、熔断处理。
+- [master分支](https://github.com/micyo202/lion)，使用 [Nacos](https://nacos.io) 作为服务注册/发现、配置中心；使用[Sentinel](https://github.com/alibaba/Sentinel)作为流量监控、服务降级、熔断处理；使用[Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)作为路由网关。
 - [eureka分支](https://github.com/micyo202/lion/tree/eureka)，使用 Eureka 作为服务注册发现中心。
 - [hystrix分支](https://github.com/micyo202/lion/tree/hystrix)，使用 Hystrix 做为服务降级、熔断处理。
+- [zuul分支](https://github.com/micyo202/lion/tree/zuul)，使用 Zuul 做为路由网关。
 
 ---
 
@@ -41,9 +42,11 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
+**2019-09-20：添加 RabbitMQ 消息生产者、消费者**
+
 **2019-09-06：更新 Zuul 路由模块，移除不必要的代码，添加 token 检查机制，优化模块代码**
 
-**2019-09-03：更新 Nacos，移除 Hystrix，采用 Sentinel 进行流量监控、服务熔断降级**
+**2019-09-03：更新 [Nacos](https://nacos.io)，移除 [Hystrix](https://github.com/Netflix/Hystrix)，采用 [Sentinel](https://github.com/alibaba/Sentinel) 进行流量监控、服务熔断降级**
 
 **2019-08-09：添加定时任务功能，仅需在配置表 sys_schedule 中配置相关任务Bean方法，即可按配置的 cron 来执行**
 
@@ -103,7 +106,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 - 消息总线：spring cloud bus -> amqp
 - 负载均衡：feign / ribbon
 - 限流、熔断降级: sentinel
-- 路由网关：gateway / zuul
+- 路由网关：gateway
 - 链路追踪：spring cloud sletuh -> zipkin
 - 安全认证：spring security -> oauth2
 - ORM框架：mybatis + jpa
@@ -117,7 +120,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 ```lua
 lion -- 根目录
 ├── lion-admin-server -- 服务监控
-├── lion-zuul-server -- 路由服务
+├── lion-gateway-server -- 路由服务
 ├── lion-zipkin-server -- 链路追踪服务
 ├── lion-common -- 通用工具类模块
 ├── lion-upms -- 用户权限管理系统
@@ -157,7 +160,7 @@ lion -- 根目录
 ## 七、服务启动
 注：带~~删除线~~的服务为相关示例模块可根据需要选择启动
 - lion-admin-server（端口：8200）
-- lion-zuul-server（端口：8400）
+- lion-gateway-server（端口：8400）
 - lion-zipkin-server（端口：9411）
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
