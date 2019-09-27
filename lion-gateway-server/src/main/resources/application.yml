@@ -1,0 +1,98 @@
+#server:
+#  port: 8400
+#
+#spring:
+#  cloud:
+#    gateway:
+#      # 配置路由规则
+#      routes:
+#        - id: lion-auth
+#          uri: lb://lion-auth
+#          predicates:
+#            - Path=/auth/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: lion-upms
+#          uri: lb://lion-upms
+#          predicates:
+#            - Path=/upms/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: lion-id
+#          uri: lb://lion-id
+#          predicates:
+#            - Path=/id/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: lion-bigdata
+#          uri: lb://lion-bigdata
+#          predicates:
+#            - Path=/bigdata/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: lion-blockchain
+#          uri: lb://lion-blockchain
+#          predicates:
+#            - Path=/blockchain/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: lion-demo-provider
+#          uri: lb://lion-demo-provider
+#          predicates:
+#            - Path=/demo/provider/**
+#          filters:
+#            - StripPrefix=2
+#
+#        - id: lion-demo-consumer
+#          uri: lb://lion-demo-consumer
+#          predicates:
+#            - Path=/demo/consumer/**
+#          filters:
+#            - StripPrefix=2
+#
+#        - id: lion-demo-sample
+#          uri: lb://lion-demo-sample
+#          predicates:
+#            - Path=/demo/sample/**
+#          filters:
+#            - StripPrefix=2
+#
+#        - id: lion-demo-ribbon
+#          uri: lb://lion-demo-ribbon
+#          predicates:
+#            - Path=/demo/ribbon/**
+#          filters:
+#            - StripPrefix=2
+#
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#  rabbitmq:
+#    host: 192.168.1.200
+#    port: 5672
+#    username: admin
+#    password: admin
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#  zipkin:
+#    #base-url: http://localhost:9411
+#    sender:
+#      type: rabbit
+#  redis:
+#    host: 192.168.1.200
+#    port: 6379
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
