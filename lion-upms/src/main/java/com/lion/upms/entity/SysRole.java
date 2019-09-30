@@ -1,5 +1,6 @@
 package com.lion.upms.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.Date;
 @Entity
 @Table(name = "sys_role")
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysRole implements Serializable {
 
     @Id
