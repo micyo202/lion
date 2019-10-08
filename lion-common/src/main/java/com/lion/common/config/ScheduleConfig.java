@@ -53,9 +53,12 @@ public class ScheduleConfig implements SchedulingConfigurer {
         if (null != scheduleList && !scheduleList.isEmpty()) {
             log.info("定时任务即将启动，预计启动任务数量[" + scheduleList.size() + "]，时间：" + LocalDateTime.now().format(dateTimeFormatter));
             for (Schedule schedule : scheduleList) {
-                // 执行定时任务
-                taskRegistrar.addTriggerTask(getRunnable(schedule), getTrigger(schedule));
-                scheduleTaskCount++;
+                // 判断任务是否有效
+                if ("1".equals(schedule.getValid())) {
+                    // 执行定时任务
+                    taskRegistrar.addTriggerTask(getRunnable(schedule), getTrigger(schedule));
+                    scheduleTaskCount++;
+                }
             }
             log.info("定时任务实际启动数量[" + scheduleTaskCount + "]，时间：" + LocalDateTime.now().format(dateTimeFormatter));
         }
@@ -69,7 +72,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
                 final Method method = bean.getClass().getMethod(schedule.getMethod(), (Class<?>[]) null);
                 method.invoke(bean);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                log.error("定时任务调度失败...", e);
+                log.error("定时任务调度失败", e);
             }
         };
     }
