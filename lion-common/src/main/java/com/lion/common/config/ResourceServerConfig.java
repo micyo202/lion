@@ -1,19 +1,25 @@
-package com.lion.demo.sample.config;
+package com.lion.common.config;
 
+import com.lion.common.exception.CustomAccessDeniedHandler;
+import com.lion.common.exception.CustomAuthenticationEntryPoint;
 import org.apache.commons.lang.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
  * ResourceServerConfig
- * TODO
+ * 安全认证资源配置
  *
- * @author Yanzheng https://github.com/micyo202
- * @date 2019/04/16
+ * @author Yanzheng
+ * @date 2019/09/26
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
@@ -21,10 +27,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+
     /**
      * 获取yml配置文件中不需要拦截的URL
      */
-    @Value("#{'${pattern.permit.urls}'}")
+    @Value("#{'${pattern.permit.urls:}'}")
     private String[] permitUrls;
 
     /**
@@ -54,6 +63,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(excludeUrls).permitAll()
                 .anyRequest().authenticated();
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        resources
+                //.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .accessDeniedHandler(new CustomAccessDeniedHandler());
     }
 
 }
