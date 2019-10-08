@@ -1,4 +1,4 @@
-package com.lion.demo.sample.config;
+package com.lion.common.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,17 +18,17 @@ import java.util.Collections;
 
 /**
  * Swagger2Config
- * TODO
+ * Swagger2 API 文档配置
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/04/17
+ * @date 2019/09/26
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
 
-    @Value("${security.oauth2.client.access-token-uri}")
+    @Value("${security.oauth2.client.access-token-uri:http://localhost:8888/oauth/token}")
     private String authServer;
 
     @Value("${spring.application.name}")
@@ -93,9 +93,8 @@ public class Swagger2Config {
      */
     private AuthorizationScope[] scopes() {
         return new AuthorizationScope[]{
-                new AuthorizationScope("all", "All scope is trusted!")
+                new AuthorizationScope("all", "All scope is trusted")
         };
     }
-
 
 }
