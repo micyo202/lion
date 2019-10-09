@@ -1,5 +1,6 @@
 package com.lion.common.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -23,12 +24,32 @@ public class JsonUtil {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
+    public static String jsonObj2Str(Object jsonObj) {
+        try {
+            final String str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
+            return str;
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public static <T> T jsonStr2Obj(String jsonStr, Class<T> objType) {
+        try {
+            final T obj = objectMapper.readValue(jsonStr, objType);
+            return obj;
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
     public static String getJsonStr(String json, String key) {
         try {
             final JsonNode jsonNode = objectMapper.readTree(json);
             return getJsonNodeValue(jsonNode, key);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -51,8 +72,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(json, Map.class).get(key).toString();
         } catch (IOException e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -61,8 +81,7 @@ public class JsonUtil {
         try {
             return (Map) objectMapper.readValue(json, Map.class).get(key);
         } catch (IOException e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -71,8 +90,7 @@ public class JsonUtil {
         try {
             return (List) objectMapper.readValue(json, Map.class).get(key);
         } catch (IOException e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
+            log.error(e.getMessage(), e);
         }
         return null;
     }
