@@ -1,17 +1,20 @@
 package com.lion.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lion.common.constant.ResponseStatus;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
 
 /**
  * Result
- * 响应结果实体
+ * 结果实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/13
@@ -19,31 +22,43 @@ import java.util.Map;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-@SuppressWarnings("unchecked")
+@NoArgsConstructor
 public class Result<T> implements Serializable {
 
-    private Integer code = 200;
-    private String msg = "SUCCESS";
-    private String description;
-    private T data;
-    @JsonIgnore
-    private Map<String, Object> extra;
+    /**
+     * 状态值
+     */
+    private int code = ResponseStatus.SUCCESS.code();
 
     /**
-     * 构造方法
+     * 提示信息
      */
-    public Result() {
-        extra = new HashMap();
-    }
+    private String msg = "Success";
+
+    /**
+     * 数据
+     */
+    private T data;
+
+    /**
+     * 时间戳
+     */
+    private long timestamp = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+
+    /**
+     * 额外扩展数据
+     */
+    //@JsonIgnore
+    private Map<String, Object> extra = null;
 
     /**
      * 自定义相关getter、setter方法
      */
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public Result setCode(Integer code) {
+    public Result<T> setCode(int code) {
         this.code = code;
         return this;
     }
@@ -52,7 +67,7 @@ public class Result<T> implements Serializable {
         return msg;
     }
 
-    public Result setMsg(String msg) {
+    public Result<T> setMsg(String msg) {
         this.msg = msg;
         return this;
     }
@@ -61,59 +76,55 @@ public class Result<T> implements Serializable {
         return data;
     }
 
-    public Result setData(T data) {
+    public Result<T> setData(T data) {
         this.data = data;
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public Result setDescription(String description) {
-        this.description = description;
+    public Result<T> setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
         return this;
     }
 
-    public Map<String, Object> extra() {
+    public Map<String, Object> getExtra() {
         return extra;
     }
 
-    public void setExend(Map<String, Object> extra) {
+    public Result<T> setExend(Map<String, Object> extra) {
         this.extra = extra;
-    }
-
-    /**
-     * 额外扩展方法
-     */
-    public Result setStatus(Status status) {
-        this.code = status.getCode();
-        this.msg = status.getMsg();
         return this;
     }
 
-    public static Result status(Status status) {
-        Result result = new Result();
-        result.setCode(status.getCode());
-        result.setMsg(status.getMsg());
-        return result;
+    /**
+     * 自定义扩展方法
+     */
+    public Result<T> addExtra(String key, Object value) {
+        if (null == this.extra) {
+            this.extra = new HashMap<>(8);
+        }
+        this.extra.put(key, value);
+        return this;
     }
 
-    public static Result failure(int code, String msg) {
+    public Result<T> setStatus(ResponseStatus responseStatus) {
+        this.setCode(responseStatus.code());
+        this.setMsg(responseStatus.msg());
+        return this;
+    }
+
+    public static Result status(ResponseStatus responseStatus) {
         Result result = new Result();
-        result.setCode(code);
-        result.setMsg(msg);
+        result.setCode(responseStatus.code());
+        result.setMsg(responseStatus.msg());
         return result;
     }
 
     public static Result success() {
         return new Result();
-    }
-
-    public static Result success(String msg) {
-        Result result = new Result();
-        result.setMsg(msg);
-        return result;
     }
 
     public static <T> Result success(T data) {
@@ -122,15 +133,25 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static Result success(Map<String, Object> map) {
+    public static <T> Result success(T data, Map<String, Object> extra) {
         Result result = new Result();
-        result.extra.putAll(map);
+        result.setData(data);
+        result.setExend(extra);
         return result;
     }
 
-    public Result put(String key, Object value) {
-        extra.put(key, value);
-        return this;
+    public static Result failure(String msg) {
+        Result result = new Result();
+        result.setCode(ResponseStatus.FAILURE.code());
+        result.setMsg(msg);
+        return result;
+    }
+
+    public static Result failure(int code, String msg) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        return result;
     }
 
 }
