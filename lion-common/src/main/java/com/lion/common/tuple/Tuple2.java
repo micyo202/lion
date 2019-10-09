@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * Tuple2
- * TODO
+ * 自定义元组
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/14
