@@ -2,6 +2,7 @@ package com.lion.common.lock.aspect;
 
 import com.lion.common.lock.annotation.Locker;
 import com.lion.common.lock.locker.DistributedLocker;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Slf4j
 public class DistributedLockerAspect {
 
     @Autowired
@@ -56,8 +58,8 @@ public class DistributedLockerAspect {
             try {
                 result = proceedingJoinPoint.proceed();
             } catch (Throwable throwable) {
+                log.error(throwable.getMessage(), throwable);
                 result = throwable.getMessage();
-                throwable.printStackTrace();
             } finally {
                 distributedLocker.unlock(lockKey);  // 释放锁
             }

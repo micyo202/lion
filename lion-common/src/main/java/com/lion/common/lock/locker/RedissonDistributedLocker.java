@@ -1,5 +1,6 @@
 package com.lion.common.lock.locker;
 
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
+@Slf4j
 public class RedissonDistributedLocker implements DistributedLocker {
 
     private final static String KEY_PREFIX = "LOCK:";
@@ -80,6 +82,7 @@ public class RedissonDistributedLocker implements DistributedLocker {
         try {
             return lock.tryLock(waitTime, leaseTime, unit);
         } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
             return false;
         }
     }
