@@ -1,15 +1,18 @@
 package com.lion.common.exception;
 
+import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Result;
-import io.netty.channel.ChannelException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.ThreadContext;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
+import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * LionExceptionHandler
- * TODO
+ * 自定义全局异常处理类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/07/17
@@ -28,21 +31,25 @@ public class LionExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result serviceException(Exception e) {
 
+        log.error(e.getMessage());
+
         Result result;
 
-        if (e instanceof ChannelException) {
-            log.error("业务异常：" + e.getMessage());
+        if (e instanceof LionException) {
             LionException lionException = (LionException) e;
             result = Result.failure(lionException.getCode(), lionException.getMessage());
-        } else {    // 系统异常
-            log.error("系统异常：" + e.getMessage());
-            result = Result.failure(9999, e.getMessage());
+        } else if (e instanceof InvalidTokenException) {
+            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Token");
+        } else if (e instanceof InvalidGrantException) {
+            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token");
+        } else if (e instanceof AccessDeniedException) {
+            result = Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问");
+        } else {
+            log.error("系统异常", e);
+            result = Result.failure(e.getMessage());
         }
 
-        log.info("执行完毕（异常）...");
         ThreadContext.remove("logId");
-
-        e.printStackTrace();
 
         return result;
     }
