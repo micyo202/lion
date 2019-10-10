@@ -29,6 +29,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         log.error(accessDeniedException.getMessage());
 
         //response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
+
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问")));

@@ -4,7 +4,9 @@ import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -34,6 +36,10 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         Throwable cause = authException.getCause();
         if (cause instanceof InvalidTokenException) {
             response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Token")));
+        } else if (cause instanceof InvalidGrantException) {
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token")));
+        } else if (cause instanceof AccessDeniedException) {
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问")));
         } else {
             response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "尚未认证无法访问")));
         }
