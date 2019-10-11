@@ -13,7 +13,6 @@ import java.util.Set;
  * @date 2019/04/19
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@SuppressWarnings("unchecked")
 public class MenuTree implements Serializable {
 
     /**
@@ -52,7 +51,7 @@ public class MenuTree implements Serializable {
             if (menu.getId().equals(menu_1.getPId())) {
                 //如果当前节点的子节点是空的则初始化，如果不为空就加进去
                 if (menu.getChildren() == null) {
-                    menu.setChildren(new ArrayList());
+                    menu.setChildren(new ArrayList(2));
                 }
                 menu.getChildren().add(genChildren(menu_1, nodes));
             }
