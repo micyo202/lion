@@ -10,16 +10,25 @@ configurations {
 }
 
 dependencies {
-    implementation "org.springframework:spring-web:${springFrameworkVersion}"
+    compileOnly "org.springframework:spring-web:${springFrameworkVersion}"
 
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 
-    implementation "org.springframework.data:spring-data-redis:${springRedisVersion}"
+    compileOnly "org.springframework.data:spring-data-redis:${springRedisVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
 
-    implementation "org.aspectj:aspectjweaver:${aspectjVersion}"
+    compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
 
-    implementation "org.mybatis:mybatis:${mybatisVersion}"
+    compileOnly "org.mybatis:mybatis:${mybatisVersion}"
 
-    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    compileOnly "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+
+    compileOnly "commons-lang:commons-lang:${commonsLangVersion}"
+
+    compileOnly "org.springframework.security.oauth:spring-security-oauth2:${oauth2Version}"
+    compileOnly "org.springframework.security:spring-security-config:${springFrameworkVersion}"
+    
+    compileOnly "io.springfox:springfox-swagger2:${swaggerVersion}"
+
+    compileOnly "javax.servlet:javax.servlet-api:${servletApiVersion}"
 }
