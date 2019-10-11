@@ -1,8 +1,9 @@
 package com.lion.common.exception;
 
 import com.lion.common.constant.ResponseStatus;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * LionException
@@ -12,7 +13,8 @@ import lombok.NoArgsConstructor;
  * @date 2019/07/17
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class LionException extends RuntimeException {
 
