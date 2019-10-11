@@ -134,6 +134,11 @@
 #  supportMethodsArguments: true
 #  params: count=countSql
 #
+##配置无需认证的url
+#pattern:
+#  permit:
+#    urls: /getUserByUsername/**,/getRoleByUserId/**,/getMenuByRoleId/**
+#
 #management:
 #  endpoints:
 #    web:
