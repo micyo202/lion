@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 13/08/2019 15:04:18
+ Date: 09/10/2019 15:16:57
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `sys_id` (
 -- Records of sys_id
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_id` VALUES (1, 'user_tag', '用户ID生成规则', 130, 140, '2019-04-28 16:38:40');
+INSERT INTO `sys_id` VALUES (1, 'user_tag', '用户ID生成规则', 40, 50, '2019-04-28 16:38:40');
 INSERT INTO `sys_id` VALUES (2, 'order_tag', '订单ID生成规则', 0, 1000, '2019-04-28 16:39:05');
 COMMIT;
 
@@ -169,9 +169,9 @@ CREATE TABLE `sys_schedule` (
 -- Records of sys_schedule
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_schedule` VALUES (1, '测试定时任务1', '0/10 * * * * ?', 'lion-demo-sample', 'scheduleDemo', 'firstMethod', '1');
-INSERT INTO `sys_schedule` VALUES (2, '测试定时任务2', '5/15 * * * * ?', 'lion-demo-sample', 'scheduleDemo', 'secondMethod', '1');
-INSERT INTO `sys_schedule` VALUES (3, '测试定时任务3', '30 0/1 * * * ?', 'lion-demo-sample', 'scheduleDemo', 'thirdMethod', '1');
+INSERT INTO `sys_schedule` VALUES (1, '测试定时任务1', '0/10 * * * * ?', 'lion-demo-', 'scheduleDemo', 'firstMethod', '1');
+INSERT INTO `sys_schedule` VALUES (2, '测试定时任务2', '5/15 * * * * ?', 'lion-demo-', 'scheduleDemo', 'secondMethod', '1');
+INSERT INTO `sys_schedule` VALUES (3, '测试定时任务3', '30 0/1 * * * ?', 'lion-demo-', 'scheduleDemo', 'thirdMethod', '1');
 COMMIT;
 
 -- ----------------------------
@@ -256,5 +256,23 @@ CREATE TABLE `temp_mybatis` (
   `update_time` date DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for undo_log
+-- ----------------------------
+DROP TABLE IF EXISTS `undo_log`;
+CREATE TABLE `undo_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint(20) NOT NULL,
+  `xid` varchar(100) NOT NULL,
+  `context` varchar(128) NOT NULL,
+  `rollback_info` longblob NOT NULL,
+  `log_status` int(11) NOT NULL,
+  `log_created` datetime NOT NULL,
+  `log_modified` datetime NOT NULL,
+  `ext` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
