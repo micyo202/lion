@@ -69,7 +69,7 @@ public class UpmsController {
 
         if (user == null) {
             log.warn("用户[" + username + "]不存在");
-            return Result.failure(100, "用户不存在");
+            return Result.failure("用户[" + username + "]不存在");
         }
 
         return Result.success(user);
