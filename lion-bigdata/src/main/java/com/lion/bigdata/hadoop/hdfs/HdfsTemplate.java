@@ -156,7 +156,7 @@ public class HdfsTemplate {
                 if (statuses != null) {
                     for (FileStatus status : statuses) {
                         //每个文件的属性
-                        Map<String, Object> fileMap = new HashMap<>(2);
+                        Map<String, Object> fileMap = new HashMap<>(2, 1);
 
                         fileMap.put("path", status.getPath().toString());
                         fileMap.put("isDir", status.isDirectory());

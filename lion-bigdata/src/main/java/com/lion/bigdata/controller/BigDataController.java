@@ -30,7 +30,7 @@ public class BigDataController {
 
     @RequestMapping("/test")
     public Map test(@RequestParam(defaultValue = "default") String name) {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(4, 1);
         map.put("id", UUID.randomUUID().toString().replaceAll("-", ""));
         map.put("name", name);
         map.put("age", 27);
