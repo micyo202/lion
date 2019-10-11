@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final String adminContextPath;
 
     public SecurityConfig(AdminServerProperties adminServerProperties) {
