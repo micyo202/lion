@@ -1,7 +1,7 @@
 package com.lion.auth.controller;
 
+import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Result;
-import com.lion.common.entity.Status;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.security.Principal;
 
 /**
  * UserController
- * TODO
+ * 用户控制器
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/08
@@ -29,23 +29,21 @@ public class UserController {
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
 
-    @ApiOperation(value = "获取用户凭证信息", response = Principal.class)
+    @ApiOperation(value = "获取用户凭证信息", response = Result.class)
     @GetMapping(value = "/principal")
-    public Principal principal(Principal principal) {
+    public Result principal(Principal principal) {
         //获取用户凭证信息
-        return principal;
+        return Result.success(principal);
     }
 
     @ApiOperation(value = "移除用户凭证信息", response = Result.class)
     @DeleteMapping(value = "/revoke")
     public Result revoke(String access_token) {
-        Result result = new Result();
         if (consumerTokenServices.revokeToken(access_token)) {
-            result.setStatus(Status.SUCCESS);
+            return Result.success();
         } else {
-            result.setStatus(Status.FAILURE);
+            return Result.status(ResponseStatus.FAILURE);
         }
-        return result;
     }
 
 }
