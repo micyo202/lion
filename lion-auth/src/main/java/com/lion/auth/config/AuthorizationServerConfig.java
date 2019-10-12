@@ -1,6 +1,6 @@
 package com.lion.auth.config;
 
-import com.lion.auth.exception.WebResponseExceptionTranslatorImpl;
+import com.lion.auth.exception.CustomWebResponseExceptionTranslator;
 import com.lion.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,7 +57,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public WebResponseExceptionTranslator<OAuth2Exception> webResponseExceptionTranslator() {
-        return new WebResponseExceptionTranslatorImpl();
+        return new CustomWebResponseExceptionTranslator();
     }
 
     @Override
@@ -83,30 +83,31 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // 配置tokenServices参数
         DefaultTokenServices tokenServices = new DefaultTokenServices();
+        // 使用redis方式
         tokenServices.setTokenStore(redisTokenStore());
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setClientDetailsService(clientDetails());
-        tokenServices.setAccessTokenValiditySeconds(60 * 60 * 12);  // token有效期自定义设置，默认12小时
-        tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7); // 默认30天，这里修改
+        // 设置access_token有效时长，默认12小时
+        tokenServices.setAccessTokenValiditySeconds(60 * 60 * 12);
+        // 设置refresh_token有效时长，默认30天
+        tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
 
-        // 使用 redis 方式
         endpoints
-                .tokenStore(redisTokenStore())
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager)
                 .tokenServices(tokenServices)
-                .exceptionTranslator(webResponseExceptionTranslator());// 认证异常翻译
+                // 自定义认证异常处理类
+                .exceptionTranslator(webResponseExceptionTranslator());
 
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        // 允许表单认证
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permitAll()")
-                //.checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();
+
     }
 
 }
