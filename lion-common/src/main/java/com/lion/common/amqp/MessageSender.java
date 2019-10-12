@@ -1,6 +1,7 @@
-package com.lion.demo.provider.amqp;
+package com.lion.common.amqp;
 
-import lombok.extern.slf4j.Slf4j;
+import com.lion.common.constant.AmqpArgs;
+import com.lion.common.entity.Result;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,19 +11,17 @@ import org.springframework.stereotype.Component;
  * RabbitMQ 消息生产者（发送者）
  *
  * @author Yanzheng
- * @date 2019/09/19
+ * @date 2019/10/12
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
-@Slf4j
 public class MessageSender {
 
     @Autowired
-    private AmqpTemplate amqpTemplate;
+    AmqpTemplate amqpTemplate;
 
-    public void sender(Object message) {
-        log.info("RabbitMQ消息发送：{}", message);
-        amqpTemplate.convertAndSend("lion", message);
+    public void send(Object object) {
+        amqpTemplate.convertAndSend(AmqpArgs.DIRECT_EXCHANGE, AmqpArgs.DIRECT_ROUTING, Result.success(object));
     }
 
 }
