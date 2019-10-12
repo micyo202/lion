@@ -105,22 +105,11 @@
 #        allow: 127.0.0.1
 #        #黑名单
 #        #deny: 192.168.1.1
-#  #配置JPA
-#  jpa:
-#    database: mysql
-#    generate-ddl: true
-#    show-sql: true
-#    open-in-view: true
-#    #设置数据库引擎为InnoDB否则不支持事物
-#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-#    hibernate:
-#      ddl-auto: update
-#      naming:
-#        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 #  # 配置redis
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
+#
 ##开启sentinel断路器
 #feign:
 #  sentinel:
