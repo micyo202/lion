@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * UpmsClientFallback
- * TODO
+ * Fegin调用服务失败方法
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
@@ -17,16 +17,16 @@ public class UpmsClientFallback implements UpmsClient {
 
     @Override
     public Result getUserByUsername(String username) {
-        return Result.failure(100, "调用 getUserByUsername 失败...");
+        return Result.failure("调用 getUserByUsername 失败...");
     }
 
     @Override
     public Result getRoleByUserId(Integer userId) {
-        return Result.failure(100, "调用 getRoleByUserId 失败...");
+        return Result.failure("调用 getRoleByUserId 失败...");
     }
 
     @Override
     public Result getMenuByRoleId(Integer roleId) {
-        return Result.failure(100, "调用 getMenuByRoleId 失败...");
+        return Result.failure("调用 getMenuByRoleId 失败...");
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * UpmsClient
- * TODO
+ * Feign调用服务提供者服务
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
