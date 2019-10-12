@@ -1,11 +1,12 @@
 package com.lion.auth.service.impl;
 
 import com.lion.auth.client.UpmsClient;
+import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Menu;
 import com.lion.common.entity.Result;
 import com.lion.common.entity.Role;
 import com.lion.common.entity.User;
-import com.lion.common.entity.Status;
+import com.lion.common.exception.LionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.Set;
 
 /**
  * UserDetailsServiceImpl
- * TODO
+ * 用户权限实现类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
@@ -37,8 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         Result<User> userResult = upmsClient.getUserByUsername(username);
 
-        if (null == userResult.getData()) {
-            throw new UsernameNotFoundException("用户：" + username + "不存在！");
+        if (ResponseStatus.SUCCESS.code() != userResult.getCode()) {
+            throw new LionException(userResult.getMsg());
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet();
@@ -55,19 +56,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 获取用户角色
         Result<List<Role>> roleResult = upmsClient.getRoleByUserId(user.getId());
 
-        if (roleResult.getCode() == Status.SUCCESS.getCode()) { // 判断获取权限列表是否成功
-
-            roleResult.getData().stream().forEach(role -> {
-                //角色必须是ROLE_开头，可以在数据库中设置
-                grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role.getValue().toUpperCase()));
-                //获取菜单列表
-                Result<List<Menu>> menuResult = upmsClient.getMenuByRoleId(role.getId());
-                if (menuResult.getCode() == Status.SUCCESS.getCode()) {  // 判断获取菜单列表是否成功
-                    menuResult.getData().stream().forEach(menu -> grantedAuthorities.add(new SimpleGrantedAuthority(menu.getCode())));
-                }
-            });
-
+        // 判断获取权限列表是否成功
+        if (roleResult.getCode() != ResponseStatus.SUCCESS.code()) {
+            throw new LionException(roleResult.getMsg());
         }
+
+        roleResult.getData().stream().forEach(role -> {
+            //角色必须是ROLE_开头，可以在数据库中设置
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role.getValue().toUpperCase()));
+            //获取菜单列表
+            Result<List<Menu>> menuResult = upmsClient.getMenuByRoleId(role.getId());
+            // 判断获取菜单列表是否成功
+            if (menuResult.getCode() != ResponseStatus.SUCCESS.code()) {
+                throw new LionException(menuResult.getMsg());
+            }
+            menuResult.getData().stream().forEach(menu -> grantedAuthorities.add(new SimpleGrantedAuthority(menu.getCode())));
+        });
 
         org.springframework.security.core.userdetails.User securityUser = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
