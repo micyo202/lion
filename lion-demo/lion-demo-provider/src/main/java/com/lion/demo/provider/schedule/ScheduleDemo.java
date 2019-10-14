@@ -1,4 +1,4 @@
-package com.lion.demo.sample.schedule;
+package com.lion.demo.provider.schedule;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
  * ScheduleDemo
  * 定时任务示例，在对应 sys_schedule 表中配置
  *
- * @author Yanzheng https://github.com/micyo202
- * @date 2019/08/12
+ * @author Yanzheng
+ * @date 2019/09/24
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
@@ -26,6 +26,5 @@ public class ScheduleDemo {
     public void thirdMethod() {
         log.info("定时任务333333");
     }
-
 
 }
