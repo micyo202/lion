@@ -1,4 +1,6 @@
-package com.lion.demo.sample.handler;
+package com.lion.demo.provider.handler;
+
+import com.lion.common.entity.Result;
 
 /**
  * FallbackHandler
@@ -10,8 +12,8 @@ package com.lion.demo.sample.handler;
  */
 public class FallbackHandler {
 
-    public static String sentinelFallback() {
-        return "服务熔断、降级（Sentinel is fallback...）";
+    public static Result sentinelFallback() {
+        return Result.failure(500, "服务熔断、降级（Sentinel is fallback...）");
     }
 
 }
