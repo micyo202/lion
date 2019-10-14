@@ -10,9 +10,9 @@ import io.swagger.annotations.ApiParam;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -29,6 +29,7 @@ import java.util.UUID;
  */
 @Api("Mybatis相关示例代码类说明文档")
 @RestController
+@RequestMapping("/temp/mybatis")
 public class TempMybatisController {
 
     @Autowired
@@ -41,40 +42,50 @@ public class TempMybatisController {
     private SqlSessionTemplate sqlSessionTemplate;
 
     @ApiOperation(value = "使用Mybatis方式插入数据", notes = "包含事物")
-    @ApiParam(name = "isRollback", value = "是否触发事物回滚", defaultValue = "false", required = true)
-    @RequestMapping(value = "/mybatis/save", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiParam(name = "num", value = "插入数据条数", defaultValue = "3", required = true)
+    @RequestMapping(value = "/save/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
-    public String mybatisSave(@RequestParam(defaultValue = "false") boolean isRollback) {
+    public String mybatisSave(@PathVariable int num) {
 
-        String id = UUID.randomUUID().toString();
-        if (!isRollback) {
-            id = id.replaceAll("-", "");
+        if (num <= 0) {
+            return "参数必须是大于0的数字";
         }
 
-        String randomStr = Math.ceil(Math.random() * 100) + "";
+        for (int i = 0; i < num; i++) {
 
-        TempMybatis tempMybatis = new TempMybatis();
-        tempMybatis.setId(id);
-        tempMybatis.setName("name-" + randomStr);
-        tempMybatis.setType(9);
-        tempMybatis.setStatus(true);
-        tempMybatis.setCreateTime(new Date());
-        tempMybatis.setUpdateTime(new Date());
+            String randomStr = Math.ceil(Math.random() * 100) + "";
 
-        tempMybatisMapper.insertSelective(tempMybatis);
+            TempMybatis tempMybatis = new TempMybatis();
+            tempMybatis.setName("TempMybatisName-" + randomStr);
+            tempMybatis.setType(9);
+            tempMybatis.setStatus(false);
+            tempMybatis.setCreateTime(new Date());
+            tempMybatis.setUpdateTime(new Date());
 
-        return "插入成功";
+            if (i <= 5) {
+                //正常插入
+                tempMybatis.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            } else {
+                //超出范围长度，触发事物回滚
+                tempMybatis.setId(UUID.randomUUID().toString());
+            }
+
+            tempMybatisMapper.insertSelective(tempMybatis);
+
+        }
+
+        return "保存成功，条数：" + num;
     }
 
     @ApiOperation("Mybatis自定义API接口，注解SQL方式查询")
-    @RequestMapping(value = "/mybatis/custom/list", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/custom/list", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisCustomList() {
         List<Object> list = tempMybatisCustomMapper.selectAll();
         return list;
     }
 
     @ApiOperation("Mybatis自定义sqlMap查询，并分页")
-    @RequestMapping(value = "/mybatis/sql/page", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/sql/page", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Object> mybatisSqlPage() {
         PageHelper.offsetPage(0, 5);
         List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.temp.TempMybatisCustomMapper.getAll");
