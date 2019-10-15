@@ -17,15 +17,16 @@ import reactor.core.publisher.Mono;
  */
 public class GrayFilter implements GlobalFilter, Ordered {
 
+    private static final String KEY = "version";
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
         // 灰度拦截器
-        String version = exchange.getRequest().getQueryParams().getFirst("version");
+        String version = exchange.getRequest().getQueryParams().getFirst(KEY);
         if (null != version && !version.isEmpty()) {
-            // put the serviceId in `RequestContext`
-            RibbonFilterContextHolder.getCurrentContext()
-                    .add("version", version);
+            // add the version in 'RequestContext'
+            RibbonFilterContextHolder.getCurrentContext().add(KEY, version);
         }
 
         return chain.filter(exchange);
@@ -33,6 +34,9 @@ public class GrayFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
+        /**
+         * 值越大，优先级越低
+         */
         return 20;
     }
 
