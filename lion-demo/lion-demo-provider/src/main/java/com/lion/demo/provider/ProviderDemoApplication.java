@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * ProviderDemoApplication
@@ -16,7 +17,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 //@EnableTransactionManagement
-@MapperScan("com.lion.demo.provider..*.mapper")
+//@MapperScan("com.lion.**.mapper")
+@MapperScan(basePackages = {"com.lion.common.mapper", "com.lion.demo.provider..*.mapper"})
+//@ComponentScan("com.lion")
+@ComponentScan(basePackages = {"com.lion.common", "com.lion.demo.provider"})
 public class ProviderDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProviderDemoApplication.class, args);
