@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * IdRepository
- * TODO
+ * 自增Id生成服务数据库操作类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/28
@@ -18,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface IdRepository extends JpaRepository<SysId, Integer> {
 
-    // 占位符风格
+    /**
+     * 占位符风格
+     */
     @Query(value = "select * from sys_id where biz_tag = ?1", nativeQuery = true)
     SysId getSysId(String bizTag);
 

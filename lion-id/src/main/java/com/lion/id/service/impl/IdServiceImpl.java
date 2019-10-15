@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 
 /**
  * IdService
- * TODO
+ * 自增Id生成服务实现类（异步线程）
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/29
@@ -36,7 +36,9 @@ public class IdServiceImpl implements IdService {
         return new AsyncResult<>(sysId);
     }
 
-    // 获取SysId
+    /**
+     * 获取SysId
+     */
     private SysId getSysId(String bizTag) {
         SysId sysId = idRepository.getSysId(bizTag);
 
