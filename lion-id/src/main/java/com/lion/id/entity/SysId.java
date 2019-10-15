@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * SysId
- * TODO
+ * 自增Id实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/28

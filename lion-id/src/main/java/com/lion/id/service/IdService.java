@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 
 /**
  * IdService
- * 异步线程任务
+ * 自增Id生成服务接口（异步线程）
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/30
@@ -14,10 +14,14 @@ import java.util.concurrent.Future;
  */
 public interface IdService {
 
-    // 同步获取SysId（用于初始化）
+    /**
+     * 同步获取SysId（用于初始化）
+     */
     SysId getSynSysId(String bizTag);
 
-    // 异步获取SysId（用于双buffer）
+    /**
+     * 异步获取SysId（用于双buffer）
+     */
     Future<SysId> getAsynSysId(String bizTag);
 
 }
