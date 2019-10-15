@@ -3,6 +3,10 @@ description '服务提供者demo'
 
 apply plugin: 'org.springframework.boot'
 
+ext {
+    apnsVersion = '1.0.0.Beta6'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -11,12 +15,18 @@ dependencies {
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
 
+    //implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
+
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation project(':lion-common')
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
@@ -32,4 +42,7 @@ dependencies {
 
     implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
     implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+
+    // 苹果推送APNS
+    testImplementation "com.notnoop.apns:apns:${apnsVersion}"
 }
