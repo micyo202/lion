@@ -6,6 +6,9 @@
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080
+#    #alibaba:
+#      #seata:
+#        #tx-service-group: lion-demo-provider-service-group
 #  rabbitmq:
 #    host: 192.168.1.200
 #    port: 5672
@@ -131,6 +134,17 @@
 #  reasonable: true
 #  supportMethodsArguments: true
 #  params: count=countSql
+#
+##OAuth2安全认证配置
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://localhost:8888/oauth/token
+#
+##配置无需认证的url
+#pattern:
+#  permit:
+#    urls: /hi/**,/gray/**,/sentinel/**,/lock/**,/rabbit/**,/product/**,/temp/**,/scala/**,/test/**
 #
 #management:
 #  endpoints:
