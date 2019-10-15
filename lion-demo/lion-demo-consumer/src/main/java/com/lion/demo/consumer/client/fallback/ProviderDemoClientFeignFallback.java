@@ -1,5 +1,6 @@
 package com.lion.demo.consumer.client.fallback;
 
+import com.lion.common.entity.Result;
 import com.lion.demo.consumer.client.ProviderDemoClientFeign;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProviderDemoClientFeignFallback implements ProviderDemoClientFeign {
     @Override
-    public String sayHiFromProvider(String name) {
-        return "Sorry '" + name + "', fallback sentinel!";
+    public Result hiFromProvider(String name) {
+        return Result.failure("Invoke Method \"hiFromProvider(String name)\" Fallback By Sentinel");
+    }
+
+    @Override
+    public Result jpaSaveFromProvider(int num) {
+        return Result.failure("Invoke Method \"jpaSaveFromProvider(int num)\" Fallback By Sentinel");
     }
 }
