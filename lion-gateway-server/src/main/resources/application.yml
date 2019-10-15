@@ -55,20 +55,6 @@
 #          filters:
 #            - StripPrefix=2
 #
-#        - id: lion-demo-sample
-#          uri: lb://lion-demo-sample
-#          predicates:
-#            - Path=/demo/sample/**
-#          filters:
-#            - StripPrefix=2
-#
-#        - id: lion-demo-ribbon
-#          uri: lb://lion-demo-ribbon
-#          predicates:
-#            - Path=/demo/ribbon/**
-#          filters:
-#            - StripPrefix=2
-#
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080
