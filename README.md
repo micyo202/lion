@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.3.0-orange.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.5.0-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
@@ -42,7 +42,9 @@
 项目后期会不断更新与时俱进，敬请期待...
 
 ## 近期更新
-**2019-09-20：添加 RabbitMQ 消息生产者、消费者**
+**2019-10-12：添加 RabbitMQ 消息生产者、消费者**
+
+**2019-09-30：移除 Zuul 路由模块，采用 [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 作为最新路由网关服务，添加缓存策略**
 
 **2019-09-06：更新 Zuul 路由模块，移除不必要的代码，添加 token 检查机制，优化模块代码**
 
@@ -54,7 +56,7 @@
 
 **2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，该分布式锁是基于Redisson实现的，请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
 
-**2019-05-05：添加双buffer分布式自增ID算法服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
+**2019-05-05：添加双buffer分布式自增ID生成服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
 ## 项目架构图
 
@@ -103,7 +105,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 ## 三、组件说明
 - 服务注册/发现、配置中心: nacos
 - 服务监控：spring boot admin
-- 消息总线：spring cloud bus -> amqp
+- 消息队列：amqp -> rabbitmq
 - 负载均衡：feign / ribbon
 - 限流、熔断降级: sentinel
 - 路由网关：gateway
@@ -113,8 +115,7 @@ Gradle 5.3.1 | [https://gradle.org](https://gradle.org) | √
 - 数据源监控：druid
 - api文档输出：swagger2
 - 分布式锁：redis
-- 消息队列：rabbitmq
-- 分布式事物：3PC+TCC（待实现 Fescar[Seata]）
+- 分布式事物：待实现
 
 ## 四、项目树结构
 ```lua
@@ -128,11 +129,9 @@ lion -- 根目录
 ├── lion-id -- 自增ID生成服务
 ├── lion-bigdata -- 大数据模块
 ├── lion-blockchain -- 区块链模块
-├── lion-demo -- 示例代码模块
+├── lion-demo -- 示例代码模块（包含灰度、权限认证、scala混编等）
 |    ├── lion-demo-provider -- 服务提供者
 |    ├── lion-demo-consumer -- 服务消费者
-|    ├── lion-demo-ribbon -- ribbon + sentinel示例模块
-|    ├── lion-demo-sample -- 综合案例包含灰度、权限认证、scala混编等
 ```
 
 ## 五、项目准备
@@ -164,55 +163,78 @@ lion -- 根目录
 - lion-zipkin-server（端口：9411）
 - lion-upms（端口：8800）
 - lion-auth（端口：8888）
-- lion-id（端口：8899）
+- ~~lion-id（端口：8899）~~
 - ~~lion-bigdata（端口：8801）~~
 - ~~lion-blockchain （端口：8802）~~
 - ~~lion-demo（相关demo示例）~~
     - ~~lion-demo-provider（端口：8601、8602、8603...）~~
     - ~~lion-demo-consumer（端口：8701、8702、8703...）~~
-    - ~~lion-demo-ribbon（端口：8781）~~
-    - ~~lion-demo-sample（端口：8782）~~
 
 ## 八、效果预览
 
-#### 服务注册/发现、配置中心
+#### Nacos服务列表
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/nacos-server.png" alt="nacos-server" title="nacos-server">
+</p>
+
+#### Nacos配置列表
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/nacos-config.png" alt="nacos-config" title="nacos-config">
 </p>
 
-#### 服务详情
+#### Nacos服务详情
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/nacos-details.png" alt="nacos-details" title="nacos-details">
+  <img src="https://github.com/micyo202/lion/raw/master/images/nacos-detail.png" alt="nacos-detail" title="nacos-detail">
 </p>
 
-#### 服务监控
+#### Boot Admin应用监控
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
 </p>
 
-#### 服务监控详情
+#### Boot Admin应用列表
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/admin-details.png" alt="admin-details" title="admin-details">
+  <img src="https://github.com/micyo202/lion/raw/master/images/admin-application.png" alt="admin-application" title="admin-application">
 </p>
 
-#### 限流、熔断降级
+#### Boot Admin应用详情
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/admin-detail.png" alt="admin-detail" title="admin-detail">
+</p>
+
+#### Sentinel服务限流、熔断/降级
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/sentinel.png" alt="sentinel" title="sentinel">
 </p>
 
-#### 链路追踪服务
+#### Zipkin链路信息
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/zipkin.png" alt="zipkin" title="zipkin">
+  <img src="https://github.com/micyo202/lion/raw/master/images/zipkin-info.png" alt="zipkin-info" title="zipkin-info">
 </p>
 
-#### 数据源监控
+#### Zipkin链路关系
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/druid.png" alt="druid" title="druid">
+  <img src="https://github.com/micyo202/lion/raw/master/images/zipkin-relation.png" alt="zipkin-relation" title="zipkin-relation">
 </p>
 
-#### API 文档
+#### Druid SQL监控
 <p align="center" >
-  <img src="https://github.com/micyo202/lion/raw/master/images/swagger.png" alt="swagger" title="swagger">
+  <img src="https://github.com/micyo202/lion/raw/master/images/druid-sql.png" alt="druid-sql" title="druid-sql">
+</p>
+
+#### Druid URI监控
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/druid-uri.png" alt="druid-uri" title="druid-uri">
+</p>
+
+#### Druid Spring监控
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/druid-spring.png" alt="druid-spring" title="druid-spring">
+</p>
+
+#### Swagger2 API文档
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/swagger2-api.png" alt="swagger2-api" title="swagger2-api">
 </p>
 
 ## 九、许可证
