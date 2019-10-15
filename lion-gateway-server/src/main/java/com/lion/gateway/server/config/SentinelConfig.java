@@ -6,7 +6,6 @@ import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.lion.gateway.server.filter.GrayFilter;
 import com.lion.gateway.server.filter.TokenFilter;
 import com.lion.gateway.server.handler.CustomExceptionHandler;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -33,8 +32,10 @@ import java.util.Set;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
-@Slf4j
 public class SentinelConfig {
+
+    private static final int COUNT = 2;
+    private static final int INTERVAL_SEC = 1;
 
     private final List<ViewResolver> viewResolvers;
     private final ServerCodecConfigurer serverCodecConfigurer;
@@ -106,41 +107,33 @@ public class SentinelConfig {
         Set<GatewayFlowRule> rules = new HashSet<>();
         rules.add(new GatewayFlowRule("lion-auth")
                 // 限流阈值QPS
-                .setCount(2)
+                .setCount(COUNT)
                 // 统计时间窗口，单位是秒，默认是 1 秒
-                .setIntervalSec(1)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-upms")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-id")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-bigdata")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-blockchain")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-demo-provider")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-demo-consumer")
-                .setCount(2)
-                .setIntervalSec(1)
-        );
-        rules.add(new GatewayFlowRule("lion-demo-sample")
-                .setCount(2)
-                .setIntervalSec(1)
-        );
-        rules.add(new GatewayFlowRule("lion-demo-ribbon")
-                .setCount(2)
-                .setIntervalSec(1)
+                .setCount(COUNT)
+                .setIntervalSec(INTERVAL_SEC)
         );
         GatewayRuleManager.loadRules(rules);
     }
