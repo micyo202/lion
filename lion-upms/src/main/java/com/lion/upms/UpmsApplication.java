@@ -8,6 +8,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -24,7 +25,8 @@ import java.time.Duration;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.lion.upms..*.mapper")
+@MapperScan(basePackages = {"com.lion.common.mapper", "com.lion.upms..*.mapper"})
+@ComponentScan(basePackages = {"com.lion.common", "com.lion.upms"})
 @EnableCaching
 public class UpmsApplication {
 
