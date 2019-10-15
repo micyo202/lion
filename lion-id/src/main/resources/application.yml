@@ -130,6 +130,11 @@
 #  supportMethodsArguments: true
 #  params: count=countSql
 #
+##配置无需认证的url
+#pattern:
+#  permit:
+#    urls: /generator/**
+#
 #management:
 #  endpoints:
 #    web:
