@@ -16,8 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.lion.**.mapper")
-@ComponentScan("com.lion")
+@MapperScan("com.lion.common.mapper")
+@ComponentScan(basePackages = {"com.lion.common", "com.lion.id"})
 public class IdApplication {
 
     public static void main(String[] args) {
