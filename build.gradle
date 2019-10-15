@@ -1,5 +1,5 @@
 group 'com.lion'
-version = '1.3.0'
+version = '1.5.0'
 
 buildscript {
     ext {
@@ -72,6 +72,7 @@ subprojects {
         scalaVersion = '2.11.12'
         jacksonVersion = '2.9.8'
         lombokVersion = '1.18.6'
+        amqpVersion = '2.1.3.RELEASE'
         aspectjVersion = '1.9.2'
         mysqlVersion = '8.0.13'
         druidVersion = '1.1.16'
@@ -83,10 +84,13 @@ subprojects {
         redissonVersion = '3.10.6'
         swaggerVersion = '2.9.2'
         sentinelVersion = '1.6.3'
+        oauth2Version = '2.3.3.RELEASE'
+        commonsLangVersion = '2.6'
+        servletApiVersion = '4.0.1'
         log4jVersion = '2.11.1'
         hadoopVersion = '3.1.1'
         sparkVersion = '2.4.0'
-
+        googleFindbugsVersion = '3.0.1'
     }
 
     repositories {
@@ -98,25 +102,26 @@ subprojects {
     }
 
     configurations {
-
         mybatisGenerator    // 添加 mybatis-generator 插件
-
-        // 排除 tomcat 依赖（使用 undertow）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-        // 排除 logback 依赖（使用 log4j2）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'  // 排除 tomcat 依赖（使用 undertow）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // 排除 logback 依赖（使用 log4j2）
     }
 
     dependencies {
         implementation "org.scala-lang:scala-library:${scalaVersion}"
 
         implementation 'org.springframework.boot:spring-boot-starter-undertow'
+
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
 
+        implementation "com.google.code.findbugs:annotations:${googleFindbugsVersion}"  // 解决 未知的枚举常量 javax.annotation.meta.When.MAYBE
+
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
@@ -128,16 +133,20 @@ subprojects {
         }
     }
 
-    //  添加 mybatis-generator 插件
+    /**
+     * 添加 mybatis-generator 插件
+     */
     mybatisGenerator {
         verbose = true
         overwrite = true
         configFile = 'src/main/resources/generatorConfig.xml'
     }
 
-    // 添加docker插件task
+    /**
+     * 添加docker插件task
+     */
     task buildDocker(type: Docker, dependsOn: build) {
-        //applicationName = applicationName
+        // applicationName = applicationName
         tagVersion = version
         dockerfile = file('src/main/docker/Dockerfile')
         doFirst {
@@ -148,7 +157,9 @@ subprojects {
         }
     }
 
-    // 添加jacoco测试覆盖率
+    /**
+     * 添加jacoco测试覆盖率
+     */
     jacocoTestReport {
         reports {
             xml.enabled false
@@ -162,14 +173,18 @@ subprojects {
     }
     tasks.check.dependsOn jacocoTestReport
 
-    // clean 命令时删除 out 目录
+    /**
+     * clean 命令时删除 out 目录
+     */
     task cleanOutDir(type: Delete) {
         delete "${projectDir}/out"
         delete "${rootDir}/out"
     }
     tasks.clean.dependsOn(cleanOutDir)
 
-    // 根据环境打包，命令：./gradlew clean bootJar -D profile=prod
+    /**
+     * 根据环境打包，命令：./gradlew clean bootJar -D profile=prod
+     */
     /*
     import org.apache.tools.ant.filters.ReplaceTokens
     def profileName = System.getProperty("profile") ?: "dev"
