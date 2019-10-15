@@ -1,9 +1,15 @@
 package com.lion.demo.consumer;
 
+import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * ConsumerDemoApplication
@@ -16,10 +22,22 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+//@EnableTransactionManagement
+//@MapperScan("com.lion.**.mapper")
+@MapperScan(basePackages = {"com.lion.common.mapper", "com.lion.demo.consumer.**.mapper"})
+//@ComponentScan("com.lion")
+@ComponentScan(basePackages = {"com.lion.common", "com.lion.demo.consumer"})
 public class ConsumerDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumerDemoApplication.class, args);
+    }
+
+    @Bean
+    @LoadBalanced
+    @SentinelRestTemplate
+    RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }
