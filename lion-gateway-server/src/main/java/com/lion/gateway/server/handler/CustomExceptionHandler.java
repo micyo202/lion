@@ -1,9 +1,8 @@
 package com.lion.gateway.server.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lion.common.entity.Result;
+import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.http.HttpStatus;
@@ -88,6 +87,9 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
 
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
+
+        log.error(ex.getMessage());
+
         /**
          * 按照异常类型进行处理
          */
@@ -96,11 +98,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
         if (ex instanceof BlockException) {
             httpStatus = HttpStatus.TOO_MANY_REQUESTS;
             // Too Many Request Server
-            try {
-                body = new ObjectMapper().writeValueAsString(Result.failure(httpStatus.value(), "前方拥挤，请稍后再试！（流量控制）"));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            body = JsonUtil.jsonObj2Str(Result.failure(httpStatus.value(), "前方拥挤，请稍后再试"));
         } else {
             //ResponseStatusException responseStatusException = (ResponseStatusException) ex;
             //httpStatus = responseStatusException.getStatus();
@@ -108,11 +106,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
 
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
             // Internal Server Error
-            try {
-                body = new ObjectMapper().writeValueAsString(Result.failure(httpStatus.value(), "调用失败，服务不可用！"));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            body = JsonUtil.jsonObj2Str(Result.failure(httpStatus.value(), "调用失败，服务不可用"));
         }
         /**
          * 封装响应体,此body可修改为自己的jsonBody
@@ -124,7 +118,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
          * 错误记录
          */
         ServerHttpRequest request = exchange.getRequest();
-        log.error("[全局异常处理]异常请求路径:{},记录异常信息:{}", request.getPath(), body);
+        log.error("[全局异常处理]异常请求路径：{}，记录异常信息：{}", request.getPath(), body);
         /**
          * 参考AbstractErrorWebExceptionHandler
          */
