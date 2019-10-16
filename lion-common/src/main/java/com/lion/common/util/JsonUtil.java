@@ -4,11 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * JsonUtil
@@ -25,6 +24,9 @@ public class JsonUtil {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static String jsonObj2Str(Object jsonObj) {
+        if (null == jsonObj) {
+            return null;
+        }
         try {
             final String str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
             return str;
@@ -35,6 +37,9 @@ public class JsonUtil {
     }
 
     public static <T> T jsonStr2Obj(String jsonStr, Class<T> objType) {
+        if (StringUtils.isEmpty(jsonStr) || null == objType) {
+            return null;
+        }
         try {
             final T obj = objectMapper.readValue(jsonStr, objType);
             return obj;
@@ -45,6 +50,9 @@ public class JsonUtil {
     }
 
     public static String getJsonStr(String json, String key) {
+        if (StringUtils.isEmpty(json) || StringUtils.isEmpty(key)) {
+            return null;
+        }
         try {
             final JsonNode jsonNode = objectMapper.readTree(json);
             return getJsonNodeValue(jsonNode, key);
@@ -54,11 +62,14 @@ public class JsonUtil {
         return null;
     }
 
-    public static String getJsonNodeValue(JsonNode jsonNode, String key) {
+    private static String getJsonNodeValue(JsonNode jsonNode, String key) {
+        if (null == jsonNode || StringUtils.isEmpty(key)) {
+            return null;
+        }
         int index = key.indexOf('.');
         if (index == -1) {
-            if (jsonNode != null && jsonNode.get(key) != null) {
-                return jsonNode.get(key).textValue();
+            if (null != jsonNode && null != jsonNode.get(key)) {
+                return jsonNode.get(key).toString();
             }
             return null;
         } else {
@@ -66,33 +77,6 @@ public class JsonUtil {
             String s2 = key.substring(index + 1);
             return getJsonNodeValue(jsonNode.get(s1), s2);
         }
-    }
-
-    public static String getJsonString(String json, String key) {
-        try {
-            return objectMapper.readValue(json, Map.class).get(key).toString();
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
-    public static Map getJsonMap(String json, String key) {
-        try {
-            return (Map) objectMapper.readValue(json, Map.class).get(key);
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
-    public static List getJsonList(String json, String key) {
-        try {
-            return (List) objectMapper.readValue(json, Map.class).get(key);
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
     }
 
 }
