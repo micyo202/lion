@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * JsonUtil
- * json处理工具类
+ * Json处理工具类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/07/17
