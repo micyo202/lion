@@ -29,9 +29,7 @@ public class LionExceptionHandler {
      * @return
      */
     @ExceptionHandler(Exception.class)
-    public Result serviceException(Exception e) {
-
-        log.error(e.getMessage());
+    public Result exceptionHandler(Exception e) {
 
         Result result;
 
