@@ -17,6 +17,9 @@ import java.util.List;
  */
 public interface MenuRepository extends JpaRepository<SysMenu, Integer> {
 
+    /**
+     * SPEL表达式风格
+     */
     @Query(value = "select m.* from sys_menu m,sys_role_menu rm where m.id=rm.menu_id and rm.role_id=:roleId", nativeQuery = true)
     List<SysMenu> getMenuByRoleId(@Param("roleId") Integer roleId);
 
