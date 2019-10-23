@@ -3,6 +3,7 @@ package com.lion.common.util.secure;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
@@ -33,6 +34,7 @@ public class MD5Util {
         if (StringUtils.isEmpty(data)) {
             return null;
         }
+        /*
         char hexs[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
             byte[] bytes = data.getBytes(ENCODEING);
@@ -48,6 +50,16 @@ public class MD5Util {
                 chars[k++] = hexs[byte0 & 0xf];
             }
             return String.valueOf(chars);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+        */
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            byte[] dataBytes = data.getBytes(ENCODEING);
+            messageDigest.update(dataBytes);
+            return new BigInteger(1, messageDigest.digest()).toString(16);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
