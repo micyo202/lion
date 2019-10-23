@@ -2,6 +2,7 @@ package com.lion.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lion.common.constant.ResponseStatus;
+import com.lion.common.util.DateUtil;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -43,7 +44,7 @@ public class Result<T> implements Serializable {
     /**
      * 时间戳
      */
-    private long timestamp = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+    private long timestamp = DateUtil.getTimestamp();
 
     /**
      * 额外扩展数据
