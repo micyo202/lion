@@ -2,7 +2,6 @@ package com.lion.auth.service.impl;
 
 import com.lion.auth.client.UpmsClient;
 import com.lion.common.constant.ResponseStatus;
-import com.lion.common.entity.Menu;
 import com.lion.common.entity.Result;
 import com.lion.common.entity.Role;
 import com.lion.common.entity.User;
@@ -33,6 +32,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UpmsClient upmsClient;
 
+    /**
+     * 角色前缀
+     */
+    private static final String ROLE_PREFIX = "ROLE_";
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -62,15 +66,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         roleResult.getData().stream().forEach(role -> {
-            //角色必须是ROLE_开头，可以在数据库中设置
-            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role.getValue().toUpperCase()));
-            //获取菜单列表
+            // 角色必须是 ROLE_ 开头，可以在数据库中设置（这里在程序中设置）
+            grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getValue().toUpperCase()));
+
+            // 获取菜单列表
+            /*
             Result<List<Menu>> menuResult = upmsClient.getMenuByRoleId(role.getId());
             // 判断获取菜单列表是否成功
             if (menuResult.getCode() != ResponseStatus.SUCCESS.code()) {
                 throw new LionException(menuResult.getMsg());
             }
             menuResult.getData().stream().forEach(menu -> grantedAuthorities.add(new SimpleGrantedAuthority(menu.getCode())));
+            */
         });
 
         org.springframework.security.core.userdetails.User securityUser = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
