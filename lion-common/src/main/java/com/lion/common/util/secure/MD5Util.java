@@ -56,7 +56,7 @@ public class MD5Util {
         return null;
         */
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance(MD5);
             byte[] dataBytes = data.getBytes(ENCODEING);
             messageDigest.update(dataBytes);
             return new BigInteger(1, messageDigest.digest()).toString(16);
