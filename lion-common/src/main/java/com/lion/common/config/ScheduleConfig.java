@@ -2,6 +2,7 @@ package com.lion.common.config;
 
 import com.lion.common.entity.Schedule;
 import com.lion.common.mapper.ScheduleMapper;
+import com.lion.common.util.DateUtil;
 import com.lion.common.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +38,6 @@ public class ScheduleConfig implements SchedulingConfigurer {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-
     /**
      * 定时任务执行数
      */
@@ -48,10 +45,10 @@ public class ScheduleConfig implements SchedulingConfigurer {
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        final List<Schedule> scheduleList = scheduleMapper.getScheduleList(applicationName);
+        final List<Schedule> scheduleList = scheduleMapper.getScheduleListByAppName(applicationName);
 
         if (null != scheduleList && !scheduleList.isEmpty()) {
-            log.info("定时任务即将启动，预计启动任务数量[" + scheduleList.size() + "]，时间：" + LocalDateTime.now().format(dateTimeFormatter));
+            log.info("定时任务即将启动，预计启动任务数量[" + scheduleList.size() + "]，时间：" + DateUtil.getCurrentDateTime());
             for (Schedule schedule : scheduleList) {
                 // 判断任务是否有效
                 if ("1".equals(schedule.getValid())) {
@@ -60,7 +57,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
                     scheduleTaskCount++;
                 }
             }
-            log.info("定时任务实际启动数量[" + scheduleTaskCount + "]，时间：" + LocalDateTime.now().format(dateTimeFormatter));
+            log.info("定时任务实际启动数量[" + scheduleTaskCount + "]，时间：" + DateUtil.getCurrentDateTime());
         }
 
     }

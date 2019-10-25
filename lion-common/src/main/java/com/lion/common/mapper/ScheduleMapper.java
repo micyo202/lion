@@ -18,6 +18,6 @@ import java.util.List;
 public interface ScheduleMapper {
 
     @Select("select id, name, cron, app_name appName, class_name className, method, valid from sys_schedule where valid='1' and app_name=#{appName} order by id")
-    List<Schedule> getScheduleList(String appName);
+    List<Schedule> getScheduleListByAppName(String appName);
 
 }
