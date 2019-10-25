@@ -34,7 +34,7 @@ import java.util.Set;
 @Configuration
 public class SentinelConfig {
 
-    private static final int COUNT = 2;
+    private static final int COUNT = 10;
     private static final int INTERVAL_SEC = 1;
 
     private final List<ViewResolver> viewResolvers;
