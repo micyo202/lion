@@ -28,8 +28,8 @@ public class Menu implements Serializable {
     private Boolean isMenu;
     private Integer level;
     private Integer sort;
-    private Integer status;
     private String icon;
+    private Integer status;
     private Date createTime;
     private Date updateTime;
     /**
