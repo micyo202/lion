@@ -16,12 +16,14 @@ dependencies {
 
     compileOnly "org.springframework.amqp:spring-amqp:${amqpVersion}"
 
-    compileOnly "org.springframework.data:spring-data-redis:${springRedisVersion}"
+    compileOnly "org.springframework.data:spring-data-redis:${redisSpringVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
 
     compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
 
     compileOnly "org.mybatis:mybatis:${mybatisVersion}"
+
+    compileOnly "com.github.pagehelper:pagehelper:${pagehelperVersion}"
 
     compileOnly "org.apache.logging.log4j:log4j-api:${log4jVersion}"
 
