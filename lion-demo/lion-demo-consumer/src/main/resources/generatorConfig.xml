@@ -84,7 +84,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.lion.demo.provider.test.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lion.demo.consumer.test.model" targetProject="src/main/java">
             <!-- 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter -->
             <property name="constructorBased" value="false"/>
             <!-- 是否创建一个不可变的类，如果为true，那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类 -->
@@ -102,7 +102,7 @@
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="com.lion.demo.provider.test.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.lion.demo.consumer.test.mapper" targetProject="src/main/java"
                              type="XMLMAPPER">
             <!-- 在 targetPackage 的基础上，根据数据库的 schema 再生成一层 package，最终生成的类放在这个 package 下，默认：false -->
             <property name="enableSubPackages" value="false"/>
