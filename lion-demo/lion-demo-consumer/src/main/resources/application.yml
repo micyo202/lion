@@ -120,6 +120,7 @@
 #  redis:
 #    host: 192.168.1.200
 #    port: 6379
+#
 ##mybats映射sqlMap文件
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
@@ -128,12 +129,18 @@
 #  configuration:
 #    map-underscore-to-camel-case: true
 #
+#mapper:
+#  identity: mysql
+#  not-empty: true
+#  enum-as-simple-type: true
+#
 ##分页插件配置
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true
+#  page-size-zero: true
 #  supportMethodsArguments: true
-#  params: count=countSql
+#  params: count=countSql;pageNum=start;pageSize=limit
 #
 ##开启sentinel断路器
 #feign:
@@ -149,7 +156,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /init/**,/feign/**,/ribbon/**,/seata/**,/rabbit/**
+#    urls: /init/**,/feign/**,/ribbon/**,/seata/**,/rabbit/**,/temp/**
 #
 ##自定义值
 #foo: This is foo...
