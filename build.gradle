@@ -1,5 +1,5 @@
 group 'com.lion'
-version = '1.5.0'
+version = '1.5.2'
 
 buildscript {
     ext {
@@ -68,7 +68,7 @@ subprojects {
         springCloudVersion = 'Greenwich.RELEASE'
         springFrameworkVersion = '5.1.4.RELEASE'
         springCloudAlibabaVersion = '2.1.0.RELEASE'
-        
+
         scalaVersion = '2.11.12'
         jacksonVersion = '2.9.8'
         lombokVersion = '1.18.6'
@@ -78,9 +78,12 @@ subprojects {
         druidVersion = '1.1.16'
         mybatisVersion = '3.4.6'
         mybatisSpringVersion = '1.3.2'
+        tkMapperVersion = '4.1.2'
+        tkMapperSpringVersion = '2.1.2'
         generatorVersion = '1.3.7'
-        pagehelperVersion = '1.2.10'
-        springRedisVersion = '2.1.4.RELEASE'
+        pagehelperVersion = '5.1.8'
+        pagehelperSpringVersion = '1.2.10'
+        redisSpringVersion = '2.1.4.RELEASE'
         redissonVersion = '3.10.6'
         swaggerVersion = '2.9.2'
         sentinelVersion = '1.6.3'
@@ -103,11 +106,17 @@ subprojects {
 
     configurations {
         mybatisGenerator    // 添加 mybatis-generator 插件
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'  // 排除 tomcat 依赖（使用 undertow）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // 排除 logback 依赖（使用 log4j2）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        // 排除 tomcat 依赖（使用 undertow）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        // 排除 logback 依赖（使用 log4j2）
     }
 
     dependencies {
+        mybatisGenerator "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
+        mybatisGenerator "mysql:mysql-connector-java:${mysqlVersion}"
+        mybatisGenerator "tk.mybatis:mapper:${tkMapperVersion}"
+
         implementation "org.scala-lang:scala-library:${scalaVersion}"
 
         implementation 'org.springframework.boot:spring-boot-starter-undertow'
@@ -115,7 +124,8 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
 
-        implementation "com.google.code.findbugs:annotations:${googleFindbugsVersion}"  // 解决 未知的枚举常量 javax.annotation.meta.When.MAYBE
+        implementation "com.google.code.findbugs:annotations:${googleFindbugsVersion}"
+        // 解决 未知的枚举常量 javax.annotation.meta.When.MAYBE
 
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

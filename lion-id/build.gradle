@@ -30,9 +30,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
-    implementation "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
+    implementation "tk.mybatis:mapper-spring-boot-starter:${tkMapperSpringVersion}"
 
-    implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}"
+    implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperSpringVersion}"
 
     implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
     implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
