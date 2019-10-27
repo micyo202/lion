@@ -1,6 +1,5 @@
 package com.lion.upms;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import tk.mybatis.spring.annotation.MapperScan;
 
 import java.time.Duration;
 
