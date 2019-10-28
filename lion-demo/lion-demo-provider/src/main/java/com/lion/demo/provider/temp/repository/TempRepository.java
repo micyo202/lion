@@ -20,10 +20,10 @@ public interface TempRepository extends JpaRepository<TempJpa, String> {
 
     // 占位符风格
     @Query(value = "select * from temp_jpa where status = ?1", nativeQuery = true)
-    List<TempJpa> findBySql(Boolean status);
+    List<TempJpa> selectByCustomSql(Boolean status);
 
-    // 参数风格
+    // SPEL表达式风格
     //@Query(value = "select * from temp_jpa where status = :status", nativeQuery = true)
-    //List<TempJpa> findBySql(@Param("status") Boolean status);
+    //List<TempJpa> selectByCustomSql(@Param("status") Boolean status);
 
 }
