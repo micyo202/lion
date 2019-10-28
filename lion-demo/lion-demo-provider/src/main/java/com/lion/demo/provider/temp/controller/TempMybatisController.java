@@ -1,12 +1,15 @@
 package com.lion.demo.provider.temp.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.lion.demo.provider.temp.mapper.TempMybatisCustomMapper;
+import com.github.pagehelper.PageInfo;
+import com.lion.common.entity.Result;
+import com.lion.common.entity.ResultPage;
 import com.lion.demo.provider.temp.mapper.TempMybatisMapper;
 import com.lion.demo.provider.temp.model.TempMybatis;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,13 +33,11 @@ import java.util.UUID;
 @Api("Mybatis相关示例代码类说明文档")
 @RestController
 @RequestMapping("/temp/mybatis")
+@Slf4j
 public class TempMybatisController {
 
     @Autowired
     private TempMybatisMapper tempMybatisMapper;
-
-    @Autowired
-    private TempMybatisCustomMapper tempMybatisCustomMapper;
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -45,10 +46,10 @@ public class TempMybatisController {
     @ApiParam(name = "num", value = "插入数据条数", defaultValue = "3", required = true)
     @RequestMapping(value = "/save/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
-    public String mybatisSave(@PathVariable int num) {
+    public Result mybatisSave(@PathVariable int num) {
 
-        if (num <= 0) {
-            return "参数必须是大于0的数字";
+        if (0 >= num) {
+            return Result.failure("参数必须是大于0的数字");
         }
 
         for (int i = 0; i < num; i++) {
@@ -62,34 +63,34 @@ public class TempMybatisController {
             tempMybatis.setCreateTime(new Date());
             tempMybatis.setUpdateTime(new Date());
 
-            if (i <= 5) {
+            if (i + 1 < 6) {
                 //正常插入
                 tempMybatis.setId(UUID.randomUUID().toString().replaceAll("-", ""));
             } else {
                 //超出范围长度，触发事物回滚
                 tempMybatis.setId(UUID.randomUUID().toString());
             }
-
+            // 若使用 Try Catch 需要手动回滚事务：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             tempMybatisMapper.insertSelective(tempMybatis);
-
         }
-
-        return "保存成功，条数：" + num;
+        return Result.success("保存成功，响应条数：" + num);
     }
 
     @ApiOperation("Mybatis自定义API接口，注解SQL方式查询")
-    @RequestMapping(value = "/custom/list", method = {RequestMethod.GET, RequestMethod.POST})
-    public List<Object> mybatisCustomList() {
-        List<Object> list = tempMybatisCustomMapper.selectAll();
-        return list;
+    @RequestMapping(value = "/sql", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result mybatisCustomList() {
+        List<TempMybatis> list = tempMybatisMapper.selectByCustomSqlForMapper();
+        return Result.success(list);
     }
 
-    @ApiOperation("Mybatis自定义sqlMap查询，并分页")
-    @RequestMapping(value = "/sql/page", method = {RequestMethod.GET, RequestMethod.POST})
-    public List<Object> mybatisSqlPage() {
-        PageHelper.offsetPage(0, 5);
-        List<Object> list = sqlSessionTemplate.selectList("com.lion.demo.provider.mapper.temp.TempMybatisCustomMapper.getAll");
-        return list;
+    @ApiOperation("Mybatis自定义SqlMap查询，并分页")
+    @RequestMapping(value = "/page", method = {RequestMethod.GET, RequestMethod.POST})
+    public ResultPage mybatisSqlPage() {
+        PageHelper.offsetPage(0, 3);
+        // List<TempMybatis> list = sqlSessionTemplate.selectList("com.lion.demo.provider.temp.mapper.TempMybatisMapper.selectByCustomSqlForXml");
+        List<TempMybatis> list = tempMybatisMapper.selectByCustomSqlForXml();
+        PageInfo pageInfo = new PageInfo<>(list);
+        return ResultPage.success(pageInfo);
     }
 
 }
