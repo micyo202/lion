@@ -49,83 +49,84 @@ public class DateUtil {
      * 获取当前时间戳
      */
     public static long getTimestamp() {
-        // Timestamp.valueOf(LocalDateTime.now()).getTime();
-        return LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        // Timestamp.valueOf(getCurrentLocalDateTime()).getTime();
+        // getCurrentLocalDateTime().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        return getCurrentLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
     /**
      * yyyy
      */
     public static int getCurrentYear() {
-        return LocalDate.now().getYear();
+        return getCurrentLocalDate().getYear();
     }
 
     /**
      * yyyy-MM
      */
     public static String getCurrentMonth() {
-        return LocalDate.now().format(YEAR_MONTH_FORMATTER);
+        return getCurrentLocalDate().format(YEAR_MONTH_FORMATTER);
     }
 
     /**
      * yyyy-MM-dd
      */
     public static String getCurrentDate() {
-        return LocalDate.now().format(DATE_FORMATTER);
+        return getCurrentLocalDate().format(DATE_FORMATTER);
     }
 
     /**
      * HHmmss
      */
     public static String getCurrentTime() {
-        return LocalTime.now().format(TIME_FORMATTER);
+        return getCurrentLocalTime().format(TIME_FORMATTER);
     }
 
     /**
      * yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentDateTime() {
-        return LocalDateTime.now().format(DATETIME_FORMATTER);
+        return getCurrentLocalDateTime().format(DATETIME_FORMATTER);
     }
 
     /**
      * yyyyMM
      */
     public static String getCurrentShortYearMonth() {
-        return LocalDateTime.now().format(SHORT_YEAR_MONTH_FORMATTER);
+        return getCurrentLocalDate().format(SHORT_YEAR_MONTH_FORMATTER);
     }
 
     /**
      * yyyyMMdd
      */
     public static String getCurrentShortDate() {
-        return LocalDateTime.now().format(SHORT_DATE_FORMATTER);
+        return getCurrentLocalDate().format(SHORT_DATE_FORMATTER);
     }
 
     /**
      * HHmmss
      */
     public static String getCurrentShortTime() {
-        return LocalTime.now().format(SHORT_TIME_FORMATTER);
+        return getCurrentLocalTime().format(SHORT_TIME_FORMATTER);
     }
 
     /**
      * yyyyMMddHHmmss
      */
     public static String getCurrentShortDateTime() {
-        return LocalDateTime.now().format(SHORT_DATETIME_FORMATTER);
+        return getCurrentLocalDateTime().format(SHORT_DATETIME_FORMATTER);
     }
 
     public static String getCurrentDate(String pattern) {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern));
+        return getCurrentLocalDate().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     public static String getCurrentTime(String pattern) {
-        return LocalTime.now().format(DateTimeFormatter.ofPattern(pattern));
+        return getCurrentLocalTime().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     public static String getCurrentDateTime(String pattern) {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
+        return getCurrentLocalDateTime().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     /**
@@ -186,28 +187,28 @@ public class DateUtil {
      * 获取本周第一天
      */
     public static String getWeekFirstDay() {
-        return LocalDate.now().minusWeeks(0).with(DayOfWeek.MONDAY).toString();
+        return getCurrentLocalDate().minusWeeks(0).with(DayOfWeek.MONDAY).toString();
     }
 
     /**
      * 获取本周最后一天
      */
     public static String getWeekLastDay() {
-        return LocalDate.now().minusWeeks(0).with(DayOfWeek.SUNDAY).toString();
+        return getCurrentLocalDate().minusWeeks(0).with(DayOfWeek.SUNDAY).toString();
     }
 
     /**
      * 获取本月第一天
      */
     public static String getMonthFirstDay() {
-        return LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()).toString();
+        return getCurrentLocalDate().with(TemporalAdjusters.firstDayOfMonth()).toString();
     }
 
     /**
      * 获取本月最后一天
      */
     public static String getMonthLastDay() {
-        return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).toString();
+        return getCurrentLocalDate().with(TemporalAdjusters.lastDayOfMonth()).toString();
     }
 
     /**
