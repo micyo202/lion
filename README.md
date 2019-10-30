@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.5.0-orange.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.5.2-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
@@ -41,22 +41,8 @@
 
 项目后期会不断更新与时俱进，敬请期待...
 
-## 近期更新
-**2019-10-12：添加 RabbitMQ 消息生产者、消费者**
+[更新日志](https://github.com/micyo202/lion/blob/master/CHANGELOG.md)
 
-**2019-09-30：移除 Zuul 路由模块，采用 [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 作为最新路由网关服务，添加缓存策略**
-
-**2019-09-06：更新 Zuul 路由模块，移除不必要的代码，添加 token 检查机制，优化模块代码**
-
-**2019-09-03：更新 [Nacos](https://nacos.io)，移除 [Hystrix](https://github.com/Netflix/Hystrix)，采用 [Sentinel](https://github.com/alibaba/Sentinel) 进行流量监控、服务熔断降级**
-
-**2019-08-09：添加定时任务功能，仅需在配置表 sys_schedule 中配置相关任务Bean方法，即可按配置的 cron 来执行**
-
-**2019-06-30：添加HDFS相关操作API**
-
-**2019-05-15：添加分布式锁，在需要上锁的方法上使用注解@Locker即可，该分布式锁是基于Redisson实现的，请参考：[https://github.com/redisson/redisson/wiki](https://github.com/redisson/redisson/wiki)**
-
-**2019-05-05：添加双buffer分布式自增ID生成服务[lion-id](https://github.com/micyo202/lion/tree/master/lion-id)，支持高并发。设计思路来自：[一线大厂的分布式唯一ID生成方案是什么样的？](https://blog.csdn.net/bntX2jSQfEHy7/article/details/89530118)**
 
 ## 项目架构图
 
@@ -155,6 +141,8 @@ lion -- 根目录
 7.完成以上步骤就可以正常部署启动服务了
 
 8.项目开发详细代码，可参考lion-demo下的示例模块
+
+9.测试方法使用[postman](https://www.getpostman.com)导入[postman.json](https://github.com/micyo202/lion/blob/master/postman.json)脚本即可
 
 ## 七、服务启动
 注：带~~删除线~~的服务为相关示例模块可根据需要选择启动
