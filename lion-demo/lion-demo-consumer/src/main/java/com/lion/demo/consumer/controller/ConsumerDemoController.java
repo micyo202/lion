@@ -2,6 +2,7 @@ package com.lion.demo.consumer.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.lion.common.entity.Result;
+import com.lion.common.util.DateUtil;
 import com.lion.demo.consumer.client.ProviderDemoClientFeign;
 import com.lion.demo.consumer.mapper.TempMybatisCustomMapper;
 import io.swagger.annotations.Api;
@@ -13,8 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 /**
@@ -109,7 +108,7 @@ public class ConsumerDemoController {
 
             String randomStr = Math.ceil(Math.random() * 100) + "";
             String randomName = "name-" + randomStr;
-            String createTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
+            String createTime = DateUtil.getCurrentDateTime();
 
             tempMybatisCustomMapper.insertTempMybatis(randomId, randomName, 99, 1, createTime);
 
