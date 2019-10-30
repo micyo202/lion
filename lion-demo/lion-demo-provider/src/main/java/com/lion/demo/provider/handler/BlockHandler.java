@@ -1,6 +1,7 @@
 package com.lion.demo.provider.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Result;
 
 /**
@@ -15,7 +16,7 @@ public class BlockHandler {
 
     public static Result sentinelBlockHandler(BlockException e) {
         e.printStackTrace();
-        return Result.failure(429, "限流控制（Sentinel is blocked...）");
+        return Result.failure(ResponseStatus.TOO_MANY_REQUESTS.code(), "限流控制（Sentinel is blocked...）");
     }
 
 }
