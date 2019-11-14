@@ -130,6 +130,33 @@ public class DateUtil {
     }
 
     /**
+     * 时间戳与日期类型互转
+     */
+    public LocalDateTime timestampToLocalDateTime(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+    }
+
+    public long localDateTimeToTimestamp(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    /**
+     * 时间戳格式化字符串
+     */
+    public String formatTimestamp(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return formatLocalDateTime(localDateTime);
+    }
+
+    public String formatTimestamp(long timestamp, String pattern) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return formatLocalDateTime(localDateTime, pattern);
+    }
+
+    /**
      * 日期对象转字符串
      */
     public static String formatLocalDate(LocalDate date) {
