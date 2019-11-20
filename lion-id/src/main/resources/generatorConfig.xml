@@ -36,7 +36,8 @@
 
         <!-- TkMapper插件 -->
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.MySqlMapper"/>
+            <!-- <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.MySqlMapper"/> -->
+            <property name="mappers" value="com.lion.common.base.mapper.BaseMapper"/>
             <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
             <property name="caseSensitive" value="true"/>
             <property name="lombok" value="Getter,Setter"/>
@@ -84,7 +85,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.lion.id.test.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lion.id.test.entity" targetProject="src/main/java">
             <!-- 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter -->
             <property name="constructorBased" value="false"/>
             <!-- 是否创建一个不可变的类，如果为true，那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类 -->
