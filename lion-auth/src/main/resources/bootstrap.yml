@@ -5,8 +5,6 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-        metadata:
-          version: 1.0
       config:
         server-addr: localhost:8848
         file-extension: yml
