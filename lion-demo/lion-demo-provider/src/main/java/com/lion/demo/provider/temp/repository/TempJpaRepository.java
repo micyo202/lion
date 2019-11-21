@@ -1,22 +1,22 @@
 package com.lion.demo.provider.temp.repository;
 
+import com.lion.common.base.repository.BaseRepository;
 import com.lion.demo.provider.temp.entity.TempJpa;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * TempRepository
- * TODO
+ * TempJpaRepository
+ * TempJpa 的 Repository 类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Transactional  // 在做update、delete时必须声明事物，否则会抛异常
-public interface TempRepository extends JpaRepository<TempJpa, String> {
+public interface TempJpaRepository extends BaseRepository<TempJpa, String> {
 
     // 占位符风格
     @Query(value = "select * from temp_jpa where status = ?1", nativeQuery = true)
