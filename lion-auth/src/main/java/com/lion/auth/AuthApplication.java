@@ -19,7 +19,9 @@ import org.springframework.context.annotation.FilterType;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients("com.lion.auth.client")
-@ComponentScan(basePackages = {"com.lion.common", "com.lion.auth"}, excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {ScheduleConfig.class})})
+@ComponentScan(basePackages = {"com.lion.common", "com.lion.auth"},
+        excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {ScheduleConfig.class})})
 public class AuthApplication {
 
     public static void main(String[] args) {
