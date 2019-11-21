@@ -1,21 +1,18 @@
 package com.lion.auth.controller;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.base.controller.BaseController;
 import com.lion.common.entity.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 /**
  * UserController
- * 用户控制器
+ * 用户认证模块
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/08
@@ -24,7 +21,7 @@ import java.security.Principal;
 @Api("用户认证")
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
@@ -37,12 +34,12 @@ public class UserController {
     }
 
     @ApiOperation(value = "移除用户凭证信息", response = Result.class)
-    @DeleteMapping(value = "/revoke")
-    public Result revoke(String access_token) {
+    @DeleteMapping(value = "/revoke/{access_token}")
+    public Result revoke(@PathVariable String access_token) {
         if (consumerTokenServices.revokeToken(access_token)) {
             return Result.success();
         } else {
-            return Result.status(ResponseStatus.FAILURE);
+            return Result.failure("移除用户凭证信息失败");
         }
     }
 
