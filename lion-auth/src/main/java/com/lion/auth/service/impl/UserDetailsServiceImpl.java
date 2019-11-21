@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  * UserDetailsServiceImpl
- * 用户权限实现类
+ * 用户授权认证实现类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
@@ -40,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Result<User> userResult = upmsClient.getUserByUsername(username);
+        Result<User> userResult = upmsClient.getUserByUsernameFromUpms(username);
 
         if (ResponseStatus.SUCCESS.code() != userResult.getCode()) {
             throw new LionException(userResult.getMsg());
@@ -58,7 +58,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = userResult.getData();
         // 获取用户角色
-        Result<List<Role>> roleResult = upmsClient.getRoleByUserId(user.getId());
+        Result<List<Role>> roleResult = upmsClient.getRoleByUserIdFromUpms(user.getId());
 
         // 判断获取权限列表是否成功
         if (roleResult.getCode() != ResponseStatus.SUCCESS.code()) {
@@ -71,7 +71,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             // 获取菜单列表
             /*
-            Result<List<Menu>> menuResult = upmsClient.getMenuByRoleId(role.getId());
+            Result<List<Menu>> menuResult = upmsClient.getMenuByRoleIdFromUpms(role.getId());
             // 判断获取菜单列表是否成功
             if (menuResult.getCode() != ResponseStatus.SUCCESS.code()) {
                 throw new LionException(menuResult.getMsg());
