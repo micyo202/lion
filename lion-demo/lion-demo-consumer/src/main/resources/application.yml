@@ -2,6 +2,9 @@
 #  port: 8701
 #
 #spring:
+#  # 处理 FeignClient 重名问题
+#  #main:
+#    #allow-bean-definition-overriding: true
 #  cloud:
 #    sentinel:
 #      transport:
@@ -125,7 +128,7 @@
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
 #  mapper-locations: classpath:mapper/**/*.xml
-#  #type-aliases-package: com.lion.demo.consumer..*.model
+#  #type-aliases-package: com.lion.demo.consumer..*.entity
 #  configuration:
 #    map-underscore-to-camel-case: true
 #
@@ -138,9 +141,8 @@
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true
-#  page-size-zero: true
 #  supportMethodsArguments: true
-#  params: count=countSql;pageNum=start;pageSize=limit
+#  params: count=countSql
 #
 ##开启sentinel断路器
 #feign:
