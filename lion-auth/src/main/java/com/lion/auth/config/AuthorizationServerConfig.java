@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 
 /**
  * AuthorizationServerConfiguration
- * 安全认证服务器
+ * 认证服务配置类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/08
