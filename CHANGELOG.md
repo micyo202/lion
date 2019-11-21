@@ -1,3 +1,5 @@
+**2019-11-21：添加通用base基类，包含：BaseController、BaseService、BaseMapper、BaseRepository**
+
 **2019-10-26：添加通用Mapper简化代码，添加安全工具类，添加分页对象处理**
 
 **2019-10-12：添加 RabbitMQ 消息生产者、消费者**
