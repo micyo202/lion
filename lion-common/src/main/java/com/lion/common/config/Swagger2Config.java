@@ -32,7 +32,7 @@ public class Swagger2Config {
     private String authServer;
 
     @Value("${spring.application.name}")
-    private String appName;
+    private String applicationName;
 
     /**
      * 访问地址：http://ip:port/swagger-ui.html
@@ -43,7 +43,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 //设置包路径
-                .apis(RequestHandlerSelectors.basePackage("com." + appName.replace("-", ".")))
+                .apis(RequestHandlerSelectors.basePackage("com." + applicationName.replace("-", ".")))
                 .paths(PathSelectors.any())
                 //.paths(PathSelectors.regex("/user.*"))
                 .build()
@@ -54,13 +54,13 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("标题：" + appName + " 使用 Swagger2 构建 API 接口文档")
+                .title("标题：" + applicationName + " 使用 Swagger2 构建 API 接口文档")
                 //描述
-                .description("描述：用于 " + appName + " 接口查看")
+                .description("描述：用于 " + applicationName + " 接口查看")
                 .termsOfServiceUrl("https://github.com/micyo202")
                 //创建人
                 .contact(new Contact("Yanzheng", "https://github.com/micyo202", "micyo202@163.com"))
-                .version("版本号：1.5.2")
+                .version("版本号：1.6.0")
                 .build();
     }
 
