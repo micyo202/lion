@@ -124,7 +124,7 @@
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
 #  mapper-locations: classpath:mapper/**/*.xml
-#  #type-aliases-package: com.lion.upms..*.model
+#  #type-aliases-package: com.lion.upms..*.entity
 #  configuration:
 #    map-underscore-to-camel-case: true
 #
