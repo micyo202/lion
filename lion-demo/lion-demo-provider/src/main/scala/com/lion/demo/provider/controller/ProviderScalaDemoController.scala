@@ -11,8 +11,7 @@ import scala.collection.mutable._
   * Scala示例代码Mybatis
   *
   * @author Yanzheng https://github.com/micyo202
-  * @date 2019/09/02
-  * Copyright 2019 Yanzheng. All rights reserved.
+  * @date 2019/09/02 Copyright 2019 Yanzheng. All rights reserved.
   */
 @RestController
 @RequestMapping(Array("/scala"))
