@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * TempJpa
- * TODO
+ * 示例Jpa实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/15
