@@ -1,5 +1,6 @@
 package com.lion.id.controller;
 
+import com.lion.common.base.controller.BaseController;
 import com.lion.common.exception.LionException;
 import com.lion.id.entity.SysId;
 import com.lion.id.service.IdService;
@@ -24,7 +25,7 @@ import java.util.concurrent.Future;
  */
 @Api("双buffer自增序列生成")
 @RestController
-public class IdController {
+public class IdController extends BaseController {
 
     private static int buffer = 1;
 
@@ -40,7 +41,7 @@ public class IdController {
     private static final String BIZ_TAG = "user_tag";
 
     @Autowired
-    IdService idService;
+    private IdService idService;
 
     @ApiOperation("自增序列生成方法")
     @RequestMapping(value = "/generator", method = {RequestMethod.GET, RequestMethod.POST})

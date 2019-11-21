@@ -1,7 +1,7 @@
 package com.lion.id.repository;
 
+import com.lion.common.base.repository.BaseRepository;
 import com.lion.id.entity.SysId;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Transactional
-public interface IdRepository extends JpaRepository<SysId, Integer> {
+public interface IdRepository extends BaseRepository<SysId, Integer> {
 
     /**
      * 占位符风格
