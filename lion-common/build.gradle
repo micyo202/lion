@@ -12,16 +12,22 @@ configurations {
 dependencies {
     compileOnly "org.springframework:spring-web:${springFrameworkVersion}"
 
-    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-
     compileOnly "org.springframework.amqp:spring-amqp:${amqpVersion}"
 
-    compileOnly "org.springframework.data:spring-data-redis:${redisSpringVersion}"
+    compileOnly "org.springframework.data:spring-data-jpa:${springDataVersion}"
+
+    compileOnly "org.springframework.data:spring-data-redis:${springDataVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
+
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 
     compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
 
     compileOnly "org.mybatis:mybatis:${mybatisVersion}"
+    compileOnly "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
+    compileOnly "tk.mybatis:mapper:${tkMapperVersion}"
+    //compileOnly "tk.mybatis:mapper-base:1.1.2"
+    //compileOnly "tk.mybatis:mapper-core:1.1.2"
 
     compileOnly "com.github.pagehelper:pagehelper:${pagehelperVersion}"
 
