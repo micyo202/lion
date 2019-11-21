@@ -1,5 +1,6 @@
 package com.lion.upms.controller;
 
+import com.lion.common.base.controller.BaseController;
 import com.lion.common.entity.Result;
 import com.lion.upms.entity.SysMenu;
 import com.lion.upms.entity.SysRole;
@@ -31,7 +32,7 @@ import java.util.List;
 @Api("用户权限管理")
 @RestController
 @Slf4j
-public class UpmsController {
+public class UpmsController extends BaseController {
 
     @Autowired
     private UserRepository userRepository;
@@ -48,7 +49,7 @@ public class UpmsController {
     @ApiParam(name = "username", value = "用户名", required = true)
     @PostMapping("/getUserByUsername/{username}")
     @Cacheable(cacheNames = CACHE_KEY + "_USER")
-    public Result getUserByUsername(@PathVariable("username") String username) {
+    public Result getUserByUsername(@PathVariable String username) {
 
         // redis 自定义代码方式缓存使用
         /*
@@ -79,7 +80,7 @@ public class UpmsController {
     @ApiParam(name = "userId", value = "用户ID", required = true)
     @PostMapping("/getRoleByUserId/{userId}")
     @Cacheable(cacheNames = CACHE_KEY + "_ROLE")
-    public Result getRoleByUserId(@PathVariable("userId") Integer userId) {
+    public Result getRoleByUserId(@PathVariable Integer userId) {
         List<SysRole> roleList = roleRepository.getRoleByUserId(userId);
         return Result.success(roleList);
     }
@@ -88,7 +89,7 @@ public class UpmsController {
     @ApiParam(name = "roleId", value = "角色ID", required = true)
     @PostMapping("/getMenuByRoleId/{roleId}")
     @Cacheable(cacheNames = CACHE_KEY + "_MENU")
-    public Result getMenuByRoleId(@PathVariable("roleId") Integer roleId) {
+    public Result getMenuByRoleId(@PathVariable Integer roleId) {
         List<SysMenu> menuList = menuRepository.getMenuByRoleId(roleId);
         return Result.success(menuList);
     }
