@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * SysUser
- * TODO
+ * 用户实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10

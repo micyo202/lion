@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * SysMenu
- * TODO
+ * 菜单实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
