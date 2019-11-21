@@ -1,7 +1,7 @@
 package com.lion.demo.provider.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.lion.common.amqp.MessageSender;
+import com.lion.common.base.controller.BaseController;
 import com.lion.common.entity.Result;
 import com.lion.common.lock.annotation.Locker;
 import com.lion.demo.provider.handler.BlockHandler;
@@ -10,8 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -32,26 +30,15 @@ import java.util.*;
 @Api("服务提供者示例代码")
 @RestController
 @Slf4j
-public class ProviderDemoController {
-
-    /**
-     * 端口号
-     */
-    @Value("${server.port}")
-    private String port;
+public class ProviderDemoController extends BaseController {
 
     @ApiOperation("基本示例接口，返回Hi文本内容")
-    @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion")
+    @ApiParam(name = "name", value = "名称", defaultValue = "lion")
     @GetMapping("/hi")
     public Result hi(@RequestParam(defaultValue = "lion") String name) {
+        log.info("hi 服务提供者 Provider");
         return Result.success("Hi: '" + name + "', i am from port: " + port);
     }
-
-    /**
-     * 灰度版本，从gateway服务发起：http://localhost:8400/demo/sample/gray?version=v1.0
-     */
-    @Value("${spring.cloud.nacos.discovery.metadata.version:1.0}")
-    private String version;
 
     @ApiOperation("灰度接口")
     @GetMapping("/gray")
@@ -86,12 +73,6 @@ public class ProviderDemoController {
         }
         return Result.success("分布式锁方法执行成功");
     }
-
-    /**
-     * RabbitMQ 消息发送
-     */
-    @Autowired
-    MessageSender messageSender;
 
     @GetMapping("/rabbit/{flag}")
     public Result send(@PathVariable String flag) {
