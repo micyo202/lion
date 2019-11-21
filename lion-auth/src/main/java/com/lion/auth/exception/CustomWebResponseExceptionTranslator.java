@@ -53,7 +53,7 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         }
         ase = (InvalidTokenException) throwableAnalyzer.getFirstThrowableOfType(InvalidTokenException.class, causeChain);
         if (ase instanceof InvalidTokenException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 Token"));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token"));
         }
         ase = (InvalidGrantException) throwableAnalyzer.getFirstThrowableOfType(InvalidGrantException.class, causeChain);
         if (ase instanceof InvalidGrantException) {
