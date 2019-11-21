@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * UpmsClient
- * Feign调用服务提供者服务
+ * Feign服务调用类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/10
@@ -23,12 +23,12 @@ import java.util.List;
 public interface UpmsClient {
 
     @PostMapping("/getUserByUsername/{username}")
-    Result<User> getUserByUsername(@PathVariable("username") String username);
+    Result<User> getUserByUsernameFromUpms(@PathVariable("username") String username);
 
     @PostMapping("/getRoleByUserId/{userId}")
-    Result<List<Role>> getRoleByUserId(@PathVariable("userId") Integer userId);
+    Result<List<Role>> getRoleByUserIdFromUpms(@PathVariable("userId") Integer userId);
 
     @PostMapping("/getMenuByRoleId/{roleId}")
-    Result<List<Menu>> getMenuByRoleId(@PathVariable("roleId") Integer roleId);
+    Result<List<Menu>> getMenuByRoleIdFromUpms(@PathVariable("roleId") Integer roleId);
 
 }
