@@ -125,7 +125,7 @@
 #mybatis:
 #  #mapper-locations: classpath:mapper/*.xml
 #  mapper-locations: classpath:mapper/**/*.xml
-#  #type-aliases-package: com.lion.demo.provider..*.model
+#  #type-aliases-package: com.lion.demo.provider..*.entity
 #  configuration:
 #    map-underscore-to-camel-case: true
 #
@@ -138,9 +138,8 @@
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true
-#  page-size-zero: true
 #  supportMethodsArguments: true
-#  params: count=countSql;pageNum=start;pageSize=limit
+#  params: count=countSql
 #
 ##OAuth2安全认证配置
 #security:
