@@ -133,9 +133,8 @@
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true
-#  page-size-zero: true
 #  supportMethodsArguments: true
-#  params: count=countSql;pageNum=start;pageSize=limit
+#  params: count=countSql
 #
 ##配置无需认证的url
 #pattern:
