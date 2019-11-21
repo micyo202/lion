@@ -30,6 +30,7 @@ public class CustomOAuth2ExceptionSerializer extends StdSerializer<CustomOAuth2E
         gen.writeNumberField("code", value.getHttpErrorCode());
         gen.writeStringField("msg", value.getMessage());
         gen.writeNumberField("timestamp", LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
+
         if (value.getAdditionalInformation() != null) {
             for (Map.Entry<String, String> entry : value.getAdditionalInformation().entrySet()) {
                 String key = entry.getKey();
@@ -37,6 +38,7 @@ public class CustomOAuth2ExceptionSerializer extends StdSerializer<CustomOAuth2E
                 gen.writeStringField(key, add);
             }
         }
+
         gen.writeEndObject();
     }
 
