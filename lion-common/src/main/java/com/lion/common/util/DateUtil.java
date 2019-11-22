@@ -132,25 +132,25 @@ public class DateUtil {
     /**
      * 时间戳与日期类型互转
      */
-    public LocalDateTime timestampToLocalDateTime(long timestamp) {
+    public static LocalDateTime timestampToLocalDateTime(long timestamp) {
         Instant instant = Instant.ofEpochMilli(timestamp);
         return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
-    public long localDateTimeToTimestamp(LocalDateTime localDateTime) {
+    public static long localDateTimeToTimestamp(LocalDateTime localDateTime) {
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
     /**
      * 时间戳格式化字符串
      */
-    public String formatTimestamp(long timestamp) {
+    public static String formatTimestamp(long timestamp) {
         Instant instant = Instant.ofEpochMilli(timestamp);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return formatLocalDateTime(localDateTime);
     }
 
-    public String formatTimestamp(long timestamp, String pattern) {
+    public static String formatTimestamp(long timestamp, String pattern) {
         Instant instant = Instant.ofEpochMilli(timestamp);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return formatLocalDateTime(localDateTime, pattern);
@@ -290,7 +290,6 @@ public class DateUtil {
      *
      * @param startDateInclusive
      * @param endDateExclusive
-     * @return
      */
     public static long periodDays(LocalDate startDateInclusive, LocalDate endDateExclusive) {
         return endDateExclusive.toEpochDay() - startDateInclusive.toEpochDay();
@@ -301,7 +300,6 @@ public class DateUtil {
      *
      * @param startInclusive
      * @param endExclusive
-     * @return
      */
     public static long durationHours(Temporal startInclusive, Temporal endExclusive) {
         return Duration.between(startInclusive, endExclusive).toHours();
@@ -312,7 +310,6 @@ public class DateUtil {
      *
      * @param startInclusive
      * @param endExclusive
-     * @return
      */
     public static long durationMinutes(Temporal startInclusive, Temporal endExclusive) {
         return Duration.between(startInclusive, endExclusive).toMinutes();
@@ -323,7 +320,6 @@ public class DateUtil {
      *
      * @param startInclusive
      * @param endExclusive
-     * @return
      */
     public static long durationMillis(Temporal startInclusive, Temporal endExclusive) {
         return Duration.between(startInclusive, endExclusive).toMillis();
@@ -333,7 +329,6 @@ public class DateUtil {
      * 是否当天
      *
      * @param date
-     * @return
      */
     public static boolean isToday(LocalDate date) {
         return getCurrentLocalDate().equals(date);
@@ -343,7 +338,6 @@ public class DateUtil {
      * 获取此日期时间与默认时区<Asia/Shanghai>组合的时间毫秒数
      *
      * @param dateTime
-     * @return
      */
     public static Long toEpochMilli(LocalDateTime dateTime) {
         return dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
@@ -353,7 +347,6 @@ public class DateUtil {
      * 获取此日期时间与指定时区组合的时间毫秒数
      *
      * @param dateTime
-     * @return
      */
     public static Long toSelectEpochMilli(LocalDateTime dateTime, ZoneId zoneId) {
         return dateTime.atZone(zoneId).toInstant().toEpochMilli();
