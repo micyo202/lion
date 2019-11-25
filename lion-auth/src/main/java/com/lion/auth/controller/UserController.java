@@ -34,8 +34,8 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation(value = "移除用户凭证信息", response = Result.class)
-    @DeleteMapping(value = "/revoke/{access_token}")
-    public Result revoke(@PathVariable String access_token) {
+    @DeleteMapping(value = "/revoke")
+    public Result revoke(String access_token) {
         if (consumerTokenServices.revokeToken(access_token)) {
             return Result.success();
         } else {

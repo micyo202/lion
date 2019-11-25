@@ -6,8 +6,8 @@ import com.lion.common.entity.Result;
 import com.lion.common.entity.Role;
 import com.lion.common.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ import java.util.List;
 @FeignClient(name = "lion-upms", fallback = UpmsClientFallback.class)
 public interface UpmsClient {
 
-    @PostMapping("/getUserByUsername/{username}")
+    @GetMapping("/getUserByUsername/{username}")
     Result<User> getUserByUsernameFromUpms(@PathVariable("username") String username);
 
-    @PostMapping("/getRoleByUserId/{userId}")
+    @GetMapping("/getRoleByUserId/{userId}")
     Result<List<Role>> getRoleByUserIdFromUpms(@PathVariable("userId") Integer userId);
 
-    @PostMapping("/getMenuByRoleId/{roleId}")
+    @GetMapping("/getMenuByRoleId/{roleId}")
     Result<List<Menu>> getMenuByRoleIdFromUpms(@PathVariable("roleId") Integer roleId);
 
 }
