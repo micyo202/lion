@@ -1,12 +1,15 @@
+server:
+  port: ${SERVER_PORT:8701}
+
 spring:
   application:
     name: lion-demo-consumer
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         metadata:
           version: 1.0
       config:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         file-extension: yml
