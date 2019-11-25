@@ -1,6 +1,3 @@
-server:
-  port: 8400
-
 spring:
   profiles:
     active: router
@@ -9,10 +6,10 @@ spring:
       transport:
         dashboard: localhost:8080
   rabbitmq:
-    host: 192.168.1.200
-    port: 5672
-    username: admin
-    password: admin
+    host: ${RABBIT_MQ_HOST:192.168.1.200}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:admin}
+    password: ${RABBIT_MQ_PASSWORD:admin}
   sleuth:
     sampler:
       probability: 1.0
@@ -21,8 +18,8 @@ spring:
     sender:
       type: rabbit
   redis:
-    host: 192.168.1.200
-    port: 6379
+    host: ${REDIS_HOST:192.168.1.200}
+    port: ${REDIS_PORT:6379}
 
 management:
   endpoints:
