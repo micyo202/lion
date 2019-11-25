@@ -26,9 +26,7 @@ dependencies {
     compileOnly "org.mybatis:mybatis:${mybatisVersion}"
     compileOnly "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
     compileOnly "tk.mybatis:mapper:${tkMapperVersion}"
-    //compileOnly "tk.mybatis:mapper-base:1.1.2"
-    //compileOnly "tk.mybatis:mapper-core:1.1.2"
-
+    
     compileOnly "com.github.pagehelper:pagehelper:${pagehelperVersion}"
 
     compileOnly "org.apache.logging.log4j:log4j-api:${log4jVersion}"
