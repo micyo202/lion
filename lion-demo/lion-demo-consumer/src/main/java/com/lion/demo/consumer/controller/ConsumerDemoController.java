@@ -36,7 +36,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("初始化接口")
     @GetMapping("/init")
     public Result init() {
-        return Result.success(foo + ", i'm from port: " + port);
+        return Result.success("Consumer -> version: " + version + ", port: " + port + ", foo: " + foo);
     }
 
     /**

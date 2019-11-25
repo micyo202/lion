@@ -32,18 +32,18 @@ import java.util.*;
 @Slf4j
 public class ProviderDemoController extends BaseController {
 
+    @ApiOperation("初始化接口")
+    @GetMapping("/init")
+    public Result init() {
+        return Result.success("Provider -> version: " + version + ", port：" + port);
+    }
+
     @ApiOperation("基本示例接口，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称", defaultValue = "lion")
     @GetMapping("/hi")
     public Result hi(@RequestParam(defaultValue = "lion") String name) {
         log.info("hi 服务提供者 Provider");
-        return Result.success("Hi: '" + name + "', i am from port: " + port);
-    }
-
-    @ApiOperation("灰度接口")
-    @GetMapping("/gray")
-    public Result gray() {
-        return Result.success("版本：" + version + " 端口：" + port);
+        return Result.success("Hi \"" + name + "\", I'm Provider, From port: " + port);
     }
 
     @ApiOperation("sentinel流量控制接口")
@@ -91,19 +91,19 @@ public class ProviderDemoController extends BaseController {
         return Result.success();
     }
 
-    @ApiOperation("权限认证 - 无需Token访问")
-    @ApiParam(name = "id", value = "产品主键（无需Token）")
+    @ApiOperation("权限认证 - 无需 access_token 访问（产品查看接口）")
+    @ApiParam(name = "id", value = "产品主键（无需 access_token）")
     @RequestMapping(value = "/product/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     public Result getProduct(@PathVariable String id) {
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return Result.success("无需Token访问，Product id : " + id);
+        return Result.success("无需 access_token 访问，Product id : " + id);
     }
 
-    @ApiOperation("权限认证 - 需要 Token 访问")
-    @ApiParam(name = "id", value = "订单主键（需要Token）")
+    @ApiOperation("权限认证 - 需要 access_token 访问（订单查看接口）")
+    @ApiParam(name = "id", value = "订单主键（需要 access_token）")
     @RequestMapping(value = "/order/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     public Result getOrder(@PathVariable String id) {
-        return Result.success("需要Token访问，Order id : " + id);
+        return Result.success("需要 access_token 才能访问，Order id : " + id);
     }
 
     @ApiOperation("角色控制 - 需要拥有admin角色")
