@@ -15,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Example;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -47,7 +47,7 @@ public class UpmsController extends BaseController {
 
     @ApiOperation("根据用户名获取用户对象信息")
     @ApiParam(name = "username", value = "用户名", required = true)
-    @PostMapping("/getUserByUsername/{username}")
+    @GetMapping("/getUserByUsername/{username}")
     @Cacheable(cacheNames = CACHE_KEY + "_USER")
     public Result getUserByUsername(@PathVariable String username) {
 
@@ -78,7 +78,7 @@ public class UpmsController extends BaseController {
 
     @ApiOperation("根据用户ID获取角色列表信息")
     @ApiParam(name = "userId", value = "用户ID", required = true)
-    @PostMapping("/getRoleByUserId/{userId}")
+    @GetMapping("/getRoleByUserId/{userId}")
     @Cacheable(cacheNames = CACHE_KEY + "_ROLE")
     public Result getRoleByUserId(@PathVariable Integer userId) {
         List<SysRole> roleList = roleRepository.getRoleByUserId(userId);
@@ -87,7 +87,7 @@ public class UpmsController extends BaseController {
 
     @ApiOperation("根据角色ID获取菜单列表信息")
     @ApiParam(name = "roleId", value = "角色ID", required = true)
-    @PostMapping("/getMenuByRoleId/{roleId}")
+    @GetMapping("/getMenuByRoleId/{roleId}")
     @Cacheable(cacheNames = CACHE_KEY + "_MENU")
     public Result getMenuByRoleId(@PathVariable Integer roleId) {
         List<SysMenu> menuList = menuRepository.getMenuByRoleId(roleId);
