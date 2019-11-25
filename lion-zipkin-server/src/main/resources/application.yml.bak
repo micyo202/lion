@@ -1,7 +1,4 @@
 #只能本地使用，若使用nacos配置中心需分别写 dev/prod .yml 文件
-server:
-  port: 9411
-
 spring:
   profiles:
     active: dev
@@ -13,10 +10,10 @@ spring:
 zipkin:
   collector:
     rabbitmq:
-      addresses: 192.168.1.200:5672
-      username: admin
-      password: admin
-      queue: zipkin
+      addresses: ${RABBIT_MQ_ADDRESS:192.168.1.200:5672}
+      username: ${RABBIT_MQ_USERNAME:admin}
+      password: ${RABBIT_MQ_PASSWORD:admin}
+      queue: ${RABBIT_MQ_QUEUE:zipkin}
 
 management:
   endpoints:
