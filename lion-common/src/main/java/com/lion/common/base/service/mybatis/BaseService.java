@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -20,13 +19,13 @@ import java.util.List;
  */
 public abstract class BaseService<T> {
 
+    //private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
     @Autowired
     private BaseMapper<T> baseMapper;
 
     @Autowired
     protected SqlSessionTemplate sqlSessionTemplate;
-
-    protected Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     public PageInfo selectByStatmentPage(String statement, int pageNum, int pageSize) {
         return selectByStatmentPage(statement, null, pageNum, pageSize, null);

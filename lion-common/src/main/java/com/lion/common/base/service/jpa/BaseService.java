@@ -4,8 +4,6 @@ import com.lion.common.base.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 
-import java.lang.reflect.ParameterizedType;
-
 /**
  * BaseService
  * 通用 service 层，主要封装 Jpa 分页方法
@@ -16,10 +14,10 @@ import java.lang.reflect.ParameterizedType;
  */
 public abstract class BaseService<T, ID> {
 
+    //private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
     @Autowired
     private BaseRepository<T, ID> baseRepository;
-
-    protected Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     public Page<T> findByPage(int pageNum, int pageSize) {
         return findByPage(null, pageNum, pageSize, null);
