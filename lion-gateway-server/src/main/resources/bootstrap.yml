@@ -1,3 +1,6 @@
+server:
+  port: ${SERVER_PORT:8400}
+
 spring:
   application:
     name: lion-gateway-server
@@ -9,7 +12,7 @@ spring:
           lower-case-service-id: true
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
       config:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         file-extension: yml

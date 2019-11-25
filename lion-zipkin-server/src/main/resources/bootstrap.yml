@@ -1,12 +1,13 @@
+server:
+  port: ${SERVER_PORT:9411}
+
 spring:
   application:
     name: lion-zipkin-server
-  profiles:
-    active: dev
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
       config:
-        server-addr: localhost:8848
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         file-extension: yml
