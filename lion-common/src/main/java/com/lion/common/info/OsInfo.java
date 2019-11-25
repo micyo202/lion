@@ -255,10 +255,7 @@ public class OsInfo implements Serializable {
 
         builder.append("OS Arch:         ").append(getArch())
                 .append("\nOS Name:         ").append(getName())
-                .append("\nOS Version:      ").append(getVersion())
-                .append("\nFile Separator:  ").append(getFileSeparator())
-                .append("\nLine Separator:  ").append(getLineSeparator())
-                .append("\nPath Separator:  ").append(getPathSeparator());
+                .append("\nOS Version:      ").append(getVersion());
 
         return builder.toString();
     }
