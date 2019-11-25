@@ -1,16 +1,13 @@
-#server:
-#  port: 8800
-#
 #spring:
 #  cloud:
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080
 #  rabbitmq:
-#    host: 192.168.1.200
-#    port: 5672
-#    username: admin
-#    password: admin
+#    host: ${RABBIT_MQ_HOST:192.168.1.200}
+#    port: ${RABBIT_MQ_PORT:5672}
+#    username: ${RABBIT_MQ_USERNAME:admin}
+#    password: ${RABBIT_MQ_PASSWORD:admin}
 #  sleuth:
 #    sampler:
 #      probability: 1.0
@@ -96,8 +93,8 @@
 #        enabled: true
 #        url-pattern: /druid/*
 #        reset-enable: false
-#        login-username: admin
-#        login-password: admin
+#        login-username: druid
+#        login-password: druid
 #        #白名单
 #        allow: 127.0.0.1
 #        #黑名单
@@ -115,8 +112,8 @@
 #      naming:
 #        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 #  redis:
-#    host: 192.168.1.200
-#    port: 6379
+#    host: ${REDIS_HOST:192.168.1.200}
+#    port: ${REDIS_PORT:6379}
 #  cache:
 #    type: redis
 #
@@ -143,7 +140,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /getUserByUsername/**,/getRoleByUserId/**,/getMenuByRoleId/**
+#    urls: /health/**,/getUserByUsername/**,/getRoleByUserId/**,/getMenuByRoleId/**
 #
 #management:
 #  endpoints:
