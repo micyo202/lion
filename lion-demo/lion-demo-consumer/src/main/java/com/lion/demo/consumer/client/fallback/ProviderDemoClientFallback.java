@@ -25,4 +25,9 @@ public class ProviderDemoClientFallback implements ProviderDemoClient {
         return Result.failure("Invoke Method \"saveTransactionalFromProvider(int num)\" Fallback");
     }
 
+    @Override
+    public Result sendFromProvider(String flag) {
+        return Result.failure("Invoke Method \"sendFromProvider(String flag)\" Fallback");
+    }
+
 }
