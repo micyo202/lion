@@ -112,11 +112,6 @@
 #  sentinel:
 #    enabled: true
 #
-##配置无需认证的url
-#pattern:
-#  permit:
-#    urls: /health/**
-#
 #management:
 #  endpoints:
 #    web:
