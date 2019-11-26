@@ -155,7 +155,12 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /health/**,/init/**,/feign/**,/ribbon/**,/temp/**
+#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/lock/**,/product/**,/rabbit/**,/upload/**,/download/**,/temp/**,/scala/**
+#
+##配置附件上传路径
+#file:
+#  upload:
+#    path: /Users/apple/Desktop
 #
 ##自定义值
 #foo: This is foo...

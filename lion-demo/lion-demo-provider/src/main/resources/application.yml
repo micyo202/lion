@@ -147,7 +147,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /health/**,/init/**,/hi/**,/sentinel/**,/lock/**,/rabbit/**,/product/**,/temp/**,/scala/**
+#    urls: /init/**,/hi/**,/send/**,/temp/**
 #
 #management:
 #  endpoints:

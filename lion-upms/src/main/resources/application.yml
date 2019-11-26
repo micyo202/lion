@@ -140,7 +140,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /health/**,/getUserByUsername/**,/getRoleByUserId/**,/getMenuByRoleId/**
+#    urls: /getUserByUsername/**,/getRoleByUserId/**,/getMenuByRoleId/**
 #
 #management:
 #  endpoints:
