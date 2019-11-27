@@ -40,24 +40,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        // 获取用户信息
         Result<User> userResult = upmsClient.getUserByUsernameFromUpms(username);
 
         if (ResponseStatus.SUCCESS.code() != userResult.getCode()) {
             throw new LionException(userResult.getMsg());
         }
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet();
-        // 可用性 :true:可用 false:不可用
-        boolean enabled = true;
-        // 过期性 :true:没过期 false:过期
-        boolean accountNonExpired = true;
-        // 有效性 :true:凭证有效 false:凭证无效
-        boolean credentialsNonExpired = true;
-        // 锁定性 :true:未锁定 false:已锁定
-        boolean accountNonLocked = true;
-
         User user = userResult.getData();
-        // 获取用户角色
+
+        // 获取角色信息
         Result<List<Role>> roleResult = upmsClient.getRoleByUserIdFromUpms(user.getId());
 
         // 判断获取权限列表是否成功
@@ -65,9 +57,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new LionException(roleResult.getMsg());
         }
 
+        Set<GrantedAuthority> grantedAuthorities = new HashSet();
         roleResult.getData().stream().forEach(role -> {
             // 角色必须是 ROLE_ 开头，可以在数据库中设置（这里在程序中设置）
-            grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getValue().toUpperCase()));
+            grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getCode().toUpperCase()));
 
             // 获取菜单列表
             /*
@@ -80,9 +73,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             */
         });
 
-        org.springframework.security.core.userdetails.User securityUser = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
-        return securityUser;
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getEnabled(),
+                user.getAccountNonExpired(),
+                user.getCredentialsNonExpired(),
+                user.getAccountNonLocked(),
+                grantedAuthorities);
     }
 
 }
