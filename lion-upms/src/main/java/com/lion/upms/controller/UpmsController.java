@@ -65,6 +65,7 @@ public class UpmsController extends BaseController {
 
         SysUser sysUser = new SysUser();
         sysUser.setUsername(username);
+        sysUser.setValid(true);
 
         SysUser user = userRepository.findOne(Example.of(sysUser)).orElse(null);
 

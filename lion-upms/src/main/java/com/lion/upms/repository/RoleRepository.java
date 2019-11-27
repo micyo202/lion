@@ -19,7 +19,6 @@ public interface RoleRepository extends BaseRepository<SysRole, Integer> {
     /**
      * 占位符风格
      */
-    @Query(value = "select r.* from sys_role r, sys_user_role ur where r.id=ur.role_id and ur.user_id=?1", nativeQuery = true)
+    @Query(value = "select r.* from sys_role r, sys_user_role ur where r.id=ur.role_id and r.valid=1 and ur.valid=1 and ur.user_id=?1", nativeQuery = true)
     List<SysRole> getRoleByUserId(Integer userId);
-
 }
