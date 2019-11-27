@@ -57,7 +57,23 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         }
         ase = (InvalidGrantException) throwableAnalyzer.getFirstThrowableOfType(InvalidGrantException.class, causeChain);
         if (ase instanceof InvalidGrantException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 refresh_token"));
+            String msg = ase.getMessage();
+            if (msg.contains("User is disabled")) {
+                msg = "用户被禁用";
+            }
+            if (msg.contains("User account has expired")) {
+                msg = "用户帐户已过期";
+            }
+            if (msg.contains("User credentials have expired")) {
+                msg = "用户凭据已过期";
+            }
+            if (msg.contains("User account is locked")) {
+                msg = "用户帐户已锁定";
+            }
+            if (msg.contains("Invalid refresh token")) {
+                msg = "无效的 refresh_token";
+            }
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), msg));
         }
         ase = (HttpRequestMethodNotSupportedException) throwableAnalyzer.getFirstThrowableOfType(HttpRequestMethodNotSupportedException.class, causeChain);
         if (ase instanceof HttpRequestMethodNotSupportedException) {
