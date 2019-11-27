@@ -15,8 +15,13 @@ public class TempTransactional implements Serializable {
 
     private String name;
 
+    private Boolean valid;
+
     @Column(name = "createTime")
     private Date createtime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +33,9 @@ public class TempTransactional implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", valid=").append(valid);
         sb.append(", createtime=").append(createtime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
