@@ -27,24 +27,24 @@ public class IdService extends BaseService<SysId, Integer> {
     /**
      * 同步获取SysId（用于初始化）
      */
-    public SysId getSynSysId(String bizTag) {
-        return getSysId(bizTag);
+    public SysId getSynSysId(String code) {
+        return getSysId(code);
     }
 
     /**
      * 异步获取SysId（用于双buffer）
      */
     @Async("asynExecutor")
-    public Future<SysId> getAsynSysId(String bizTag) {
-        SysId sysId = getSysId(bizTag);
+    public Future<SysId> getAsynSysId(String code) {
+        SysId sysId = getSysId(code);
         return new AsyncResult<>(sysId);
     }
 
     /**
      * 获取SysId
      */
-    private SysId getSysId(String bizTag) {
-        SysId sysId = idRepository.getSysId(bizTag);
+    private SysId getSysId(String code) {
+        SysId sysId = idRepository.getSysId(code);
 
         int increaseRange = sysId.getStep() - sysId.getMaxId();
         int increaseCount = sysId.getStep() / (sysId.getStep() - sysId.getMaxId());
@@ -52,7 +52,7 @@ public class IdService extends BaseService<SysId, Integer> {
         int maxId = increaseRange * increaseCount;
         int step = increaseRange * (increaseCount + 1);
 
-        idRepository.updateSysId(maxId, step, bizTag);
+        idRepository.updateSysId(maxId, step, sysId.getId());
 
         return sysId;
     }

@@ -2,10 +2,7 @@ package com.lion.id.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,16 +19,42 @@ import java.util.Date;
 @Data
 public class SysId implements Serializable {
 
+    /**
+     * 主键
+     */
     @Id
+    @GeneratedValue(generator = "JDBC")
     private Integer id;
-    @Column(name = "biz_tag")
-    private String bizTag;
+    /**
+     * 编码
+     */
+    private String code;
+    /**
+     * id最大值
+     */
     @Column(name = "max_id")
     private Integer maxId;
+    /**
+     * 步长
+     */
     private Integer step;
-    @Column(name = "[describe]")
-    private String describe;
+    /**
+     * 名称
+     */
+    @Column(name = "name")
+    private String name;
+    /**
+     * 是否有效: true 有效/未删除, false 无效/已删除
+     */
+    private Boolean valid;
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time")
+    private Date createTime;
+    /**
+     * 更新时间
+     */
     @Column(name = "update_time")
     private Date updateTime;
-
 }
