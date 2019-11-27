@@ -21,6 +21,9 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysMenu implements Serializable {
 
+    /**
+     * 主键
+     */
     @Id
     @GeneratedValue(generator = "JDBC")
     private Integer id;
@@ -39,18 +42,13 @@ public class SysMenu implements Serializable {
     @Column(name = "p_code")
     private String pCode;
     /**
-     * 名称
+     * 菜单名称
      */
     private String name;
     /**
-     * 请求地址
+     * 菜单url
      */
     private String url;
-    /**
-     * 是否是菜单
-     */
-    @Column(name = "is_menu")
-    private Boolean isMenu;
     /**
      * 菜单层级
      */
@@ -59,11 +57,27 @@ public class SysMenu implements Serializable {
      * 菜单排序
      */
     private Integer sort;
-    private Integer status;
+    /**
+     * 菜单图标
+     */
     private String icon;
+    /**
+     * 是否是菜单
+     */
+    @Column(name = "is_menu")
+    private Boolean isMenu;
+    /**
+     * 是否有效: true 有效/未删除, false 无效/已删除
+     */
+    private Boolean valid;
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     private Date createTime;
+    /**
+     * 更新时间
+     */
     @Column(name = "update_time")
     private Date updateTime;
-
 }
