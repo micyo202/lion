@@ -38,7 +38,7 @@ public class IdController extends BaseController {
     private static int step;
     private static boolean isChange;
 
-    private static final String BIZ_TAG = "user_tag";
+    private static final String CODE = "user";
 
     @Autowired
     private IdService idService;
@@ -52,7 +52,7 @@ public class IdController extends BaseController {
         // 初始化 或 超出 Range 范围时，从数据库获取 Range
         if (null == sysId.getId()) {
             buffer = 1;
-            sysId_buffer_1 = idService.getSynSysId(BIZ_TAG);
+            sysId_buffer_1 = idService.getSynSysId(CODE);
             maxId = sysId_buffer_1.getMaxId();
             step = sysId_buffer_1.getStep();
             BeanUtils.copyProperties(sysId_buffer_1, sysId);
@@ -104,10 +104,10 @@ public class IdController extends BaseController {
 
         if (id == threshold) {
             if (1 == buffer) {
-                futureSysId = idService.getAsynSysId(BIZ_TAG);
+                futureSysId = idService.getAsynSysId(CODE);
             }
             if (2 == buffer) {
-                futureSysId = idService.getAsynSysId(BIZ_TAG);
+                futureSysId = idService.getAsynSysId(CODE);
             }
         }
 
