@@ -1,13 +1,10 @@
 package com.lion.demo.consumer.temp.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -18,9 +15,7 @@ public class TempMybatis implements Serializable {
 
     private String name;
 
-    private Integer type;
-
-    private Boolean status;
+    private Boolean valid;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -38,8 +33,7 @@ public class TempMybatis implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", type=").append(type);
-        sb.append(", status=").append(status);
+        sb.append(", valid=").append(valid);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

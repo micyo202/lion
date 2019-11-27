@@ -16,7 +16,7 @@ import java.util.Date;
  * 示例Jpa实体类
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/04/15
+ * @date 2019/11/27
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Entity
@@ -26,15 +26,29 @@ import java.util.Date;
 @AllArgsConstructor
 public class TempJpa implements Serializable {
 
+    /**
+     * 主键
+     */
     @Id
     @Column(nullable = false, length = 32)
     private String id;
-    @Column(length = 32)
+    /**
+     * 名称
+     */
+    @Column(length = 36)
     private String name;
-    private Integer type;
-    private Boolean status;
+    /**
+     * 是否有效: true 有效/未删除, false 无效/已删除
+     */
+    private Boolean valid;
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     private Date createTime;
+    /**
+     * 更新时间
+     */
     @Column(name = "update_time")
     private Date updateTime;
 
