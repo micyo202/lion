@@ -51,7 +51,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
             log.info("定时任务即将启动，预计启动任务数量[" + scheduleList.size() + "]，时间：" + DateUtil.getCurrentDateTime());
             for (Schedule schedule : scheduleList) {
                 // 判断任务是否有效
-                if ("1".equals(schedule.getValid())) {
+                if (schedule.getValid()) {
                     // 执行定时任务
                     taskRegistrar.addTriggerTask(getRunnable(schedule), getTrigger(schedule));
                     scheduleTaskCount++;
