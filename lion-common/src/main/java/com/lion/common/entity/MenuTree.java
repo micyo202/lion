@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * MenuTree
- * 菜单树
+ * 菜单树实体类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/04/19
