@@ -3,7 +3,6 @@ package com.lion.common.exception;
 import com.lion.common.constant.ResponseStatus;
 import com.lion.common.entity.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.ThreadContext;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
