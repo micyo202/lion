@@ -47,8 +47,6 @@ public class LionExceptionHandler {
             result = Result.failure(e.getMessage());
         }
 
-        ThreadContext.remove("logId");
-
         return result;
     }
 
