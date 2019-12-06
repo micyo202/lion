@@ -7,6 +7,8 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="valid" jdbcType="BIT" property="valid" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 </mapper>
