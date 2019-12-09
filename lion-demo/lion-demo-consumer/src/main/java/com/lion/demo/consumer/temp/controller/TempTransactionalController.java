@@ -59,7 +59,9 @@ public class TempTransactionalController extends BaseController {
 
             TempTransactional tempTransactional = new TempTransactional();
             tempTransactional.setName("ConsumerName-" + randomStr);
+            tempTransactional.setValid(true);
             tempTransactional.setCreatetime(new Date());
+            tempTransactional.setUpdateTime(new Date());
 
             if (i + 1 < 7) {
                 //正常插入
