@@ -19,8 +19,8 @@ import java.util.List;
 public interface TempJpaRepository extends BaseRepository<TempJpa, String> {
 
     // 占位符风格
-    @Query(value = "select * from temp_jpa where status = ?1", nativeQuery = true)
-    List<TempJpa> selectByCustomSql(Boolean status);
+    @Query(value = "select * from temp_jpa where valid = ?1", nativeQuery = true)
+    List<TempJpa> selectByCustomSql(Boolean valid);
 
     // SPEL表达式风格
     //@Query(value = "select * from temp_jpa where status = :status", nativeQuery = true)
