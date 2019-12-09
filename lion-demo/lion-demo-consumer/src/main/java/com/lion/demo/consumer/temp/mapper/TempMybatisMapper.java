@@ -15,7 +15,6 @@ public interface TempMybatisMapper extends BaseMapper<TempMybatis> {
     @Select("SELECT * FROM temp_mybatis")
     List<TempMybatis> selectByCustomSqlForMapper();
 
-    @Insert("insert into temp_mybatis(id, name, type, status, create_time) values(#{id}, #{name}, #{type}, #{status}, #{createTime})")
-    int insertByCustomSqlForMapper(@Param("id") String id, @Param("name") String name, @Param("type") int type, @Param("status") int status, @Param("createTime") String createTime);
-
+    @Insert("insert into temp_mybatis(id, name, valid, create_time, update_time) values(#{id}, #{name}, #{valid}, #{createTime}, #{updateTime})")
+    int insertByCustomSqlForMapper(@Param("id") String id, @Param("name") String name, @Param("valid") Boolean valid, @Param("createTime") String createTime, @Param("updateTime") String updateTime);
 }
