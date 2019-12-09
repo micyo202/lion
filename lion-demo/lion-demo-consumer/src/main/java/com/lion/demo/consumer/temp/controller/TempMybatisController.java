@@ -52,8 +52,7 @@ public class TempMybatisController extends BaseController {
 
             TempMybatis tempMybatis = new TempMybatis();
             tempMybatis.setName("TempMybatisName-" + randomStr);
-            tempMybatis.setType(9);
-            tempMybatis.setStatus(false);
+            tempMybatis.setValid(true);
             tempMybatis.setCreateTime(new Date());
             tempMybatis.setUpdateTime(new Date());
 
@@ -88,13 +87,14 @@ public class TempMybatisController extends BaseController {
 
     @ApiOperation("Mybatis分页查询")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "version", value = "版本号（取值范围：v1~v6）", defaultValue = "v1", dataType = "String"),
             @ApiImplicitParam(name = "pageNum", value = "页码值", defaultValue = "1", dataType = "String"),
             @ApiImplicitParam(name = "pageSize", value = "每页条数", defaultValue = "3", dataType = "String")
     })
     @RequestMapping(value = "/page/{version}/{pageNum}/{pageSize}", method = {RequestMethod.GET, RequestMethod.POST})
     public ResultPage page(@PathVariable String version, @PathVariable int pageNum, @PathVariable int pageSize) {
 
-        String statement = "com.lion.demo.provider.temp.mapper.TempMybatisMapper.selectByCustomSqlForXml";
+        String statement = "com.lion.demo.consumer.temp.mapper.TempMybatisMapper.selectByCustomSqlForXml";
 
         PageInfo pageInfo;
 
