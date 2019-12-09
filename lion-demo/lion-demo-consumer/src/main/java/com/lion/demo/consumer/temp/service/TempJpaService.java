@@ -26,8 +26,8 @@ public class TempJpaService extends BaseService<TempJpa, String> {
         tempJpaRepository.save(tempJpa);
     }
 
-    public List<TempJpa> customSql(Boolean status) {
-        return tempJpaRepository.selectByCustomSql(status);
+    public List<TempJpa> customSql(Boolean valid) {
+        return tempJpaRepository.selectByCustomSql(valid);
     }
 
 }

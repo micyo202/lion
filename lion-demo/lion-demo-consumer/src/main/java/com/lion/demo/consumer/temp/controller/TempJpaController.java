@@ -53,8 +53,7 @@ public class TempJpaController extends BaseController {
 
             TempJpa tempJpa = new TempJpa();
             tempJpa.setName("TempJpaName-" + randomStr);
-            tempJpa.setType(6);
-            tempJpa.setStatus(true);
+            tempJpa.setValid(true);
             tempJpa.setCreateTime(new Date());
             tempJpa.setUpdateTime(new Date());
 
@@ -75,14 +74,15 @@ public class TempJpaController extends BaseController {
 
 
     @ApiOperation(value = "Jpa方式自定义SQL查询数据", notes = "参数为有效标志（必填）")
-    @ApiImplicitParam(name = "status", value = "有效标志", dataType = "boolean", defaultValue = "true", required = true)
-    @RequestMapping(value = "/custom/sql/{status}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result customSql(@PathVariable boolean status) {
-        return Result.success(tempJpaService.customSql(status));
+    @ApiImplicitParam(name = "valid", value = "有效标志", dataType = "boolean", defaultValue = "true", required = true)
+    @RequestMapping(value = "/custom/sql/{valid}", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result customSql(@PathVariable boolean valid) {
+        return Result.success(tempJpaService.customSql(valid));
     }
 
     @ApiOperation(value = "Jpa方式分页查询", notes = "分页默认从第0条数据开始，每页展示3条数据")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "version", value = "版本号（取值范围：v1~v4）", defaultValue = "v1", dataType = "String"),
             @ApiImplicitParam(name = "pageNum", value = "页码值", defaultValue = "1", dataType = "String"),
             @ApiImplicitParam(name = "pageSize", value = "每页条数", defaultValue = "3", dataType = "String")
     })
