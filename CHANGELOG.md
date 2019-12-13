@@ -1,7 +1,9 @@
+- **2019-12-10**：优化项目结构，优化OAuth2认证模块，丰富lion-common公共模块，优化lion-demo示例模块
+
 - **2019-11-21**：添加通用base基类，包含：BaseController、BaseService、BaseMapper、BaseRepository
 
 - **2019-10-26**：添加通用Mapper简化代码，添加安全工具类，添加分页对象处理
-
+__
 - **2019-10-12**：添加 RabbitMQ 消息生产者、消费者
 
 - **2019-09-30**：移除 Zuul 路由模块，采用 [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 作为最新路由网关服务，添加缓存策略
