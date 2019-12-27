@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * HdfsTemplate
- * TODO
+ * Hdfs方法操作模板
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/06/12
