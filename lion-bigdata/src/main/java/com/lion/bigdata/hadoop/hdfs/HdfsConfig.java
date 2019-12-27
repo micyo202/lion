@@ -10,7 +10,7 @@ import java.net.URI;
 
 /**
  * HdfsConfig
- * TODO
+ * Hdfs配置类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/06/12
