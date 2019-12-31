@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -27,26 +29,28 @@ public class HadoopController {
     @RequestMapping("/hdfs/{type}")
     public String hdfs(@PathVariable String type) {
 
-        String msg = null;
+        String dateStr = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String filePath = "/file_" + dateStr;
+        String msg;
 
         switch (type) {
             case "mkdir": {
-                boolean mkdir = hdfsTemplate.mkdir("/file20190612");
+                boolean mkdir = hdfsTemplate.mkdir(filePath);
                 msg = "mkdir " + (mkdir ? "SUCCESS" : "FAILURE");
                 break;
             }
             case "rename": {
-                boolean rename = hdfsTemplate.rename("/file20190612", "/fileXXXXXXXX");
+                boolean rename = hdfsTemplate.rename(filePath, filePath + "_rename");
                 msg = "rename " + (rename ? "SUCCESS" : "FAILURE");
                 break;
             }
             case "delete": {
-                boolean delete = hdfsTemplate.delete("/fileXXXXXXXX");
+                boolean delete = hdfsTemplate.delete(filePath);
                 msg = "delete " + (delete ? "SUCCESS" : "FAILURE");
                 break;
             }
             case "upload": {
-                hdfsTemplate.uploadFile("/Users/apple/Desktop/schema.sql", "/file20190612");
+                hdfsTemplate.uploadFile("/Users/apple/Desktop/schema.sql", filePath);
                 msg = "uploadFile SUCCESS";
                 break;
             }
