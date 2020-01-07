@@ -22,12 +22,12 @@ dependencies {
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
-    implementation "org.apache.hadoop:hadoop-common:${hadoopVersion}"
+    //implementation "org.apache.hadoop:hadoop-common:${hadoopVersion}"
     implementation "org.apache.hadoop:hadoop-client:${hadoopVersion}"
     //implementation "org.apache.hadoop:hadoop-hdfs:${hadoopVersion}"
 
     implementation "org.apache.spark:spark-core_2.12:${sparkVersion}"
     implementation "org.apache.spark:spark-sql_2.12:${sparkVersion}"
     implementation "org.apache.spark:spark-streaming_2.12:${sparkVersion}"
-    implementation "org.apache.spark:spark-mllib_2.12:${sparkVersion}"
+    //implementation "org.apache.spark:spark-mllib_2.12:${sparkVersion}"
 }
