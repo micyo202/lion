@@ -70,7 +70,7 @@ subprojects {
         springCloudAlibabaVersion = '2.1.0.RELEASE'
         springDataVersion = '2.1.4.RELEASE'
 
-        scalaVersion = '2.11.12'
+        scalaVersion = '2.12.10'
         jacksonVersion = '2.9.8'
         lombokVersion = '1.18.6'
         amqpVersion = '2.1.3.RELEASE'
