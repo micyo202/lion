@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * BigDataController
- * 示例控制器
+ * 大数据示例
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/01/06
