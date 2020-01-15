@@ -3,33 +3,32 @@ package com.lion.common.tuple;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-import java.util.Optional;
+import java.io.Serializable;
 
 /**
  * Tuple2
  * 自定义元组
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/08/14
- * Copyright 2019 Yanzheng. All rights reserved.
+ * @date 2020/01/15
+ * Copyright 2020 Yanzheng. All rights reserved.
  */
 @ToString
 @AllArgsConstructor
-public class Tuple2<T1, T2> {
+public class Tuple2<T1, T2> implements Serializable {
 
-    private T1 t1;
-    private T2 t2;
+    final T1 _1;
+    final T2 _2;
 
-    public <T1> Optional<T1> _1() {
-        return (Optional<T1>) Optional.ofNullable(t1);
+    /*
+    public Tuple2(T1 _1, T2 _2) {
+        this._1 = Objects.requireNonNull(_1, "_1");
+        this._2 = Objects.requireNonNull(_2, "_2");
     }
+    */
 
-    public <T2> Optional<T2> _2() {
-        return (Optional<T2>) Optional.ofNullable(t2);
-    }
-
-    public static <T1, T2> Tuple2 of(T1 t1, T2 t2) {
-        return new Tuple2(t1, t2);
+    public static <T1, T2> Tuple2 apply(T1 _1, T2 _2) {
+        return new Tuple2(_1, _2);
     }
 
 }
