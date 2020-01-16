@@ -18,6 +18,11 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
+**感谢[JetBrains](https://www.jetbrains.com/?from=lion)提供的开源许可，推荐使用[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)进行开发**
+<p align="center" >
+  <img src="https://github.com/micyo202/lion/raw/master/images/jetbrains.gif" alt="JetBrains" title="JetBrains">
+</p>
+
 **注：该项目是基于SpringCloud微服务架构的，若要使用基于Dubbo的RPC架构项目请查看本人yan项目，前往地址：[https://github.com/micyo202/yan](https://github.com/micyo202/yan)**
 
 - [master分支](https://github.com/micyo202/lion)，使用 [Nacos](https://nacos.io) 作为服务注册/发现、配置中心；使用[Sentinel](https://github.com/alibaba/Sentinel)作为流量监控、服务降级、熔断处理；使用[Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)作为路由网关。
