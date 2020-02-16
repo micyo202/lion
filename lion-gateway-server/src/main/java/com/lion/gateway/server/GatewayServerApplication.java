@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * GatewayServerApplication
- * 路由网管服务
+ * 路由网关服务
  *
  * @author Yanzheng
  * @date 2019/09/06
