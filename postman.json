@@ -1,317 +1,323 @@
 {
-  "info": {
-    "_postman_id": "2ba86876-d371-4150-a1d4-c719e42df1b3",
-    "name": "lion",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Oauth2认证",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "client_id",
-              "value": "lion_client",
-              "type": "text"
-            },
-            {
-              "key": "client_secret",
-              "value": "secret",
-              "type": "text"
-            },
-            {
-              "key": "scope",
-              "value": "all",
-              "type": "text"
-            },
-            {
-              "key": "grant_type",
-              "value": "password",
-              "type": "text"
-            },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "123456",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:8400/auth/oauth/token",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "auth",
-            "oauth",
-            "token"
-          ]
-        },
-        "description": "http://localhost:8400/auth/oauth/token"
-      },
-      "response": []
-    },
-    {
-      "name": "Token有效性检测",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/auth/oauth/check_token?token=19a96f62-7493-4203-ae6b-30b06cebc32d",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "auth",
-            "oauth",
-            "check_token"
-          ],
-          "query": [
-            {
-              "key": "token",
-              "value": "19a96f62-7493-4203-ae6b-30b06cebc32d"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "刷新token",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=8bad6d0f-2fb3-4cf8-bf54-94873861eda2&client_id=lion_client&client_secret=secret",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "auth",
-            "oauth",
-            "token"
-          ],
-          "query": [
-            {
-              "key": "grant_type",
-              "value": "refresh_token"
-            },
-            {
-              "key": "refresh_token",
-              "value": "8bad6d0f-2fb3-4cf8-bf54-94873861eda2"
-            },
-            {
-              "key": "client_id",
-              "value": "lion_client"
-            },
-            {
-              "key": "client_secret",
-              "value": "secret"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "授权服务端-获取用户凭证信息",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/auth/user/principal?access_token=3da2db2a-6244-43d9-a826-5b69bc7ec7fc",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "auth",
-            "user",
-            "principal"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "3da2db2a-6244-43d9-a826-5b69bc7ec7fc"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "销毁token",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/auth/user/revoke?access_token=19a96f62-7493-4203-ae6b-30b06cebc32d",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "auth",
-            "user",
-            "revoke"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "19a96f62-7493-4203-ae6b-30b06cebc32d"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "product-无需认证访问",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/demo/provider/product/1",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "demo",
-            "provider",
-            "product",
-            "1"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "order-需要认证访问",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/demo/provider/order/6?access_token=52770ccb-3aa3-477f-a15a-a869533ec5db",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "demo",
-            "provider",
-            "order",
-            "6"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "52770ccb-3aa3-477f-a15a-a869533ec5db"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "客户端-获取用户凭证信息",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/demo/provider/principle?access_token=52770ccb-3aa3-477f-a15a-a869533ec5db",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "demo",
-            "provider",
-            "principle"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "52770ccb-3aa3-477f-a15a-a869533ec5db"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "\b需要admin\b角色访问",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/demo/provider/admin?access_token=52770ccb-3aa3-477f-a15a-a869533ec5db",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "demo",
-            "provider",
-            "admin"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "52770ccb-3aa3-477f-a15a-a869533ec5db"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "需要user角色访问",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8400/demo/provider/user?access_token=52770ccb-3aa3-477f-a15a-a869533ec5db",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8400",
-          "path": [
-            "demo",
-            "provider",
-            "user"
-          ],
-          "query": [
-            {
-              "key": "access_token",
-              "value": "52770ccb-3aa3-477f-a15a-a869533ec5db"
-            }
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "2ba86876-d371-4150-a1d4-c719e42df1b3",
+		"name": "lion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Oauth2认证",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "client_id",
+							"value": "lion_client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "read",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8400/auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				},
+				"description": "http://localhost:8400/auth/oauth/token"
+			},
+			"response": []
+		},
+		{
+			"name": "Token有效性检测",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/auth/oauth/check_token?token=19a96f62-7493-4203-ae6b-30b06cebc32d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "19a96f62-7493-4203-ae6b-30b06cebc32d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刷新token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=8bad6d0f-2fb3-4cf8-bf54-94873861eda2&client_id=lion_client&client_secret=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "8bad6d0f-2fb3-4cf8-bf54-94873861eda2"
+						},
+						{
+							"key": "client_id",
+							"value": "lion_client"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "授权服务端-获取用户凭证信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/auth/user/principal?access_token=3da2db2a-6244-43d9-a826-5b69bc7ec7fc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"user",
+						"principal"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3da2db2a-6244-43d9-a826-5b69bc7ec7fc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "销毁token",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/auth/user/revoke?access_token=e052f860-bdd2-403a-8428-af9e89811e79",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"user",
+						"revoke"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "e052f860-bdd2-403a-8428-af9e89811e79"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-无需认证访问",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/product/1?access_token=44563381-f737-4c85-bb6a-618a57e0df00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"product",
+						"1"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "44563381-f737-4c85-bb6a-618a57e0df00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order-需要认证访问",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/order/6?access_token=44563381-f737-4c85-bb6a-618a57e0df00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"order",
+						"6"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "44563381-f737-4c85-bb6a-618a57e0df00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "客户端-获取用户凭证信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/principle?access_token=44563381-f737-4c85-bb6a-618a57e0df00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"principle"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "44563381-f737-4c85-bb6a-618a57e0df00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "\b需要admin\b角色访问",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/admin?access_token=44563381-f737-4c85-bb6a-618a57e0df00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"admin"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "44563381-f737-4c85-bb6a-618a57e0df00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "需要user角色访问",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/user?access_token=44563381-f737-4c85-bb6a-618a57e0df00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"user"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "44563381-f737-4c85-bb6a-618a57e0df00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
