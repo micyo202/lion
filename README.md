@@ -7,11 +7,11 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-1.6.0-orange.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-1.6.1-orange.svg)](https://github.com/micyo202/lion)
 [![Since](https://img.shields.io/badge/Since-2019-199EC4.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-1.8-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Scala](https://img.shields.io/badge/Scala-2.11.12-D72B2A.svg)](https://www.scala-lang.org)
-[![Gradle](https://img.shields.io/badge/Gradle-5.6.3-01BC7E.svg)](https://gradle.org)
+[![Gradle](https://img.shields.io/badge/Gradle-6.0.1-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.1.2.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Greenwich.RELEASE-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
@@ -91,7 +91,7 @@ Hadoop 3.1.1 | [http://hadoop.apache.org](http://hadoop.apache.org) | √
 Hbase 2.1.1 | [https://hbase.apache.org](https://hbase.apache.org) | √
 Hive 3.1.1 | [http://hive.apache.org](http://hive.apache.org) | ×
 Spark 2.4.0 | [http://spark.apache.org](http://spark.apache.org) | √
-Gradle 5.6.3 | [https://gradle.org](https://gradle.org) | √
+Gradle 6.0.1 | [https://gradle.org](https://gradle.org) | √
 
 ## 三、组件说明
 - 服务注册/发现、配置中心: nacos
@@ -147,7 +147,7 @@ lion -- 根目录
 
 8.项目开发详细代码，可参考lion-demo下的示例模块
 
-9.测试方法使用[postman](https://www.getpostman.com)导入[postman.json](https://github.com/micyo202/lion/blob/master/postman.json)脚本即可
+9.测试方法使用[postman](https://www.getpostman.com)导入[postman.json](https://github.com/micyo202/lion/raw/master/json/postman.json)脚本即可
 
 ## 七、服务启动
 注：带~~删除线~~的服务为相关示例模块可根据需要选择启动
