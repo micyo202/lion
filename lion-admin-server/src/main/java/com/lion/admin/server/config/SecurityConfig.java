@@ -1,4 +1,4 @@
-package com.lion.admin.server.security.config;
+package com.lion.admin.server.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
         successHandler.setTargetUrlParameter("redirectTo");
+        successHandler.setDefaultTargetUrl(adminContextPath + "/");
 
         http.authorizeRequests()
+                .antMatchers(adminContextPath + "/instances").permitAll()
                 .antMatchers(adminContextPath + "/actuator/**").permitAll()
                 .antMatchers(adminContextPath + "/assets/**").permitAll()
                 .antMatchers(adminContextPath + "/login").permitAll()
@@ -36,8 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler)
                 .and()
-                .logout().logoutUrl(adminContextPath + "/logout").and()
-                .httpBasic().and()
+                .logout().logoutUrl(adminContextPath + "/logout")
+                .and()
+                .httpBasic()
+                .and()
                 .csrf().disable();
     }
 }
