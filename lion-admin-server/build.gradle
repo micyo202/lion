@@ -2,6 +2,7 @@ group 'com.lion.admin.server'
 description '服务监控管理'
 
 apply plugin: 'org.springframework.boot'
+apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -11,4 +12,25 @@ dependencies {
 
     implementation 'de.codecentric:spring-boot-admin-starter-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+
+docker {
+    //如果url不指定的话
+    //Unix默认: unix:///var/run/docker.sock
+    //Windows默认: tcp://127.0.0.1:2375
+    //url = 'http://localhost:2375'
+    /*
+    registryCredentials {
+        url = 'http://localhost:8777'
+        username = 'lion'
+        password = 'lion'
+    }
+    */
+    springBootApplication {
+        maintainer = 'Yanzheng https://github.com/micyo202'
+        baseImage = 'openjdk:11.0.6'
+        ports = [8200]
+        images = ["${project.group}/${project.name}:${version}"]
+        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m']
+    }
 }
