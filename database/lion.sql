@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MySQL_192.168.1.200_root
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 80013
- Source Host           : 192.168.1.200:3306
+ Source Server Version : 80019
+ Source Host           : localhost:3306
  Source Schema         : lion
 
  Target Server Type    : MySQL
- Target Server Version : 80013
+ Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 16/01/2020 12:38:20
+ Date: 06/03/2020 19:09:36
 */
 
 SET NAMES utf8mb4;
@@ -22,17 +22,17 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_details`;
 CREATE TABLE `oauth_client_details` (
-  `client_id` varchar(48) CHARACTER SET utf8 NOT NULL,
-  `resource_ids` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `client_secret` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `scope` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `authorized_grant_types` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `web_server_redirect_uri` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `authorities` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `access_token_validity` int(11) DEFAULT NULL,
-  `refresh_token_validity` int(11) DEFAULT NULL,
-  `additional_information` varchar(4096) CHARACTER SET utf8 DEFAULT NULL,
-  `autoapprove` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `client_id` varchar(48) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `resource_ids` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `client_secret` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `scope` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `authorized_grant_types` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `web_server_redirect_uri` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `authorities` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `access_token_validity` int DEFAULT NULL,
+  `refresh_token_validity` int DEFAULT NULL,
+  `additional_information` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `autoapprove` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -40,7 +40,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('lion_client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'read', 'client_credentials,authorization_code,mobile,password,refresh_token', NULL, NULL, 25200, 108000, NULL, NULL);
+INSERT INTO `oauth_client_details` VALUES ('lion-client', NULL, '{bcrypt}$2a$10$iq0/gR20ZXaSPkxyQAWlleRHZsl/8cfmpQ4JXqqccjiNSKh88y4LG', 'all', 'client_credentials,authorization_code,mobile,password,refresh_token', NULL, NULL, 25200, 108000, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -48,11 +48,11 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_id`;
 CREATE TABLE `sys_id` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL,
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `max_id` bigint(20) DEFAULT NULL,
-  `step` bigint(20) DEFAULT NULL,
+  `max_id` bigint DEFAULT NULL,
+  `step` bigint DEFAULT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -72,16 +72,16 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单编码',
-  `p_id` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '父菜单ID',
+  `p_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '父菜单ID',
   `p_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '菜单父编码',
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '名称',
-  `url` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '请求地址',
-  `level` int(11) DEFAULT NULL COMMENT '菜单层级',
-  `sort` int(11) DEFAULT NULL COMMENT '菜单排序',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '名称',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '请求地址',
+  `level` int DEFAULT NULL COMMENT '菜单层级',
+  `sort` int DEFAULT NULL COMMENT '菜单排序',
   `is_menu` tinyint(1) DEFAULT NULL COMMENT '是否是菜单(1.菜单。2.按钮)',
-  `icon` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -106,7 +106,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `valid` tinyint(1) DEFAULT NULL,
@@ -131,9 +131,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `role_id` int NOT NULL,
+  `menu_id` int NOT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -157,7 +157,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_schedule`;
 CREATE TABLE `sys_schedule` (
-  `id` int(11) NOT NULL COMMENT '主键',
+  `id` int NOT NULL COMMENT '主键',
   `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '计划任务名称',
   `cron` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '执行周期表达式',
   `app_name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '所属应用名称',
@@ -183,7 +183,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(96) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -218,9 +218,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `role_id` int NOT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -242,7 +242,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `temp_jpa`;
 CREATE TABLE `temp_jpa` (
-  `id` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
@@ -268,8 +268,8 @@ CREATE TABLE `temp_mybatis` (
 -- ----------------------------
 DROP TABLE IF EXISTS `temp_transactional`;
 CREATE TABLE `temp_transactional` (
-  `id` varchar(32) COLLATE utf8_bin NOT NULL,
-  `name` varchar(36) COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `valid` tinyint(1) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -281,12 +281,12 @@ CREATE TABLE `temp_transactional` (
 -- ----------------------------
 DROP TABLE IF EXISTS `undo_log`;
 CREATE TABLE `undo_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `branch_id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint NOT NULL,
   `xid` varchar(100) NOT NULL,
   `context` varchar(128) NOT NULL,
   `rollback_info` longblob NOT NULL,
-  `log_status` int(11) NOT NULL,
+  `log_status` int NOT NULL,
   `log_created` datetime NOT NULL,
   `log_modified` datetime NOT NULL,
   `ext` varchar(100) DEFAULT NULL,
