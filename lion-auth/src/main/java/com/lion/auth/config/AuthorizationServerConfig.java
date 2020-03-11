@@ -5,6 +5,7 @@ import com.lion.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -17,6 +18,9 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
@@ -37,22 +41,59 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
     private DataSource dataSource;
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
-    @Bean
-    public RedisTokenStore redisTokenStore() {
-        return new RedisTokenStore(redisConnectionFactory);
-    }
-
     @Bean
     public ClientDetailsService clientDetails() {
         return new JdbcClientDetailsService(dataSource);
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        /**
+         * redis 存储有状态方式
+         */
+        return new RedisTokenStore(redisConnectionFactory);
+        /**
+         * jwt 无状态方式
+         */
+        //return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        /**
+         * RSA 非对称方式
+         *
+         * 生成 SHA256 的 lion-jwt.jks 签名文件，有效期 3650 天
+         * 命令：keytool -genkeypair -alias lion-jwt -validity 3650 -keyalg RSA -dname "CN=jwt,OU=jtw,O=jtw,L=zurich,S=zurich,C=CH" -keypass 123456 -keystore lion-jwt.jks -storepass 123456
+         *
+         *
+         * jwt 公钥获取
+         *
+         * 命令：keytool -list -rfc --keystore lion-jwt.jks | openssl x509 -inform pem -pubkey
+         * 密码：123456
+         * -----BEGIN PUBLIC KEY-----
+         * MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhf6oZLygSrszafyxNgL1
+         * N9JggRIRb+eVpmQqPKR/qNJ55yUfduX2F/bxmDYXCFtcEtI+oZ8qnUgeN1OmSZ3N
+         * Ma/22dEDE7EhEkeTD8eRjEvem2hnKDq/4SJ8erl9RfLMfITm8wgS67qmV28zdCZW
+         * G4K8l9/LE0AajZ34xopj0OpTYpnmbbd589tAnQpXGWjRgIW/MFm562b2JBNY6uMH
+         * AAr3DXY/EgycbxhzxwL6F9+tYc2lMfkDyZJqY2LUcw5/hPYli17d+skJKWeHB3+j
+         * 3XHrHuuItoPk7rvV9enAQcTN4l6/6+62VSSmJ1JR609RKrgh1NtcbAeFWzqOHH9u
+         * LwIDAQAB
+         * -----END PUBLIC KEY-----
+         * 将生成的公钥信息存放在 lion-pubkey.cert 文件中
+         */
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new FileSystemResource(System.getProperty("user.dir") + "/certificate/lion-jwt.jks"), "123456".toCharArray());
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("lion-jwt"));
+        return jwtAccessTokenConverter;
     }
 
     @Bean
@@ -64,12 +105,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         //String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("secret");
-        // 内存验证clientId信息
+        // 内存验证clientId信息（仅测试）
         /*
         clients.inMemory()
-                .withClient("lion-gateway-server")
+                .withClient("lion-client")
                 .secret(finalSecret)
-                .scopes("server")
+                .scopes("all")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit");
                 */
 
@@ -83,13 +124,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // 配置tokenServices参数
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        // 使用redis方式
-        tokenServices.setTokenStore(redisTokenStore());
+        tokenServices.setTokenStore(tokenStore());
+        /**
+         * jwt 无状态方式
+         */
+        //tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setClientDetailsService(clientDetails());
-        // 设置access_token有效时长，默认12小时
+        // 设置access_token有效时长12小时，默认12小时
         tokenServices.setAccessTokenValiditySeconds(60 * 60 * 12);
-        // 设置refresh_token有效时长，默认30天
+        // 设置refresh_token有效时长7天，默认30天
         tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
 
         endpoints
@@ -98,7 +142,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenServices(tokenServices)
                 // 自定义认证异常处理类
                 .exceptionTranslator(webResponseExceptionTranslator());
-
     }
 
     @Override
@@ -107,7 +150,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permitAll()")
                 .allowFormAuthenticationForClients();
-
     }
 
 }
