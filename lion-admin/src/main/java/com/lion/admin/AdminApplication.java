@@ -1,23 +1,23 @@
-package com.lion.zipkin.server;
+package com.lion.admin;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import zipkin2.server.internal.EnableZipkinServer;
 
 /**
- * ZipkinServerApplication
- * 链路跟踪服务
+ * AdminApplication
+ * 服务监控管理
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/01/01
- * Copyright 2019 Yanzheng. All rights reserved.
+ * @date 2020/3/10
+ * Copyright 2020 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableZipkinServer
-public class ZipkinServerApplication {
+@EnableAdminServer
+public class AdminApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZipkinServerApplication.class, args);
+        SpringApplication.run(AdminApplication.class, args);
     }
 }
