@@ -23,17 +23,3 @@ docker run -d \
 -e PASSWORD=admin \
 micyo202/lion-admin
 ```
-
-### docker-compose
-```yaml
-version: "3"
-services:
-  lion-admin:
-    image: micyo202/lion-admin
-    ports:
-      - "8200:8200"
-    environment:
-      REGISTER_HOST: localhost
-      USERNAME: admin
-      PASSWORD: admin
-```
