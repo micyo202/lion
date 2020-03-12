@@ -6,9 +6,9 @@ Configuration:
   Properties: # 定义全局变量
     Property:
       - name: log.path
-        value: /Users/apple/Desktop/logs
+        value: /tmp/logs
       - name: log.name
-        value: lion-zipkin-server
+        value: lion-admin
       - name: log.pattern
         value: "%d{yyyy-MM-dd HH:mm:ss,SSS} -%5p %pid %notEmpty{[%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}]} [%15.15t] %-30.30C{1.} %50F:%5L -> %m%n"
       - name: log.size
