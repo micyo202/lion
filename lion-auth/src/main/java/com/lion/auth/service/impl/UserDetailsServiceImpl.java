@@ -1,17 +1,15 @@
 package com.lion.auth.service.impl;
 
-import com.lion.auth.client.UpmsClient;
-import com.lion.common.constant.ResponseStatus;
-import com.lion.common.entity.Result;
-import com.lion.common.entity.Role;
-import com.lion.common.entity.User;
+import com.lion.auth.entity.SysRole;
+import com.lion.auth.entity.SysUser;
+import com.lion.auth.service.IUpmsService;
 import com.lion.common.exception.LionException;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -30,7 +28,7 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UpmsClient upmsClient;
+    private IUpmsService upmsService;
 
     /**
      * 角色前缀
@@ -38,48 +36,44 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private static final String ROLE_PREFIX = "ROLE_";
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
 
         // 获取用户信息
-        Result<User> userResult = upmsClient.getUserByUsernameFromUpms(username);
+        SysUser sysUser = upmsService.getUserByUsername(username);
 
-        if (ResponseStatus.SUCCESS.code() != userResult.getCode()) {
-            throw new LionException(userResult.getMsg());
+        if (ObjectUtils.isEmpty(sysUser)) {
+            throw new LionException("用户'" + username + "'不存在");
         }
 
-        User user = userResult.getData();
-
         // 获取角色信息
-        Result<List<Role>> roleResult = upmsClient.getRoleByUserIdFromUpms(user.getId());
-
-        // 判断获取权限列表是否成功
-        if (roleResult.getCode() != ResponseStatus.SUCCESS.code()) {
-            throw new LionException(roleResult.getMsg());
+        List<SysRole> sysRoles = upmsService.getRoleByUserId(sysUser.getId());
+        if (ObjectUtils.isEmpty(sysRoles)) {
+            throw new LionException("用户'" + username + "'没有对应的角色信息，请配置");
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet();
-        roleResult.getData().stream().forEach(role -> {
+        sysRoles.stream().forEach(sysRole -> {
             // 角色必须是 ROLE_ 开头，可以在数据库中设置（这里在程序中设置）
-            grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getCode().toUpperCase()));
+            grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + sysRole.getCode().toUpperCase()));
 
             // 获取菜单列表
             /*
-            Result<List<Menu>> menuResult = upmsClient.getMenuByRoleIdFromUpms(role.getId());
-            // 判断获取菜单列表是否成功
-            if (menuResult.getCode() != ResponseStatus.SUCCESS.code()) {
-                throw new LionException(menuResult.getMsg());
+            List<SysMenu> sysMenus = upmsService.getMenuByRoleId(sysRole.getId());
+            if (ObjectUtils.isEmpty(sysMenus)) {
+                throw new LionException("用户'" + username + "'所在角色没有菜单信息，请配置");
+            } else {
+                sysMenus.stream().forEach(sysMenu -> grantedAuthorities.add(new SimpleGrantedAuthority(sysMenu.getCode())));
             }
-            menuResult.getData().stream().forEach(menu -> grantedAuthorities.add(new SimpleGrantedAuthority(menu.getCode())));
             */
         });
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                user.getEnabled(),
-                user.getAccountNonExpired(),
-                user.getCredentialsNonExpired(),
-                user.getAccountNonLocked(),
+                sysUser.getUsername(),
+                sysUser.getPassword(),
+                sysUser.getEnabled(),
+                sysUser.getAccountNonExpired(),
+                sysUser.getCredentialsNonExpired(),
+                sysUser.getAccountNonLocked(),
                 grantedAuthorities);
     }
 
