@@ -5,21 +5,17 @@
 ### jar
 ```shell script
 SERVER_PORT=8200 \
-REGISTER_HOST= localhost \
-USERNAME=admin \
-PASSWORD=admin \
-java -jar lion-admin.jar
+REGISTER_HOST=localhost \
+java -jar lion-admin-x.x.x.jar
 ```
 
 ### docker
 ```shell script
-docker pull micyo202/lion-admin
+docker pull micyo202/lion-admin:tagname
 ```
 ```shell script
 docker run -d \
 -p 8200:8200 \
 -e REGISTER_HOST=localhost \
--e USERNAME=admin \
--e PASSWORD=admin \
-micyo202/lion-admin
+micyo202/lion-admin:tagname
 ```

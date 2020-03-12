@@ -6,19 +6,19 @@
 ### jar
 ```shell script
 SERVER_PORT=8888 \
-REGISTER_HOST= localhost \
-java -jar lion-auth.jar
+REGISTER_HOST=localhost \
+java -jar lion-auth-x.x.x.jar
 ```
 
 ### docker
 ```shell script
-docker pull micyo202/lion-auth
+docker pull micyo202/lion-auth:tagname
 ```
 ```shell script
 docker run -d \
 -p 8888:8888 \
 -e REGISTER_HOST=localhost \
-micyo202/lion-auth
+micyo202/lion-auth:tagname
 ```
 
 #### 获取access_token请求（/oauth/token） 
