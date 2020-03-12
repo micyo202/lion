@@ -18,12 +18,14 @@ docker {
     //如果url不指定的话
     //Unix默认: url = unix:///var/run/docker.sock
     //Windows默认: url = tcp://127.0.0.1:2375
+    /*
     registryCredentials {
         url = 'https://index.docker.io/v1/'
         username = 'lion'
         password = 'lion'
         email = 'micyo202@163.com'
     }
+    */
     springBootApplication {
         maintainer = 'Yanzheng https://github.com/micyo202'
         baseImage = 'openjdk:11.0.6'
