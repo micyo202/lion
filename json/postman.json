@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "认证服务-获取Token",
+			"name": "服务鉴权-获取Token",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -63,12 +63,12 @@
 			"response": []
 		},
 		{
-			"name": "认证服务-检测Token有效性",
+			"name": "服务鉴权-检测Token有效性",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/auth/oauth/check_token?token=149bf3ad-c9c2-4a57-9aa8-1028a4c903bb",
+					"raw": "http://localhost:8400/auth/oauth/check_token?token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -82,7 +82,7 @@
 					"query": [
 						{
 							"key": "token",
-							"value": "149bf3ad-c9c2-4a57-9aa8-1028a4c903bb"
+							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
 						}
 					]
 				}
@@ -90,12 +90,12 @@
 			"response": []
 		},
 		{
-			"name": "认证服务-刷新token",
+			"name": "服务鉴权-刷新token",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=888bf990-7567-48e3-99f8-eca5b8aed49d&client_id=lion-client&client_secret=secret",
+					"raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2&client_id=lion-client&client_secret=secret",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -113,7 +113,7 @@
 						},
 						{
 							"key": "refresh_token",
-							"value": "888bf990-7567-48e3-99f8-eca5b8aed49d"
+							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
 						},
 						{
 							"key": "client_id",
@@ -129,12 +129,12 @@
 			"response": []
 		},
 		{
-			"name": "认证服务-获取用户凭证信息",
+			"name": "服务鉴权-获取凭证信息",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/auth/user/principal?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/auth/principal?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -142,7 +142,6 @@
 					"port": "8400",
 					"path": [
 						"auth",
-						"user",
 						"principal"
 					],
 					"query": [
@@ -156,12 +155,12 @@
 			"response": []
 		},
 		{
-			"name": "认证服务-销毁Token",
+			"name": "服务鉴权-销毁Token",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/auth/user/revoke?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/auth/revoke?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -169,7 +168,6 @@
 					"port": "8400",
 					"path": [
 						"auth",
-						"user",
 						"revoke"
 					],
 					"query": [
