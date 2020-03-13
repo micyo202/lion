@@ -39,12 +39,12 @@ http://localhost:8888/oauth/check_token?token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
 http://localhost:8888/oauth/token?grant_type=refresh_token&refresh_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&client_id=lion-client&client_secret=secret
 ```
 
-#### 获取当前用户权限信息
+#### 获取凭证信息
 ```http request
-http://localhost:8888/user/principal?access_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+http://localhost:8888/principal?access_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-#### 销毁token
+#### 销毁凭证信息
 ```http request
-http://localhost:8888/user/revoke?access_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+http://localhost:8888/revoke?access_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
