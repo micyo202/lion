@@ -55,6 +55,6 @@ docker {
         baseImage = 'openjdk:11.0.6'
         ports = [8888]
         images = ["micyo202/${project.name}:${version}"]
-        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx512m']
+        jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
     }
 }
