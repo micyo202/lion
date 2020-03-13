@@ -8,41 +8,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
 /**
- * UserController
- * 用户认证模块
+ * AuthController
+ * 权限认证
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/04/08
- * Copyright 2019 Yanzheng. All rights reserved.
+ * @date 2020/03/12
+ * Copyright 2020 Yanzheng. All rights reserved.
  */
-@Api("用户认证")
+@Api("权限认证")
 @RestController
-@RequestMapping("/user")
-public class UserController extends BaseController {
+public class AuthController extends BaseController {
 
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
 
-    @ApiOperation(value = "获取用户凭证信息", response = Result.class)
+    @ApiOperation(value = "获取凭证信息", response = Result.class)
     @GetMapping(value = "/principal")
-    public Result principal(Principal principal) {
+    public Principal principal(Principal principal) {
         //获取用户凭证信息
-        return Result.success(principal);
+        return principal;
     }
 
-    @ApiOperation(value = "移除用户凭证信息", response = Result.class)
+    @ApiOperation(value = "注销凭证信息", response = Result.class)
     @DeleteMapping(value = "/revoke")
     public Result revoke(String access_token) {
         if (consumerTokenServices.revokeToken(access_token)) {
             return Result.success();
         } else {
-            return Result.failure("移除用户凭证信息失败");
+            return Result.failure("注销凭证信息失败");
         }
     }
 
