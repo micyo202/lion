@@ -14,24 +14,24 @@
 #  datasource:
 #    druid:
 #      #JDBC配置
-#      url: jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
-#      username: lion
-#      password: lion
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: ${JDBC_URL:jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true}
+#      username: ${JDBC_USERNAME:lion}
+#      password: ${JDBC_PASSWORD:lion}
+#      driver-class-name: ${JDBC_DRIVER:com.mysql.cj.jdbc.Driver}
 #      #配置连接池大小
 #      initial-size: 0
 #      max-active: 8
 #      validation-query: SELECT 1
-#      test-on-borrow: false
-#      test-on-return: false
-#      test-while-idle: true
+#      test-on-borrow: off
+#      test-on-return: off
+#      test-while-idle: on
 #      filters:
 #        - stat
 #        - wall
 #        - log4j
 #      #监控配置
 #      web-stat-filter:
-#        enabled: true
+#        enabled: on
 #        url-pattern: /*
 #        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
 #        #监控单个url调用的sql列表
@@ -41,36 +41,36 @@
 #      filter:
 #        #慢SQL记录
 #        stat:
-#          merge-sql: true
-#          log-slow-sql: true
+#          merge-sql: on
+#          log-slow-sql: on
 #          slow-sql-millis: 10000
 #        #sql防火墙监控开启
 #        wall:
-#          enabled: true
+#          enabled: on
 #          db-type: mysql
 #          config:
-#            alter-table-allow: false
-#            truncate-allow: false
-#            drop-table-allow: false
+#            alter-table-allow: off
+#            truncate-allow: off
+#            drop-table-allow: off
 #            #是否允许非以上基本语句的其他语句，缺省关闭，通过这个选项就能够屏蔽DDL
-#            none-base-statement-allow: false
+#            none-base-statement-allow: off
 #            #检查UPDATE语句是否无where条件，这是有风险的，但不是SQL注入类型的风险
-#            update-where-none-check: true
+#            update-where-none-check: on
 #            #是否允许SELECT ... INTO OUTFILE语句，这个是mysql注入攻击的常见手段，缺省是禁止的
-#            select-into-outfile-allow: false
+#            select-into-outfile-allow: off
 #            #是否允许调用Connection.getMetadata方法，这个方法调用会暴露数据库的表信息
-#            metadata-allow: true
+#            metadata-allow: on
 #          #对被认为是攻击的SQL进行LOG.error输出
-#          log-violation: true
+#          log-violation: on
 #          #对被认为是攻击的SQL抛出SQLExcepton
-#          throw-exception: true
+#          throw-exception: on
 #      #管理界面用户
 #      stat-view-servlet:
-#        enabled: true
+#        enabled: on
 #        url-pattern: /druid/*
 #        reset-enable: false
-#        login-username: druid
-#        login-password: druid
+#        login-username: ${DRUID_USERNAME:druid}
+#        login-password: ${DRUID_PASSWORD:druid}
 #        #白名单
 #        #allow: 127.0.0.1
 #        #黑名单
@@ -90,6 +90,7 @@
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #
 #management:
+#  endpoints:
 #    web:
 #      exposure:
 #        include: '*'
