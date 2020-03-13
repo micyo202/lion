@@ -3,6 +3,7 @@
 #    user:
 #      name: ${USERNAME:admin}
 #      password: ${PASSWORD:admin}
+#
 #management:
 #  endpoints:
 #    web:
