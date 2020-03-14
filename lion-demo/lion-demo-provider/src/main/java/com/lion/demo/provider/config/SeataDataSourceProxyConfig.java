@@ -4,7 +4,7 @@ package com.lion.demo.provider.config;
  * SeataDataSourceProxyConfig
  * 分布式事物 Seata 数据源代理配置（Mybatis & Jpa）
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/12/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */
