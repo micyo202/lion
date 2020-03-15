@@ -26,8 +26,8 @@ public class CodeGenerator {
     private static final String AUTHOR = "Yanzheng https://github.com/micyo202";
     private static final String URL = "jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String USERNAME = "lion";
+    private static final String PASSWORD = "lion";
     private static final String PACKAGE = "com.lion.auth";
     private static final String PROJECT = "lion-auth";
 
