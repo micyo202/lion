@@ -36,8 +36,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-    implementation "io.springfox:springfox-swagger2:${swagger2Version}"
-    implementation "io.springfox:springfox-swagger-ui:${swagger2Version}"
+    implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
 }
 
 docker {
