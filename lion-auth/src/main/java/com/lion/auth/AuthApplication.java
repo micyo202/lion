@@ -1,5 +1,6 @@
 package com.lion.auth;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.lion.common.config.ScheduleConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.FilterType;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableKnife4j
 @MapperScan("com.lion.auth.mapper")
 @ComponentScan(basePackages = {"com.lion.common", "com.lion.auth"},
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {ScheduleConfig.class})})
