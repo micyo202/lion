@@ -1,0 +1,51 @@
+group 'com.lion.gateway'
+description '路由网关服务'
+
+apply plugin: 'org.springframework.boot'
+apply plugin: "com.bmuschko.docker-spring-boot-application"
+
+configurations {
+    testImplementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-test'
+}
+
+dependencies {
+    implementation project(':lion-common')
+
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
+
+    // 使用 Skywalking 时，依赖 spring-cloud-starter-sleuth 即可
+    //implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    // 使用 Zipkin 时，依赖 spring-cloud-starter-zipkin 即可
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+
+    //implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+    implementation "com.alibaba.csp:sentinel-spring-cloud-gateway-adapter:${sentinelVersion}"
+}
+
+docker {
+    //如果url不指定的话
+    //Unix默认: url = unix:///var/run/docker.sock
+    //Windows默认: url = tcp://127.0.0.1:2375
+    registryCredentials {
+        url = 'https://index.docker.io/v1/'
+        username = 'lion'
+        password = 'lion'
+        email = 'micyo202@163.com'
+    }
+    springBootApplication {
+        maintainer = 'Yanzheng https://github.com/micyo202'
+        baseImage = 'openjdk:11.0.6'
+        ports = [8400]
+        images = ["micyo202/${project.name}:${version}"]
+        jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
+    }
+}
