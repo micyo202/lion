@@ -86,8 +86,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] excludeUrls = ArrayUtils.addAll(PATTERN_URLS, permitUrls);
 
         http
-                //.cors()
-                //.and()
+                .cors()
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(excludeUrls).permitAll()
