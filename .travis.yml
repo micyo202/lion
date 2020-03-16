@@ -4,7 +4,7 @@ sudo: required
 dist: trusty
 
 jdk:
-  - openjdk8
+  - openjdk11
 
 script:
   - java -version
