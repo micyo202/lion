@@ -1,8 +1,7 @@
 group 'com.lion.common'
-description '通用模块'
+description '公共模块'
 
 configurations {
-    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2'
     implementation.exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-yaml'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-actuator'
@@ -10,33 +9,32 @@ configurations {
 }
 
 dependencies {
+    compileOnly "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    compileOnly "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    compileOnly "org.yaml:snakeyaml:${snakeyamlVersion}"
+
+    compileOnly "javax.servlet:javax.servlet-api:${servletVersion}"
+
     compileOnly "org.springframework:spring-web:${springFrameworkVersion}"
+    compileOnly "org.springframework:spring-context:${springFrameworkVersion}"
 
-    compileOnly "org.springframework.amqp:spring-amqp:${amqpVersion}"
+    compileOnly "org.springframework.security.oauth:spring-security-oauth2:${springOauth2Version}"
+    compileOnly "org.springframework.security:spring-security-config:${springSecurityVersion}"
 
-    compileOnly "org.springframework.data:spring-data-jpa:${springDataVersion}"
+    //compileOnly "org.springframework.amqp:spring-amqp:${springAmqpVersion}"
 
     compileOnly "org.springframework.data:spring-data-redis:${springDataVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
 
-    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-
     compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
 
-    compileOnly "org.mybatis:mybatis:${mybatisVersion}"
-    compileOnly "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
-    compileOnly "tk.mybatis:mapper:${tkMapperVersion}"
-    
+    compileOnly "com.baomidou:mybatis-plus:${mybatisPlusVersion}"
+
     compileOnly "com.github.pagehelper:pagehelper:${pagehelperVersion}"
 
-    compileOnly "org.apache.logging.log4j:log4j-api:${log4jVersion}"
-
-    compileOnly "commons-lang:commons-lang:${commonsLangVersion}"
-
-    compileOnly "org.springframework.security.oauth:spring-security-oauth2:${oauth2Version}"
-    compileOnly "org.springframework.security:spring-security-config:${springFrameworkVersion}"
-
-    compileOnly "io.springfox:springfox-swagger2:${swaggerVersion}"
-
-    compileOnly "javax.servlet:javax.servlet-api:${servletApiVersion}"
+    compileOnly "io.springfox:springfox-swagger2:${swagger2Version}"
 }
