@@ -1,7 +1,7 @@
 package com.lion.common.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +20,7 @@ public class PropertiesUtil {
 
     public static String getValue(String fileName, String key) {
 
-        if (StringUtils.isEmpty(fileName) || StringUtils.isEmpty(key)) {
+        if (StringUtils.isAnyEmpty(fileName, key)) {
             return null;
         }
 

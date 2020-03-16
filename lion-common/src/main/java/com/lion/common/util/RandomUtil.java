@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * RandomUtil
  * 随机工具类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/11/21
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -257,8 +257,9 @@ public class RandomUtil {
 
     /**
      * 随机身份证号
+     *
      * @param birth 生日
-     * @param male 性别
+     * @param male  性别
      */
     public static String randomIdCard(String birth, boolean male) {
         StringBuilder sb = new StringBuilder();
@@ -318,6 +319,7 @@ public class RandomUtil {
 
     /**
      * 随机姓名
+     *
      * @param male 性别
      */
     public static String randomName(boolean male) {

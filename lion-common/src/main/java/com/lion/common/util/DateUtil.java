@@ -9,7 +9,7 @@ import java.time.temporal.TemporalAdjusters;
  * DateUtil
  * 日期工具类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/22
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -49,84 +49,86 @@ public class DateUtil {
      * 获取当前时间戳
      */
     public static long getTimestamp() {
-        // Timestamp.valueOf(getCurrentLocalDateTime()).getTime();
-        // getCurrentLocalDateTime().toInstant(ZoneOffset.of("+8")).toEpochMilli();
-        return getCurrentLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        // LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // Timestamp.valueOf(LocalDateTime.now()).getTime();
+        // Instant.now().toEpochMilli();
+        return Instant.now().toEpochMilli();
     }
 
     /**
      * yyyy
      */
     public static int getCurrentYear() {
-        return getCurrentLocalDate().getYear();
+        return LocalDate.now().getYear();
     }
 
     /**
      * yyyy-MM
      */
     public static String getCurrentMonth() {
-        return getCurrentLocalDate().format(YEAR_MONTH_FORMATTER);
+        return LocalDate.now().format(YEAR_MONTH_FORMATTER);
     }
 
     /**
      * yyyy-MM-dd
      */
     public static String getCurrentDate() {
-        return getCurrentLocalDate().format(DATE_FORMATTER);
+        return LocalDate.now().format(DATE_FORMATTER);
     }
 
     /**
      * HHmmss
      */
     public static String getCurrentTime() {
-        return getCurrentLocalTime().format(TIME_FORMATTER);
+        return LocalTime.now().format(TIME_FORMATTER);
     }
 
     /**
      * yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentDateTime() {
-        return getCurrentLocalDateTime().format(DATETIME_FORMATTER);
+        return LocalDateTime.now().format(DATETIME_FORMATTER);
     }
 
     /**
      * yyyyMM
      */
     public static String getCurrentShortYearMonth() {
-        return getCurrentLocalDate().format(SHORT_YEAR_MONTH_FORMATTER);
+        return LocalDate.now().format(SHORT_YEAR_MONTH_FORMATTER);
     }
 
     /**
      * yyyyMMdd
      */
     public static String getCurrentShortDate() {
-        return getCurrentLocalDate().format(SHORT_DATE_FORMATTER);
+        return LocalDate.now().format(SHORT_DATE_FORMATTER);
     }
 
     /**
      * HHmmss
      */
     public static String getCurrentShortTime() {
-        return getCurrentLocalTime().format(SHORT_TIME_FORMATTER);
+        return LocalTime.now().format(SHORT_TIME_FORMATTER);
     }
 
     /**
      * yyyyMMddHHmmss
      */
     public static String getCurrentShortDateTime() {
-        return getCurrentLocalDateTime().format(SHORT_DATETIME_FORMATTER);
+        return LocalDateTime.now().format(SHORT_DATETIME_FORMATTER);
     }
 
     public static String getCurrentDate(String pattern) {
-        return getCurrentLocalDate().format(DateTimeFormatter.ofPattern(pattern));
+        return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     public static String getCurrentTime(String pattern) {
-        return getCurrentLocalTime().format(DateTimeFormatter.ofPattern(pattern));
+        return LocalTime.now().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     public static String getCurrentDateTime(String pattern) {
-        return getCurrentLocalDateTime().format(DateTimeFormatter.ofPattern(pattern));
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
     }
 
     /**
@@ -214,28 +216,28 @@ public class DateUtil {
      * 获取本周第一天
      */
     public static String getWeekFirstDay() {
-        return getCurrentLocalDate().minusWeeks(0).with(DayOfWeek.MONDAY).toString();
+        return LocalDate.now().minusWeeks(0).with(DayOfWeek.MONDAY).toString();
     }
 
     /**
      * 获取本周最后一天
      */
     public static String getWeekLastDay() {
-        return getCurrentLocalDate().minusWeeks(0).with(DayOfWeek.SUNDAY).toString();
+        return LocalDate.now().minusWeeks(0).with(DayOfWeek.SUNDAY).toString();
     }
 
     /**
      * 获取本月第一天
      */
     public static String getMonthFirstDay() {
-        return getCurrentLocalDate().with(TemporalAdjusters.firstDayOfMonth()).toString();
+        return LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()).toString();
     }
 
     /**
      * 获取本月最后一天
      */
     public static String getMonthLastDay() {
-        return getCurrentLocalDate().with(TemporalAdjusters.lastDayOfMonth()).toString();
+        return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).toString();
     }
 
     /**
@@ -274,7 +276,7 @@ public class DateUtil {
      * @return 1:星期一、2:星期二、3:星期三、4:星期四、5:星期五、6:星期六、7:星期日
      */
     public static int getCurrentWeek() {
-        return getCurrentLocalDate().getDayOfWeek().getValue();
+        return LocalDate.now().getDayOfWeek().getValue();
     }
 
     public static int getCurrentWeek(String date) {
@@ -331,7 +333,7 @@ public class DateUtil {
      * @param date
      */
     public static boolean isToday(LocalDate date) {
-        return getCurrentLocalDate().equals(date);
+        return LocalDate.now().equals(date);
     }
 
     /**

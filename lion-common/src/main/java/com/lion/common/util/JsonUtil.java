@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 
@@ -17,17 +16,22 @@ import java.io.IOException;
  * @date 2019/07/17
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Component
 @Slf4j
 public class JsonUtil {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static String jsonObj2Str(Object jsonObj) {
+
         if (null == jsonObj) {
             return null;
         }
         try {
+            // 使用 Gson 解析
+            // final String str =  new GsonBuilder().setPrettyPrinting().create().toJson(obj);
+
+            // 使用 JackSon 解析
+            // final String str = objectMapper.writeValueAsString(jsonObj); // 普通输出
             final String str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
             return str;
         } catch (JsonProcessingException e) {
