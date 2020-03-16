@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Tuple3
