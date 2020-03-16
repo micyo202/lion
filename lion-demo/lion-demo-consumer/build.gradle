@@ -2,12 +2,16 @@ group 'com.lion.demo.consumer'
 description '服务消费者demo'
 
 apply plugin: 'org.springframework.boot'
+apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 ext {
-    apnsVersion = '1.0.0.Beta6'
+    set('apnsVersion', "1.0.0.Beta6")
+    set('junitVersion', "4.13")
 }
 
 dependencies {
+    implementation project(':lion-common')
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
@@ -19,32 +23,52 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    // 使用 Skywalking 时，依赖 spring-cloud-starter-sleuth 即可
+    //implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    // 使用 Zipkin 时，依赖 spring-cloud-starter-zipkin 即可
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
-
-    implementation project(':lion-common')
 
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 
-    implementation "mysql:mysql-connector-java:${mysqlVersion}"
+    runtimeOnly 'mysql:mysql-connector-java'
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-
-    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringVersion}"
-    implementation "tk.mybatis:mapper-spring-boot-starter:${tkMapperSpringVersion}"
+    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+    implementation "com.baomidou:mybatis-plus-generator:${mybatisPlusVersion}"
+    implementation "org.apache.velocity:velocity-engine-core:${velocityEngineVersion}"
 
     implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperSpringVersion}"
 
-    implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
-    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+    implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
+
+    testImplementation "junit:junit:${junitVersion}"
 
     // 苹果推送APNS
     testImplementation "com.notnoop.apns:apns:${apnsVersion}"
+}
+
+docker {
+    //如果url不指定的话
+    //Unix默认: url = unix:///var/run/docker.sock
+    //Windows默认: url = tcp://127.0.0.1:2375
+    registryCredentials {
+        url = 'https://index.docker.io/v1/'
+        username = 'lion'
+        password = 'lion'
+        email = 'micyo202@163.com'
+    }
+    springBootApplication {
+        maintainer = 'Yanzheng https://github.com/micyo202'
+        baseImage = 'openjdk:11.0.6'
+        ports = [8701]
+        images = ["micyo202/${project.name}:${version}"]
+        jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
+    }
 }
