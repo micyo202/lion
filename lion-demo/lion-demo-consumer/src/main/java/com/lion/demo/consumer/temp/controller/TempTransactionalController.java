@@ -4,7 +4,7 @@ import com.lion.common.base.controller.BaseController;
 import com.lion.common.entity.Result;
 import com.lion.demo.consumer.client.ProviderDemoClient;
 import com.lion.demo.consumer.temp.entity.TempTransactional;
-import com.lion.demo.consumer.temp.service.TempTransactionalService;
+import com.lion.demo.consumer.temp.service.ITempTransactionalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * TempTransactionalController
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/23
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -34,7 +34,7 @@ import java.util.UUID;
 public class TempTransactionalController extends BaseController {
 
     @Autowired
-    private TempTransactionalService tempTransactionalService;
+    private ITempTransactionalService tempTransactionalService;
 
     @Autowired
     private ProviderDemoClient providerDemoClient;
@@ -60,8 +60,8 @@ public class TempTransactionalController extends BaseController {
             TempTransactional tempTransactional = new TempTransactional();
             tempTransactional.setName("ConsumerName-" + randomStr);
             tempTransactional.setValid(true);
-            tempTransactional.setCreatetime(new Date());
-            tempTransactional.setUpdateTime(new Date());
+            tempTransactional.setCreateTime(LocalDateTime.now());
+            tempTransactional.setUpdateTime(LocalDateTime.now());
 
             if (i + 1 < 7) {
                 //正常插入
@@ -72,10 +72,10 @@ public class TempTransactionalController extends BaseController {
             }
 
             // 若使用 Try Catch 需要手动回滚事务：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            tempTransactionalService.insert(tempTransactional);
+            tempTransactionalService.save(tempTransactional);
         }
 
         return Result.success("consumer -> temp_transactional 数据保存成功，执行条数：" + num);
     }
-
 }
+

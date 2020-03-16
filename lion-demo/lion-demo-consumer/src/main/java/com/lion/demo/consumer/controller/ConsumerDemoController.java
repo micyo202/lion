@@ -49,13 +49,10 @@ public class ConsumerDemoController extends BaseController {
         return Result.success("Consumer -> version: " + version + ", port: " + port + ", foo: " + foo);
     }
 
-    /**
-     * FeginClient服务请求
-     */
     @Autowired
     private ProviderDemoClient providerDemoClient;
 
-    @ApiOperation("feign示例接口，返回Hi文本内容")
+    @ApiOperation("Feign服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @GetMapping("/feign/hi")
     public Result feignHi(String name) {
@@ -64,9 +61,9 @@ public class ConsumerDemoController extends BaseController {
     }
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    @ApiOperation("ribbon示例接口，返回Hi文本内容")
+    @ApiOperation("Ribbon服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @GetMapping("/ribbon/hi")
     @SentinelResource(value = "ribbonHi", fallback = "ribbonHiFallback")
@@ -75,18 +72,21 @@ public class ConsumerDemoController extends BaseController {
         return restTemplate.getForObject("http://lion-demo-provider/hi", String.class, name);
     }
 
+    /**
+     * Ribbon服务熔断
+     */
     public String ribbonHiFallback(String name) {
         return "Ribbon Hi: '" + name + "', fallback sentinel";
     }
 
-    @ApiOperation("sentinel流量控制接口")
+    @ApiOperation("Sentinel流量控制")
     @GetMapping("/sentinel/block")
     @SentinelResource(value = "sentinelBlock", blockHandler = "sentinelBlockHandler", blockHandlerClass = BlockHandler.class)
     public Result sentinelBlock() {
         return Result.success("This is sentinel control service flow");
     }
 
-    @ApiOperation("sentinel服务熔断、降级接口")
+    @ApiOperation("Sentinel服务熔断降级")
     @GetMapping("/sentinel/fallback")
     @SentinelResource(value = "sentinelFallback", fallback = "sentinelFallback", fallbackClass = FallbackHandler.class)
     public Result sentinelFallback() {
@@ -154,12 +154,16 @@ public class ConsumerDemoController extends BaseController {
         return Result.success(oAuth2Authentication);
     }
 
+    @ApiOperation("文件上传")
+    @ApiParam(name = "file", value = "附件内容")
     @PostMapping("/upload")
     public Result upload(HttpServletRequest request) {
         List<String> list = fileUpload(request);
         return Result.success(list);
     }
 
+    @ApiOperation("文件下载")
+    @ApiParam(name = "fileName", value = "文件名称", required= true)
     @GetMapping("/download/{fileName}")
     public Result download(@PathVariable String fileName, HttpServletResponse response) {
         boolean res = fileDownload(fileName, response);

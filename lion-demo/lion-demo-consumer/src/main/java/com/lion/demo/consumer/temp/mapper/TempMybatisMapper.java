@@ -1,13 +1,21 @@
 package com.lion.demo.consumer.temp.mapper;
 
-import com.lion.common.base.mapper.BaseMapper;
 import com.lion.demo.consumer.temp.entity.TempMybatis;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Yanzheng https://github.com/micyo202
+ * @since 2020-02-15
+ */
 public interface TempMybatisMapper extends BaseMapper<TempMybatis> {
 
     List<TempMybatis> selectByCustomSqlForXml();

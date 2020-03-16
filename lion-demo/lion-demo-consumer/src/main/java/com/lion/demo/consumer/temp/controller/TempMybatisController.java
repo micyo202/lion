@@ -1,11 +1,12 @@
 package com.lion.demo.consumer.temp.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.entity.Result;
 import com.lion.common.entity.ResultPage;
 import com.lion.demo.consumer.temp.entity.TempMybatis;
-import com.lion.demo.consumer.temp.service.TempMybatisService;
+import com.lion.demo.consumer.temp.service.ITempMybatisService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import tk.mybatis.mapper.entity.Example;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -34,7 +34,7 @@ import java.util.UUID;
 public class TempMybatisController extends BaseController {
 
     @Autowired
-    private TempMybatisService tempMybatisService;
+    private ITempMybatisService tempMybatisService;
 
     @ApiOperation(value = "使用Mybatis方式插入数据", notes = "当 num > 5 时触发事务回滚")
     @ApiParam(name = "num", value = "插入数据条数", defaultValue = "5", required = true)
@@ -53,8 +53,8 @@ public class TempMybatisController extends BaseController {
             TempMybatis tempMybatis = new TempMybatis();
             tempMybatis.setName("TempMybatisName-" + randomStr);
             tempMybatis.setValid(true);
-            tempMybatis.setCreateTime(new Date());
-            tempMybatis.setUpdateTime(new Date());
+            tempMybatis.setCreateTime(LocalDateTime.now());
+            tempMybatis.setUpdateTime(LocalDateTime.now());
 
             if (i + 1 < 6) {
                 //正常插入
@@ -65,7 +65,7 @@ public class TempMybatisController extends BaseController {
             }
 
             // 若使用 Try Catch 需要手动回滚事务：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            tempMybatisService.insert(tempMybatis);
+            tempMybatisService.save(tempMybatis);
         }
         return Result.success("temp_mybatis 数据保存成功，执行条数：" + num);
     }
@@ -100,8 +100,8 @@ public class TempMybatisController extends BaseController {
 
         String orderBy = "name DESC,id ASC";
 
-        Example example = new Example(TempMybatis.class);
-        example.and().andLike("name", "%Yanzheng%");
+        QueryWrapper<TempMybatis> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("name", "Yanzheng");
 
         switch (version.toLowerCase()) {
             case "v1":
@@ -117,10 +117,10 @@ public class TempMybatisController extends BaseController {
                 pageInfo = tempMybatisService.selectByStatmentPage(statement, pageNum, pageSize, orderBy);
                 break;
             case "v5":
-                pageInfo = tempMybatisService.selectByExamplePage(example, pageNum, pageSize);
+                pageInfo = tempMybatisService.selectByWrapperPage(queryWrapper, pageNum, pageSize);
                 break;
             case "v6":
-                pageInfo = tempMybatisService.selectByExamplePage(example, pageNum, pageSize, orderBy);
+                pageInfo = tempMybatisService.selectByWrapperPage(queryWrapper, pageNum, pageSize, orderBy);
                 break;
             default:
                 pageInfo = null;
@@ -134,5 +134,5 @@ public class TempMybatisController extends BaseController {
         }
 
     }
-
 }
+
