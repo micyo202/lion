@@ -1,14 +1,11 @@
 package com.lion.common.base.controller;
 
-import com.lion.common.amqp.MessageSender;
 import com.lion.common.exception.LionException;
 import com.lion.common.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ApplicationObjectSupport;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,11 +23,10 @@ import java.util.List;
  * BaseController
  * 通用控制器
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/11/19
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@RestController
 @Slf4j
 public abstract class BaseController extends ApplicationObjectSupport {
 
@@ -47,9 +43,9 @@ public abstract class BaseController extends ApplicationObjectSupport {
     protected String applicationName;
 
     /**
-     * 版本，从gateway服务发起，用于灰度（如：http://localhost:8400/demo/consumer/gray?version=1.0）
+     * 版本，从gateway服务发起，用于灰度（如：http://localhost:8400/demo/consumer/gray?version=v1）
      */
-    @Value("${spring.cloud.nacos.discovery.metadata.version:1.0}")
+    @Value("${spring.cloud.nacos.discovery.metadata.version:v1}")
     protected String version;
 
     /**
@@ -63,12 +59,6 @@ public abstract class BaseController extends ApplicationObjectSupport {
      */
     @Value("${file.upload.path:/tmp}")
     protected String fileUploadPath;
-
-    /**
-     * RabbitMQ 消息发送者
-     */
-    @Autowired
-    protected MessageSender messageSender;
 
     /**
      * 根据名称获取bean对象
@@ -169,6 +159,7 @@ public abstract class BaseController extends ApplicationObjectSupport {
                 }
             }
         }
+
         return list.isEmpty() ? null : list;
     }
 
