@@ -17,7 +17,7 @@
 
 <table>
     <tr>
-        <td width="60%"><img src=https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png width=200 /></td>
+        <td width="40%"><img src=https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png width=200 /></td>
         <td>感谢<a href=https://www.jetbrains.com/?from=lion>JetBrains</a>提供的开源许可，推荐使用<a href=https://www.jetbrains.com/idea?from=lion>IntelliJ IDEA</a>进行开发</td>
     </tr>
 </table>
