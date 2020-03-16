@@ -1,99 +1,50 @@
-group 'com.lion'
-version = '1.6.1'
-
-buildscript {
-    ext {
-        springBootVersion = '2.1.2.RELEASE'
-        generatorPluginVersion = '1.4'
-        dockerVersion = '1.2'
-    }
-    repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        maven { url "https://repo.spring.io/milestone" }
-        maven { url "https://plugins.gradle.org/m2/" }
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:${generatorPluginVersion}"
-        classpath "se.transmode.gradle:gradle-docker:${dockerVersion}"
-    }
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.bmuschko.docker-spring-boot-application' version '6.1.3'
 }
 
-allprojects {
-    apply plugin: 'idea'
-    apply plugin: 'eclipse'
-
-    idea {
-        module {
-            inheritOutputDirs = false
-        }
-    }
-
+repositories {
+    mavenCentral()
 }
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'scala'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: "com.arenagod.gradle.MybatisGenerator"    // 引入 mybatis-generator 插件
-    apply plugin: 'docker'
     apply plugin: 'jacoco'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    sourceSets {
-        main {
-            java {
-                srcDirs = ['src/main/java']
-            }
-            scala {
-                srcDirs = ['src/main/scala']
-            }
-        }
-        test {
-            java {
-                srcDirs = ['src/test/java']
-            }
-            scala {
-                srcDirs = ['src/test/scala']
-            }
-        }
-    }
+    group = 'com.lion'
+    version = '2.0.0'
+    sourceCompatibility = '11'
 
     ext {
-        springBootAdminVersion = '2.1.2'
-        springCloudVersion = 'Greenwich.RELEASE'
-        springFrameworkVersion = '5.1.4.RELEASE'
-        springCloudAlibabaVersion = '2.1.0.RELEASE'
-        springDataVersion = '2.1.4.RELEASE'
+        set('springBootAdminVersion', "2.2.1")
+        set('springCloudAlibabaVersion', "2.2.0.RELEASE")
+        set('springCloudVersion', "Hoxton.SR2")
+        set('springFrameworkVersion', "5.2.4.RELEASE")
+        set('springSecurityVersion', "5.2.2.RELEASE")
+        set('springDataVersion', "2.2.5.RELEASE")
+        set('springAmqpVersion', "2.2.5.RELEASE")
+        set('springOauth2Version', "2.3.4.RELEASE")
 
-        scalaVersion = '2.12.10'
-        jacksonVersion = '2.9.8'
-        lombokVersion = '1.18.6'
-        amqpVersion = '2.1.3.RELEASE'
-        aspectjVersion = '1.9.2'
-        mysqlVersion = '8.0.13'
-        druidVersion = '1.1.16'
-        mybatisVersion = '3.4.6'
-        mybatisSpringVersion = '1.3.2'
-        tkMapperVersion = '4.1.2'
-        tkMapperSpringVersion = '2.1.2'
-        generatorVersion = '1.3.7'
-        pagehelperVersion = '5.1.8'
-        pagehelperSpringVersion = '1.2.10'
-        redissonVersion = '3.10.6'
-        swaggerVersion = '2.9.2'
-        sentinelVersion = '1.6.3'
-        oauth2Version = '2.3.3.RELEASE'
-        commonsLangVersion = '2.6'
-        servletApiVersion = '4.0.1'
-        log4jVersion = '2.11.1'
-        hadoopVersion = '3.1.1'
-        sparkVersion = '2.4.0'
-        googleFindbugsVersion = '3.0.1'
+        set('redissonVersion', "3.12.1")
+        set('aspectjVersion', "1.9.5")
+        set('lombokVersion', "1.18.10")
+        set('druidVersion', "1.1.21")
+        set('mybatisPlusVersion', "3.3.1")
+        set('velocityEngineVersion', "2.1")
+        set('pagehelperSpringVersion', "1.2.13")
+        set('pagehelperVersion', "5.1.11")
+        set('swagger2Version', "2.9.2")
+        set('knife4jVersion', "2.0.2")
+        set('commonsLangVersion', "3.9")
+        set('jacksonVersion', "2.10.2")
+        set('slf4jVersion', "1.7.30")
+        set('snakeyamlVersion', "1.25")
+        set('servletVersion', "4.0.1")
+        set('sentinelVersion', "1.7.1")
     }
 
     repositories {
@@ -105,34 +56,30 @@ subprojects {
     }
 
     configurations {
-        mybatisGenerator    // 添加 mybatis-generator 插件
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-        // 排除 tomcat 依赖（使用 undertow）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+
         // 排除 logback 依赖（使用 log4j2）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
     dependencies {
-        mybatisGenerator "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
-        mybatisGenerator "mysql:mysql-connector-java:${mysqlVersion}"
-        mybatisGenerator "tk.mybatis:mapper:${tkMapperVersion}"
-
-        implementation "org.scala-lang:scala-library:${scalaVersion}"
-
-        implementation 'org.springframework.boot:spring-boot-starter-undertow'
-
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
-
-        implementation "com.google.code.findbugs:annotations:${googleFindbugsVersion}"
-        // 解决 未知的枚举常量 javax.annotation.meta.When.MAYBE
 
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
 
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
     }
 
     dependencyManagement {
@@ -143,28 +90,8 @@ subprojects {
         }
     }
 
-    /**
-     * 添加 mybatis-generator 插件
-     */
-    mybatisGenerator {
-        verbose = true
-        overwrite = true
-        configFile = 'src/main/resources/generatorConfig.xml'
-    }
-
-    /**
-     * 添加docker插件task
-     */
-    task buildDocker(type: Docker, dependsOn: build) {
-        // applicationName = applicationName
-        tagVersion = version
-        dockerfile = file('src/main/docker/Dockerfile')
-        doFirst {
-            copy {
-                from jar
-                into stageDir
-            }
-        }
+    test {
+        useJUnitPlatform()
     }
 
     /**
