@@ -16,10 +16,10 @@
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
 <div align="center">
-    <table frame="void">
+    <table cellspacing="0" cellpadding="0">
         <tr>
-            <td width="35%"><img src="https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png" width="185" /></td>
-            <td>感谢<a href="https://www.jetbrains.com/?from=lion" target="_blank">JetBrains</a>提供的开源许可，推荐使用<a href="https://www.jetbrains.com/idea?from=lion" target="_blank">IntelliJ IDEA</a>进行开发</td>
+            <td width="36%"><img src="https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png" width="180" /></td>
+            <td>感谢<a href="https://www.jetbrains.com/?from=lion">JetBrains</a>提供的开源许可，推荐使用<a href="https://www.jetbrains.com/idea?from=lion">IntelliJ IDEA</a>进行开发</td>
         </tr>
     </table>
 </div>
