@@ -1,10 +1,11 @@
 package com.lion.demo.provider;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
-import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * ProviderDemoApplication
@@ -16,6 +17,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableKnife4j
 //@EnableTransactionManagement
 //@MapperScan("com.lion.**.mapper")
 @MapperScan(basePackages = {"com.lion.common.mapper", "com.lion.demo.provider..*.mapper"})

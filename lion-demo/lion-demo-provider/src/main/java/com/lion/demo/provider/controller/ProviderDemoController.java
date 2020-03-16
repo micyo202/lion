@@ -6,10 +6,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.Serializable;
-import java.util.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ProviderDemoController
@@ -36,26 +35,6 @@ public class ProviderDemoController extends BaseController {
     public Result hi(@RequestParam(defaultValue = "lion") String name) {
         log.info("hi 服务提供者 Provider");
         return Result.success("Hi \"" + name + "\", I'm Provider, From port: " + port);
-    }
-
-    @ApiOperation("Rabbit MQ 消息发送接口")
-    @ApiParam(name = "flag", value = "标记（取值范围：map/list/string）")
-    @RequestMapping(value = "/send/{flag}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result send(@PathVariable String flag) {
-        if ("map".equals(flag)) {
-            Map<String, Object> map = new HashMap<>(3, 1);
-            map.put("id", UUID.randomUUID().toString());
-            map.put("age", 29);
-            map.put("sex", true);
-            messageSender.send(map);
-        } else if ("list".equals(flag)) {
-            List<? extends Serializable> list = Arrays.asList(89757, 19L, 6.66f, "Lion狮子", true);
-            messageSender.send(list);
-        } else {
-            // flag = string
-            messageSender.send("Hello, Lion / 你好，狮子");
-        }
-        return Result.success();
     }
 
 }
