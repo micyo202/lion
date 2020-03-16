@@ -3,6 +3,7 @@
 <p align="center" >
   <img src="https://github.com/micyo202/lion/raw/master/images/lion-logo.png" alt="lion-logo" title="lion-logo">
 </p>
+
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
 [![Version](https://img.shields.io/badge/Version-2.0.0-orange.svg)](https://github.com/micyo202/lion)
@@ -14,9 +15,12 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-<img src=https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png width=185 height=200/> | 感谢[JetBrains](https://www.jetbrains.com/?from=lion)提供的开源许可，推荐使用[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)进行开发
-名称 | 链接 
---- | :-
+<table>
+    <tr>
+        <td width="60%"><img src=https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png width=200 /></td>
+        <td>感谢<a href=https://www.jetbrains.com/?from=lion>JetBrains</a>提供的开源许可，推荐使用<a href=https://www.jetbrains.com/idea?from=lion>IntelliJ IDEA</a>进行开发</td>
+    </tr>
+</table>
 
 ---
 
