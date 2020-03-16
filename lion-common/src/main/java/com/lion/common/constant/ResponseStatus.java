@@ -4,7 +4,7 @@ package com.lion.common.constant;
  * ResponseStatus
  * response响应状态常量类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/09/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -80,5 +80,4 @@ public enum ResponseStatus {
     public String msg() {
         return this.msg;
     }
-
 }
