@@ -22,22 +22,27 @@ public class Role implements Serializable {
      * 主键
      */
     private Integer id;
+
     /**
      * 角色编码
      */
     private String code;
+
     /**
      * 角色名称
      */
     private String name;
+
     /**
      * 是否有效: true 有效/未删除, false 无效/已删除
      */
     private Boolean valid;
+
     /**
      * 创建时间
      */
     private Date createTime;
+
     /**
      * 更新时间
      */

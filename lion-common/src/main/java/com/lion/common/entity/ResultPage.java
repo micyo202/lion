@@ -1,5 +1,6 @@
 package com.lion.common.entity;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
@@ -106,6 +107,7 @@ public class ResultPage<T> implements Serializable {
 
     public ResultPage<T> setPage(T page) {
 
+        // Jpa 分页对象
         if (page instanceof Page) {
             Page p = (Page) page;
             this.setTotal(p.getTotalElements());
@@ -115,6 +117,17 @@ public class ResultPage<T> implements Serializable {
             this.setData(p.getContent());
         }
 
+        // MybatisPlus 分页对象
+        if (page instanceof IPage) {
+            IPage p = (com.baomidou.mybatisplus.extension.plugins.pagination.Page) page;
+            this.setTotal(p.getTotal());
+            this.setPageNum((int) p.getCurrent());
+            this.setPageSize((int) p.getSize());
+            this.setPages((int) p.getPages());
+            this.setData(p.getRecords());
+        }
+
+        // Pagehelper 分页对象
         if (page instanceof PageInfo) {
             PageInfo pageInfo = (PageInfo) page;
             this.setTotal(pageInfo.getTotal());
