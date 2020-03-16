@@ -15,12 +15,14 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-<table>
-    <tr>
-        <td width="40%"><img src=https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png width=200 /></td>
-        <td>感谢<a href=https://www.jetbrains.com/?from=lion>JetBrains</a>提供的开源许可，推荐使用<a href=https://www.jetbrains.com/idea?from=lion>IntelliJ IDEA</a>进行开发</td>
-    </tr>
-</table>
+<div align="center">
+    <table frame="void">
+        <tr>
+            <td width="35%"><img src="https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png" width="185" /></td>
+            <td>感谢<a href="https://www.jetbrains.com/?from=lion" target="_blank">JetBrains</a>提供的开源许可，推荐使用<a href="https://www.jetbrains.com/idea?from=lion" target="_blank">IntelliJ IDEA</a>进行开发</td>
+        </tr>
+    </table>
+</div>
 
 ---
 
@@ -57,6 +59,7 @@
 </p>
 
 ## 分支说明
+
 - [master分支](https://github.com/micyo202/lion)，基于Java 8+重构升级优化后的最新主线版本（推荐）
 - [release1.x分支](https://github.com/micyo202/lion/tree/release1.x)，基于Java 8、SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE、Spring Cloud Alibaba 2.1.0.RELEASE体系实现，支持Java、Scala混编，的最终版
 - [eureka分支](https://github.com/micyo202/lion/tree/eureka)，使用 Eureka 作为服务注册发现中心（Eureka官宣2.x版本不再开源，项目使用Nacos）
@@ -64,10 +67,11 @@
 - [zuul分支](https://github.com/micyo202/lion/tree/zuul)，使用 Zuul 做为路由网关（由于Zuul 2.x的不断跳票，SpringCloud没有整合Zuul 2.x的计划，项目使用Spring Cloud Gateway）
 
 ## 一、项目开发环境&工具
-- MacOS Catalina / Windows 10
-- CentOS 7
-- Java 8+
-- IntelliJ IDEA 2019.3 / Eclipse 2019-09
+
+- MacOS / Windows
+- CentOS
+- Java 8/11/13
+- IntelliJ IDEA / Eclipse
 
 ## 二、相关软件
 
@@ -117,6 +121,7 @@ lion -- 根目录
 ```
 
 ## 五、项目部署
+
 1、下载项目，并导入到**IDE**开发工具中（建议使用**[IntelliJ IDEA](https://www.jetbrains.com/idea/)**作为开发工具（该工具需要购买，激活步骤详情可参考我个人简书上的方法，请移步至[https://www.jianshu.com/p/3c87487e7121](https://www.jianshu.com/p/3c87487e7121)）
 
 2、使用**Gradle**构建项目
@@ -136,9 +141,11 @@ lion -- 根目录
 9、测试方法使用**[postman](https://www.getpostman.com)**导入项目根目录下**json**中的**[postman.json](https://github.com/micyo202/lion/raw/master/json/postman.json)**脚本即可
 
 ## 六、端口使用
+
 - Nacos（端口：8848）
 - Sentinel（端口：8858）
 - Zipkin（端口：9411）
+- SkyWalking（端口：8900）
 
 - lion-admin-server（端口：8200）
 - lion-gateway-server（端口：8400）
@@ -150,66 +157,79 @@ lion -- 根目录
 ## 七、效果预览
 
 #### Nacos服务列表
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-server.png" alt="nacos-server" title="nacos-server">
 </p>
 
 #### Nacos配置列表
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-config.png" alt="nacos-config" title="nacos-config">
 </p>
 
 #### Nacos服务详情
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-detail.png" alt="nacos-detail" title="nacos-detail">
 </p>
 
 #### Boot Admin应用监控
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/admin-wallboard.png" alt="admin-wallboard" title="admin-wallboard">
 </p>
 
 #### Boot Admin应用列表
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/admin-application.png" alt="admin-application" title="admin-application">
 </p>
 
 #### Boot Admin应用详情
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/admin-detail.png" alt="admin-detail" title="admin-detail">
 </p>
 
 #### Sentinel服务限流、熔断降级
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/sentinel.png" alt="sentinel" title="sentinel">
 </p>
 
 #### Zipkin链路信息
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-info.png" alt="zipkin-info" title="zipkin-info">
 </p>
 
 #### Zipkin链路追踪
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-trace.png" alt="zipkin-trace" title="zipkin-trace">
 </p>
 
 #### Zipkin拓扑图
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-dependencies.png" alt="zipkin-dependencies" title="zipkin-dependencies">
 </p>
 
 ### SkyWalking监控面板
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-dashboard.png" alt="skywalking-dashboard" title="skywalking-dashboard">
 </p>
 
 ### SkyWalking链路追踪
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-trace.png" alt="skywalking-trace" title="skywalking-trace">
 </p>
 
 ### SkyWalking拓扑图
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-dependencies.png" alt="skywalking-dependencies" title="skywalking-dependencies">
 </p>
@@ -218,21 +238,25 @@ lion -- 根目录
 </p>
 
 #### Druid SQL监控
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/druid-sql.png" alt="druid-sql" title="druid-sql">
 </p>
 
 #### Druid URI监控
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/druid-uri.png" alt="druid-uri" title="druid-uri">
 </p>
 
 #### Druid Spring监控
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/druid-spring.png" alt="druid-spring" title="druid-spring">
 </p>
 
 #### RESTful APIs文档
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/knife4j-home.png" alt="knife4j-home" title="knife4j-home">
 </p>
@@ -242,4 +266,5 @@ lion -- 根目录
 </p>
 
 ## 八、许可证
+
 [MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)
