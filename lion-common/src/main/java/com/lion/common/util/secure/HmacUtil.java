@@ -1,7 +1,7 @@
 package com.lion.common.util.secure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
  * HmacUtil
  * Hmac工具类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/22
  * Copyright 2019 Yanzheng. All rights reserved.
  */

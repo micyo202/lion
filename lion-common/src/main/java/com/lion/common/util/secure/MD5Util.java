@@ -1,7 +1,7 @@
 package com.lion.common.util.secure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -10,7 +10,7 @@ import java.security.MessageDigest;
  * MD5Util
  * MD5工具类
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/16
  * Copyright 2019 Yanzheng. All rights reserved.
  */
