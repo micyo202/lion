@@ -1,4 +1,4 @@
-package com.lion.demo.consumer;
+package consumer;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
  * ConsumerDemoApplicationTests
  * TODO
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/11/26
  * Copyright 2019 Yanzheng. All rights reserved.
  */

@@ -1,4 +1,4 @@
-package com.lion.demo.consumer.alg;
+package consumer.alg;
 
 import org.junit.Test;
 

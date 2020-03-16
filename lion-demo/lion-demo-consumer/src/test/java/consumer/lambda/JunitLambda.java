@@ -1,4 +1,4 @@
-package com.lion.demo.consumer.lambda;
+package consumer.lambda;
 
 import org.assertj.core.util.Maps;
 import org.junit.Test;

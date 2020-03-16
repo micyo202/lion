@@ -1,4 +1,4 @@
-package com.lion.demo.consumer.apns;
+package consumer.apns;
 
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
@@ -16,7 +16,7 @@ public class JunitAPNS {
     public void test() {
         ApnsService service =
                 APNS.newService()
-                        .withCert("/Users/apple/Desktop/Certificates/apns_development.p12", "666666") // 指定p12文件及密钥
+                        .withCert("~/apns_development.p12", "666666") // 指定p12文件及密钥
                         .withSandboxDestination() // 使用苹果推送测试服务器
                         //.withProductionDestination() // 使用苹果推送生产服务器
                         .build();
