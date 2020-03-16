@@ -1,0 +1,110 @@
+version: "3"
+
+services:
+
+  nacos:
+    image: nacos/nacos-server:1.1.4
+    ports:
+      - "8848:8848"
+    environment:
+      MODE: standalone
+    restart: always
+
+  sentinel:
+    image: bladex/sentinel-dashboard:1.7.1
+    ports:
+      - "8858:8858"
+    restart: always
+
+  zipkin:
+    image: openzipkin/zipkin:2.20
+    ports:
+      - "9411:9411"
+    environment:
+      RABBIT_ADDRESSES: localhost:5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+      STORAGE_TYPE: mysql
+      MYSQL_HOST: localhost
+      MYSQL_USER: lion
+      MYSQL_PASS: lion
+      MYSQL_DB: zipkin
+    restart: always
+
+  skywalking-oap-server:
+    image: apache/skywalking-oap-server:6.6.0-es7
+    container_name: skywalking-oap-server
+    ports:
+      - "11800:11800"
+      - "12800:12800"
+    environment:
+      SW_STORAGE: mysql
+      SW_JDBC_URL: jdbc:mysql://localhost:3306/skywalking
+      SW_DATA_SOURCE_USER: lion
+      SW_DATA_SOURCE_PASSWORD: lion
+    restart: always
+
+  skywalking-ui:
+    image: apache/skywalking-ui:6.6.0
+    container_name: skywalking-ui
+    ports:
+      - "8900:8080"
+    depends_on:
+      - skywalking-oap-server
+    environment:
+      SW_OAP_ADDRESS: skywalking-oap-server:12800
+    restart: always
+
+  lion-admin:
+    image: micyo202/lion-admin:latest
+    ports:
+      - "8200:8200"
+    environment:
+      REGISTER_HOST: localhost
+    depends_on:
+      - nacos
+    restart: always
+
+  lion-gateway:
+    image: micyo202/lion-gateway:latest
+    ports:
+      - "8400:8400"
+    environment:
+      REGISTER_HOST: localhost
+    depends_on:
+      - nacos
+      - sentinel
+    restart: always
+
+  lion-auth:
+    image: micyo202/lion-auth:latest
+    ports:
+      - "8888:8888"
+    environment:
+      REGISTER_HOST: localhost
+    depends_on:
+      - nacos
+      - sentinel
+    restart: always
+
+  lion-demo-provider:
+    image: micyo202/lion-demo-provider:latest
+    ports:
+      - "8601:8601"
+    environment:
+      REGISTER_HOST: localhost
+    depends_on:
+      - nacos
+      - sentinel
+    restart: always
+
+  lion-demo-consumer:
+    image: micyo202/lion-demo-consumer:latest
+    ports:
+      - "8701:8701"
+    environment:
+      REGISTER_HOST: localhost
+    depends_on:
+      - nacos
+      - sentinel
+    restart: always
