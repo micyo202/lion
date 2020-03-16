@@ -6,7 +6,7 @@ Configuration:
   Properties: # 定义全局变量
     Property:
       - name: log.path
-        value: /Users/apple/Desktop/logs
+        value: /tmp/logs
       - name: log.name
         value: lion-demo-provider
       - name: log.pattern

@@ -9,7 +9,7 @@ spring:
       discovery:
         server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         metadata:
-          version: 1.0
+          version: ${VERSION:v1}
       config:
         server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         file-extension: yml
