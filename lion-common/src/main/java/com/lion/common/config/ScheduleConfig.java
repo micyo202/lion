@@ -45,6 +45,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+
         final List<Schedule> scheduleList = scheduleMapper.getScheduleListByAppName(applicationName);
 
         if (null != scheduleList && !scheduleList.isEmpty()) {
@@ -59,7 +60,6 @@ public class ScheduleConfig implements SchedulingConfigurer {
             }
             log.info("定时任务实际启动数量[" + scheduleTaskCount + "]，时间：" + DateUtil.getCurrentDateTime());
         }
-
     }
 
     private Runnable getRunnable(Schedule schedule) {
