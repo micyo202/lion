@@ -6,7 +6,7 @@ import java.io.Serializable;
  * JvmInfo
  * Java Virtual Machine Implementation的信息
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/24
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -50,8 +50,8 @@ public class JvmInfo implements Serializable {
      */
     @Override
     public final String toString() {
-        StringBuilder builder = new StringBuilder();
 
+        StringBuilder builder = new StringBuilder();
         builder.append("JavaVM Name:    ").append(getName())
                 .append("\nJavaVM Version: ").append(getVersion())
                 .append("\nJavaVM Vendor:  ").append(getVendor())

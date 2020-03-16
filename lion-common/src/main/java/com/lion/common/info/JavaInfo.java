@@ -8,7 +8,7 @@ import java.io.Serializable;
  * JavaInfo
  * Java Implementation的信息
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/11/21
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -50,8 +50,8 @@ public class JavaInfo implements Serializable {
      */
     @Override
     public final String toString() {
-        StringBuilder builder = new StringBuilder();
 
+        StringBuilder builder = new StringBuilder();
         builder.append("Java Version:    ").append(getVersion())
                 .append("\nJava Vendor:     ").append(getVendor())
                 .append("\nJava Vendor URL: ").append(getVendorURL());

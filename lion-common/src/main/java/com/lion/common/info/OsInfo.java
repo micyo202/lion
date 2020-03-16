@@ -6,7 +6,7 @@ import java.io.Serializable;
  * OsInfo
  * 当前OS的信息
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/24
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -251,8 +251,8 @@ public class OsInfo implements Serializable {
      */
     @Override
     public final String toString() {
-        StringBuilder builder = new StringBuilder();
 
+        StringBuilder builder = new StringBuilder();
         builder.append("OS Arch:         ").append(getArch())
                 .append("\nOS Name:         ").append(getName())
                 .append("\nOS Version:      ").append(getVersion());

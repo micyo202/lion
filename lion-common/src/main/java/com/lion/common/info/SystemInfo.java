@@ -6,7 +6,7 @@ import java.io.Serializable;
  * SystemInfo
  * 系统信息，包含user、os、jvm等
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/11/26
  * Copyright 2019 Yanzheng. All rights reserved.
  */

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * UserInfo
  * 当前用户的信息
  *
- * @author Yanzheng
+ * @author Yanzheng https://github.com/micyo202
  * @date 2019/10/24
  * Copyright 2019 Yanzheng. All rights reserved.
  */
@@ -66,8 +66,8 @@ public class UserInfo implements Serializable {
      */
     @Override
     public final String toString() {
-        StringBuilder builder = new StringBuilder();
 
+        StringBuilder builder = new StringBuilder();
         builder.append("User Name:           ").append(getName())
                 .append("\nUser Home Dir:       ").append(getHomeDir())
                 .append("\nUser Current Dir:    ").append(getCurrentDir())
