@@ -29,5 +29,4 @@ public interface DistributedLocker {
     void unlock(String lockKey);
 
     void unlock(RLock lock);
-
 }

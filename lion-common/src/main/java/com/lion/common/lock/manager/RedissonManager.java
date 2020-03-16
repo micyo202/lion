@@ -18,16 +18,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedissonManager {
 
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis.host:localhost}")
     private String host;
 
-    @Value("${spring.redis.port}")
+    @Value("${spring.redis.port:6379}")
     private String port;
+
+    @Value("${spring.redis.password:}")
+    private String password;
 
     @Bean
     public RedissonClient getRedisson() {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://" + host + ":" + port);
+        config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
         //.setTimeout(3000)
         //.setConnectionPoolSize(10)
         //.setConnectionMinimumIdleSize(8)

@@ -18,5 +18,4 @@ public @interface Locker {
     long waitTime() default 5000;   // 等待时间
 
     long leaseTime() default 10000; // 单笔业务锁持有时长，防止死锁
-
 }
