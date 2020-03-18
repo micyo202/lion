@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
 [![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)](https://github.com/micyo202/lion)
-[![Java](https://img.shields.io/badge/Java-8+-D72B2A.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Gradle](https://img.shields.io/badge/Gradle-6.2.2-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Hoxton.SR2-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
@@ -126,21 +126,21 @@ lion -- 根目录
 
 2、进入项目根目录执行`./gradlew -x test clean`命令，使用**Gradle**初始化项目
 
-3、初始化完毕后导入到**IDE**开发工具中（建议使用**[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)**作为开发工具
+3、初始化完毕后导入到**IDE**开发工具中（建议使用[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)作为开发工具
 
 4、创建**2**个数据库分别为**lion、zipkin**并分别执行项目根目录下**database**中的**lion.sql、zipkin.sql**脚本，该脚本会创建项目所需的表（如：用户表、角色表、菜单资源表等...）
 
-5、参考文档中**[二、相关软件](#二、相关软件)**的内容，启动**5**个必备服务，否则项目无法正常运行
+5、参考文档中[二、相关软件](#二、相关软件)的内容，启动**5**个必备服务，否则项目无法正常运行
 
-6、根据自己的服务器情况，修改**resources**下**bootstrap.yml**配置中的**nacos**服务地址，及**application.yml**配置中**mysql、redis、rabbitmq、sentinel**的服务地址跟用户名/密码（*注：可将application.yml配置文件注释打开放在项目中，或将application.yml配置文件放入nacos配置管理中*）
+6、根据自己的服务器情况，修改**resources**下**bootstrap.yml**配置中的**nacos**服务地址，及**application.yml**配置中**mysql、redis、rabbitmq、sentinel**的服务地址跟用户名/密码（*注：可将**application.yml**配置文件注释打开放在项目中，或将**application.yml**配置文件放入**nacos**配置管理中*）
 
-7、**Windows**环境还需修改**resources**下**log4j2.yml**配置中**-log.path**的**value**日志输出路径（*注：**Mac、Linux、Ubuntu**环境可忽略此步骤，默认日志输出路径在**/tmp/logs**下*）
+7、**Windows**环境需修改**resources**下**log4j2.yml**配置中`-log.path`的`value`日志输出路径（*注：**Mac、Linux、Ubuntu**环境可忽略此步骤，默认日志输出路径在`/tmp/logs`下*）
 
 8、完成以上步骤就可以正常启动部署服务了
 
 9、项目开发详细示例代码，可参考**lion-demo**示例模块
 
-10、测试方法使用**[postman](https://www.getpostman.com)**导入项目根目录下**json**中的**[postman.json](https://github.com/micyo202/lion/raw/master/json/postman.json)**脚本即可
+10、测试方法使用[postman](https://www.getpostman.com)导入项目根目录下**json**中的[postman.json](https://github.com/micyo202/lion/raw/master/json/postman.json)脚本即可
 
 ## 六、端口使用
 
