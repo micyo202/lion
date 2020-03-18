@@ -2,7 +2,7 @@ package com.lion.common.constant;
 
 /**
  * ResponseStatus
- * response响应状态常量类
+ * response响应状态常枚举常量
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/09/29
