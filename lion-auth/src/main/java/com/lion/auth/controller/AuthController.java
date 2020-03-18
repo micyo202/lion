@@ -29,9 +29,9 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "获取凭证信息", response = Result.class)
     @GetMapping(value = "/principal")
-    public Principal principal(Principal principal) {
+    public Result principal(Principal principal) {
         //获取用户凭证信息
-        return principal;
+        return Result.success(principal);
     }
 
     @ApiOperation(value = "注销凭证信息", response = Result.class)
