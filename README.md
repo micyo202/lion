@@ -6,8 +6,8 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-2.0.0-orange.svg)](https://github.com/micyo202/lion)
-[![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)](https://github.com/micyo202/lion)
+[![Java](https://img.shields.io/badge/Java-8+-D72B2A.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Gradle](https://img.shields.io/badge/Gradle-6.2.2-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Hoxton.SR2-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
@@ -40,7 +40,7 @@
 
 使用**Spring Cloud Gateway**作为路由网关服务
 
-使用**Zipkin / SkyWalking**进行查看完整链路跟踪信息等
+使用**Zipkin / SkyWalking**进行查看完整链路追踪信息等
 
 使用**Feign**, 做到HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求
 
@@ -70,7 +70,7 @@
 
 - MacOS / Windows
 - CentOS
-- Java 8/11/13
+- Java 8+
 - IntelliJ IDEA / Eclipse
 
 ## 二、相关软件
@@ -111,8 +111,8 @@ Seata 1.0.0 | [https://seata.io](https://seata.io) | x
 
 ```lua
 lion -- 根目录
-├── lion-admin-server -- 服务监控
-├── lion-gateway-server -- 路由服务
+├── lion-admin -- 服务监控
+├── lion-gateway -- 路由服务
 ├── lion-common -- 通用工具类模块
 ├── lion-auth -- 安全认证服务器
 ├── lion-demo -- 示例模块
@@ -122,11 +122,11 @@ lion -- 根目录
 
 ## 五、项目部署
 
-1、下载项目"git clone https://github.com/micyo202/lion.git"
+1、下载项目`git clone https://github.com/micyo202/lion.git`
 
-2、进入项目根目录执行"./gradlew -x test clean"命令，使用**Gradle**初始化项目
+2、进入项目根目录执行`./gradlew -x test clean`命令，使用**Gradle**初始化项目
 
-3、初始化完毕后导入到**IDE**开发工具中（建议使用**[IntelliJ IDEA](https://www.jetbrains.com/idea/)**作为开发工具（该工具需要购买，激活步骤详情可参考我个人简书上的方法，请移步至[https://www.jianshu.com/p/3c87487e7121](https://www.jianshu.com/p/3c87487e7121)）
+3、初始化完毕后导入到**IDE**开发工具中（建议使用**[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)**作为开发工具
 
 4、创建**2**个数据库分别为**lion、zipkin**并分别执行项目根目录下**database**中的**lion.sql、zipkin.sql**脚本，该脚本会创建项目所需的表（如：用户表、角色表、菜单资源表等...）
 
@@ -149,8 +149,8 @@ lion -- 根目录
 - Zipkin（端口：9411）
 - SkyWalking（端口：8900）
 
-- lion-admin-server（端口：8200）
-- lion-gateway-server（端口：8400）
+- lion-admin（端口：8200）
+- lion-gateway（端口：8400）
 - lion-auth（端口：8888）
 - lion-demo
     - lion-demo-provider（端口：8601、8602、8603...）
@@ -267,6 +267,6 @@ lion -- 根目录
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/knife4j-apis.png" alt="knife4j-apis" title="knife4j-apis">
 </p>
 
-## 八、许可证
+## 八、开源许可证
 
 [MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)
