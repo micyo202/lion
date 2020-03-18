@@ -1,6 +1,7 @@
 package com.lion.auth.config;
 
 import com.lion.auth.service.impl.UserDetailsServiceImpl;
+import com.lion.common.constant.SecurityConstant;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,20 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("#{'${pattern.permit.urls:}'}")
     private String[] permitUrls;
 
-    /**
-     * 不进行认证，直接放行的URL
-     */
-    private static final String[] PATTERN_URLS = {
-            "/actuator/**",
-            "/druid/**",
-
-            "/webjars/**",
-            "/resources/**",
-            "/swagger-ui.html",
-            "/swagger-resources/**",
-            "/v2/api-docs"
-    };
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -82,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 合并不许要拦截的URL数组
-        String[] excludeUrls = ArrayUtils.addAll(PATTERN_URLS, permitUrls);
+        // 合并不许要拦截的URL地址
+        String[] excludeUrls = ArrayUtils.addAll(SecurityConstant.PATTERN_URLS, permitUrls);
 
         http
                 .cors()
