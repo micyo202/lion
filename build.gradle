@@ -120,14 +120,13 @@ subprojects {
     tasks.clean.dependsOn(cleanOutDir)
 
     /**
-     * 根据环境打包，命令：./gradlew clean bootJar -D profile=prod
+     * 根据环境打包，命令：./gradlew -x test clean bootJar -Denv=dev
      */
     /*
     import org.apache.tools.ant.filters.ReplaceTokens
-    def profileName = System.getProperty("profile") ?: "dev"
+    def env = System.getProperty("env") ?: "dev"
     processResources {
-        filter ReplaceTokens, tokens: [profileName: profileName]
+        filter ReplaceTokens, tokens: [env: env]
     }
     */
-
 }
