@@ -43,7 +43,7 @@ public abstract class BaseController extends ApplicationObjectSupport {
     protected String applicationName;
 
     /**
-     * 版本，从gateway服务发起，用于灰度（如：http://localhost:8400/demo/consumer/gray?version=v1）
+     * 版本，从gateway服务发起，用于灰度（如：http://localhost:8400/demo/consumer/init?version=v1）
      */
     @Value("${spring.cloud.nacos.discovery.metadata.version:v1}")
     protected String version;
