@@ -1,5 +1,5 @@
 #spring:
-#  # 处理 FeignClient 重名问题
+#  #处理 FeignClient 重名问题
 #  #main:
 #    #allow-bean-definition-overriding: true
 #  cloud:
@@ -8,7 +8,7 @@
 #        dashboard: ${SENTINEL_DASHBOARD:localhost:8858}
 #    #alibaba:
 #      #seata:
-#        #tx-service-group: lion-demo-consumer-service-group
+#        #tx-service-group: lion-demo-consumer-group
 #  rabbitmq:
 #    host: ${RABBIT_MQ_HOST:localhost}
 #    port: ${RABBIT_MQ_PORT:5672}

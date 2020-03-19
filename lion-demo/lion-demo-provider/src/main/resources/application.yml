@@ -5,7 +5,7 @@
 #        dashboard: ${SENTINEL_DASHBOARD:localhost:8858}
 #    #alibaba:
 #      #seata:
-#        #tx-service-group: lion-demo-provider-service-group
+#        #tx-service-group: lion-demo-provider-group
 #  rabbitmq:
 #    host: ${RABBIT_MQ_HOST:localhost}
 #    port: ${RABBIT_MQ_PORT:5672}
