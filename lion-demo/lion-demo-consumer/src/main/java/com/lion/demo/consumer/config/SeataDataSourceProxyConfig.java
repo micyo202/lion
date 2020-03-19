@@ -11,28 +11,34 @@ package com.lion.demo.consumer.config;
 //@Configuration
 public class SeataDataSourceProxyConfig {
 
+    /*
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+    */
+
     /**
      * 从配置文件获取属性构造datasource，注意前缀，这里用的是druid，根据自己情况配置,
      * 原生datasource前缀取"spring.datasource"
      */
-//    @Bean
-//    @ConfigurationProperties(prefix = "spring.datasource.druid")
-//    public DataSource dataSource() {
-//        return new DruidDataSource();
-//    }
+    /*
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.druid")
+    public DataSource dataSource() {
+        DruidDataSource druidDataSource = new DruidDataSource();
+        return druidDataSource;
+    }
+    */
 
     /**
      * 构造datasource代理对象，替换原来的datasource
      */
-//    @Primary
-//    @Bean
-//    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
-//        return new DataSourceProxy(dataSource);
-//    }
-
-//    @Bean
-//    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-//        return new SqlSessionTemplate(sqlSessionFactory);
-//    }
-
+    /*
+    @Primary
+    @Bean("dataSource")
+    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
+    }
+    */
 }
