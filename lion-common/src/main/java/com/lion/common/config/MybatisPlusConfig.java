@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.lion.common.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
@@ -7,15 +7,18 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MybatisPlusConfig
- * 分页拦截器配置
+ * MybatisPlus 配置类
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2020/2/12
+ * @date 2020/3/19
  * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Configuration
 public class MybatisPlusConfig {
 
+    /**
+     * MyBatis Plus自带分页插件
+     */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
 
@@ -29,5 +32,4 @@ public class MybatisPlusConfig {
 
         return paginationInterceptor;
     }
-
 }
