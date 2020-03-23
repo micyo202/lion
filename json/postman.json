@@ -9,7 +9,13 @@
 			"name": "服务鉴权-获取Token",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -66,9 +72,15 @@
 			"name": "服务鉴权-检测Token有效性",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/auth/oauth/check_token?token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/auth/oauth/check_token?token=18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -82,7 +94,7 @@
 					"query": [
 						{
 							"key": "token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53"
 						}
 					]
 				}
@@ -93,9 +105,15 @@
 			"name": "服务鉴权-刷新token",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2&client_id=lion-client&client_secret=secret",
+					"raw": "http://localhost:8400/auth/oauth/token?grant_type=refresh_token&refresh_token=552c6ca6-455b-49fc-a86c-905b99ef8b8f&client_id=lion-client&client_secret=secret",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -113,7 +131,7 @@
 						},
 						{
 							"key": "refresh_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
+							"value": "552c6ca6-455b-49fc-a86c-905b99ef8b8f"
 						},
 						{
 							"key": "client_id",
@@ -131,10 +149,25 @@
 		{
 			"name": "服务鉴权-获取凭证信息",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/auth/principal?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/auth/principal",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -143,12 +176,6 @@
 					"path": [
 						"auth",
 						"principal"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -157,10 +184,31 @@
 		{
 			"name": "服务鉴权-销毁Token",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18a4b53c-d046-4234-8690-4c9c6c1d24c9",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/auth/revoke?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/auth/revoke",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -169,12 +217,6 @@
 					"path": [
 						"auth",
 						"revoke"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -183,10 +225,31 @@
 		{
 			"name": "服务消费者-初始化",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/init?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/init",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -196,12 +259,6 @@
 						"demo",
 						"consumer",
 						"init"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -210,10 +267,31 @@
 		{
 			"name": "服务消费者-Feign服务调用",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/feign/hi?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2&name=张三",
+					"raw": "http://localhost:8400/demo/consumer/feign/hi?name=张三",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -227,10 +305,6 @@
 					],
 					"query": [
 						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						},
-						{
 							"key": "name",
 							"value": "张三"
 						}
@@ -242,10 +316,31 @@
 		{
 			"name": "服务消费者-Ribbon服务调用",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/ribbon/hi?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2&name=张三",
+					"raw": "http://localhost:8400/demo/consumer/ribbon/hi?name=张三",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -259,10 +354,6 @@
 					],
 					"query": [
 						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						},
-						{
 							"key": "name",
 							"value": "张三"
 						}
@@ -274,10 +365,31 @@
 		{
 			"name": "服务消费者-Sentinel流量控制",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/sentinel/block?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/sentinel/block",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -288,12 +400,6 @@
 						"consumer",
 						"sentinel",
 						"block"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -302,10 +408,31 @@
 		{
 			"name": "服务消费者-Sentinel服务熔断降级",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/sentinel/fallback?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/sentinel/fallback",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -316,12 +443,6 @@
 						"consumer",
 						"sentinel",
 						"fallback"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -330,10 +451,31 @@
 		{
 			"name": "服务消费者-获取用户凭证信息",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/principle?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/principle",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -343,12 +485,6 @@
 						"demo",
 						"consumer",
 						"principle"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -357,10 +493,31 @@
 		{
 			"name": "服务消费者-\b需要admin\b角色访问",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/admin?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/admin",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -370,12 +527,6 @@
 						"demo",
 						"consumer",
 						"admin"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -384,10 +535,31 @@
 		{
 			"name": "服务消费者-需要user角色访问",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/user?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -397,12 +569,6 @@
 						"demo",
 						"consumer",
 						"user"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -411,10 +577,31 @@
 		{
 			"name": "服务消费者-无需认证访问Product",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/product/1?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/product/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -425,12 +612,6 @@
 						"consumer",
 						"product",
 						"1"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -439,10 +620,31 @@
 		{
 			"name": "服务消费者-需要认证访问Order",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/order/6?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/order/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -453,12 +655,6 @@
 						"consumer",
 						"order",
 						"6"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -467,10 +663,31 @@
 		{
 			"name": "服务消费者-Redis分布式锁",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/lock?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/lock",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -480,12 +697,6 @@
 						"demo",
 						"consumer",
 						"lock"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -494,20 +705,41 @@
 		{
 			"name": "服务消费者-文件上传",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/Users/apple/Desktop/lion.txt"
+							"src": "/Users/apple/Desktop/words.txt"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/upload?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/upload",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -517,12 +749,6 @@
 						"demo",
 						"consumer",
 						"upload"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -531,10 +757,31 @@
 		{
 			"name": "服务消费者-文件下载",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/download/1583899132306.txt?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/download/1584942226044.txt",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -544,44 +791,7 @@
 						"demo",
 						"consumer",
 						"download",
-						"1583899132306.txt"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "服务消费者-灰度",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8400/demo/consumer/init?version=v1&access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8400",
-					"path": [
-						"demo",
-						"consumer",
-						"init"
-					],
-					"query": [
-						{
-							"key": "version",
-							"value": "v1"
-						},
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
+						"1584942226044.txt"
 					]
 				}
 			},
@@ -590,10 +800,31 @@
 		{
 			"name": "服务消费者-MyBatis插入数据",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/save/3?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/save/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -606,12 +837,6 @@
 						"mybatis",
 						"save",
 						"3"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -620,10 +845,31 @@
 		{
 			"name": "服务消费者-Mybatis自定义Mapper、XML查询",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/custom/sql/mapper?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/custom/sql/mapper",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -637,12 +883,6 @@
 						"custom",
 						"sql",
 						"mapper"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -651,10 +891,31 @@
 		{
 			"name": "服务消费者-Mybatis分页查询",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/page/v1/1/6?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/page/v1/1/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -669,12 +930,6 @@
 						"v1",
 						"1",
 						"6"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
@@ -683,10 +938,31 @@
 		{
 			"name": "服务消费者-Mybatis分布式事物Transactional",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/transactional/save/3?access_token=13039b57-2a96-43fe-8603-0af1e6dcfbc2",
+					"raw": "http://localhost:8400/demo/consumer/temp/transactional/save/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -699,12 +975,6 @@
 						"transactional",
 						"save",
 						"3"
-					],
-					"query": [
-						{
-							"key": "access_token",
-							"value": "13039b57-2a96-43fe-8603-0af1e6dcfbc2"
-						}
 					]
 				}
 			},
