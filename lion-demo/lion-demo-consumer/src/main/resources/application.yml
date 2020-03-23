@@ -1,7 +1,7 @@
 #spring:
 #  #处理 FeignClient 重名问题
 #  #main:
-#    #allow-bean-definition-overriding: true
+#    #allow-bean-definition-overriding: on
 #  cloud:
 #    sentinel:
 #      transport:
@@ -111,16 +111,10 @@
 #  sentinel:
 #    enabled: on
 #
-##OAuth2安全认证配置
-#security:
-#  oauth2:
-#    client:
-#      access-token-uri: http://localhost:8888/oauth/token
-#
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/lock/**,/product/**,/rabbit/**,/upload/**,/download/**,/temp/**,/scala/**
+#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/lock/**,/product/**,/rabbit/**,/upload/**,/download/**,/temp/**
 #
 ##配置附件上传路径
 #file:

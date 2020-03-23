@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: router
+  #处理 FeignClient 重名问题
+  #main:
+    #allow-bean-definition-overriding: on
   cloud:
     sentinel:
       transport:
@@ -22,6 +25,11 @@ spring:
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:lion}
 
+#开启sentinel断路器
+feign:
+  sentinel:
+    enabled: on
+
 management:
   endpoints:
     web:
@@ -42,34 +50,6 @@ spring:
           uri: lb://lion-auth
           predicates:
             - Path=/auth/**
-          filters:
-            - StripPrefix=1
-
-        - id: lion-upms
-          uri: lb://lion-upms
-          predicates:
-            - Path=/upms/**
-          filters:
-            - StripPrefix=1
-
-        - id: lion-id
-          uri: lb://lion-id
-          predicates:
-            - Path=/id/**
-          filters:
-            - StripPrefix=1
-
-        - id: lion-bigdata
-          uri: lb://lion-bigdata
-          predicates:
-            - Path=/bigdata/**
-          filters:
-            - StripPrefix=1
-
-        - id: lion-blockchain
-          uri: lb://lion-blockchain
-          predicates:
-            - Path=/blockchain/**
           filters:
             - StripPrefix=1
 

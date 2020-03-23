@@ -1,4 +1,7 @@
 #spring:
+#  #处理 FeignClient 重名问题
+#  #main:
+#    #allow-bean-definition-overriding: on
 #  cloud:
 #    sentinel:
 #      transport:
@@ -96,11 +99,10 @@
 #    #将执行的sql打印出来，生产需关闭
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #
-##OAuth2安全认证配置
-#security:
-#  oauth2:
-#    client:
-#      access-token-uri: http://localhost:8888/oauth/token
+##开启sentinel断路器
+#feign:
+#  sentinel:
+#    enabled: on
 #
 ##配置无需认证的url
 #pattern:

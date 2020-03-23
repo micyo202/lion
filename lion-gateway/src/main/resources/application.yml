@@ -1,4 +1,7 @@
 #spring:
+#  #处理 FeignClient 重名问题
+#  #main:
+#    #allow-bean-definition-overriding: on
 #  cloud:
 #    gateway:
 #      # 配置路由规则
@@ -43,6 +46,11 @@
 #    host: ${REDIS_HOST:localhost}
 #    port: ${REDIS_PORT:6379}
 #    password: ${REDIS_PASSWORD:lion}
+#
+##开启sentinel断路器
+#feign:
+#  sentinel:
+#    enabled: on
 #
 #management:
 #  endpoints:
