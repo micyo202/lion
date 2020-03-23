@@ -25,6 +25,8 @@ dependencies {
 
     //implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'

@@ -15,7 +15,7 @@ dependencies {
 
     compileOnly "org.slf4j:slf4j-api:${slf4jVersion}"
 
-    compileOnly "org.yaml:snakeyaml:${snakeyamlVersion}"
+    compileOnly "org.yaml:snakeyaml:${yamlVersion}"
 
     compileOnly "javax.servlet:javax.servlet-api:${servletVersion}"
 
@@ -25,9 +25,15 @@ dependencies {
     compileOnly "org.springframework.security.oauth:spring-security-oauth2:${springOauth2Version}"
     compileOnly "org.springframework.security:spring-security-config:${springSecurityVersion}"
 
-    //compileOnly "org.springframework.amqp:spring-amqp:${springAmqpVersion}"
+    compileOnly "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+    compileOnly 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+    compileOnly "io.github.openfeign:feign-core:${feignVersion}"
+    compileOnly "com.netflix.ribbon:ribbon-loadbalancer:${ribbonVersion}"
 
-    compileOnly "org.springframework.data:spring-data-redis:${springDataVersion}"
+    //compileOnly "org.springframework.amqp:spring-amqp:${springBootVersion}"
+
+    compileOnly "org.springframework.data:spring-data-redis:${springBootVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
 
     compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
