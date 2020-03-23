@@ -1,6 +1,7 @@
 package com.lion.auth.controller;
 
 import com.lion.common.base.controller.BaseController;
+import com.lion.common.constant.SecurityConstant;
 import com.lion.common.entity.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,8 +37,10 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "注销凭证信息", response = Result.class)
     @DeleteMapping(value = "/revoke")
-    public Result revoke(String access_token) {
-        if (consumerTokenServices.revokeToken(access_token)) {
+    public Result revoke() {
+        String accessToken = getRequest().getHeader(SecurityConstant.ACCESS_TOKEN);
+        String formatToken = accessToken.replace(SecurityConstant.BEARER_PREFIX, "");
+        if (consumerTokenServices.revokeToken(formatToken)) {
             return Result.success();
         } else {
             return Result.failure("注销凭证信息失败");
