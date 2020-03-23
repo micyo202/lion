@@ -20,18 +20,21 @@ subprojects {
     sourceCompatibility = '11'
 
     ext {
+        set('springBootVersion', "2.2.5.RELEASE")
         set('springBootAdminVersion', "2.2.1")
         set('springCloudAlibabaVersion', "2.2.0.RELEASE")
         set('springCloudVersion', "Hoxton.SR2")
         set('springFrameworkVersion', "5.2.4.RELEASE")
         set('springSecurityVersion', "5.2.2.RELEASE")
-        set('springDataVersion', "2.2.5.RELEASE")
-        set('springAmqpVersion', "2.2.5.RELEASE")
         set('springOauth2Version', "2.3.4.RELEASE")
 
-        set('redissonVersion', "3.12.1")
-        set('aspectjVersion', "1.9.5")
+        set('commonsLangVersion', "3.9")
         set('lombokVersion', "1.18.10")
+        set('jacksonVersion', "2.10.2")
+        set('slf4jVersion', "1.7.30")
+        set('yamlVersion', "1.25")
+        set('aspectjVersion', "1.9.5")
+        set('redissonVersion', "3.12.1")
         set('druidVersion', "1.1.21")
         set('mybatisPlusVersion', "3.3.1")
         set('velocityEngineVersion', "2.1")
@@ -39,12 +42,10 @@ subprojects {
         set('pagehelperVersion', "5.1.11")
         set('swagger2Version', "2.9.2")
         set('knife4jVersion', "2.0.2")
-        set('commonsLangVersion', "3.9")
-        set('jacksonVersion', "2.10.2")
-        set('slf4jVersion', "1.7.30")
-        set('snakeyamlVersion', "1.25")
         set('servletVersion', "4.0.1")
         set('sentinelVersion', "1.7.1")
+        set('feignVersion', "10.4.0")
+        set('ribbonVersion', "2.3.0")
     }
 
     repositories {
