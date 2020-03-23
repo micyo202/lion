@@ -10,6 +10,14 @@ package com.lion.common.constant;
  */
 public interface SecurityConstant {
 
+    String OAUTH_URL = "/oauth/";
+
+    String ACCESS_TOKEN = "Authorization";
+
+    String BEARER_PREFIX = "Bearer ";
+
+    String ACCESS_PREFIX = "access:";
+
     /**
      * 系统固定不进行认证，直接放行的URL，供WebSecurityConfig、ResourceServerConfig公用
      */
