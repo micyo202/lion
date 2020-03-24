@@ -165,7 +165,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8400/auth/principal",
 					"protocol": "http",
