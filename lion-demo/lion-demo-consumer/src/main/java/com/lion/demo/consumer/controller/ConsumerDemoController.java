@@ -16,13 +16,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ConsumerDemoController
@@ -46,7 +50,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("初始化接口")
     @GetMapping("/init")
     public Result init() {
-        return Result.success("Consumer -> version: " + version + ", port: " + port + ", foo: " + foo);
+        return Result.success("Consumer -> port: " + port + ", version: " + version + ", foo: " + foo);
     }
 
     @Autowired
@@ -54,9 +58,9 @@ public class ConsumerDemoController extends BaseController {
 
     @ApiOperation("Feign服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
-    @GetMapping("/feign/hi")
+    @RequestMapping(value = "/feign/hi", method = {RequestMethod.GET, RequestMethod.POST})
     public Result feignHi(String name) {
-        log.info("feignHi 服务消费者 Consumer");
+        log.info("Consumer -> 服务消费者 feign");
         return providerDemoClient.hiFromProvider(name);
     }
 
@@ -65,18 +69,37 @@ public class ConsumerDemoController extends BaseController {
 
     @ApiOperation("Ribbon服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
-    @GetMapping("/ribbon/hi")
     @SentinelResource(value = "ribbonHi", fallback = "ribbonHiFallback")
-    public String ribbonHi(String name) {
-        log.info("ribbonHi 服务消费者 Consumer");
-        return restTemplate.getForObject("http://lion-demo-provider/hi", String.class, name);
+    @RequestMapping(value = "/ribbon/hi", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result ribbonHi(String name) {
+
+        String method = this.getRequest().getMethod();
+        Result result = null;
+        if ("GET".equals(method)) {
+            Map<String, Object> params = new HashMap<>();
+            params.put("name", name);
+
+            String url = "http://lion-demo-provider/hi?name={name}";
+            result = restTemplate.getForObject(url, Result.class, params);
+        }
+        if ("POST".equals(method)) {
+            MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+            params.add("name", name);
+
+            String url = "http://lion-demo-provider/hi";
+            result = restTemplate.postForObject(url, params, Result.class);
+        }
+
+        log.info("Consumer -> 服务消费者 ribbon 发起 " + method + " 请求结果：" + result);
+
+        return result;
     }
 
     /**
      * Ribbon服务熔断
      */
-    public String ribbonHiFallback(String name) {
-        return "Ribbon Hi: '" + name + "', fallback sentinel";
+    public Result ribbonHiFallback(String name) {
+        return Result.failure("Ribbon Hi: '" + name + "', fallback sentinel");
     }
 
     @ApiOperation("Sentinel流量控制")
@@ -163,7 +186,7 @@ public class ConsumerDemoController extends BaseController {
     }
 
     @ApiOperation("文件下载")
-    @ApiParam(name = "fileName", value = "文件名称", required= true)
+    @ApiParam(name = "fileName", value = "文件名称", required = true)
     @GetMapping("/download/{fileName}")
     public Result download(@PathVariable String fileName, HttpServletResponse response) {
         boolean res = fileDownload(fileName, response);
