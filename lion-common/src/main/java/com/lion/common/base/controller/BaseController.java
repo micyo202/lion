@@ -49,12 +49,6 @@ public abstract class BaseController extends ApplicationObjectSupport {
     protected String version;
 
     /**
-     * 认证服务地址（默认：http://localhost:8888/oauth/token）
-     */
-    @Value("${security.oauth2.client.access-token-uri:http://localhost:8888/oauth/token}")
-    protected String authServer;
-
-    /**
      * 文件上传路径（默认：/tmp）
      */
     @Value("${file.upload.path:/tmp}")
