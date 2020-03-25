@@ -53,7 +53,7 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         }
         ase = (InvalidTokenException) throwableAnalyzer.getFirstThrowableOfType(InvalidTokenException.class, causeChain);
         if (ase instanceof InvalidTokenException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 access_token"));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token"));
         }
         ase = (InvalidGrantException) throwableAnalyzer.getFirstThrowableOfType(InvalidGrantException.class, causeChain);
         if (ase instanceof InvalidGrantException) {
@@ -71,7 +71,7 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
                 msg = "用户帐户已锁定";
             }
             if (msg.contains("Invalid refresh token")) {
-                msg = "无效的 refresh_token";
+                msg = "无效的 Refresh Token";
             }
             return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), msg));
         }
