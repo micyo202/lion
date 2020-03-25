@@ -12,4 +12,7 @@ public interface GrayConstant {
 
     String VERSION = "version";
 
+    // 默认版本号
+    String DEFAULT_VERSION = "v1";
+
 }
