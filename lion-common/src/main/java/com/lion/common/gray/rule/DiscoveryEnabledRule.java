@@ -1,6 +1,7 @@
-package com.lion.gateway.gray.rule;
+package com.lion.common.gray.rule;
 
-import com.lion.gateway.gray.predicate.DiscoveryEnabledPredicate;
+
+import com.lion.common.gray.predicate.DiscoveryEnabledPredicate;
 import com.netflix.loadbalancer.AbstractServerPredicate;
 import com.netflix.loadbalancer.AvailabilityPredicate;
 import com.netflix.loadbalancer.CompositePredicate;

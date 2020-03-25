@@ -1,6 +1,6 @@
-package com.lion.gateway.gray.support;
+package com.lion.common.gray.support;
 
-import com.lion.gateway.gray.api.RibbonFilterContext;
+import com.lion.common.gray.api.RibbonFilterContext;
 
 /**
  * RibbonFilterContextHolder
@@ -12,7 +12,7 @@ import com.lion.gateway.gray.api.RibbonFilterContext;
  */
 public class RibbonFilterContextHolder {
 
-    private static final ThreadLocal<RibbonFilterContext> contextHolder = new InheritableThreadLocal<RibbonFilterContext>() {
+    private static final ThreadLocal<RibbonFilterContext> contextHolder = new InheritableThreadLocal<>() {
         @Override
         protected RibbonFilterContext initialValue() {
             return new DefaultRibbonFilterContext();
@@ -26,5 +26,4 @@ public class RibbonFilterContextHolder {
     public static void clearCurrentContext() {
         contextHolder.remove();
     }
-
 }

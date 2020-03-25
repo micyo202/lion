@@ -1,7 +1,7 @@
-package com.lion.gateway.gray.support;
+package com.lion.common.gray.config;
 
-import com.lion.gateway.gray.rule.DiscoveryEnabledRule;
-import com.lion.gateway.gray.rule.MetadataAwareRule;
+import com.lion.common.gray.rule.DiscoveryEnabledRule;
+import com.lion.common.gray.rule.MetadataAwareRule;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Scope;
 
 /**
  * RibbonDiscoveryRuleAutoConfiguration
- * 灰度负载发现规则自动配置类
+ * 灰度服务发现负载规则配置类
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/09/09
@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 @AutoConfigureBefore(RibbonClientConfiguration.class)
 @ConditionalOnProperty(value = "ribbon.filter.metadata.enabled", matchIfMissing = true)
-public class RibbonDiscoveryRuleAutoConfiguration {
+public class RibbonDiscoveryRuleConfig {
 
     @Bean
     @ConditionalOnMissingBean
@@ -30,5 +30,4 @@ public class RibbonDiscoveryRuleAutoConfiguration {
     public DiscoveryEnabledRule metadataAwareRule() {
         return new MetadataAwareRule();
     }
-
 }

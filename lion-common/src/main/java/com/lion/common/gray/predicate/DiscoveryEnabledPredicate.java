@@ -1,4 +1,4 @@
-package com.lion.gateway.gray.predicate;
+package com.lion.common.gray.predicate;
 
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.netflix.loadbalancer.AbstractServerPredicate;

@@ -1,4 +1,4 @@
-package com.lion.gateway.gray.api;
+package com.lion.common.gray.api;
 
 import java.util.Map;
 

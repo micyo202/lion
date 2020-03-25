@@ -1,8 +1,8 @@
-package com.lion.gateway.gray.predicate;
+package com.lion.common.gray.predicate;
 
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
-import com.lion.gateway.gray.api.RibbonFilterContext;
-import com.lion.gateway.gray.support.RibbonFilterContextHolder;
+import com.lion.common.gray.api.RibbonFilterContext;
+import com.lion.common.gray.support.RibbonFilterContextHolder;
 
 import java.util.Collections;
 import java.util.Map;
@@ -20,7 +20,6 @@ public class MetadataAwarePredicate extends DiscoveryEnabledPredicate {
 
     @Override
     protected boolean apply(NacosServer server) {
-
         final RibbonFilterContext context = RibbonFilterContextHolder.getCurrentContext();
         final Set<Map.Entry<String, String>> attributes = Collections.unmodifiableSet(context.getAttributes().entrySet());
         final Map<String, String> metadata = server.getMetadata();
