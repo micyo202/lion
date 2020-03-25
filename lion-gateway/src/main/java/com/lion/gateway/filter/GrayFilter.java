@@ -1,6 +1,7 @@
 package com.lion.gateway.filter;
 
-import com.lion.gateway.gray.support.RibbonFilterContextHolder;
+import com.lion.common.constant.GrayConstant;
+import com.lion.common.gray.support.RibbonFilterContextHolder;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -17,27 +18,23 @@ import reactor.core.publisher.Mono;
  */
 public class GrayFilter implements GlobalFilter, Ordered {
 
-    private static final String KEY = "version";
-
-    @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
-        // 灰度拦截器
-        String version = exchange.getRequest().getQueryParams().getFirst(KEY);
-        if (null != version && !version.isEmpty()) {
-            // add the version in 'RequestContext'
-            RibbonFilterContextHolder.getCurrentContext().add(KEY, version);
-        }
-
-        return chain.filter(exchange);
-    }
-
     @Override
     public int getOrder() {
         /**
          * 值越大，优先级越低
          */
         return 20;
+    }
+
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        // 获取请求头header中的version版本号
+        String version = exchange.getRequest().getHeaders().getFirst(GrayConstant.VERSION);
+        RibbonFilterContextHolder.getCurrentContext().add(GrayConstant.VERSION, version);
+
+        return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+            RibbonFilterContextHolder.getCurrentContext().remove(GrayConstant.VERSION);
+        }));
     }
 
 }
