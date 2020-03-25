@@ -27,6 +27,7 @@ dependencies {
 
     compileOnly "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
     compileOnly 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    compileOnly 'com.alibaba.cloud:spring-cloud-alibaba-sentinel'
     compileOnly 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
     compileOnly "io.github.openfeign:feign-core:${feignVersion}"
     compileOnly "com.netflix.ribbon:ribbon-loadbalancer:${ribbonVersion}"
