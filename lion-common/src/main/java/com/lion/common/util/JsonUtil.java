@@ -22,6 +22,10 @@ public class JsonUtil {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static String jsonObj2Str(Object jsonObj) {
+        return jsonObj2Str(jsonObj, true);
+    }
+
+    public static String jsonObj2Str(Object jsonObj, boolean pretty) {
 
         if (null == jsonObj) {
             return null;
@@ -31,8 +35,12 @@ public class JsonUtil {
             // final String str =  new GsonBuilder().setPrettyPrinting().create().toJson(obj);
 
             // 使用 JackSon 解析
-            // final String str = objectMapper.writeValueAsString(jsonObj); // 普通输出
-            final String str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
+            String str;
+            if (pretty) {
+                str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj); // 格式化输出（默认）
+            } else {
+                str = objectMapper.writeValueAsString(jsonObj); // 普通输出
+            }
             return str;
         } catch (JsonProcessingException e) {
             log.error(e.getMessage(), e);
