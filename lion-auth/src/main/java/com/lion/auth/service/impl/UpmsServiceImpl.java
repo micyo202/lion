@@ -88,4 +88,12 @@ public class UpmsServiceImpl implements IUpmsService {
     public List<SysMenu> getMenuByRoleId(Integer roleId) {
         return sysMenuMapper.getMenuByRoleId(roleId);
     }
+
+    @ApiOperation("根据角色Ids获取菜单列表信息")
+    @ApiParam(name = "roleIds", value = "角色Ids", required = true)
+    @Cacheable(cacheNames = CACHE_KEY + "_MENU")
+    @Override
+    public List<SysMenu> getMenuByRoleIds(List<Integer> roleIds) {
+        return sysMenuMapper.getMenuByRoleIds(roleIds);
+    }
 }

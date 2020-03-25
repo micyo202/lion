@@ -2,6 +2,7 @@ package com.lion.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lion.auth.entity.SysMenu;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -22,4 +23,18 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      */
     @Select("select m.* from sys_menu m,sys_role_menu rm where m.id=rm.menu_id and m.valid=1 and rm.valid=1 and rm.role_id=#{roleId}")
     List<SysMenu> getMenuByRoleId(Integer roleId);
+
+    /**
+     * 根据角色Ids获取菜单列表信息
+     * SPEL表达式风格
+     */
+    @Select({
+            "<script>",
+            "select m.* from sys_menu m,sys_role_menu rm where m.id=rm.menu_id and m.valid=1 and rm.valid=1 and rm.role_id in",
+            "<foreach collection='roleIds' item='item' open='(' separator=',' close=')'>",
+            "#{item}",
+            "</foreach>",
+            "</script>"
+    })
+    List<SysMenu> getMenuByRoleIds(@Param("roleIds") List<Integer> roleIds);
 }

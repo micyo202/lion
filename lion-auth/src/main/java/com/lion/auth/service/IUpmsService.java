@@ -30,4 +30,9 @@ public interface IUpmsService {
      * 根据角色ID获取菜单列表信息
      */
     List<SysMenu> getMenuByRoleId(Integer roleId);
+
+    /**
+     * 根据角色Ids获取菜单列表信息
+     */
+    List<SysMenu> getMenuByRoleIds(List<Integer> roleIds);
 }
