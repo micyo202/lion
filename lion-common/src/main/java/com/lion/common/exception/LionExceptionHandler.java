@@ -23,9 +23,6 @@ public class LionExceptionHandler {
 
     /**
      * 声明要捕获的异常
-     *
-     * @param e
-     * @return
      */
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
@@ -36,7 +33,7 @@ public class LionExceptionHandler {
             LionException lionException = (LionException) e;
             result = Result.failure(lionException.getCode(), lionException.getMessage());
         } else if (e instanceof InvalidTokenException) {
-            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Token");
+            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token");
         } else if (e instanceof InvalidGrantException) {
             result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token");
         } else if (e instanceof AccessDeniedException) {

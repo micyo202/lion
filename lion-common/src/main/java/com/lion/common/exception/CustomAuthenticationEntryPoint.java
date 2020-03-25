@@ -36,7 +36,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         Throwable cause = authException.getCause();
         if (cause instanceof InvalidTokenException) {
-            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Token")));
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token")));
         } else if (cause instanceof InvalidGrantException) {
             response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token")));
         } else if (cause instanceof AccessDeniedException) {
