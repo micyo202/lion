@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * ProviderDemoController
@@ -26,15 +24,15 @@ public class ProviderDemoController extends BaseController {
     @ApiOperation("初始化接口")
     @GetMapping("/init")
     public Result init() {
-        return Result.success("Provider -> version: " + version + ", port：" + port);
+        return Result.success("Provider -> port: " + port + ", version: " + version);
     }
 
     @ApiOperation("基本示例接口，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称", defaultValue = "lion")
-    @GetMapping("/hi")
+    @RequestMapping(value = "/hi", method = {RequestMethod.GET, RequestMethod.POST})
     public Result hi(@RequestParam(defaultValue = "lion") String name) {
-        log.info("hi 服务提供者 Provider");
-        return Result.success("Hi \"" + name + "\", I'm Provider, From port: " + port);
+        log.info("Provider 服务提供者 hi");
+        return Result.success("Hi \"" + name + "\", I'm Provider, From port: " + port + ", version: " + version);
     }
 
 }
