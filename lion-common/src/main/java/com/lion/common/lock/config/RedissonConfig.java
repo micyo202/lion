@@ -1,4 +1,4 @@
-package com.lion.common.lock.manager;
+package com.lion.common.lock.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * RedissonManager
- * 分布式锁管理类（初始化redis）
+ * RedissonConfig
+ * 分布式锁配置类
  *
  * @author Yanzheng https://github.com/micyo202
- * @date 2019/05/08
- * Copyright 2019 Yanzheng. All rights reserved.
+ * @date 2020/3/24
+ * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Configuration
-public class RedissonManager {
+public class RedissonConfig {
 
     @Value("${spring.redis.host:localhost}")
     private String host;
