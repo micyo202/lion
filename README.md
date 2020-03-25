@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-2.0.1-blue.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Gradle](https://img.shields.io/badge/Gradle-6.2.2-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
@@ -15,10 +15,10 @@
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
 [![GitHub Forks](https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork)](https://github.com/micyo202/lion)
 
-<div align="center">
+<div style="text-align: center;">
     <table cellspacing="0" cellpadding="0">
         <tr>
-            <td width="36%"><img src="https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png" width="180" /></td>
+            <td align="center" width="36%"><img src="https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png" width="180" /></td>
             <td>感谢<a href="https://www.jetbrains.com/?from=lion">JetBrains</a>提供的开源许可，推荐使用<a href="https://www.jetbrains.com/idea?from=lion">IntelliJ IDEA</a>进行开发</td>
         </tr>
     </table>
@@ -64,7 +64,7 @@
 - [release1.x分支](https://github.com/micyo202/lion/tree/release1.x)，基于Java 8、SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE、Spring Cloud Alibaba 2.1.0.RELEASE体系实现，支持Java、Scala混编，的最终版
 - [eureka分支](https://github.com/micyo202/lion/tree/eureka)，使用 Eureka 作为服务注册发现中心（Eureka官宣2.x版本不再开源，项目使用Nacos）
 - [hystrix分支](https://github.com/micyo202/lion/tree/hystrix)，使用 Hystrix 做为服务断路器（Hystix官宣停止更新，项目使用Sentinel）
-- [zuul分支](https://github.com/micyo202/lion/tree/zuul)，使用 Zuul 做为路由网关（由于Zuul 2.x的不断跳票，SpringCloud没有整合Zuul 2.x的计划，项目使用Spring Cloud Gateway）
+- [zuul分支](https://github.com/micyo202/lion/tree/zuul)，使用 Zuul 做为路由网关（由于Zuul 2.x的不断跳票，SpringCloud后续没有整合Zuul 2.x的计划，项目使用Spring Cloud Gateway）
 
 ## 一、项目开发环境&工具
 
@@ -101,7 +101,7 @@ Seata 1.0.0 | [https://seata.io](https://seata.io) | x
 - 路由网关：Spring Cloud Gateway
 - 链路追踪：Spring Cloud Sletuh -> Zipkin / SkyWalking
 - 权限认证：Spring Security -> OAuth2 / JWT
-- ORM框架：MyBatis
+- ORM框架：MyBatis（MyBatis-Plus）
 - 数据源监控：Druid
 - RESTful APIs文档：Knife4j
 - 分布式锁：Redis
