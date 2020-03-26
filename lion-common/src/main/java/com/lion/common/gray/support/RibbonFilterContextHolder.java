@@ -12,7 +12,7 @@ import com.lion.common.gray.api.RibbonFilterContext;
  */
 public class RibbonFilterContextHolder {
 
-    private static final ThreadLocal<RibbonFilterContext> contextHolder = new InheritableThreadLocal<>() {
+    private static final ThreadLocal<RibbonFilterContext> contextHolder = new InheritableThreadLocal() {
         @Override
         protected RibbonFilterContext initialValue() {
             return new DefaultRibbonFilterContext();
