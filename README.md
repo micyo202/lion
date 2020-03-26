@@ -8,7 +8,7 @@
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
 [![Version](https://img.shields.io/badge/Version-2.0.1-blue.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[![Gradle](https://img.shields.io/badge/Gradle-6.2.2-01BC7E.svg)](https://gradle.org)
+[![Gradle](https://img.shields.io/badge/Gradle-6.3-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Hoxton.SR2-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
