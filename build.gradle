@@ -17,7 +17,7 @@ subprojects {
 
     group = 'com.lion'
     version = '2.0.1'
-    sourceCompatibility = '11'
+    sourceCompatibility = '1.8'
 
     ext {
         set('springBootVersion', "2.2.5.RELEASE")
@@ -121,7 +121,7 @@ subprojects {
     tasks.clean.dependsOn(cleanOutDir)
 
     /**
-     * 根据环境打包，命令：./gradlew -x test clean bootJar -Denv=dev
+     * 根据环境打包默认dev开发环境，命令：./gradlew -x test clean bootJar -Denv=dev
      */
     /*
     import org.apache.tools.ant.filters.ReplaceTokens
@@ -130,4 +130,5 @@ subprojects {
         filter ReplaceTokens, tokens: [env: env]
     }
     */
+    
 }
