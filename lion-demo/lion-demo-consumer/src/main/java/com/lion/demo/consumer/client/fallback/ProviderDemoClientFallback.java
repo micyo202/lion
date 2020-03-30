@@ -21,8 +21,8 @@ public class ProviderDemoClientFallback implements ProviderDemoClient {
     }
 
     @Override
-    public Result saveTransactionalFromProvider(int num) {
-        return Result.failure("Invoke Method \"saveTransactionalFromProvider(int num)\" Fallback");
+    public Result deduct(String productCode, int count) {
+        return Result.failure("Invoke Method \"deduct(String productCode, int count)\" Fallback");
     }
 
     @Override

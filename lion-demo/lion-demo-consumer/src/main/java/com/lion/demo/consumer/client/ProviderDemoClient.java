@@ -3,6 +3,7 @@ package com.lion.demo.consumer.client;
 import com.lion.common.entity.Result;
 import com.lion.demo.consumer.client.fallback.ProviderDemoClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,8 @@ public interface ProviderDemoClient {
     @RequestMapping(value = "/hi")
     Result hiFromProvider(@RequestParam(value = "name") String name);
 
-    @RequestMapping(value = "/temp/transactional/save/{num}")
-    Result saveTransactionalFromProvider(@PathVariable("num") int num);
+    @GetMapping("/temp/product/deduct")
+    Result deduct(@RequestParam("productCode") String productCode, @RequestParam("count") int count);
 
     @RequestMapping(value = "/send/{flag}")
     Result sendFromProvider(@PathVariable("flag") String flag);
