@@ -26,62 +26,52 @@
 #      password: ${JDBC_PASSWORD:lion}
 #      driver-class-name: ${JDBC_DRIVER:com.mysql.cj.jdbc.Driver}
 #      #配置连接池大小
-#      initial-size: 0
-#      max-active: 8
-#      validation-query: SELECT 1
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 10
+#      #配置获取连接等待超时的时间
+#      max-wait: 10000
+#      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接（毫秒）
+#      time-between-eviction-runs-millis: 60000
+#      #配置一个连接在池中最小生存的时间（毫秒）
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: SELECT 1 FROM DUAL
+#      test-while-idle: on
 #      test-on-borrow: off
 #      test-on-return: off
-#      test-while-idle: on
+#      #打开PSCache，并且指定每个连接上PSCache的大小
+#      pool-prepared-statements: on
+#      max-pool-prepared-statement-per-connection-size: 20
+#      #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
 #      filters:
 #        - stat
 #        - wall
-#        - log4j
-#      #监控配置
-#      web-stat-filter:
-#        enabled: on
-#        url-pattern: /*
-#        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
-#        #监控单个url调用的sql列表
-#        profile-enable: true
-#      #spring监控配置，多个使用,隔开
-#      aop-patterns: com.lion.auth.*
+#        - log4j2
 #      filter:
-#        #慢SQL记录
+#        #记录慢sql
 #        stat:
 #          merge-sql: on
 #          log-slow-sql: on
-#          slow-sql-millis: 10000
-#        #sql防火墙监控开启
-#        wall:
-#          enabled: on
-#          db-type: mysql
-#          config:
-#            alter-table-allow: off
-#            truncate-allow: off
-#            drop-table-allow: off
-#            #是否允许非以上基本语句的其他语句，缺省关闭，通过这个选项就能够屏蔽DDL
-#            none-base-statement-allow: off
-#            #检查UPDATE语句是否无where条件，这是有风险的，但不是SQL注入类型的风险
-#            update-where-none-check: on
-#            #是否允许SELECT ... INTO OUTFILE语句，这个是mysql注入攻击的常见手段，缺省是禁止的
-#            select-into-outfile-allow: off
-#            #是否允许调用Connection.getMetadata方法，这个方法调用会暴露数据库的表信息
-#            metadata-allow: on
-#          #对被认为是攻击的SQL进行LOG.error输出
-#          log-violation: on
-#          #对被认为是攻击的SQL抛出SQLExcepton
-#          throw-exception: on
+#          slow-sql-millis: 5000
+#      use-global-data-source-stat: true
 #      #管理界面用户
 #      stat-view-servlet:
 #        enabled: on
-#        url-pattern: /druid/*
 #        reset-enable: false
+#        url-pattern: /druid/*
 #        login-username: ${DRUID_USERNAME:druid}
 #        login-password: ${DRUID_PASSWORD:druid}
 #        #白名单
 #        #allow: 127.0.0.1
-#        #黑名单
+#        #黑名单（白名单和黑名单重复时，黑名单优先级更高）
 #        #deny: 192.168.0.1
+#      #监控服务配置
+#      web-stat-filter:
+#        enabled: on
+#        #监控单个url调用的sql列表
+#        profile-enable: true
+#        url-pattern: /*
+#        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
 #  redis:
 #    host: ${REDIS_HOST:localhost}
 #    port: ${REDIS_PORT:6379}
