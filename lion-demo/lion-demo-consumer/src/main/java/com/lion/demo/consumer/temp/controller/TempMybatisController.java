@@ -60,7 +60,7 @@ public class TempMybatisController extends BaseController {
                 //正常插入
                 tempMybatis.setId(UUID.randomUUID().toString().replaceAll("-", ""));
             } else {
-                //超出范围长度，触发事物回滚
+                //超出范围长度，触发事务回滚
                 tempMybatis.setId(UUID.randomUUID().toString());
             }
 
