@@ -27,7 +27,7 @@ import java.util.UUID;
  * @date 2019/04/15
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Api("Mybatis相关示例代码类说明文档")
+@Api("Mybatis示例")
 @RestController
 @RequestMapping("/temp/mybatis")
 @Slf4j
