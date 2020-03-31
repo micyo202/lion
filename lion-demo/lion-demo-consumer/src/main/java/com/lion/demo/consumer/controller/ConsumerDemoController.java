@@ -36,7 +36,7 @@ import java.util.Map;
  * @date 2019/01/05
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Api("服务消费者示例代码")
+@Api("服务消费者示例")
 @RestController
 @Slf4j
 public class ConsumerDemoController extends BaseController {

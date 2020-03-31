@@ -7,6 +7,8 @@ import com.lion.common.entity.Result;
 import com.lion.common.exception.LionException;
 import com.lion.demo.provider.temp.entity.TempProduct;
 import com.lion.demo.provider.temp.service.ITempProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Yanzheng https://github.com/micyo202
  * @since 2020-03-30
  */
+@Api("分布式事物示例-产品库存")
 @RestController
 @RequestMapping("/temp/product")
 public class TempProductController extends BaseController {
@@ -27,6 +30,7 @@ public class TempProductController extends BaseController {
     @Autowired
     private ITempProductService tempProductService;
 
+    @ApiOperation(value = "扣减产品库存")
     @RequestMapping("/deduct")
     @Transactional
     public Result deduct(String productCode, int count) {

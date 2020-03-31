@@ -10,6 +10,8 @@ import com.lion.demo.consumer.client.ProviderDemoClient;
 import com.lion.demo.consumer.temp.entity.TempOrder;
 import com.lion.demo.consumer.temp.service.ITempOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Yanzheng https://github.com/micyo202
  * @since 2020-03-30
  */
+@Api("分布式事物示例-订单")
 @RestController
 @RequestMapping("/temp/order")
 public class TempOrderController extends BaseController {
@@ -33,36 +36,36 @@ public class TempOrderController extends BaseController {
     @Autowired
     private ProviderDemoClient providerDemoClient;
 
-    /**
-     * 下单：插入订单表、扣减库存，正常下单
-     */
+    @ApiOperation(value = "全局事务，正常下单", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping("/commit")
     @GlobalTransactional
     @Transactional
     public Result commit() {
         place("product-1", 1);
-        return Result.success();
+        return Result.success("下单成功");
     }
 
     /**
      * 下单：插入订单表、扣减库存，模拟回滚
      */
+    @ApiOperation(value = "全局事务，模拟回滚", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping("/rollback")
     @GlobalTransactional
     @Transactional
     public Result rollback() {
         place("product-1", 1);
-        throw new LionException("下单：插入订单表、扣减库存，模拟回滚（有全局事务，已回滚，数据正常）...");
+        throw new LionException("全局事务 -> 模拟回滚（数据正常）...");
     }
 
     /**
      * 下单：插入订单表、扣减库存，错误但不会滚
      */
+    @ApiOperation(value = "无全局事务，无法回滚，数据错乱", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping("/exception")
     @Transactional
     public Result exception() {
         place("product-1", 1);
-        throw new LionException("下单：插入订单表、扣减库存，模拟异常（无全局事务，没有回滚，数据已错乱，）...");
+        throw new LionException("无全局事务 -> 无法回滚（数据已错乱）...");
     }
 
     private void place(String productCode, int count) {
