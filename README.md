@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-2.0.1-blue.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-2.0.2-blue.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Gradle](https://img.shields.io/badge/Gradle-6.3-01BC7E.svg)](https://gradle.org)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
@@ -35,6 +35,8 @@
 使用**Nacos**作为服务注册/发现、配置中心
 
 使用**Sentinel**来查看近实时的接口运行状态和调用频率，并用作服务限流、熔断降级等处理，避免了分布式服务之间调用的“雪崩”效应
+
+使用**Seata**作为分布式事务管理，采用AT事务模式自动完成两阶段提交/回滚
 
 使用**Spring Boot Admin**来监控各个独立Service的运行状态
 
@@ -87,9 +89,9 @@ Nacos 1.1.4 | [https://nacos.io](https://nacos.io) | √
 Sentinel 1.7.1 | [https://github.com/alibaba/Sentinel](https://github.com/alibaba/Sentinel) | √ 
 Zipkin 2.20 | [https://zipkin.io](https://zipkin.io) | x 
 SkyWalking 6.6.0 | [http://skywalking.apache.org](http://skywalking.apache.org) | x 
-Seata 1.0.0 | [https://seata.io](https://seata.io) | x 
+Seata 1.0.0 | [https://seata.io](https://seata.io) | √ 
 
-注：在启动项目前，请先确保启动：[MySql 8.0.19](https://www.mysql.com)、[Redis 5.0.7](https://redis.io)、[RabbitMQ 3.8.2](https://www.rabbitmq.com)、[Nacos 1.1.4](https://nacos.io)、[Sentinel 1.7.1](https://github.com/alibaba/Sentinel)这**5**个必备服务（需要把**Sentinel**默认端口**8080**改为**8858**）
+注：在启动项目前，请先确保启动：[MySql 8.0.19](https://www.mysql.com)、[Redis 5.0.7](https://redis.io)、[RabbitMQ 3.8.2](https://www.rabbitmq.com)、[Nacos 1.1.4](https://nacos.io)、[Sentinel 1.7.1](https://github.com/alibaba/Sentinel)、[Seata 1.0.0](https://seata.io)这**6**个必备服务（需把**Sentinel**默认端口**8080**改为**8858**）
 
 ## 三、组件说明
 
@@ -105,16 +107,16 @@ Seata 1.0.0 | [https://seata.io](https://seata.io) | x
 - 数据源监控：Druid
 - RESTful APIs文档：Knife4j
 - 分布式锁：Redis
-- 分布式事物：Seata
+- 分布式事务：Seata
 
 ## 四、项目结构
 
 ```lua
 lion -- 根目录
 ├── lion-admin -- 服务监控
-├── lion-gateway -- 路由服务
-├── lion-common -- 通用工具类模块
-├── lion-auth -- 安全认证服务器
+├── lion-gateway -- 网关服务
+├── lion-common -- 通用工具类
+├── lion-auth -- 安全认证服务
 ├── lion-demo -- 示例模块
 |    ├── lion-demo-provider -- 服务提供者
 |    ├── lion-demo-consumer -- 服务消费者
@@ -128,9 +130,9 @@ lion -- 根目录
 
 3、初始化完毕后导入到**IDE**开发工具中（建议使用[IntelliJ IDEA](https://www.jetbrains.com/idea?from=lion)作为开发工具
 
-4、创建**2**个数据库分别为**lion、zipkin**并分别执行项目根目录下**database**中的**lion.sql、zipkin.sql**脚本，该脚本会创建项目所需的表（如：用户表、角色表、菜单资源表等...）
+4、创建**3**个数据库分别为**lion、seata、zipkin**并分别执行项目根目录下**database**中的**[lion.sql](https://github.com/micyo202/lion/blob/master/database/lion.sql)、[seata.sql](https://github.com/micyo202/lion/blob/master/database/seata.sql)、[zipkin.sql](https://github.com/micyo202/lion/blob/master/database/zipkin.sql)**脚本，该脚本会创建项目所需的表（lion库中包含：用户表、角色表、菜单资源表等，seata库中包含：全局事务表、分支事务表、全局锁表，zipkin库中包含：链路追踪相关表）
 
-5、参考文档中[二、相关软件](#二、相关软件)的内容，启动**5**个必备服务，否则项目无法正常运行
+5、参考文档中[二、相关软件](#二、相关软件)的内容，启动**6**个必备服务，否则项目无法正常运行
 
 6、根据自己的服务器情况，修改**resources**下**bootstrap.yml**配置中的**nacos**服务地址，及**application.yml**配置中**mysql、redis、rabbitmq、sentinel**的服务地址跟用户名/密码（*注：可将**application.yml**配置文件注释打开放在项目中，或将**application.yml**配置文件放入**nacos**配置管理中*）
 
@@ -146,6 +148,7 @@ lion -- 根目录
 
 - Nacos（端口：8848）
 - Sentinel（端口：8858）
+- Seata（端口：8091）
 - Zipkin（端口：9411）
 - SkyWalking（端口：8900）
 
