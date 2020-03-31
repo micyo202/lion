@@ -34,23 +34,23 @@ docker pull apache/skywalking-ui:6.6.0
 ##### 启动 SkyWalking OAP 服务
 ```shell script
 docker run -d \
--e SW_STORAGE=mysql \
--e SW_JDBC_URL=jdbc:mysql://localhost:3306/skywalking \
--e SW_DATA_SOURCE_USER=lion \
--e SW_DATA_SOURCE_PASSWORD=lion \
---name skywalking-oap-server \
---restart always \
-apache/skywalking-oap-server:6.6.0-es7
+        -e SW_STORAGE=mysql \
+        -e SW_JDBC_URL=jdbc:mysql://localhost:3306/skywalking \
+        -e SW_DATA_SOURCE_USER=lion \
+        -e SW_DATA_SOURCE_PASSWORD=lion \
+        --name skywalking-oap-server \
+        --restart always \
+        apache/skywalking-oap-server:6.6.0-es7
 ```
 
 ##### 启动 SkyWalking Webapp 服务
 ```shell script
 docker run -d \
--p 8900:8080 \
--e SW_OAP_ADDRESS=skywalking-oap-server:12800 \
---name skywalking-oap-server \
---restart always \
-apache/skywalking-ui:6.6.0
+        -p 8900:8080 \
+        -e SW_OAP_ADDRESS=skywalking-oap-server:12800 \
+        --name skywalking-oap-server \
+        --restart always \
+        apache/skywalking-ui:6.6.0
 ```
 
 ### 成功启动后进入 dashboard 界面

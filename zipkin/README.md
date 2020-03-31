@@ -25,18 +25,18 @@ docker pull openzipkin/zipkin:tagname
 
 ```shell script
 docker run -d \
--p 9411:9411 \
--e RABBIT_ADDRESSES=localhost:5672 \
--e RABBIT_USER=guest \
--e RABBIT_PASSWORD=guest \
--e STORAGE_TYPE=mysql \
--e MYSQL_HOST=localhost \
--e MYSQL_USER=root \
--e MYSQL_PASS=root \
--e MYSQL_DB=zipkin \
---name zipkin \
---restart always \
-openzipkin/zipkin:tagname
+        -p 9411:9411 \
+        -e RABBIT_ADDRESSES=localhost:5672 \
+        -e RABBIT_USER=guest \
+        -e RABBIT_PASSWORD=guest \
+        -e STORAGE_TYPE=mysql \
+        -e MYSQL_HOST=localhost \
+        -e MYSQL_USER=root \
+        -e MYSQL_PASS=root \
+        -e MYSQL_DB=zipkin \
+        --name zipkin \
+        --restart always \
+        openzipkin/zipkin:tagname
 ```
 
 ### Mysql 存储 schema DDL
