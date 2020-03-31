@@ -3,15 +3,15 @@
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 80019
+ Source Server Version : 80013
  Source Host           : localhost:3306
  Source Schema         : lion
 
  Target Server Type    : MySQL
- Target Server Version : 80019
+ Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 10/03/2020 13:36:00
+ Date: 31/03/2020 09:50:20
 */
 
 SET NAMES utf8mb4;
@@ -29,8 +29,8 @@ CREATE TABLE `oauth_client_details` (
   `authorized_grant_types` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `web_server_redirect_uri` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `authorities` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `access_token_validity` int DEFAULT NULL,
-  `refresh_token_validity` int DEFAULT NULL,
+  `access_token_validity` int(11) DEFAULT NULL,
+  `refresh_token_validity` int(11) DEFAULT NULL,
   `additional_information` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `autoapprove` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`client_id`)
@@ -48,11 +48,11 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_id`;
 CREATE TABLE `sys_id` (
-  `id` bigint NOT NULL COMMENT '主键',
+  `id` bigint(20) NOT NULL COMMENT '主键',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编码',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `max_id` bigint DEFAULT NULL COMMENT '已分配的最大ID',
-  `step` bigint DEFAULT NULL COMMENT '步长',
+  `max_id` bigint(20) DEFAULT NULL COMMENT '已分配的最大ID',
+  `step` bigint(20) DEFAULT NULL COMMENT '步长',
   `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
@@ -72,14 +72,14 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编码',
   `p_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '父主键',
   `p_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '父编码',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '请求地址',
-  `level` int DEFAULT NULL COMMENT '层级',
-  `sort` int DEFAULT NULL COMMENT '排序',
+  `level` int(11) DEFAULT NULL COMMENT '层级',
+  `sort` int(11) DEFAULT NULL COMMENT '排序',
   `is_menu` tinyint(1) DEFAULT NULL COMMENT '是否菜单（0：否，1：是）',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '图标',
   `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
@@ -106,7 +106,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编码',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
@@ -131,9 +131,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `id` int NOT NULL COMMENT '主键',
-  `role_id` int NOT NULL COMMENT '角色主键',
-  `menu_id` int NOT NULL COMMENT '菜单主键',
+  `id` int(11) NOT NULL COMMENT '主键',
+  `role_id` int(11) NOT NULL COMMENT '角色主键',
+  `menu_id` int(11) NOT NULL COMMENT '菜单主键',
   `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
@@ -157,7 +157,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_schedule`;
 CREATE TABLE `sys_schedule` (
-  `id` int NOT NULL COMMENT '主键',
+  `id` int(11) NOT NULL COMMENT '主键',
   `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '任务名称',
   `cron` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '执行周期表达式',
   `app_name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '所属应用名称',
@@ -183,7 +183,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(96) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
@@ -218,9 +218,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `user_id` int NOT NULL COMMENT '用户主键',
-  `role_id` int NOT NULL COMMENT '角色主键',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` int(11) NOT NULL COMMENT '用户主键',
+  `role_id` int(11) NOT NULL COMMENT '角色主键',
   `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
@@ -264,34 +264,58 @@ CREATE TABLE `temp_mybatis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='MyBatis示例表';
 
 -- ----------------------------
--- Table structure for temp_transactional
+-- Table structure for temp_order
 -- ----------------------------
-DROP TABLE IF EXISTS `temp_transactional`;
-CREATE TABLE `temp_transactional` (
-  `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '主键',
-  `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
-  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+DROP TABLE IF EXISTS `temp_order`;
+CREATE TABLE `temp_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `product_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '产品编码',
+  `count` int(11) DEFAULT NULL COMMENT '数量',
+  `valid` tinyint(4) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Transactioonal示例表';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单表';
+
+-- ----------------------------
+-- Table structure for temp_product
+-- ----------------------------
+DROP TABLE IF EXISTS `temp_product`;
+CREATE TABLE `temp_product` (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `code` varchar(255) DEFAULT NULL COMMENT '编码',
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `count` int(11) DEFAULT NULL COMMENT '数量',
+  `valid` tinyint(4) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品表';
+
+-- ----------------------------
+-- Records of temp_product
+-- ----------------------------
+BEGIN;
+INSERT INTO `temp_product` VALUES (1, 'product-1', '有库存的商品', 9, 1, '2020-03-22 20:50:22', '2020-03-22 20:50:22');
+INSERT INTO `temp_product` VALUES (2, 'product-2', '无库存的商品', 0, 1, '2020-03-30 10:52:00', '2020-03-30 10:52:00');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for undo_log
 -- ----------------------------
 DROP TABLE IF EXISTS `undo_log`;
 CREATE TABLE `undo_log` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `branch_id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint(20) NOT NULL,
   `xid` varchar(100) NOT NULL,
   `context` varchar(128) NOT NULL,
   `rollback_info` longblob NOT NULL,
-  `log_status` int NOT NULL,
+  `log_status` int(11) NOT NULL,
   `log_created` datetime NOT NULL,
   `log_modified` datetime NOT NULL,
   `ext` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
