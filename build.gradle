@@ -16,7 +16,7 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'com.lion'
-    version = '2.0.1'
+    version = '2.0.2'
     sourceCompatibility = '1.8'
 
     ext {
