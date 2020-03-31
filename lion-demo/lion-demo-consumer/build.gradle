@@ -19,7 +19,7 @@ dependencies {
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
 
-    //implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
@@ -28,7 +28,7 @@ dependencies {
     // 使用 Zipkin 时，依赖 spring-cloud-starter-zipkin 即可
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
 
-    //implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 

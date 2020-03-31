@@ -14,7 +14,7 @@ dependencies {
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
 
-    //implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
