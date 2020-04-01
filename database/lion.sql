@@ -238,19 +238,6 @@ INSERT INTO `sys_user_role` VALUES (4, 3, 3, 1, '2019-04-10 11:58:44', NULL);
 COMMIT;
 
 -- ----------------------------
--- Table structure for temp_jpa
--- ----------------------------
-DROP TABLE IF EXISTS `temp_jpa`;
-CREATE TABLE `temp_jpa` (
-  `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
-  `name` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '名称',
-  `valid` tinyint(1) DEFAULT NULL COMMENT '有效标志（0：无效，1：有效）',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Jpa示例表';
-
--- ----------------------------
 -- Table structure for temp_mybatis
 -- ----------------------------
 DROP TABLE IF EXISTS `temp_mybatis`;
