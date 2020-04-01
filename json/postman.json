@@ -271,7 +271,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-Feign服务调用",
+			"name": "服务消费者-Feign调用",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -320,7 +320,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-Ribbon服务调用",
+			"name": "服务消费者-Ribbon调用",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -497,7 +497,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-\b需要admin\b角色访问",
+			"name": "服务消费者-\b需要ADMIN\b角色访问",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -539,7 +539,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-需要user角色访问",
+			"name": "服务消费者-需要USER角色访问",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -581,93 +581,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-无需认证访问Product",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "version",
-						"value": "v1",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8400/demo/consumer/product/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8400",
-					"path": [
-						"demo",
-						"consumer",
-						"product",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "服务消费者-需要认证访问Order",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "version",
-						"value": "v1",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8400/demo/consumer/order/6",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8400",
-					"path": [
-						"demo",
-						"consumer",
-						"order",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "服务消费者-Redis分布式锁",
+			"name": "服务消费者-Redisson分布式锁",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -703,6 +617,78 @@
 						"demo",
 						"consumer",
 						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务消费者-Async异步线程执行任务",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/async",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"async"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务消费者-AMQP消息发送/接收",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/amqp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"amqp"
 					]
 				}
 			},
@@ -942,7 +928,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-Mybatis分布式事物Transactional",
+			"name": "服务消费者-Seata分布式事物（正常下单）",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -960,15 +946,9 @@
 					]
 				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "version",
-						"value": "v1",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/transactional/save/3",
+					"raw": "http://localhost:8400/demo/consumer/temp/order/commit",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -978,9 +958,8 @@
 						"demo",
 						"consumer",
 						"temp",
-						"transactional",
-						"save",
-						"3"
+						"order",
+						"commit"
 					]
 				}
 			},
@@ -1025,45 +1004,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-Seata分布式事物（正常下单）",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/order/commit",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8400",
-					"path": [
-						"demo",
-						"consumer",
-						"temp",
-						"order",
-						"commit"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "服务消费者-Seata分布式事物（不启用效果）",
+			"name": "服务消费者-Seata分布式事物（无全局事务，异常效果）",
 			"request": {
 				"auth": {
 					"type": "oauth2",
