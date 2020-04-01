@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'com.bmuschko.docker-spring-boot-application' version '6.1.3'
 }
@@ -16,28 +16,28 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'com.lion'
-    version = '2.0.2'
+    version = '2.0.3'
     sourceCompatibility = '1.8'
 
     ext {
-        set('springBootVersion', "2.2.5.RELEASE")
+        set('springBootVersion', "2.2.6.RELEASE")
         set('springBootAdminVersion', "2.2.1")
-        set('springCloudAlibabaVersion', "2.2.0.RELEASE")
         set('springCloudVersion', "Hoxton.SR2")
-        set('springFrameworkVersion', "5.2.4.RELEASE")
+        set('springCloudAlibabaVersion', "2.2.0.RELEASE")
+        set('springFrameworkVersion', "5.2.5.RELEASE")
         set('springSecurityVersion', "5.2.2.RELEASE")
         set('springOauth2Version', "2.3.4.RELEASE")
 
-        set('commonsLangVersion', "3.9")
-        set('lombokVersion', "1.18.10")
-        set('jacksonVersion', "2.10.2")
+        set('commonsLangVersion', "3.10")
+        set('lombokVersion', "1.18.12")
+        set('jacksonVersion', "2.10.3")
         set('slf4jVersion', "1.7.30")
-        set('yamlVersion', "1.25")
+        set('yamlVersion', "1.26")
         set('aspectjVersion', "1.9.5")
-        set('redissonVersion', "3.12.1")
+        set('redissonVersion', "3.12.4")
         set('druidVersion', "1.1.21")
         set('mybatisPlusVersion', "3.3.1")
-        set('velocityEngineVersion', "2.1")
+        set('velocityEngineVersion', "2.2")
         set('pagehelperSpringVersion', "1.2.13")
         set('pagehelperVersion', "5.1.11")
         set('swagger2Version', "2.9.2")
@@ -73,14 +73,14 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
 
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-
-        implementation 'org.springframework.boot:spring-boot-starter-actuator'
     }
 
     dependencyManagement {
@@ -130,5 +130,5 @@ subprojects {
         filter ReplaceTokens, tokens: [env: env]
     }
     */
-    
+
 }

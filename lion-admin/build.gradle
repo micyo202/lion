@@ -20,13 +20,15 @@ docker {
     //Windows默认: url = tcp://127.0.0.1:2375
     registryCredentials {
         url = 'https://index.docker.io/v1/'
-        username = 'lion'
-        password = 'lion'
+        username = 'micyo202'
+        password = ''
         email = 'micyo202@163.com'
     }
     springBootApplication {
         maintainer = 'Yanzheng https://github.com/micyo202'
-        baseImage = 'openjdk:11.0.6'
+        baseImage = 'openjdk:8'
+        //baseImage = 'openjdk:11.0.6'
+        //baseImage = 'openjdk:13.0.2'
         ports = [8200]
         images = ["micyo202/${project.name}:${version}"]
         jvmArgs = ['-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']

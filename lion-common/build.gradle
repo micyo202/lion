@@ -21,6 +21,9 @@ dependencies {
 
     compileOnly "org.springframework:spring-web:${springFrameworkVersion}"
     compileOnly "org.springframework:spring-context:${springFrameworkVersion}"
+    compileOnly "org.springframework:spring-messaging:${springFrameworkVersion}"
+
+    compileOnly 'org.springframework.cloud:spring-cloud-stream'
 
     compileOnly "org.springframework.security.oauth:spring-security-oauth2:${springOauth2Version}"
     compileOnly "org.springframework.security:spring-security-config:${springSecurityVersion}"
@@ -31,8 +34,6 @@ dependencies {
     compileOnly 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
     compileOnly "io.github.openfeign:feign-core:${feignVersion}"
     compileOnly "com.netflix.ribbon:ribbon-loadbalancer:${ribbonVersion}"
-
-    //compileOnly "org.springframework.amqp:spring-amqp:${springBootVersion}"
 
     compileOnly "org.springframework.data:spring-data-redis:${springBootVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
