@@ -1,6 +1,6 @@
-# zipkin（9411）
+# Zipkin（9411）
 
-zipkin 服务，在使用 Spring Boot 2.x 版本后，官方就不推荐自行定制编译了，反而是直接提供了编译好的 jar 包来给我们使用
+Zipkin 服务，在使用 Spring Boot 2.x 版本后，官方就不推荐自行定制编译了，反而是直接提供了编译好的 jar 包来给我们使用
 
 本项目使用 2.20 版本，采用 RabbitMQ 收集，包含两种存储方式 MySQL / Elasticsearch，具体启动脚本详见 [start_zipkin_server.sh](https://github.com/micyo202/lion/blob/master/zipkin/start_zipkin.sh)
 
@@ -13,12 +13,14 @@ zipkin 服务，在使用 Spring Boot 2.x 版本后，官方就不推荐自行�
 下载**zipkin-server-2.12.9-exec.jar**及之前版本地址
 [https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/](https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/)
 
-### 下载后执行
+### 本地部署
+
 ```shell script
 java -jar zipkin-server-*exec.jar
 ```
 
-### docker方式
+### Docker部署
+
 ```shell script
 docker pull openzipkin/zipkin:tagname
 ```

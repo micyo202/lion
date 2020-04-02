@@ -1,4 +1,4 @@
-# skywalking（8900）
+# SkyWalking（8900）
 
 ### 官网
 [https://skywalking.apache.org](https://skywalking.apache.org)
@@ -19,7 +19,7 @@
 bin/startup.sh
 ```
 
-### docker方式
+### Docker部署
 
 ##### 拉取 SkyWalking OAP 服务
 ```shell script
@@ -56,7 +56,7 @@ docker run -d \
 ### 成功启动后进入 dashboard 界面
 [http://localhost:8900](http://localhost:8900)
 
-### IDEA 部署探针
+### IDEA 探针方式
 - 打开 Run -> Edit Configurations...
 - 在服务启动类的 Environment -> VM options 增加以下内容
 ```shell script
@@ -65,12 +65,12 @@ docker run -d \
 -Dskywalking.collector.backend_service=localhost:11800
 ```
 
-### Java 命令行启动方式
+### Java 命令行方式
 ```shell script
 java -javaagent:/opt/apache-skywalking-apm-6.6.0/agent/skywalking-agent.jar -Dskywalking.agent.service_name=lion-demo -Dskywalking.collector.backend_service=localhost:11800 -jar app.jar
 ```
 
-### 设置存储方式
+### 设置存储模式
 修改 /opt/apache-skywalking-apm-6.6.0/config/application.yml 文件中的相关配置即可
 
 *注：使用 MySQL 存储时，需下载 MySQL 驱动包拷贝到 oap-libs 目录下*

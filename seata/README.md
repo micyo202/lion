@@ -1,4 +1,4 @@
-# seata（8091）
+# Seata（8091）
 
 ### 官网
 [https://seata.io](https://seata.io)
@@ -23,7 +23,6 @@ config {
     name = "file.conf"
   }
 }
-
 ```
 修改 /opt/seata-server-1.0.0/conf/file.conf 文件内容（注：需将数据库连接驱动jar包放入lib下）
 ```shell script
@@ -108,24 +107,24 @@ create table `lock_table` (
 );
 ```
 
-##### 启动 seata-server 服务
-注：需先启动 nacos 服务
+##### 启动 Seata 服务
+注：需先启动 Nacos 服务
 ```shell script
 bin/seata-server.sh -p 8091
 ```
 
-### docker方式
+### Docker部署
 
-##### 拉取 Seata Server 服务
 ```shell script
 docker pull seataio/seata-server:1.0.0
 ```
 
-##### 启动 Seata Server 服务
 ```shell script
-docker run --name seata-server \
+docker run -d \
         -p 8091:8091 \
         -e SEATA_CONFIG_NAME=file:/root/seata-config/registry \
         -v /PATH/TO/CONFIG_FILE:/root/seata-config  \
+        --name seata \
+        --restart always \
         seataio/seata-server:1.0.0
 ```
