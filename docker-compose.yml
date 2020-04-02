@@ -24,6 +24,9 @@ services:
       - SEATA_CONFIG_NAME=file:/root/seata-config/registry
     volumes:
       - /PATH/TO/CONFIG_FILE:/root/seata-config
+    depends_on:
+      - nacos
+    restart: always
 
   zipkin:
     image: openzipkin/zipkin:2.20
@@ -65,7 +68,7 @@ services:
     restart: always
 
   lion-admin:
-    image: micyo202/lion-admin:2.0.2
+    image: micyo202/lion-admin:2.0.3
     ports:
       - "8200:8200"
     environment:
@@ -75,7 +78,7 @@ services:
     restart: always
 
   lion-gateway:
-    image: micyo202/lion-gateway:2.0.2
+    image: micyo202/lion-gateway:2.0.3
     ports:
       - "8400:8400"
     environment:
@@ -86,7 +89,7 @@ services:
     restart: always
 
   lion-auth:
-    image: micyo202/lion-auth:2.0.2
+    image: micyo202/lion-auth:2.0.3
     ports:
       - "8888:8888"
     environment:
@@ -97,7 +100,7 @@ services:
     restart: always
 
   lion-demo-provider:
-    image: micyo202/lion-demo-provider:2.0.2
+    image: micyo202/lion-demo-provider:2.0.3
     ports:
       - "8601:8601"
     environment:
@@ -108,7 +111,7 @@ services:
     restart: always
 
   lion-demo-consumer:
-    image: micyo202/lion-demo-consumer:2.0.2
+    image: micyo202/lion-demo-consumer:2.0.3
     ports:
       - "8701:8701"
     environment:
