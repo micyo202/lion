@@ -28,8 +28,8 @@ import java.util.List;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
-@Slf4j
 @EnableScheduling
+@Slf4j
 public class ScheduleConfig implements SchedulingConfigurer {
 
     @Value("${spring.application.name}")
