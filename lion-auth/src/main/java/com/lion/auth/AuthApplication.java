@@ -1,6 +1,8 @@
 package com.lion.auth;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import com.lion.common.amqp.AmqpReceiver;
+import com.lion.common.amqp.AmqpSender;
 import com.lion.common.config.ScheduleConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +26,8 @@ import org.springframework.context.annotation.FilterType;
 @EnableKnife4j
 @MapperScan("com.lion.auth.mapper")
 @ComponentScan(basePackages = {"com.lion.auth", "com.lion.common"},
-        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {ScheduleConfig.class})})
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+                classes = {ScheduleConfig.class, AmqpSender.class, AmqpReceiver.class})})
 public class AuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);

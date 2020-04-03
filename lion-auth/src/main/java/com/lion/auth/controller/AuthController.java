@@ -25,6 +25,12 @@ import java.security.Principal;
 @RestController
 public class AuthController extends BaseController {
 
+    @ApiOperation(value = "初始化", response = Result.class)
+    @GetMapping("/init")
+    public Result init() {
+        return Result.success(applicationName + " -> port: " + port + ", version: " + version);
+    }
+
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
 
