@@ -1,6 +1,6 @@
 package com.lion.auth.exception;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,15 +45,15 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         }
         ase = (AuthenticationException) throwableAnalyzer.getFirstThrowableOfType(AuthenticationException.class, causeChain);
         if (ase != null) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), ase.getMessage()));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.UNAUTHORIZED, ase.getMessage()));
         }
         ase = (AccessDeniedException) throwableAnalyzer.getFirstThrowableOfType(AccessDeniedException.class, causeChain);
         if (ase instanceof AccessDeniedException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问"));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.FORBIDDEN, "权限不足无法访问"));
         }
         ase = (InvalidTokenException) throwableAnalyzer.getFirstThrowableOfType(InvalidTokenException.class, causeChain);
         if (ase instanceof InvalidTokenException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token"));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.UNAUTHORIZED, "无效的 Access Token"));
         }
         ase = (InvalidGrantException) throwableAnalyzer.getFirstThrowableOfType(InvalidGrantException.class, causeChain);
         if (ase instanceof InvalidGrantException) {
@@ -73,13 +73,13 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
             if (msg.contains("Invalid refresh token")) {
                 msg = "无效的 Refresh Token";
             }
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.UNAUTHORIZED.code(), msg));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.UNAUTHORIZED, msg));
         }
         ase = (HttpRequestMethodNotSupportedException) throwableAnalyzer.getFirstThrowableOfType(HttpRequestMethodNotSupportedException.class, causeChain);
         if (ase instanceof HttpRequestMethodNotSupportedException) {
-            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.METHOD_NOT_ALLOWED.code(), e.getMessage()));
+            return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.METHOD_NOT_ALLOWED, e.getMessage()));
         }
-        return handleOAuth2Exception(new CustomOAuth2Exception(ResponseStatus.FAILURE.code(), e.getMessage()));
+        return handleOAuth2Exception(new CustomOAuth2Exception(ResponseCode.FAILURE, e.getMessage()));
     }
 
     private ResponseEntity<CustomOAuth2Exception> handleOAuth2Exception(OAuth2Exception e) {
@@ -87,7 +87,7 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         HttpHeaders headers = new HttpHeaders();
         headers.set("Cache-Control", "no-store");
         headers.set("Pragma", "no-cache");
-        if (code == ResponseStatus.UNAUTHORIZED.code() || (e instanceof InsufficientScopeException)) {
+        if (code == ResponseCode.UNAUTHORIZED || (e instanceof InsufficientScopeException)) {
             headers.set("WWW-Authenticate", String.format("%s %s", OAuth2AccessToken.BEARER_TYPE, e.getSummary()));
         }
         ResponseEntity<CustomOAuth2Exception> response = new ResponseEntity(e, headers, HttpStatus.valueOf(code));
