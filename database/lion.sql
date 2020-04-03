@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 31/03/2020 09:50:20
+ Date: 31/03/2020 12:16:39
 */
 
 SET NAMES utf8mb4;
@@ -262,7 +262,7 @@ CREATE TABLE `temp_order` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单表';
 
 -- ----------------------------
 -- Table structure for temp_product
@@ -283,7 +283,7 @@ CREATE TABLE `temp_product` (
 -- Records of temp_product
 -- ----------------------------
 BEGIN;
-INSERT INTO `temp_product` VALUES (1, 'product-1', '有库存的商品', 9, 1, '2020-03-22 20:50:22', '2020-03-22 20:50:22');
+INSERT INTO `temp_product` VALUES (1, 'product-1', '有库存的商品', 9, 1, '2020-03-20 16:50:22', '2020-03-20 16:50:22');
 INSERT INTO `temp_product` VALUES (2, 'product-2', '无库存的商品', 0, 1, '2020-03-30 10:52:00', '2020-03-30 10:52:00');
 COMMIT;
 
@@ -303,6 +303,6 @@ CREATE TABLE `undo_log` (
   `ext` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
