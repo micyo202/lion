@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.ResponseStatus;
 import com.lion.common.util.DateUtil;
 import lombok.NoArgsConstructor;
@@ -23,15 +24,15 @@ import java.util.Map;
  * @date 2019/04/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultPage<T> implements Serializable {
 
     /**
      * 状态值
      */
-    private int code = ResponseStatus.SUCCESS.code();
+    private int code = ResponseCode.SUCCESS;
 
     /**
      * 提示信息
@@ -242,7 +243,7 @@ public class ResultPage<T> implements Serializable {
 
     public static ResultPage failure(String msg) {
         ResultPage resultPage = new ResultPage();
-        resultPage.setCode(ResponseStatus.FAILURE.code());
+        resultPage.setCode(ResponseCode.FAILURE);
         resultPage.setMsg(msg);
         return resultPage;
     }

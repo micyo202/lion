@@ -2,6 +2,7 @@ package com.lion.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Data
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Schedule implements Serializable {
 

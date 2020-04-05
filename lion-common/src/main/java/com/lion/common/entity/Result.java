@@ -1,6 +1,7 @@
 package com.lion.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.ResponseStatus;
 import com.lion.common.util.DateUtil;
 import lombok.NoArgsConstructor;
@@ -18,15 +19,15 @@ import java.util.Map;
  * @date 2019/04/13
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> implements Serializable {
 
     /**
      * 状态值
      */
-    private int code = ResponseStatus.SUCCESS.code();
+    private int code = ResponseCode.SUCCESS;
 
     /**
      * 提示信息
@@ -140,7 +141,7 @@ public class Result<T> implements Serializable {
 
     public static Result failure(String msg) {
         Result result = new Result();
-        result.setCode(ResponseStatus.FAILURE.code());
+        result.setCode(ResponseCode.FAILURE);
         result.setMsg(msg);
         return result;
     }
