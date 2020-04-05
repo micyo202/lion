@@ -1,6 +1,6 @@
 package com.lion.common.exception;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.entity.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问")));
+        response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.FORBIDDEN, "权限不足无法访问")));
     }
 
 }

@@ -1,6 +1,6 @@
 package com.lion.common.exception;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.entity.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -36,13 +36,13 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         Throwable cause = authException.getCause();
         if (cause instanceof InvalidTokenException) {
-            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token")));
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Access Token")));
         } else if (cause instanceof InvalidGrantException) {
-            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token")));
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Refresh Token")));
         } else if (cause instanceof AccessDeniedException) {
-            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问")));
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.FORBIDDEN, "权限不足无法访问")));
         } else {
-            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "尚未认证无法访问")));
+            response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "尚未认证无法访问")));
         }
 
         /*

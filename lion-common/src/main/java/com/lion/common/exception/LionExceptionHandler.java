@@ -1,6 +1,6 @@
 package com.lion.common.exception;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -33,11 +33,11 @@ public class LionExceptionHandler {
             LionException lionException = (LionException) e;
             result = Result.failure(lionException.getCode(), lionException.getMessage());
         } else if (e instanceof InvalidTokenException) {
-            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token");
+            result = Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Access Token");
         } else if (e instanceof InvalidGrantException) {
-            result = Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Refresh Token");
+            result = Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Refresh Token");
         } else if (e instanceof AccessDeniedException) {
-            result = Result.failure(ResponseStatus.FORBIDDEN.code(), "权限不足无法访问");
+            result = Result.failure(ResponseCode.FORBIDDEN, "权限不足无法访问");
         } else {
             log.error("系统异常", e);
             result = Result.failure(e.getMessage());

@@ -1,6 +1,6 @@
 package com.lion.common.exception;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class LionException extends RuntimeException {
 
     public LionException(String msg) {
         super(msg);
-        this.code = ResponseStatus.FAILURE.code();
+        this.code = ResponseCode.FAILURE;
     }
 
 }
