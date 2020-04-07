@@ -102,20 +102,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-        //String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("secret");
-        // 内存验证clientId信息（仅测试）
-        /*
-        clients.inMemory()
-                .withClient("lion-client")
-                .secret(finalSecret)
-                .scopes("all")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit");
-                */
-
         // 通过jdbc去查询数据库oauth_client_details表验证clientId信息
         clients.withClientDetails(clientDetails());
-
     }
 
     @Override
