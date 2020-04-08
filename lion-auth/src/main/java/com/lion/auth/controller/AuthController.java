@@ -5,13 +5,12 @@ import com.lion.common.constant.SecurityConstant;
 import com.lion.common.entity.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 /**
  * AuthController
@@ -23,6 +22,7 @@ import java.security.Principal;
  */
 @Api("权限认证")
 @RestController
+@AllArgsConstructor
 public class AuthController extends BaseController {
 
     @ApiOperation(value = "初始化", response = Result.class)
@@ -33,13 +33,6 @@ public class AuthController extends BaseController {
 
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
-
-    @ApiOperation(value = "获取凭证信息", response = Result.class)
-    @GetMapping(value = "/principal")
-    public Result principal(Principal principal) {
-        //获取用户凭证信息
-        return Result.success(principal);
-    }
 
     @ApiOperation(value = "注销凭证信息", response = Result.class)
     @DeleteMapping(value = "/revoke")
