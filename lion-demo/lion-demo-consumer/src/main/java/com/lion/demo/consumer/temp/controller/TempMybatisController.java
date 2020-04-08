@@ -36,7 +36,7 @@ public class TempMybatisController extends BaseController {
     @Autowired
     private ITempMybatisService tempMybatisService;
 
-    @ApiOperation(value = "使用Mybatis方式插入数据", notes = "当 num > 5 时触发事务回滚")
+    @ApiOperation(value = "Mybatis插入数据", notes = "当 num > 5 时触发事务回滚")
     @ApiParam(name = "num", value = "插入数据条数", defaultValue = "5", required = true)
     @RequestMapping(value = "/save/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
@@ -71,6 +71,7 @@ public class TempMybatisController extends BaseController {
     }
 
     @ApiOperation("Mybatis自定义API接口，注解SQL、XML方式查询")
+    @ApiParam(name = "type", value = "类型（取值范围：mapper/xml）", defaultValue = "mapper", required = true, type = "String")
     @RequestMapping(value = "/custom/sql/{type}", method = {RequestMethod.GET, RequestMethod.POST})
     public Result customSql(@PathVariable String type) {
 
