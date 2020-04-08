@@ -1,11 +1,15 @@
 package com.lion.demo.consumer.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.lion.common.amqp.AmqpSender;
 import com.lion.common.base.controller.BaseController;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.entity.Result;
 import com.lion.common.lock.annotation.Locker;
+import com.lion.common.util.DateUtil;
 import com.lion.demo.consumer.client.ProviderDemoClient;
 import com.lion.demo.consumer.handler.BlockHandler;
+import com.lion.demo.consumer.service.IAsyncTaskService;
 import com.netflix.ribbon.hystrix.FallbackHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +17,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -39,6 +44,7 @@ import java.util.Map;
 @Api("服务消费者示例")
 @RestController
 @Slf4j
+@RefreshScope
 public class ConsumerDemoController extends BaseController {
 
     /**
@@ -47,20 +53,29 @@ public class ConsumerDemoController extends BaseController {
     @Value("${foo}")
     private String foo;
 
-    @ApiOperation("初始化接口")
-    @GetMapping("/init")
-    public Result init() {
-        return Result.success("Consumer -> port: " + port + ", version: " + version + ", foo: " + foo);
-    }
-
     @Autowired
     private ProviderDemoClient providerDemoClient;
 
+    @ApiOperation("初始化")
+    @GetMapping("/init")
+    public Result init() {
+
+        String msg = applicationName + " -> port: " + port + ", version: " + version + ", foo: " + foo;
+
+        Result providerInitResult = providerDemoClient.initFromProvider();
+        if (providerInitResult.getCode() != ResponseCode.SUCCESS) {
+            return Result.failure(msg + ", " + providerInitResult.getMsg());
+        } else {
+            return Result.success(msg + ", " + providerInitResult.getData());
+        }
+
+    }
+
     @ApiOperation("Feign服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
-    @RequestMapping(value = "/feign/hi", method = {RequestMethod.GET, RequestMethod.POST})
+    @GetMapping("/feign/hi")
     public Result feignHi(String name) {
-        log.info("Consumer -> 服务消费者 feign");
+        log.info("Consumer -> 服务消费者 /feign/hi");
         return providerDemoClient.hiFromProvider(name);
     }
 
@@ -70,7 +85,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("Ribbon服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @SentinelResource(value = "ribbonHi", fallback = "ribbonHiFallback")
-    @RequestMapping(value = "/ribbon/hi", method = {RequestMethod.GET, RequestMethod.POST})
+    @GetMapping("/ribbon/hi")
     public Result ribbonHi(String name) {
 
         String method = this.getRequest().getMethod();
@@ -96,7 +111,7 @@ public class ConsumerDemoController extends BaseController {
     }
 
     /**
-     * Ribbon服务熔断
+     * Ribbon服务熔断降级
      */
     public Result ribbonHiFallback(String name) {
         return Result.failure("Ribbon Hi: '" + name + "', fallback sentinel");
@@ -117,37 +132,15 @@ public class ConsumerDemoController extends BaseController {
         //return Result.failure(500, "This is sentinel control service fallback");
     }
 
-    @ApiOperation("分布式锁")
-    @Locker
-    @RequestMapping(value = "/lock", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result lock() {
-        try {
-            log.info("执行锁中业务逻辑");
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return Result.success("分布式锁方法执行成功");
-    }
-
-    @RequestMapping(value = "/rabbit/{flag}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result rabbit(@PathVariable String flag) {
-        return providerDemoClient.sendFromProvider(flag);
-    }
-
-    @ApiOperation("权限认证 - 无需 access_token 访问（产品查看接口）")
-    @ApiParam(name = "id", value = "产品主键（无需 access_token）")
-    @RequestMapping(value = "/product/{id}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getProduct(@PathVariable String id) {
-        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return Result.success("无需 access_token 访问，Product id : " + id);
-    }
-
-    @ApiOperation("权限认证 - 需要 access_token 访问（订单查看接口）")
-    @ApiParam(name = "id", value = "订单主键（需要 access_token）")
-    @RequestMapping(value = "/order/{id}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getOrder(@PathVariable String id) {
-        return Result.success("需要 access_token 才能访问，Order id : " + id);
+    @ApiOperation("获取用户凭证信息")
+    @RequestMapping(value = "/principle", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
+        log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
+        log.info(oAuth2Authentication.toString());
+        log.info("principal.toString() " + principal.toString());
+        log.info("principal.getName() " + principal.getName());
+        log.info("authentication: " + authentication.getAuthorities().toString());
+        return Result.success(oAuth2Authentication);
     }
 
     @ApiOperation("角色控制 - 需要拥有admin角色")
@@ -166,15 +159,46 @@ public class ConsumerDemoController extends BaseController {
         return Result.success("当前用户，拥有User权限可访问......");
     }
 
-    @ApiOperation("获取用户凭证信息")
-    @RequestMapping(value = "/principle", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
-        log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
-        log.info(oAuth2Authentication.toString());
-        log.info("principal.toString() " + principal.toString());
-        log.info("principal.getName() " + principal.getName());
-        log.info("authentication: " + authentication.getAuthorities().toString());
-        return Result.success(oAuth2Authentication);
+    @ApiOperation("Redisson分布式锁")
+    @Locker
+    @RequestMapping(value = "/lock", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result lock() {
+        try {
+            log.info("执行锁中业务逻辑");
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return Result.success("分布式锁方法执行成功");
+    }
+
+    @Autowired
+    private IAsyncTaskService asyncTaskService;
+
+    @ApiOperation("异步线程执行任务")
+    @GetMapping("/async")
+    public Result async() {
+        asyncTaskService.asyncJob("A");
+        asyncTaskService.asyncJob("B");
+        return Result.success("异步线程任务调用完成，请查看日志结果");
+    }
+
+    @Autowired
+    private AmqpSender amqpSender;
+
+    @ApiOperation("AMQP消息发送/接收")
+    @RequestMapping(value = "/amqp", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result amqp() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 1);
+        map.put("msg", "AMQP发送消息");
+        map.put("valid", true);
+        map.put("sendTime", DateUtil.getCurrentDateTime());
+        Result result = Result.success(map);
+
+        amqpSender.send(result);
+
+        return Result.success("消息发送成功，请查看消息接收日志");
     }
 
     @ApiOperation("文件上传")
@@ -189,8 +213,8 @@ public class ConsumerDemoController extends BaseController {
     @ApiParam(name = "fileName", value = "文件名称", required = true)
     @GetMapping("/download/{fileName}")
     public Result download(@PathVariable String fileName, HttpServletResponse response) {
-        boolean res = fileDownload(fileName, response);
-        return res ? Result.success() : Result.failure("文件下载失败");
+        boolean result = fileDownload(fileName, response);
+        return result ? Result.success("文件下载成功") : Result.failure("文件下载失败");
     }
 
 }
