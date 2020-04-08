@@ -20,8 +20,19 @@ docker run -d \
 -e REGISTER_HOST=localhost \
 micyo202/lion-auth:tagname
 ```
+### 授权码模式，获取access_token请求（/oauth/authorize）
+请求所需参数：client_id、response_type、redirect_uri 
+```http request
+http://localhost:8888/oauth/authorize?client_id=lion-client&response_type=code&redirect_uri=https://github.com/micyo202/lion
+```
 
-#### 获取access_token请求（/oauth/token） 
+### 授权码模式，获取access_token请求（/oauth/token） 
+请求所需参数：client_id、client_secret、scope、grant_type、redirect_uri、code
+```http request
+http://localhost:8888/oauth/token?client_id=lion-client&client_secret=secret&scope=all&grant_type=authorization_code&redirect_uri=https://github.com/micyo202/lion&code=YBElD2
+```
+
+#### 用户/密码模式，获取access_token请求（/oauth/token）
 请求所需参数：client_id、client_secret、scope、grant_type、username、password
 ```http request
 http://localhost:8888/oauth/token?client_id=lion-client&client_secret=secret&scope=all&grant_type=password&username=admin&password=123456
