@@ -6,7 +6,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @date 2019/04/08
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -49,22 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        // 内存方式用户信息（仅测试）
-        /*
-        String finalPassword = "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin").password(finalPassword).authorities("READ", "WRITE")
-                .and()
-                .withUser("guest").password(finalPassword).authorities("READ");
-                */
-
         // 数据库方式用户信息
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-
     }
 
     @Override
@@ -78,6 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(excludeUrls).permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .formLogin();
     }
 }
