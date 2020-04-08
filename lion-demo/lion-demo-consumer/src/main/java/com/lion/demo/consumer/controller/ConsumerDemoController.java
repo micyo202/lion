@@ -3,6 +3,7 @@ package com.lion.demo.consumer.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.lion.common.amqp.AmqpSender;
 import com.lion.common.base.controller.BaseController;
+import com.lion.common.blockchain.BlockChain;
 import com.lion.common.constant.ResponseCode;
 import com.lion.common.entity.Result;
 import com.lion.common.lock.annotation.Locker;
@@ -199,6 +200,22 @@ public class ConsumerDemoController extends BaseController {
         amqpSender.send(result);
 
         return Result.success("消息发送成功，请查看消息接收日志");
+    }
+
+    @ApiOperation("区块链 - 开采追加块链")
+    @ApiParam(name = "data", value = "块内容")
+    @PostMapping("/blockchain/mined")
+    public Result minedBlockChain(@RequestParam(name = "data") String data) {
+        String hash = BlockChain.minedBlockChain(data);
+        return Result.success(hash);
+    }
+
+    @ApiOperation("区块链 - 解析块链")
+    @ApiParam(name = "blockHash", value = "需解析的块Hash散列值")
+    @PostMapping(value = "/blockchain/decrypt/{blockHash}")
+    public Result decryptBlockChain(@PathVariable String blockHash) {
+        String blockchainJson = BlockChain.decryptBlockchain(blockHash);
+        return Result.success(blockchainJson);
     }
 
     @ApiOperation("文件上传")
