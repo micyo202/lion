@@ -1,124 +1,132 @@
-spring:
-  #处理 FeignClient 重名问题
-  #main:
-    #allow-bean-definition-overriding: on
-  cloud:
-    sentinel:
-      transport:
-        dashboard: ${SENTINEL_DASHBOARD:localhost:8858}
-    alibaba:
-      seata:
-        tx-service-group: lion_service_group
-  rabbitmq:
-    host: ${RABBIT_MQ_HOST:localhost}
-    port: ${RABBIT_MQ_PORT:5672}
-    username: ${RABBIT_MQ_USERNAME:guest}
-    password: ${RABBIT_MQ_PASSWORD:guest}
-  sleuth:
-    sampler:
-      probability: 1.0
-  zipkin:
-    #base-url: ${ZIPKIN_URL:http://localhost:9411}
-    sender:
-      type: rabbit
-  datasource:
-    druid:
-      #JDBC配置
-      url: ${JDBC_URL:jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true}
-      username: ${JDBC_USERNAME:lion}
-      password: ${JDBC_PASSWORD:lion}
-      driver-class-name: ${JDBC_DRIVER:com.mysql.cj.jdbc.Driver}
-      #配置连接池大小
-      initial-size: 5
-      min-idle: 5
-      max-active: 10
-      #配置获取连接等待超时的时间
-      max-wait: 10000
-      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接（毫秒）
-      time-between-eviction-runs-millis: 60000
-      #配置一个连接在池中最小生存的时间（毫秒）
-      min-evictable-idle-time-millis: 300000
-      validation-query: SELECT 1 FROM DUAL
-      test-while-idle: on
-      test-on-borrow: off
-      test-on-return: off
-      #打开PSCache，并且指定每个连接上PSCache的大小
-      pool-prepared-statements: on
-      max-pool-prepared-statement-per-connection-size: 20
-      #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-      filters:
-        - stat
-        - wall
-        - log4j2
-      filter:
-        #记录慢sql
-        stat:
-          merge-sql: on
-          log-slow-sql: on
-          slow-sql-millis: 5000
-      use-global-data-source-stat: true
-      #管理界面用户
-      stat-view-servlet:
-        enabled: on
-        reset-enable: false
-        url-pattern: /druid/*
-        login-username: ${DRUID_USERNAME:druid}
-        login-password: ${DRUID_PASSWORD:druid}
-        #白名单
-        #allow: 127.0.0.1
-        #黑名单（白名单和黑名单重复时，黑名单优先级更高）
-        #deny: 192.168.0.1
-      #监控服务配置
-      web-stat-filter:
-        enabled: on
-        #监控单个url调用的sql列表
-        profile-enable: true
-        url-pattern: /*
-        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:lion}
-  cache:
-    type: redis
-
-mybatis-plus:
-  #type-aliases-package: com.lion.demo.consumer..*.entity
-  mapper-locations: classpath:mapper/**/*.xml
-  configuration:
-    #将执行的sql打印出来，生产需关闭
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-#分页插件配置
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
-
-#开启sentinel断路器
-feign:
-  sentinel:
-    enabled: on
-
-#配置无需认证的url
-pattern:
-  permit:
-    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/lock/**,/product/**,/rabbit/**,/upload/**,/download/**,/temp/**
-
-#配置附件上传路径
-file:
-  upload:
-    path: /tmp/upload
-
-#自定义值
-foo: This is foo...
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
+#spring:
+#  #处理 FeignClient 重名问题
+#  #main:
+#    #allow-bean-definition-overriding: on
+#  cloud:
+#    sentinel:
+#      transport:
+#        dashboard: ${SENTINEL_DASHBOARD:localhost:8858}
+#    alibaba:
+#      seata:
+#        tx-service-group: lion_service_group
+#    stream:
+#      bindings:
+#        lion-input:
+#          destination: lion-topic
+#          group: lion-group
+#        lion-output:
+#          destination: lion-topic
+#          group: lion-group
+#  rabbitmq:
+#    host: ${RABBIT_MQ_HOST:localhost}
+#    port: ${RABBIT_MQ_PORT:5672}
+#    username: ${RABBIT_MQ_USERNAME:guest}
+#    password: ${RABBIT_MQ_PASSWORD:guest}
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#  zipkin:
+#    #base-url: ${ZIPKIN_URL:http://localhost:9411}
+#    sender:
+#      type: rabbit
+#  datasource:
+#    druid:
+#      #JDBC配置
+#      url: ${JDBC_URL:jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true}
+#      username: ${JDBC_USERNAME:lion}
+#      password: ${JDBC_PASSWORD:lion}
+#      driver-class-name: ${JDBC_DRIVER:com.mysql.cj.jdbc.Driver}
+#      #配置连接池大小
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 10
+#      #配置获取连接等待超时的时间
+#      max-wait: 10000
+#      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接（毫秒）
+#      time-between-eviction-runs-millis: 60000
+#      #配置一个连接在池中最小生存的时间（毫秒）
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: SELECT 1 FROM DUAL
+#      test-while-idle: on
+#      test-on-borrow: off
+#      test-on-return: off
+#      #打开PSCache，并且指定每个连接上PSCache的大小
+#      pool-prepared-statements: on
+#      max-pool-prepared-statement-per-connection-size: 20
+#      #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#      filters:
+#        - stat
+#        - wall
+#        - log4j2
+#      filter:
+#        #记录慢sql
+#        stat:
+#          merge-sql: on
+#          log-slow-sql: on
+#          slow-sql-millis: 5000
+#      use-global-data-source-stat: true
+#      #管理界面用户
+#      stat-view-servlet:
+#        enabled: on
+#        reset-enable: false
+#        url-pattern: /druid/*
+#        login-username: ${DRUID_USERNAME:druid}
+#        login-password: ${DRUID_PASSWORD:druid}
+#        #白名单
+#        #allow: 127.0.0.1
+#        #黑名单（白名单和黑名单重复时，黑名单优先级更高）
+#        #deny: 192.168.0.1
+#      #监控服务配置
+#      web-stat-filter:
+#        enabled: on
+#        #监控单个url调用的sql列表
+#        profile-enable: true
+#        url-pattern: /*
+#        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+#  redis:
+#    host: ${REDIS_HOST:localhost}
+#    port: ${REDIS_PORT:6379}
+#    password: ${REDIS_PASSWORD:lion}
+#  cache:
+#    type: redis
+#
+#mybatis-plus:
+#  #type-aliases-package: com.lion.demo.consumer..*.entity
+#  mapper-locations: classpath:mapper/**/*.xml
+#  configuration:
+#    #将执行的sql打印出来，生产需关闭
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+##分页插件配置
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+#
+##开启sentinel断路器
+#feign:
+#  sentinel:
+#    enabled: on
+#
+##配置无需认证的url
+#pattern:
+#  permit:
+#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/async/**,/lock/**,/amqp/**,/upload/**,/download/**,/temp/**
+#
+##配置附件上传路径
+#file:
+#  upload:
+#    path: /tmp/upload
+#
+##自定义值
+#foo: This is foo...
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always

@@ -9,6 +9,14 @@
 #    alibaba:
 #      seata:
 #        tx-service-group: lion_service_group
+#    stream:
+#      bindings:
+#        lion-input:
+#          destination: lion-topic
+#          group: lion-group
+#        lion-output:
+#          destination: lion-topic
+#          group: lion-group
 #  rabbitmq:
 #    host: ${RABBIT_MQ_HOST:localhost}
 #    port: ${RABBIT_MQ_PORT:5672}
@@ -97,7 +105,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /init/**,/hi/**,/send/**,/temp/**
+#    urls: /init/**,/hi/**,/temp/**
 #
 #management:
 #  endpoints:
