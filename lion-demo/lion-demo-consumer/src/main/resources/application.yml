@@ -112,7 +112,7 @@
 ##配置无需认证的url
 #pattern:
 #  permit:
-#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/async/**,/lock/**,/amqp/**,/upload/**,/download/**,/temp/**
+#    urls: /init/**,/feign/**,/ribbon/**,/sentinel/**,/async/**,/lock/**,/amqp/**,/blockchain/**,/upload/**,/download/**,/temp/**
 #
 ##配置附件上传路径
 #file:
