@@ -5,7 +5,6 @@ import com.lion.common.constant.SecurityConstant;
 import com.lion.common.entity.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api("权限认证")
 @RestController
-@AllArgsConstructor
 public class AuthController extends BaseController {
 
     @ApiOperation(value = "初始化", response = Result.class)
