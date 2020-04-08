@@ -1,6 +1,6 @@
 package com.lion.gateway.filter;
 
-import com.lion.common.constant.ResponseStatus;
+import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.SecurityConstant;
 import com.lion.common.entity.Result;
 import com.lion.common.util.JsonUtil;
@@ -57,14 +57,14 @@ public class TokenFilter implements GlobalFilter, Ordered {
         String accessToken = exchange.getRequest().getHeaders().getFirst(SecurityConstant.ACCESS_TOKEN);
         if (StringUtils.isEmpty(accessToken)) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "Access Token 不能为空"));
+            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 不能为空"));
             return getVoidMono(response, jsonString);
         }
 
         // 判断 access_token 是否 Bearer  开头
         if (!accessToken.startsWith(SecurityConstant.BEARER_PREFIX)) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "Access Token 格式不正确"));
+            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 格式不正确"));
             return getVoidMono(response, jsonString);
         }
 
@@ -75,20 +75,19 @@ public class TokenFilter implements GlobalFilter, Ordered {
         final Boolean hasKey = stringRedisTemplate.hasKey(formatKey);
         if (!hasKey) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "无效的 Access Token"));
+            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Access Token"));
             return getVoidMono(response, jsonString);
         }
 
         final Long expire = stringRedisTemplate.getExpire(formatKey);
         if (0 >= expire) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseStatus.UNAUTHORIZED.code(), "Access Token 已过期"));
+            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 已过期"));
             return getVoidMono(response, jsonString);
         }
 
         log.info("进入 lion-gateway 服务，执行 TokenFilter 过滤器，检查 Access Token 完成");
         return chain.filter(exchange);
-
     }
 
     private Mono<Void> getVoidMono(ServerHttpResponse response, String jsonString) {
