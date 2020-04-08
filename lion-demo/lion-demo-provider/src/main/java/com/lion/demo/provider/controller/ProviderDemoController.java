@@ -21,18 +21,18 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class ProviderDemoController extends BaseController {
 
-    @ApiOperation("初始化接口")
+    @ApiOperation("初始化")
     @GetMapping("/init")
     public Result init() {
-        return Result.success("Provider -> port: " + port + ", version: " + version);
+        return Result.success(applicationName + " -> port: " + port + ", version: " + version);
     }
 
-    @ApiOperation("基本示例接口，返回Hi文本内容")
+    @ApiOperation("返回Hi文本内容")
     @ApiParam(name = "name", value = "名称", defaultValue = "lion")
     @RequestMapping(value = "/hi", method = {RequestMethod.GET, RequestMethod.POST})
     public Result hi(@RequestParam(defaultValue = "lion") String name) {
-        log.info("Provider 服务提供者 hi");
-        return Result.success("Hi \"" + name + "\", I'm Provider, From port: " + port + ", version: " + version);
+        log.info("Provider -> 服务提供者 /hi");
+        return Result.success("Hi '" + name + "', I'm Provider, From port: " + port + ", version: " + version);
     }
 
 }
