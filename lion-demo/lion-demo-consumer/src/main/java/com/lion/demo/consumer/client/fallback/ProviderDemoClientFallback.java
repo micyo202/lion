@@ -16,18 +16,17 @@ import org.springframework.stereotype.Service;
 public class ProviderDemoClientFallback implements ProviderDemoClient {
 
     @Override
+    public Result initFromProvider() {
+        return Result.failure("FeignClient -> 调用服务端提供者：'lion-demo-provider'请求'/init'失败");
+    }
+
+    @Override
     public Result hiFromProvider(String name) {
-        return Result.failure("Invoke Method \"hiFromProvider(String name)\" Fallback");
+        return Result.failure("FeignClient -> 调用服务端提供者：'lion-demo-provider'请求'/hi'失败");
     }
 
     @Override
-    public Result deduct(String productCode, int count) {
-        return Result.failure("Invoke Method \"deduct(String productCode, int count)\" Fallback");
+    public Result deductFromProvider(String productCode, int count) {
+        return Result.failure("FeignClient -> 调用服务端提供者：'lion-demo-provider'请求'/temp/product/deduct'失败");
     }
-
-    @Override
-    public Result sendFromProvider(String flag) {
-        return Result.failure("Invoke Method \"sendFromProvider(String flag)\" Fallback");
-    }
-
 }
