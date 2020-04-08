@@ -4,7 +4,7 @@ import com.lion.common.entity.Result;
 
 /**
  * FallbackHandler
- * sentinel服务熔断、降级方法
+ * sentinel服务熔断降级方法
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/08/19
@@ -13,7 +13,7 @@ import com.lion.common.entity.Result;
 public class FallbackHandler {
 
     public static Result sentinelFallback() {
-        return Result.failure(500, "服务熔断、降级（Sentinel is fallback...）");
+        return Result.failure(500, "服务熔断降级（Sentinel is fallback...）");
     }
 
 }
