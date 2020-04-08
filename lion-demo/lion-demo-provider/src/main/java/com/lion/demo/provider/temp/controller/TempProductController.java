@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,8 +31,8 @@ public class TempProductController extends BaseController {
     @Autowired
     private ITempProductService tempProductService;
 
-    @ApiOperation(value = "扣减产品库存")
-    @RequestMapping("/deduct")
+    @ApiOperation(value = "扣减产品库存", notes = "当库存不足时，扣减失败，回滚")
+    @RequestMapping(value = "/deduct", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
     public Result deduct(String productCode, int count) {
 

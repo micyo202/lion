@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,7 +38,7 @@ public class TempOrderController extends BaseController {
     private ProviderDemoClient providerDemoClient;
 
     @ApiOperation(value = "全局事务，正常下单", notes = "执行：插入订单表、扣减库存表")
-    @RequestMapping("/commit")
+    @RequestMapping(value = "/commit", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
     @Transactional
     public Result commit() {
@@ -49,7 +50,7 @@ public class TempOrderController extends BaseController {
      * 下单：插入订单表、扣减库存，模拟回滚
      */
     @ApiOperation(value = "全局事务，模拟回滚", notes = "执行：插入订单表、扣减库存表")
-    @RequestMapping("/rollback")
+    @RequestMapping(value = "/rollback", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
     @Transactional
     public Result rollback() {
@@ -61,13 +62,16 @@ public class TempOrderController extends BaseController {
      * 下单：插入订单表、扣减库存，错误但不会滚
      */
     @ApiOperation(value = "无全局事务，无法回滚，数据错乱", notes = "执行：插入订单表、扣减库存表")
-    @RequestMapping("/exception")
+    @RequestMapping(value = "/exception", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
     public Result exception() {
         place("product-1", 1);
         throw new LionException("无全局事务 -> 无法回滚（数据已错乱）...");
     }
 
+    /**
+     * 下单方法
+     */
     private void place(String productCode, int count) {
         TempOrder tempOrder = new TempOrder()
                 .setProductCode(productCode)
@@ -76,7 +80,7 @@ public class TempOrderController extends BaseController {
                 .setCreateTime(DateUtil.getCurrentLocalDateTime())
                 .setUpdateTime(DateUtil.getCurrentLocalDateTime());
         tempOrderService.save(tempOrder);
-        Result deduct = providerDemoClient.deduct(productCode, count);
+        Result deduct = providerDemoClient.deductFromProvider(productCode, count);
         if (deduct.getCode() != ResponseCode.SUCCESS) {
             throw new LionException(deduct.getMsg());
         }
