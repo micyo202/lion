@@ -27,6 +27,8 @@ subprojects {
         set('springFrameworkVersion', "5.2.5.RELEASE")
         set('springSecurityVersion', "5.2.2.RELEASE")
         set('springOauth2Version', "2.3.4.RELEASE")
+        set('junitJupiterVersion', "5.6.1")
+        set('junitPlatformLauncherVersion', "1.6.1")
 
         set('commonsLangVersion', "3.10")
         set('lombokVersion', "1.18.12")
@@ -81,6 +83,10 @@ subprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
+        testImplementation "org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}"
     }
 
     dependencyManagement {

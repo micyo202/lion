@@ -6,7 +6,6 @@ apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 ext {
     set('apnsVersion', "1.0.0.Beta6")
-    set('junitVersion', "4.13")
 }
 
 dependencies {
@@ -49,8 +48,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-cache'
 
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
-
-    testImplementation "junit:junit:${junitVersion}"
 
     // 苹果推送APNS
     testImplementation "com.notnoop.apns:apns:${apnsVersion}"
