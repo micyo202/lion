@@ -6,7 +6,104 @@
 	},
 	"item": [
 		{
-			"name": "服务鉴权-获取Token",
+			"name": "服务鉴权-获取授权码（浏览器发起）",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8400/auth/oauth/authorize?client_id=lion-client&response_type=code&redirect_uri=https://github.com/micyo202/lion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "lion-client"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://github.com/micyo202/lion"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务鉴权-获取Token（授权码模式）",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "client_id",
+							"value": "lion-client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://github.com/micyo202/lion",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "YBElD2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8400/auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务鉴权-获取Token（密码模式）",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -141,47 +238,6 @@
 							"key": "client_secret",
 							"value": "secret"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "服务鉴权-获取凭证信息",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "18e9f2b4-25e6-4c54-81e1-575ec2be2b53",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "version",
-						"value": "v1",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8400/auth/principal",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8400",
-					"path": [
-						"auth",
-						"principal"
 					]
 				}
 			},
@@ -641,7 +697,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8400/demo/consumer/async",
 					"protocol": "http",
@@ -677,7 +739,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8400/demo/consumer/amqp",
 					"protocol": "http",
@@ -689,6 +757,112 @@
 						"demo",
 						"consumer",
 						"amqp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务消费者-Blockchain开采追加块链",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "1de890fc-0c0f-470b-b8fd-ca0c0e0364a2",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "Hello, 我是第一个块",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/blockchain/mined",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"blockchain",
+						"mined"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务消费者-Blockchain解析块链",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "1de890fc-0c0f-470b-b8fd-ca0c0e0364a2",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8400/demo/consumer/blockchain/decrypt/00000486009b9857c6a8f93a02ee834d2309d930cc8540f896ad9ff745b1ee52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8400",
+					"path": [
+						"demo",
+						"consumer",
+						"blockchain",
+						"decrypt",
+						"00000486009b9857c6a8f93a02ee834d2309d930cc8540f896ad9ff745b1ee52"
 					]
 				}
 			},
@@ -946,7 +1120,13 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "version",
+						"value": "v1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8400/demo/consumer/temp/order/commit",
 					"protocol": "http",
@@ -986,7 +1166,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/order/rollback",
+					"raw": "http://localhost:8400/demo/consumer/temp/order/rollback?version=v1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -998,6 +1178,12 @@
 						"temp",
 						"order",
 						"rollback"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "v1"
+						}
 					]
 				}
 			},
@@ -1024,7 +1210,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/order/exception",
+					"raw": "http://localhost:8400/demo/consumer/temp/order/exception?version=v1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1036,6 +1222,12 @@
 						"temp",
 						"order",
 						"exception"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "v1"
+						}
 					]
 				}
 			},
