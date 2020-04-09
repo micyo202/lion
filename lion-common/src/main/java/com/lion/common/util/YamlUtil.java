@@ -40,6 +40,9 @@ public class YamlUtil {
         String result = null;
 
         InputStream inputStream = YamlUtil.class.getClassLoader().getResourceAsStream(fileName);
+        if (null == inputStream) {
+            return null;
+        }
         Yaml yaml = new Yaml();
         Map<String, Object> map = yaml.load(inputStream);
 

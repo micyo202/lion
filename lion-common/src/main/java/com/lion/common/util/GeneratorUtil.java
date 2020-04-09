@@ -1,5 +1,7 @@
 package com.lion.common.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,11 +19,12 @@ public class GeneratorUtil {
 
     public synchronized static String getUUID() {
         String applicationName = YamlUtil.getBootstrapValue("spring.application.name");
+        applicationName = StringUtils.isEmpty(applicationName) ? "lion" : applicationName;
         int applicationNameHashCode = applicationName.hashCode();
-        increment = increment >= 99999 ? 1 : increment + 1;
-        String count = String.format("%s%05d", applicationNameHashCode, increment);
+        increment = increment >= 9999 ? 1 : increment + 1;
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        return currentDateTime + count;
+        String uuid = String.format("%s%s%04d", applicationNameHashCode, currentDateTime, increment);
+        return uuid;
     }
 
 }

@@ -346,7 +346,7 @@ public class RandomUtil {
     /**
      * 随机手机号
      */
-    private static String randomPhone() {
+    public static String randomPhone() {
         int index = randomNumber(0, PHONE_PRE.length - 1);
         String first = PHONE_PRE[index];
         String second = String.valueOf(randomNumber(1, 888) + 10000).substring(1);
@@ -359,7 +359,7 @@ public class RandomUtil {
     /**
      * 随机地址
      */
-    private static String randomAddress() {
+    public static String randomAddress() {
         int index = randomNumber(0, ADDRESS.length - 1);
         String first = ADDRESS[index];
         String second = randomNumber(11, 150) + "号";
