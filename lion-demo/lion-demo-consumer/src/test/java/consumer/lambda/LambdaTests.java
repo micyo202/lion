@@ -7,14 +7,14 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * JunitLambda
+ * LambdaTests
  * lambda表达式示例代码
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/03/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-public class JunitLambda {
+public class LambdaTests {
 
     @Test
     public void test() {

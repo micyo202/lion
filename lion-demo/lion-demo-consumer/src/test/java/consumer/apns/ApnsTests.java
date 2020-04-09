@@ -4,14 +4,14 @@ import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
 
 /**
- * JunitAPNS
+ * ApnsTests
  * 苹果APNS推送
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/03/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-public class JunitAPNS {
+public class ApnsTests {
 
     public void test() {
         ApnsService service =

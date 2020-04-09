@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
  * Copyright 2019 Yanzheng. All rights reserved.
  */
 //@RunWith(SpringRunner.class)
-//@SpringBootTest(classes = SampleDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(classes = ConsumerDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ConsumerDemoApplicationTests {
 
     //@LocalServerPort

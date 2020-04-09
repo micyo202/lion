@@ -4,14 +4,14 @@ package consumer.alg;
 import org.junit.jupiter.api.Test;
 
 /**
- * JunitALG
+ * AlgTests
  * 二分算法
  *
  * @author Yanzheng https://github.com/micyo202
  * @date 2019/03/29
  * Copyright 2019 Yanzheng. All rights reserved.
  */
-public class JunitALG {
+public class AlgTests {
 
     @Test
     public void test() {
