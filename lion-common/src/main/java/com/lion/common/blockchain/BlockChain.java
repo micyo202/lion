@@ -44,7 +44,7 @@ public class BlockChain {
                     .parallelStream()
                     .filter(b -> b.hash.equals(blockHash))
                     .collect(Collectors.toList());
-            if (!blockList.isEmpty()) {
+            if (null != blockList && !blockList.isEmpty()) {
                 String blockJson = JsonUtil.jsonObj2Str(blockList);
                 return blockJson;
             } else {
