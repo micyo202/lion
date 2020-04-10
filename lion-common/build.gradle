@@ -2,6 +2,7 @@ group 'com.lion.common'
 description '公共模块'
 
 configurations {
+    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2'
     implementation.exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-yaml'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-actuator'
@@ -9,7 +10,7 @@ configurations {
 }
 
 dependencies {
-    compileOnly "org.apache.commons:commons-lang3:${commonsLangVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
 
     compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 

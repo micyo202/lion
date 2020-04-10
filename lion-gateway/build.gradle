@@ -5,6 +5,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 configurations {
+    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
     testImplementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-test'
 }
 

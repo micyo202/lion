@@ -27,8 +27,8 @@ subprojects {
         set('springFrameworkVersion', "5.2.5.RELEASE")
         set('springSecurityVersion', "5.2.2.RELEASE")
         set('springOauth2Version', "2.3.4.RELEASE")
-        set('junitJupiterVersion', "5.6.1")
-        set('junitPlatformLauncherVersion', "1.6.1")
+        set('junitJupiterVersion', "5.5.2")
+        set('junitPlatformLauncherVersion', "1.5.2")
 
         set('commonsLangVersion', "3.10")
         set('lombokVersion', "1.18.12")
@@ -67,11 +67,15 @@ subprojects {
             extendsFrom annotationProcessor
         }
 
+        // 排除 tomcat 依赖（使用 undertow）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         // 排除 logback 依赖（使用 log4j2）
         implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-undertow'
+
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
 
