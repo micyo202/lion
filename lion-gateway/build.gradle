@@ -1,8 +1,11 @@
 group 'com.lion.gateway'
 description '路由网关服务'
 
+apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
-apply plugin: "com.bmuschko.docker-spring-boot-application"
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
+
+mainClassName = 'com.lion.gateway.GatewayApplication'
 
 configurations {
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
@@ -47,12 +50,13 @@ docker {
         email = 'micyo202@163.com'
     }
     springBootApplication {
-        maintainer = 'Yanzheng https://github.com/micyo202'
         baseImage = 'openjdk:8'
         //baseImage = 'openjdk:11.0.6'
         //baseImage = 'openjdk:13.0.2'
+        maintainer = 'Yanzheng https://github.com/micyo202'
         ports = [8400]
-        images = ["micyo202/${project.name}:${version}"]
+        images = ["micyo202/${project.name}:${project.version}"]
         jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
+        mainClassName = 'com.lion.gateway.GatewayApplication'
     }
 }

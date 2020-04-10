@@ -1,8 +1,11 @@
 group 'com.lion.admin'
 description '服务监控管理'
 
+apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
-apply plugin: "com.bmuschko.docker-spring-boot-application"
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
+
+mainClassName = 'com.lion.admin.AdminApplication'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -25,12 +28,13 @@ docker {
         email = 'micyo202@163.com'
     }
     springBootApplication {
-        maintainer = 'Yanzheng https://github.com/micyo202'
         baseImage = 'openjdk:8'
         //baseImage = 'openjdk:11.0.6'
         //baseImage = 'openjdk:13.0.2'
+        maintainer = 'Yanzheng https://github.com/micyo202'
         ports = [8200]
-        images = ["micyo202/${project.name}:${version}"]
+        images = ["micyo202/${project.name}:${project.version}"]
         jvmArgs = ['-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
+        mainClassName = 'com.lion.admin.AdminApplication'
     }
 }
