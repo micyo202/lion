@@ -6,10 +6,10 @@
 
 [![Build Status](https://travis-ci.org/micyo202/lion.svg?branch=master)](https://travis-ci.org/micyo202/lion)
 [![Codecov](https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg)](https://codecov.io/gh/micyo202/lion)
-[![Version](https://img.shields.io/badge/Version-2.0.2-blue.svg)](https://github.com/micyo202/lion)
+[![Version](https://img.shields.io/badge/Version-2.0.3-blue.svg)](https://github.com/micyo202/lion)
 [![Java](https://img.shields.io/badge/Java-8+-yellow.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Gradle](https://img.shields.io/badge/Gradle-6.3-01BC7E.svg)](https://gradle.org)
-[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.5.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
+[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.2.6.RELEASE-FF69B4.svg)](https://spring.io/projects/spring-boot/)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-Hoxton.SR2-5DBF3D.svg)](https://spring.io/projects/spring-cloud)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/micyo202/lion/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars)](https://github.com/micyo202/lion)
@@ -30,7 +30,7 @@
 
 **lion**是基于**Spring Cloud**体系实现的一套分布式微服务架构，为了让中小型公司解决当下技术瓶颈，快速将现有应用服务架构拆分改造为分布式微服务架构，只需在本架构上进行相关业务开发即可，大大减少了分布式微服务架构的门槛，达到拿来就用，使架构师及开发人员不必过多的关注架构本身，只需专注于业务开发
 
-项目采用**Gradle**构建，基于**Java 8+、SpringBoot 2.2.5.RELEASE、SpringCloud Hoxton.SR2、Spring Cloud Alibaba 2.2.0.RELEASE、MyBatis Plus 3.3.1**等核心技术体系实现的一套分布式微服务架构，包含**OAuth2/JWT**权限认证、支持**Docker**容器化部署、镜像交付、限流、灰度等
+项目采用**Gradle**构建，基于**Java 8+、SpringBoot 2.2.6.RELEASE、SpringCloud Hoxton.SR2、Spring Cloud Alibaba 2.2.0.RELEASE、MyBatis Plus 3.3.1**等核心技术体系实现的一套分布式微服务架构，包含**OAuth2/JWT**权限认证、支持**Docker**容器化部署、镜像交付、限流、灰度等
 
 使用**Nacos**作为服务注册/发现、配置中心
 
@@ -106,7 +106,7 @@ Seata 1.0.0 | [https://seata.io](https://seata.io) | √
 - ORM框架：MyBatis（MyBatis-Plus）
 - 数据源监控：Druid
 - RESTful APIs文档：Knife4j
-- 分布式锁：Redis
+- 分布式锁：Redisson
 - 分布式事务：Seata
 
 ## 四、项目结构
@@ -270,6 +270,13 @@ lion -- 根目录
   <img src="https://raw.githubusercontent.com/micyo202/lion/master/images/knife4j-apis.png" alt="knife4j-apis" title="knife4j-apis">
 </p>
 
-## 八、开源许可证
+## 八、开源协议
 
-[MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)
+[MIT License](https://github.com/micyo202/lion/blob/master/LICENSE)（[英文原文](https://opensource.org/licenses/mit-license.php)）MIT内容与三条款BSD许可证（3-clause BSD license）内容颇为近似，但是赋予软体被授权人更大的权利与更少的限制
+
+- 被授权人有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软体及软体的副本
+- 被授权人可根据程式的需要修改授权条款为适当的内容
+- 在软件和软件的所有副本中都必须包含版权声明和许可声明
+- 此授权条款并非属copyleft的自由软体授权条款，允许在自由/开放源码软体或非自由软体（proprietary software）所使用
+- 此亦为MIT与BSD（The BSD license, 3-clause BSD license）本质上不同处
+- MIT条款可与其他授权条款并存。另外，MIT条款也是自由软体基金会（FSF）所认可的自由软体授权条款，与GPL相容
