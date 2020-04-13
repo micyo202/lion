@@ -62,7 +62,7 @@
 
 ## 分支说明
 
-- [master分支](https://github.com/micyo202/lion)，基于Java 8+重构升级优化后的最新主线版本（推荐）
+- [master分支](https://github.com/micyo202/lion)，支持Java 8/11/13重构升级优化后的最新版（推荐）
 - [release1.x分支](https://github.com/micyo202/lion/tree/release1.x)，基于Java 8、SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE、Spring Cloud Alibaba 2.1.0.RELEASE体系实现，支持Java、Scala混编，的最终版
 - [eureka分支](https://github.com/micyo202/lion/tree/eureka)，使用 Eureka 作为服务注册发现中心（Eureka官宣2.x版本不再开源，项目使用Nacos）
 - [hystrix分支](https://github.com/micyo202/lion/tree/hystrix)，使用 Hystrix 做为服务断路器（Hystix官宣停止更新，项目使用Sentinel）
@@ -82,14 +82,14 @@
 名称 | 链接 | 必须 
 --- | --- | :-:
 MySql 8.0.19 | [https://www.mysql.com](https://www.mysql.com) | √ 
-ElasticSearch 7.6.1 | [https://www.elastic.co/cn/](https://www.elastic.co/cn/) | x 
 Redis 5.0.7 | [https://redis.io](https://redis.io) | √
 RabbitMQ 3.8.2 | [https://www.rabbitmq.com](https://www.rabbitmq.com) | √
 Nacos 1.1.4 | [https://nacos.io](https://nacos.io) | √ 
 Sentinel 1.7.1 | [https://github.com/alibaba/Sentinel](https://github.com/alibaba/Sentinel) | √ 
+Seata 1.0.0 | [https://seata.io](https://seata.io) | √ 
 Zipkin 2.20 | [https://zipkin.io](https://zipkin.io) | x 
 SkyWalking 6.6.0 | [http://skywalking.apache.org](http://skywalking.apache.org) | x 
-Seata 1.0.0 | [https://seata.io](https://seata.io) | √ 
+ElasticSearch 7.6.1 | [https://www.elastic.co/cn/](https://www.elastic.co/cn/) | x  
 
 注：在启动项目前，请先确保启动：[MySql 8.0.19](https://www.mysql.com)、[Redis 5.0.7](https://redis.io)、[RabbitMQ 3.8.2](https://www.rabbitmq.com)、[Nacos 1.1.4](https://nacos.io)、[Sentinel 1.7.1](https://github.com/alibaba/Sentinel)、[Seata 1.0.0](https://seata.io)这**6**个必备服务（需把**Sentinel**默认端口**8080**改为**8858**）
 
@@ -124,7 +124,7 @@ lion -- 根目录
 
 ## 五、项目部署
 
-1、下载项目`git clone https://github.com/micyo202/lion.git`
+1、下载项目`git clone --depth 1 https://github.com/micyo202/lion.git`
 
 2、进入项目根目录执行`./gradlew -x test clean`命令，使用**Gradle**初始化项目
 
