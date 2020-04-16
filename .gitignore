@@ -30,6 +30,9 @@ bin/
 .springBeans
 .sts4-cache
 
+### BlueJ files ###
+*.ctxt
+
 ### Package Files ###
 *.jar
 *.war
