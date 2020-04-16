@@ -4,6 +4,4 @@
 | | | (_) | | | |_____| (_| | (_| | ||  __/\ V  V / (_| | |_| |
 |_|_|\___/|_| |_|      \__, |\__,_|\__\___| \_/\_/ \__,_|\__, |
                        |___/                             |___/
-${AnsiColor.BRIGHT_YELLOW}
-:: Spring Boot ::      (${spring-boot.version})
-
+${AnsiColor.CYAN}Running ${AnsiColor.YELLOW}:: Spring Boot :: ${AnsiColor.RED}(${spring-boot.version})${AnsiColor.WHITE}
