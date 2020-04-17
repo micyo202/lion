@@ -25,9 +25,8 @@ import java.util.List;
  * IUpmsService
  * 用户权限管理接口
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/14
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public interface IUpmsService {
 

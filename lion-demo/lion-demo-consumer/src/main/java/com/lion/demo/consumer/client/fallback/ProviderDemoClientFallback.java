@@ -23,9 +23,8 @@ import org.springframework.stereotype.Service;
  * ProviderDemoClientFeignFallback
  * 服务调用失败处理类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Service
 public class ProviderDemoClientFallback implements ProviderDemoClient {

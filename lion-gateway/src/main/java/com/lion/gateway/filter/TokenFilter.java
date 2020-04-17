@@ -39,9 +39,8 @@ import java.nio.charset.StandardCharsets;
  * token 过滤器
  * access_token需请求时放在header中，格式'Authorization: Bearer token'
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/04
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class TokenFilter implements GlobalFilter, Ordered {

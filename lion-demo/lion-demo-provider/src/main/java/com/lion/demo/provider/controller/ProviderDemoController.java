@@ -27,9 +27,8 @@ import org.springframework.web.bind.annotation.*;
  * ProviderDemoController
  * 服务提供者示例代码
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/25
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Api("服务提供者示例代码")
 @RestController

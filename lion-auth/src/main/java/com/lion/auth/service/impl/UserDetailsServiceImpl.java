@@ -35,9 +35,8 @@ import java.util.Set;
  * UserDetailsServiceImpl
  * 用户授权认证实现类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/10
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {

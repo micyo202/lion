@@ -23,7 +23,7 @@ import com.lion.common.base.service.IBaseService;
  * 产品表 服务类
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-03-30
  */
 public interface ITempProductService extends IBaseService<TempProduct> {

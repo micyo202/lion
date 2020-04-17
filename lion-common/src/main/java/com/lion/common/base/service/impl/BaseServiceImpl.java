@@ -30,9 +30,8 @@ import java.util.List;
  * BaseServiceImpl
  * 通用 service 实现类，主要封装 Mybatis 分页方法
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/12
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements IBaseService<T> {
 

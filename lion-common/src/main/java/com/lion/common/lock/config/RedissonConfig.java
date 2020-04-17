@@ -26,9 +26,8 @@ import org.springframework.context.annotation.Configuration;
  * RedissonConfig
  * 分布式锁配置类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/24
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Configuration
 public class RedissonConfig {

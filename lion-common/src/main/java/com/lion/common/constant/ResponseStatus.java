@@ -19,9 +19,8 @@ package com.lion.common.constant;
  * ResponseStatus
  * response响应状态常枚举常量
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/29
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public enum ResponseStatus {
 

@@ -19,9 +19,8 @@ package com.lion.common.constant;
  * SecurityConstant
  * 安全配置常量
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/17
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public interface SecurityConstant {
 

@@ -29,7 +29,7 @@ import lombok.experimental.Accessors;
  * 订单表
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-03-30
  */
 @Data

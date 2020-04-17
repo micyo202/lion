@@ -38,9 +38,8 @@ import java.util.List;
  * BaseController
  * 通用控制器
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/11/19
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public abstract class BaseController extends ApplicationObjectSupport {

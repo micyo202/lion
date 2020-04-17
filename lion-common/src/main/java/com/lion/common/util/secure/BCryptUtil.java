@@ -22,9 +22,8 @@ import org.apache.commons.lang3.StringUtils;
  * BCryptUtil
  * BCrypt工具类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/21
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class BCryptUtil {
 

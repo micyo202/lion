@@ -33,9 +33,8 @@ import java.util.Enumeration;
  * GrayHttpRequestInterceptor
  * RestTemplate拦截器
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/19
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class GrayHttpRequestInterceptor implements ClientHttpRequestInterceptor {
 

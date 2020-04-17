@@ -28,9 +28,8 @@ import java.util.Map;
  * CustomOAuth2ExceptionSerializer
  * 自定义认证异常序列化类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/27
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class CustomOAuth2ExceptionSerializer extends StdSerializer<CustomOAuth2Exception> {
 

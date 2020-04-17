@@ -24,9 +24,8 @@ import org.springframework.stereotype.Repository;
  * MessageSender
  * 消息发送器
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/31
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Repository
 public class AmqpSender {

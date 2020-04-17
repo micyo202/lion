@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
  * DiscoveryEnabledPredicate
  * 灰度发现启用断言抽象类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/09
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public abstract class DiscoveryEnabledPredicate extends AbstractServerPredicate {
 

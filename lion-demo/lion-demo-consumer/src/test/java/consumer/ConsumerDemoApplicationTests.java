@@ -22,9 +22,8 @@ import org.springframework.http.ResponseEntity;
  * ConsumerDemoApplicationTests
  * TODO
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/11/26
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(classes = ConsumerDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

@@ -30,9 +30,8 @@ import java.util.Map;
  * Result
  * 结果实体类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/13
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @ToString
 @NoArgsConstructor

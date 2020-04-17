@@ -26,9 +26,8 @@ import org.springframework.context.annotation.ComponentScan;
  * ConsumerDemoApplication
  * 服务消费者demo
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringCloudApplication
 @EnableFeignClients

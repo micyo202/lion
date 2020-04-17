@@ -23,9 +23,8 @@ import java.io.Serializable;
  * JavaInfo
  * Java Implementation的信息
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/11/21
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class JavaInfo implements Serializable {
 

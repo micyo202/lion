@@ -26,9 +26,8 @@ import java.util.Properties;
  * PropertiesUtil
  * Properties 配置文件工具类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/13
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class PropertiesUtil {

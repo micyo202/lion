@@ -21,9 +21,8 @@ import com.lion.common.entity.Result;
  * FallbackHandler
  * sentinel服务熔断降级方法
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/08/19
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class FallbackHandler {
 

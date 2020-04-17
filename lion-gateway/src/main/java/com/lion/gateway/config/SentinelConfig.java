@@ -42,9 +42,8 @@ import java.util.Set;
  * SentinelConfig
  * 哨兵 Sentinel 配置类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/06
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 public class SentinelConfig {

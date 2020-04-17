@@ -24,9 +24,8 @@ import java.time.format.DateTimeFormatter;
  * GeneratorUtil
  * 生成器工具类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/1/22
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class GeneratorUtil {
 

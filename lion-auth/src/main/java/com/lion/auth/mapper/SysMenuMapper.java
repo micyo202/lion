@@ -27,7 +27,7 @@ import java.util.List;
  * 菜单 Mapper 接口
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-02-12
  */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {

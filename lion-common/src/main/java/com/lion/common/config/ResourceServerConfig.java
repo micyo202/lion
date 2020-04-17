@@ -34,9 +34,8 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
  * ResourceServerConfig
  * 安全认证资源配置
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/26
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 @EnableResourceServer
@@ -76,10 +75,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //         * -----END PUBLIC KEY-----
 //         * 将生成的公钥信息存放在 lion-pubkey.cert 文件中
 //         *
-//         * 注：若使用jar或docker部署，请在jar包根路径或docker容器内创建certificate文件夹，将lion-pubkey.cert文件放入
+//         * 注：若使用jar或docker部署，请在jar包根路径或docker容器内创建other/certificate文件夹，将lion-pubkey.cert文件放入
 //         */
 //        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        Resource resource = new FileSystemResource(System.getProperty("user.dir") + "/certificate/lion-pubkey.cert");
+//        Resource resource = new FileSystemResource(System.getProperty("user.dir") + "/other/certificate/lion-pubkey.cert");
 //        String publicKey;
 //        try {
 //            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));

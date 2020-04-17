@@ -21,9 +21,8 @@ import java.io.Serializable;
  * RuntimeInfo
  * 运行时信息，包括内存总大小、已用大小、可用大小等
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/16
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class RuntimeInfo implements Serializable {
 

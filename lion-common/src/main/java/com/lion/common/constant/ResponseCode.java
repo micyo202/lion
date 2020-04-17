@@ -19,9 +19,8 @@ package com.lion.common.constant;
  * ResponseCode
  * response响应状态码
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/03/30
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public interface ResponseCode {
 

@@ -38,9 +38,8 @@ import java.util.UUID;
  * TempMybatisController
  * TODO
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/15
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Api("Mybatis示例")
 @RestController

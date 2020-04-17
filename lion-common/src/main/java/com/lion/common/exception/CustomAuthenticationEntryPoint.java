@@ -34,9 +34,8 @@ import java.io.IOException;
  * CustomAuthenticationEntryPoint
  * 自定义未授权的响应处理
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/26
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {

@@ -31,9 +31,8 @@ import org.springframework.context.annotation.FilterType;
  * AuthApplication
  * OAuth2权限认证服务
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/5
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @SpringCloudApplication
 @EnableFeignClients

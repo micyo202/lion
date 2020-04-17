@@ -24,9 +24,8 @@ import org.springframework.context.annotation.ComponentScan;
  * GatewayApplication
  * 路由网关服务
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/06
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @SpringCloudApplication
 @EnableFeignClients

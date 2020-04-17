@@ -25,7 +25,7 @@ import java.util.List;
  * 服务类
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-02-15
  */
 public interface ITempMybatisService extends IBaseService<TempMybatis> {

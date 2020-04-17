@@ -28,9 +28,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * LionExceptionHandler
  * 自定义全局异常处理类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/07/17
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @RestControllerAdvice
 @Slf4j

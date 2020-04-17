@@ -32,9 +32,8 @@ import java.util.Map;
  * RSAUtil
  * RSA工具类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/16
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class RSAUtil {
@@ -131,7 +130,7 @@ public class RSAUtil {
         //生成公钥和私钥（公钥加密、私钥解密）
         generatorPairKey();
         //加密字符串
-        String data = "Yanzheng https://github.com/micyo202";
+        String data = "Yanzheng (https://github.com/micyo202)";
         System.out.println("随机生成的公钥（public）为：" + keyMap.get(RSAKey.PUBLIC));
         System.out.println("随机生成的私钥（private）为：" + keyMap.get(RSAKey.PRIVATE));
         System.out.println("原字符串内容:" + data);

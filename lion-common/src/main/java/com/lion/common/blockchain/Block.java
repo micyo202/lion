@@ -22,9 +22,8 @@ import com.lion.common.util.secure.SHAUtil;
  * Block
  * 块
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/04/08
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class Block {
 

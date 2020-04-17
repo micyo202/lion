@@ -22,9 +22,8 @@ import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
  * CustomOAuth2Exception
  * 自定义认证异常类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/27
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @JsonSerialize(using = CustomOAuth2ExceptionSerializer.class)
 public class CustomOAuth2Exception extends OAuth2Exception {

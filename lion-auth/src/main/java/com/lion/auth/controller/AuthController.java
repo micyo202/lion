@@ -30,9 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
  * AuthController
  * 权限认证
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/03/12
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @Api("权限认证")
 @RestController

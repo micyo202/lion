@@ -24,9 +24,8 @@ import java.io.Serializable;
  * Tuple10
  * 自定义元组
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/01/15
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @ToString
 @AllArgsConstructor

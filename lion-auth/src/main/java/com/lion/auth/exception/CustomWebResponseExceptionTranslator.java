@@ -36,9 +36,8 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
  * CustomWebResponseExceptionTranslator
  * 自定义认证异常翻译类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/27
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class CustomWebResponseExceptionTranslator implements WebResponseExceptionTranslator {

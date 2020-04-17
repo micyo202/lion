@@ -30,9 +30,8 @@ import java.util.Enumeration;
  * GrayFeignRequestInterceptor
  * Feign拦截器设置灰度版本号
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/19
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class GrayFeignRequestInterceptor implements RequestInterceptor {
 

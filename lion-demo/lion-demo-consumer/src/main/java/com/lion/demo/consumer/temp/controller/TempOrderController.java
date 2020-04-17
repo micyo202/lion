@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 订单表 前端控制器
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-03-30
  */
 @Api("分布式事物示例-订单")

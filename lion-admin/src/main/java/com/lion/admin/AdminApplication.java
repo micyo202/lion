@@ -24,9 +24,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * AdminApplication
  * 服务监控管理
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/10
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 @SpringBootApplication
 @EnableDiscoveryClient

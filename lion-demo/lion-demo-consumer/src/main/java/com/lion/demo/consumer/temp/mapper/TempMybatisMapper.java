@@ -28,7 +28,7 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-02-15
  */
 public interface TempMybatisMapper extends BaseMapper<TempMybatis> {

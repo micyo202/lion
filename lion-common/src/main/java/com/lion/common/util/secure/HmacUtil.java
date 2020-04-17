@@ -27,9 +27,8 @@ import javax.crypto.spec.SecretKeySpec;
  * HmacUtil
  * Hmac工具类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/22
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Slf4j
 public class HmacUtil {

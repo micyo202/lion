@@ -25,9 +25,8 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  * SecurityConfig
  * 安全认证配置
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/01
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

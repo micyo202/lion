@@ -38,9 +38,8 @@ import java.util.List;
  * ScheduleConfig
  * 定时任务启动类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/08/09
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
 @EnableScheduling

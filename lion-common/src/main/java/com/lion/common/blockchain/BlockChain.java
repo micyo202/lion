@@ -25,9 +25,8 @@ import java.util.stream.Collectors;
  * BlockChainDemo
  * 块链示例
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/04/08
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class BlockChain {
 

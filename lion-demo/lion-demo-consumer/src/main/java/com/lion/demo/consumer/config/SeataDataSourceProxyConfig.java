@@ -31,9 +31,8 @@ import javax.sql.DataSource;
  * 分布式事务 Seata 数据源代理配置
  * 注：1.0.0 无需手动构造数据源代理，直接使用数据源即可
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/24
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 public class SeataDataSourceProxyConfig {

@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
  * 产品表 服务实现类
  * </p>
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @since 2020-03-30
  */
 @Service

@@ -27,9 +27,8 @@ import reactor.core.publisher.Mono;
  * GrayFilter
  * 灰度过滤器
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class GrayFilter implements GlobalFilter, Ordered {
 

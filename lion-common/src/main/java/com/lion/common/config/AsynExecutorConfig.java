@@ -27,9 +27,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  * AsynExecutorConfig
  * 异步线程池
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/05/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 @EnableAsync    // 开启异步任务

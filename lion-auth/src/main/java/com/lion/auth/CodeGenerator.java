@@ -32,13 +32,12 @@ import java.util.Scanner;
  * CodeGenerator
  * MybatisPlus 代码生成类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/12
- * Copyright 2020 Yanzheng. All rights reserved.
  */
 public class CodeGenerator {
 
-    private static final String AUTHOR = "Yanzheng https://github.com/micyo202";
+    private static final String AUTHOR = "Yanzheng (https://github.com/micyo202)";
     private static final String URL = "jdbc:mysql://localhost:3306/lion?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "lion";

@@ -25,9 +25,8 @@ import org.springframework.stereotype.Component;
  * SpringUtil
  * Spting上下文工具类，可通过该类获取容器bean
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/08/06
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Component
 @Slf4j

@@ -41,9 +41,8 @@ import javax.sql.DataSource;
  * AuthorizationServerConfiguration
  * 认证服务配置类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/08
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Configuration
 @EnableAuthorizationServer
@@ -102,9 +101,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //         * -----END PUBLIC KEY-----
 //         * 将生成的公钥信息存放在 lion-pubkey.cert 文件中
 //         *
-//         * 注：若使用jar或docker部署，请在jar包根路径或docker容器内创建certificate文件夹，将lion-jwt.jks文件放入
+//         * 注：若使用jar或docker部署，请在jar包根路径或docker容器内创建other/certificate文件夹，将lion-jwt.jks文件放入
 //         */
-//        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new FileSystemResource(System.getProperty("user.dir") + "/certificate/lion-jwt.jks"), "123456".toCharArray());
+//        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new FileSystemResource(System.getProperty("user.dir") + "/other/certificate/lion-jwt.jks"), "123456".toCharArray());
 //        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
 //        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("lion-jwt"));
 //        return jwtAccessTokenConverter;

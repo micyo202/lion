@@ -21,9 +21,8 @@ import java.io.Serializable;
  * JvmInfo
  * Java Virtual Machine Implementation的信息
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/24
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public class JvmInfo implements Serializable {
 

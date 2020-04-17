@@ -26,9 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * ProviderDemoClient
  * 服务调用类
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @FeignClient(value = "lion-demo-provider", fallback = ProviderDemoClientFallback.class)
 public interface ProviderDemoClient {

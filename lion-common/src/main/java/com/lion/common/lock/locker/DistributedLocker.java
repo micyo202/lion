@@ -23,9 +23,8 @@ import java.util.concurrent.TimeUnit;
  * DistributedLocker
  * 分布式锁接口方法
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/05/08
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 public interface DistributedLocker {
 

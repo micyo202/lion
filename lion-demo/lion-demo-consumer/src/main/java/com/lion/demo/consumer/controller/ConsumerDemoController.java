@@ -53,9 +53,8 @@ import java.util.Map;
  * ConsumerDemoController
  * 服务消费者示例代码
  *
- * @author Yanzheng https://github.com/micyo202
+ * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/05
- * Copyright 2019 Yanzheng. All rights reserved.
  */
 @Api("服务消费者示例")
 @RestController
