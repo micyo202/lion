@@ -85,7 +85,7 @@ docker {
         baseImage = 'openjdk:8'
         //baseImage = 'openjdk:11.0.6'
         //baseImage = 'openjdk:13.0.2'
-        maintainer = 'Yanzheng https://github.com/micyo202'
+        maintainer = 'Yanzheng (https://github.com/micyo202)'
         ports = [8701]
         images = ["micyo202/${project.name}:${project.version}"]
         jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
