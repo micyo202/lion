@@ -1,13 +1,12 @@
-# Seata（8091）
+= Seata（8091）
 
-### 官网
-[https://seata.io](https://seata.io)
+=== 官网
+https://seata.io[https://seata.io]
 
-### 本地部署
-
-##### 修改 Seata 配置文件
-修改 /opt/seata-server-1.0.0/conf/registry.conf 文件内容
-```
+=== 配置
+修改 `/opt/seata-server-1.0.0/conf/registry.conf` 文件内容
+[source,shell]
+----
 registry {
   type = "nacos"
   nacos {
@@ -23,9 +22,10 @@ config {
     name = "file.conf"
   }
 }
-```
-修改 /opt/seata-server-1.0.0/conf/file.conf 文件内容（注：需将数据库连接驱动jar包放入lib下）
-```shell script
+----
+修改 `/opt/seata-server-1.0.0/conf/file.conf` 文件内容（#注：需将数据库连接驱动jar包放入lib下#）
+[source,shell]
+----
 ## transaction log store, only used in seata-server
 store {
   ## store mode: file、db
@@ -49,10 +49,10 @@ store {
     password = "seata"
   }
 }
-```
-
-##### 创建上述配置中的数据库及表
-```sql
+----
+创建上述配置中的数据库及表
+[source,sql]
+----
 -- the table to store GlobalSession data
 drop table if exists `global_table`;
 create table `global_table` (
@@ -105,21 +105,22 @@ create table `lock_table` (
   `gmt_modified` datetime,
   primary key(`row_key`)
 );
-```
+----
 
-##### 启动 Seata 服务
-注：需先启动 Nacos 服务
-```shell script
+=== 本地部署
+[source,shell]
+----
 bin/seata-server.sh -p 8091
-```
+----
 
-### Docker部署
-
-```shell script
+=== 容器部署
+[source,shell]
+----
 docker pull seataio/seata-server:1.0.0
-```
+----
 
-```shell script
+[source,shell]
+----
 docker run -d \
         -p 8091:8091 \
         -e SEATA_CONFIG_NAME=file:/root/seata-config/registry \
@@ -127,4 +128,6 @@ docker run -d \
         --name seata \
         --restart always \
         seataio/seata-server:1.0.0
-```
+----
+
+#注：启动 Seata 服务前，需先启动 Nacos 服务#
