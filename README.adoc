@@ -1,0 +1,269 @@
+= Lion
+
+image::https://raw.githubusercontent.com/micyo202/lion/master/images/lion-logo.png[align="center"]
+
+image:https://travis-ci.org/localhost/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
+image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
+image:https://img.shields.io/badge/Version-2.0.3-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
+image:https://img.shields.io/badge/Java-8+-yellow.svg["Java", link="https://www.oracle.com/technetwork/java/javase/downloads/index.html"]
+image:https://img.shields.io/badge/Gradle-6.3-01BC7E.svg["Gradle", link="https://gradle.org"]
+image:https://img.shields.io/badge/SpringBoot-2.2.6.RELEASE-FF69B4.svg["Spring Boot", link="https://spring.io/projects/spring-boot"]
+image:https://img.shields.io/badge/SpringCloud-Hoxton.SR2-5DBF3D.svg["Spring Cloud", link="https://spring.io/projects/spring-cloud"]
+image:https://img.shields.io/badge/Apache&nbsp;License-2.0-lightgrey.svg["Apache License 2.0", link="https://github.com/micyo202/lion/blob/master/LICENSE"]
+image:https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars["GitHub Stars", link="https://github.com/micyo202/lion"]
+image:https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork["GitHub Fork", link="https://github.com/micyo202/lion"]
+
+|===
+| image:https://raw.githubusercontent.com/micyo202/lion/master/images/jetbrains-logo.png[width="36%",link="https://www.jetbrains.com/idea?from=lion"] | 感谢 https://www.jetbrains.com/?from=lion[JetBrains] 提供的开源许可，推荐使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 进行开发
+|===
+
+
+'''
+
+==== 项目镜像已经推送至 https://hub.docker.com[Docker Hub]，请前往 https://hub.docker.com/u/micyo202 查看/拉取
+
+*lion* 是基于 *Spring Cloud* 体系实现的一套分布式微服务架构，为了让中小型公司解决当下技术瓶颈，快速将现有应用服务架构拆分改造为分布式微服务架构，只需在本架构上进行相关业务开发即可，大大减少了分布式微服务架构的门槛，达到拿来就用，使架构师及开发人员不必过多的关注架构本身，只需专注于业务开发
+
+项目采用 *Gradle* 构建，基于 *Java 8+、SpringBoot 2.2.6.RELEASE、SpringCloud Hoxton.SR2、Spring Cloud Alibaba 2.2.0.RELEASE、MyBatis Plus 3.3.1* 等核心技术体系实现的一套分布式微服务架构，包含 *OAuth2/JWT* 权限认证、支持 *Docker* 容器化部署、镜像交付、限流、灰度等
+
+使用 *Nacos* 作为服务注册/发现、配置中心
+
+使用 *Sentinel* 来查看近实时的接口运行状态和调用频率，并用作服务限流、熔断降级等处理，避免了分布式服务之间调用的“雪崩”效应
+
+使用 *Seata* 作为分布式事务管理，采用AT事务模式自动完成两阶段提交/回滚
+
+使用 *Spring Boot Admin* 来监控各个独立 *Service* 的运行状态
+
+使用 *Spring Cloud Gateway* 作为路由网关服务
+
+使用 *Zipkin / SkyWalking* 进行查看完整链路追踪信息等
+
+使用 *Feign*, 做到HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求
+
+项目后期会不断更新与时俱进，敬请期待...
+
+== 项目架构图
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/lion-frame.png[align="center"]
+
+== 数据库表关系图
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/lion-database.png[align="center"]
+
+== 分支说明
+
+- https://github.com/micyo202/lion[master分支]，支持Java 8/11/13重构升级优化后的最新版（推荐）
+- https://github.com/micyo202/lion/tree/release1.x[release1.x分支]，基于Java 8、SpringBoot 2.1.2.RELEASE、SpringCloud Greenwich.RELEASE、Spring Cloud Alibaba 2.1.0.RELEASE体系实现，支持Java、Scala混编，的最终版
+- https://github.com/micyo202/lion/tree/eureka[eureka分支]，使用 Eureka 作为服务注册发现中心（Eureka官宣2.x版本不再开源，项目使用Nacos）
+- https://github.com/micyo202/lion/tree/hystrix[hystrix分支]，使用 Hystrix 做为服务断路器（Hystix官宣停止更新，项目使用Sentinel）
+- https://github.com/micyo202/lion/tree/zuul[zuul分支]，使用 Zuul 做为路由网关（由于Zuul 2.x的不断跳票，SpringCloud后续没有整合Zuul 2.x的计划，项目使用Spring Cloud Gateway）
+
+== 一、项目开发环境&工具
+
+* MacOS / Windows
+* CentOS
+* Java 8/11/13
+* IntelliJ IDEA / Eclipse
+
+== 二、相关软件
+
+
+_说明： `√` 表示必要服务， `x` 表示非必要服务_
+
+|===
+| 名称 | 链接 | 必须
+
+| MySql 8.0.19
+| https://www.mysql.com
+| √
+
+| Redis 5.0.7
+| https://redis.io
+| √
+
+| RabbitMQ 3.8.2
+| https://www.rabbitmq.com
+| √
+
+| Nacos 1.1.4
+| https://nacos.io
+| √
+
+| Sentinel 1.7.1
+| https://github.com/alibaba/sentinel
+| √
+
+| Seata 1.0.0
+| https://seata.io
+| √
+
+| Zipkin 2.20
+| https://zipkin.io
+| x
+
+| SkyWalking 6.6.0
+| http://skywalking.apache.org
+| x
+
+| ElasticSearch 7.6.1
+| https://www.elastic.co/cn
+| x
+|===
+
+_注：在启动项目前，请先确保启动： https://www.mysql.com[MySql 8.0.19]、 https://redis.io[Redis 5.0.7]、 https://www.rabbitmq.com[RabbitMQ 3.8.2]、 https://nacos.io[Nacos 1.1.4]、 https://github.com/alibaba/sentinel[Sentinel 1.7.1]、 https://seata.io[Seata 1.0.0]这 [big]#6# 个必备服务（#需把 *Sentinel* 默认端口 *8080* 改为 *8858*#），启动方式可参考 https://github.com/micyo202/lion/tree/master/docs[docs]文档_
+
+=== 三、组件说明
+
+* 服务注册/发现、配置中心：Nacos
+* 服务监控：Spring Boot Admin
+* 消息队列：AMQP -> RabbitMQ
+* 负载均衡：Feign / Ribbon
+* 限流、熔断降级：Sentinel
+* 路由网关：Spring Cloud Gateway
+* 链路追踪：Spring Cloud Sletuh -> Zipkin / SkyWalking
+* 权限认证：Spring Security -> OAuth2 / JWT
+* ORM框架：MyBatis（MyBatis-Plus）
+* 数据源监控：Druid
+* RESTful APIs文档：Knife4j
+* 分布式锁：Redisson
+* 分布式事务：Seata
+
+== 四、项目结构
+
+[source,lua]
+----
+lion -- 根目录
+├── lion-admin -- 服务监控
+├── lion-gateway -- 网关服务
+├── lion-common -- 通用工具类
+├── lion-auth -- 安全认证服务
+├── lion-demo -- 示例模块
+|    ├── lion-demo-provider -- 服务提供者
+|    ├── lion-demo-consumer -- 服务消费者
+----
+
+== 五、项目部署
+
+
+. 下载项目 `git clone --depth 1 https://github.com/micyo202/lion.git`
+
+. 进入项目根目录执行 `./gradlew -x test clean` 命令，使用 *Gradle* 初始化项目
+
+. 初始化完毕后导入到 *IDE* 开发工具中（建议使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 作为开发工具）
+
+. 创建 [big]##3## 个数据库分别为 *lion、seata、zipkin* 并分别执行项目根目录下 *database* 中的 *https://github.com/micyo202/lion/blob/master/database/lion.sql[lion.sql]、 https://github.com/micyo202/lion/blob/master/database/seata.sql[seata.sql]、 https://github.com/micyo202/lion/blob/master/database/zipkin.sql[zipkin.sql]* 脚本，该脚本会创建项目所需的表（lion库中包含：用户表、角色表、菜单资源表等，seata库中包含：全局事务表、分支事务表、全局锁表，zipkin库中包含：链路追踪相关表）
+
+. 按照文档中 [big]#[underline]##二、相关软件### 的内容，启动 [big]#6# 个必备服务，否则项目无法正常运行
+
+. 根据自己的服务器情况，修改 *resources* 下 *bootstrap.yml* 配置中的 *nacos* 服务地址，及 *application.yml* 配置中 *mysql、redis、rabbitmq、sentinel* 的服务地址跟用户名/密码（#注：可将 *application.yml* 配置文件注释打开放在项目中，或将 *application.yml* 配置文件放入 *nacos* 配置管理中#）
+
+. *Windows* 环境需修改 *resources* 下 *log4j2.yml* 配置中 `-log.path` 的 `value` 日志输出路径（*注： *Mac、Linux、Ubuntu* 环境可忽略此步骤，默认日志输出路径在 `/tmp/logs` 下*）
+
+. 完成以上步骤就可以正常启动部署服务了
+
+. 项目开发详细示例代码，可参考 *lion-demo* 示例模块
+
+. 测试方法使用 https://www.getpostman.com[postman] 导入项目根目录下 *json* 中的 https://github.com/micyo202/lion/raw/master/json/postman.json[postman.json] 脚本即可
+
+== 六、端口使用
+
+* Nacos（端口：8848）
+* Sentinel（端口：8858）
+* Seata（端口：8091）
+* Zipkin（端口：9411）
+* SkyWalking（端口：8900）
+
+* lion-admin（端口：8200）
+* lion-gateway（端口：8400）
+* lion-auth（端口：8888）
+* lion-demo
+** lion-demo-provider（端口：8601、8602、8603...）
+** lion-demo-consumer（端口：8701、8702、8703...）
+
+== 七、效果预览
+
+==== Nacos服务列表
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-server.png[]
+
+==== Nacos配置列表
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-config.png[]
+
+==== Nacos服务详情
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/nacos-detail.png[]
+
+==== Boot Admin应用监控
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/admin-wallboard.png[]
+
+==== Boot Admin应用列表
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/admin-application.png[]
+
+==== Boot Admin应用详情
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/admin-detail.png[]
+
+==== Sentinel服务限流、熔断降级
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/sentinel.png[]
+
+==== Zipkin链路信息
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-info.png[]
+
+==== Zipkin链路追踪
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-trace.png[]
+
+==== Zipkin拓扑图
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/zipkin-dependencies.png[]
+
+==== SkyWalking监控面板
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-dashboard.png[]
+
+==== SkyWalking链路追踪
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-trace.png[]
+
+==== SkyWalking拓扑图
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-dependencies.png[]
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/skywalking-dependencies-link.png[]
+
+==== Druid SQL监控
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/druid-sql.png[]
+
+==== Druid URI监控
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/druid-uri.png[]
+
+==== Druid Spring监控
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/druid-spring.png[]
+
+==== RESTful APIs文档
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/knife4j-home.png[]
+
+image:https://raw.githubusercontent.com/micyo202/lion/master/images/knife4j-apis.png[]
+
+== 八、开源协议
+
+https://github.com/micyo202/lion/blob/master/LICENSE[Apache Licence 2.0]（ http://www.apache.org/licenses/LICENSE-2.0.html[英文原文] ）Apache Licence 是著名的非盈利开源组织 Apache 采用的协议。该协议和 BSD 类似，同样鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再发布（作为开源或商业软件）。需要满足的条件也和 BSD 类似：
+
+* 需要给代码的用户一份 Apache Licence
+* 如果你修改了代码，需要在被修改的文件中说明
+* 在延伸的代码中（修改和有源代码衍生的代码中）需要带有原来代码中的协议，商标，专利声明和其他原来作者规定需要包含的说明
+* 如果再发布的产品中包含一个 Notice 文件，则在 Notice 文件中需要带有 Apache Licence。你可以在 Notice 中增加自己的许可，但不可以表现为对 Apache Licence 构成更改
+
+Apache Licence 也是对商业应用友好的许可。使用者也可以在需要的时候修改代码来满足需要并作为开源或商业产品发布/销售
+
+
+TIP: 注：对未经过授权和不遵循 Apache Licence 2.0 开源协议二次开源或者商业化的我们将追究到底
