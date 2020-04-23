@@ -2,7 +2,7 @@
 
 image::https://raw.githubusercontent.com/micyo202/lion/master/images/lion-logo.png[align="center"]
 
-image:https://travis-ci.org/localhost/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
+image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
 image:https://img.shields.io/badge/Version-2.0.3-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
 image:https://img.shields.io/badge/Java-8+-yellow.svg["Java", link="https://www.oracle.com/technetwork/java/javase/downloads/index.html"]
