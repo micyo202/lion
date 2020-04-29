@@ -47,4 +47,14 @@ public class LionException extends RuntimeException {
         this.code = ResponseCode.FAILURE;
     }
 
+    public LionException(Throwable cause) {
+        super(cause);
+        this.code = ResponseCode.FAILURE;
+    }
+
+    public LionException(String msg, Throwable cause) {
+        super(msg, cause);
+        this.code = ResponseCode.FAILURE;
+    }
+
 }
