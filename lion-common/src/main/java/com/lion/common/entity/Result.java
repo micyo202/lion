@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.ResponseStatus;
 import com.lion.common.util.DateUtil;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -36,32 +38,38 @@ import java.util.Map;
 @ToString
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ApiModel(value = "结果实体类")
 public class Result<T> implements Serializable {
 
     /**
      * 状态值
      */
+    @ApiModelProperty(value = "状态值")
     private int code = ResponseCode.SUCCESS;
 
     /**
      * 提示信息
      */
+    @ApiModelProperty(value = "提示信息")
     private String msg = "Success";
 
     /**
      * 数据
      */
+    @ApiModelProperty(value = "数据")
     private T data;
 
     /**
      * 时间戳
      */
+    @ApiModelProperty(value = "时间戳")
     private long timestamp = DateUtil.getTimestamp();
 
     /**
      * 额外扩展数据
      */
     //@JsonIgnore
+    @ApiModelProperty(value = "额外扩展数据")
     private Map<String, Object> extra = null;
 
     /**

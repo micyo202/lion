@@ -22,6 +22,8 @@ import com.github.pagehelper.PageInfo;
 import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.ResponseStatus;
 import com.lion.common.util.DateUtil;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.domain.Page;
@@ -41,58 +43,69 @@ import java.util.Map;
 @ToString
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ApiModel(value = "分页结果实体类")
 public class ResultPage<T> implements Serializable {
 
     /**
      * 状态值
      */
+    @ApiModelProperty(value = "状态值")
     private int code = ResponseCode.SUCCESS;
 
     /**
      * 提示信息
      */
+    @ApiModelProperty(value = "提示信息")
     private String msg = "Success";
 
     /**
      * 分页对象
      */
     @JsonIgnore
+    @ApiModelProperty(value = "分页对象")
     private T page;
 
     /**
      * 总记录数
      */
+    @ApiModelProperty(value = "总记录数")
     private long total;
 
     /**
      * 页码值
      */
+    @ApiModelProperty(value = "页码值")
     private int pageNum;
 
     /**
      * 每页记录数
      */
+    @ApiModelProperty(value = "每页记录数")
     private int pageSize;
 
     /**
      * 总页数
      */
+    @ApiModelProperty(value = "总页数")
     private int pages;
 
     /**
      * 数据结果集
      */
+    @ApiModelProperty(value = "数据结果集")
     private List data;
 
     /**
      * 时间戳
      */
+    @ApiModelProperty(value = "时间戳")
     private long timestamp = DateUtil.getTimestamp();
 
     /**
      * 额外扩展数据
      */
     //@JsonIgnore
+    @ApiModelProperty(value = "额外扩展数据")
     private Map<String, Object> extra = null;
 
     /**
