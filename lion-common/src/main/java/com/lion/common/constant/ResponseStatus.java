@@ -28,55 +28,55 @@ public enum ResponseStatus {
      * Success
      * 成功
      */
-    SUCCESS(200, "Success"),
+    SUCCESS(ResponseCode.SUCCESS, "Success"),
 
     /**
      * Failure
      * 失败
      */
-    FAILURE(500, "Failure"),
+    FAILURE(ResponseCode.FAILURE, "Failure"),
 
     /**
      * Bad Request
      * 请求错误
      */
-    BAD_REQUEST(400, "Bad Request"),
+    BAD_REQUEST(ResponseCode.BAD_REQUEST, "Bad Request"),
 
     /**
      * Unauthorized
      * 未认证
      */
-    UNAUTHORIZED(401, "Unauthorized"),
+    UNAUTHORIZED(ResponseCode.UNAUTHORIZED, "Unauthorized"),
 
     /**
      * Forbidden
      * 无权限
      */
-    FORBIDDEN(403, "Forbidden"),
+    FORBIDDEN(ResponseCode.FORBIDDEN, "Forbidden"),
 
     /**
      * Not Found
      * 请求不存在
      */
-    NOT_FOUND(404, "Not Found"),
+    NOT_FOUND(ResponseCode.NOT_FOUND, "Not Found"),
 
     /**
      * Method Not Allowed
      * 方法不允许
      */
-    METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
+    METHOD_NOT_ALLOWED(ResponseCode.METHOD_NOT_ALLOWED, "Method Not Allowed"),
 
     /**
      * Request Timeout
      * 请求超时
      */
-    REQUEST_TIMEOUT(408, "Request Timeout"),
+    REQUEST_TIMEOUT(ResponseCode.REQUEST_TIMEOUT, "Request Timeout"),
 
     /**
      * Too Many Requests
      * 请求太多
      */
-    TOO_MANY_REQUESTS(429, "Too Many Requests");
+    TOO_MANY_REQUESTS(ResponseCode.TOO_MANY_REQUESTS, "Too Many Requests");
 
     private final int code;
 
