@@ -1,6 +1,6 @@
 = Lion
 
-image::https://micyo202.github.io/img/lion/lion-logo.png[align="center"]
+image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200[align="center"]
 
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
@@ -13,9 +13,9 @@ image:https://img.shields.io/badge/Apache&nbsp;License-2.0-lightgrey.svg["Apache
 image:https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars["GitHub Stars", link="https://github.com/micyo202/lion"]
 image:https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork["GitHub Fork", link="https://github.com/micyo202/lion"]
 
-|===
-| image:https://micyo202.github.io/img/lion/jetbrains-logo.png[width="36%",link="https://www.jetbrains.com/idea?from=lion"] | 感谢 https://www.jetbrains.com/?from=lion[JetBrains] 提供的开源许可，推荐使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 进行开发
-|===
+感谢 https://www.jetbrains.com/?from=lion[JetBrains] 提供的开源许可，推荐使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 进行开发
+
+image:https://upload-images.jianshu.io/upload_images/8015461-018f36fe7effa8ad.gif?imageMogr2/auto-orient/strip|imageView2/2/w/650[align="center"]
 
 '''
 
@@ -43,11 +43,11 @@ image:https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=F
 
 == 项目架构图
 
-image:https://micyo202.github.io/img/lion/lion-frame.png[align="center"]
+image:https://upload-images.jianshu.io/upload_images/8015461-c10225e5f151d9c0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 == 数据库表关系图
 
-image:https://micyo202.github.io/img/lion/lion-database.png[align="center"]
+image:https://upload-images.jianshu.io/upload_images/8015461-5b7085380d34caa9.png?imageMogr2/auto-orient/strip|imageView2/2/w/878[align="center"]
 
 == 分支说明
 
@@ -183,75 +183,75 @@ lion -- 根目录
 
 ==== Nacos服务列表
 
-image:https://micyo202.github.io/img/lion/nacos-server.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-cda39b98293daeda.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Nacos配置列表
 
-image:https://micyo202.github.io/img/lion/nacos-config.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-292c5fab4c1ec93e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Nacos服务详情
 
-image:https://micyo202.github.io/img/lion/nacos-detail.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-438e0e4f34a9a7fa.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Boot Admin应用监控
 
-image:https://micyo202.github.io/img/lion/admin-wallboard.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-580075f6fe78e5da.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Boot Admin应用列表
 
-image:https://micyo202.github.io/img/lion/admin-application.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-907900742c6e853b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Boot Admin应用详情
 
-image:https://micyo202.github.io/img/lion/admin-detail.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-be406e234a641713.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Sentinel服务限流、熔断降级
 
-image:https://micyo202.github.io/img/lion/sentinel.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-dd4e2a23d6cc89c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Zipkin链路信息
 
-image:https://micyo202.github.io/img/lion/zipkin-info.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-5ce77cf7c8d665a2.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Zipkin链路追踪
 
-image:https://micyo202.github.io/img/lion/zipkin-trace.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-c2abbd5245a492ab.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Zipkin拓扑图
 
-image:https://micyo202.github.io/img/lion/zipkin-dependencies.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-2a25bd48123b0f21.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== SkyWalking监控面板
 
-image:https://micyo202.github.io/img/lion/skywalking-dashboard.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-2eb4eb73e3e1bca6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== SkyWalking链路追踪
 
-image:https://micyo202.github.io/img/lion/skywalking-trace.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-77ae0216af3e361f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== SkyWalking拓扑图
 
-image:https://micyo202.github.io/img/lion/skywalking-dependencies.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-fe35d9af69f6cfa3.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
-image:https://micyo202.github.io/img/lion/skywalking-dependencies-link.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-9150e47753478502.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Druid SQL监控
 
-image:https://micyo202.github.io/img/lion/druid-sql.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-1424e4200d3c7d0a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Druid URI监控
 
-image:https://micyo202.github.io/img/lion/druid-uri.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-31a12c241db25772.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== Druid Spring监控
 
-image:https://micyo202.github.io/img/lion/druid-spring.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-b5001ccb2c875735.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 ==== RESTful APIs文档
 
-image:https://micyo202.github.io/img/lion/knife4j-home.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-aa89273f6d8f3fa7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
-image:https://micyo202.github.io/img/lion/knife4j-apis.png[]
+image:https://upload-images.jianshu.io/upload_images/8015461-c397f97536fade0b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
 
 == 八、开源协议
 
