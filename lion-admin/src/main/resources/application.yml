@@ -12,6 +12,9 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #spring:
+#  http:
+#    encoding:
+#      force-response: on
 #  security:
 #    user:
 #      name: ${USERNAME:admin}

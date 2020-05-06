@@ -12,6 +12,9 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #spring:
+#  http:
+#    encoding:
+#      force-response: on
 #  #处理 FeignClient 重名问题
 #  #main:
 #    #allow-bean-definition-overriding: on

@@ -14,6 +14,9 @@
 spring:
   profiles:
     active: router
+  http:
+    encoding:
+      force-response: on
   #处理 FeignClient 重名问题
   #main:
     #allow-bean-definition-overriding: on
