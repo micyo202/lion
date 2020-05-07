@@ -4,7 +4,7 @@ image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.p
 
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
-image:https://img.shields.io/badge/Version-2.0.3-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
+image:https://img.shields.io/badge/Version-2.0.4-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
 image:https://img.shields.io/badge/Java-8+-yellow.svg["Java", link="https://www.oracle.com/technetwork/java/javase/downloads/index.html"]
 image:https://img.shields.io/badge/Gradle-6.3-01BC7E.svg["Gradle", link="https://gradle.org"]
 image:https://img.shields.io/badge/SpringBoot-2.2.6.RELEASE-FF69B4.svg["Spring Boot", link="https://spring.io/projects/spring-boot"]
