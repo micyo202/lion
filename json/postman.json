@@ -1009,7 +1009,7 @@
 			"response": []
 		},
 		{
-			"name": "服务消费者-Mybatis自定义Mapper、XML查询",
+			"name": "服务消费者-Mybatis自定义SQL查询",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -1030,12 +1030,12 @@
 				"header": [
 					{
 						"key": "version",
-						"value": "v1",
-						"type": "text"
+						"type": "text",
+						"value": "v1"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/custom/sql/mapper",
+					"raw": "http://localhost:8400/demo/consumer/temp/mybatis/custom/sql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1047,8 +1047,7 @@
 						"temp",
 						"mybatis",
 						"custom",
-						"sql",
-						"mapper"
+						"sql"
 					]
 				}
 			},
