@@ -15,8 +15,6 @@
  */
 package com.lion.common.info;
 
-import jodd.system.SystemUtil;
-
 import java.io.Serializable;
 
 /**
@@ -28,9 +26,9 @@ import java.io.Serializable;
  */
 public class JavaInfo implements Serializable {
 
-    private final String JAVA_VERSION = SystemUtil.get("java.version", null);
-    private final String JAVA_VENDOR = SystemUtil.get("java.vendor", null);
-    private final String JAVA_VENDOR_URL = SystemUtil.get("java.vendor.url", null);
+    private final String JAVA_VERSION = System.getProperty("java.version", null);
+    private final String JAVA_VENDOR = System.getProperty("java.vendor", null);
+    private final String JAVA_VENDOR_URL = System.getProperty("java.vendor.url", null);
 
     /**
      * 取得当前Java impl.的版本

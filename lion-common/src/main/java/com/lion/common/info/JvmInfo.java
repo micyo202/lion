@@ -26,10 +26,10 @@ import java.io.Serializable;
  */
 public class JvmInfo implements Serializable {
 
-    private final String JAVA_VM_NAME = System.getProperty("java.vm.name");
-    private final String JAVA_VM_VERSION = System.getProperty("java.vm.version");
-    private final String JAVA_VM_VENDOR = System.getProperty("java.vm.vendor");
-    private final String JAVA_VM_INFO = System.getProperty("java.vm.info");
+    private final String JAVA_VM_NAME = System.getProperty("java.vm.name", null);
+    private final String JAVA_VM_VERSION = System.getProperty("java.vm.version", null);
+    private final String JAVA_VM_VENDOR = System.getProperty("java.vm.vendor", null);
+    private final String JAVA_VM_INFO = System.getProperty("java.vm.info", null);
 
     /**
      * 取得当前JVM的名称

@@ -26,12 +26,12 @@ import java.io.Serializable;
  */
 public class UserInfo implements Serializable {
 
-    private final String USER_NAME = System.getProperty("user.name");
-    private final String USER_HOME = System.getProperty("user.home");
-    private final String USER_DIR = System.getProperty("user.dir");
-    private final String USER_LANGUAGE = System.getProperty("user.language");
-    private final String USER_COUNTRY = ((System.getProperty("user.country") == null) ? System.getProperty("user.region") : System.getProperty("user.country"));
-    private final String JAVA_IO_TMPDIR = System.getProperty("java.io.tmpdir");
+    private final String USER_NAME = System.getProperty("user.name", null);
+    private final String USER_HOME = System.getProperty("user.home", null);
+    private final String USER_DIR = System.getProperty("user.dir", null);
+    private final String USER_LANGUAGE = System.getProperty("user.language", null);
+    private final String USER_COUNTRY = ((System.getProperty("user.country", null) == null) ? System.getProperty("user.region", null) : System.getProperty("user.country", null));
+    private final String JAVA_IO_TMPDIR = System.getProperty("java.io.tmpdir", null);
 
     /**
      * 取得当前登录用户的名字

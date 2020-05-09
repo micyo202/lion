@@ -26,9 +26,9 @@ import java.io.Serializable;
  */
 public class OsInfo implements Serializable {
 
-    private final String OS_VERSION = System.getProperty("os.version");
-    private final String OS_ARCH = System.getProperty("os.arch");
-    private final String OS_NAME = System.getProperty("os.name");
+    private final String OS_VERSION = System.getProperty("os.version", null);
+    private final String OS_ARCH = System.getProperty("os.arch", null);
+    private final String OS_NAME = System.getProperty("os.name", null);
     private final boolean IS_OS_AIX = getOSMatches("AIX");
     private final boolean IS_OS_HP_UX = getOSMatches("HP-UX");
     private final boolean IS_OS_IRIX = getOSMatches("Irix");
@@ -52,9 +52,9 @@ public class OsInfo implements Serializable {
     private final boolean IS_OS_WINDOWS_10 = getOSMatches("Windows", "10.0");
 
     // 由于改变file.encoding属性并不会改变系统字符编码，为了保持一致，通过LocaleUtil取系统默认编码。
-    private final String FILE_SEPARATOR = System.getProperty("file.separator");
-    private final String LINE_SEPARATOR = System.getProperty("line.separator");
-    private final String PATH_SEPARATOR = System.getProperty("path.separator");
+    private final String FILE_SEPARATOR = System.getProperty("file.separator", null);
+    private final String LINE_SEPARATOR = System.getProperty("line.separator", null);
+    private final String PATH_SEPARATOR = System.getProperty("path.separator", null);
 
     /**
      * 取得当前OS的架构
