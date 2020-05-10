@@ -77,6 +77,4 @@ public interface ResponseCode {
      * 请求太多
      */
     int TOO_MANY_REQUESTS = 429;
-
-
 }
