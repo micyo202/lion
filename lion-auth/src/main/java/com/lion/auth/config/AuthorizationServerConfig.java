@@ -16,7 +16,7 @@
 package com.lion.auth.config;
 
 import com.lion.auth.exception.CustomWebResponseExceptionTranslator;
-import com.lion.auth.service.impl.UserDetailsServiceImpl;
+import com.lion.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,7 +52,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @Autowired
     private DataSource dataSource;

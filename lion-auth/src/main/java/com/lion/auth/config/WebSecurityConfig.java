@@ -15,7 +15,7 @@
  */
 package com.lion.auth.config;
 
-import com.lion.auth.service.impl.UserDetailsServiceImpl;
+import com.lion.auth.service.CustomUserDetailsService;
 import com.lion.common.constant.SecurityConstant;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     /**
      * 获取yml配置文件中不需要拦截的URL

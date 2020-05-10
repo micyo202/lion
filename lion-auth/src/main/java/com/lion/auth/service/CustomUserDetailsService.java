@@ -13,11 +13,11 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.auth.service.impl;
+package com.lion.auth.service;
 
 import com.lion.auth.entity.SysRole;
 import com.lion.auth.entity.SysUser;
-import com.lion.auth.service.IUpmsService;
+import com.lion.auth.manager.UpmsManager;
 import com.lion.common.exception.LionException;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +32,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * UserDetailsServiceImpl
+ * CustomUserDetailsService
  * 用户授权认证实现类
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/10
  */
 @Service("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private IUpmsService upmsService;
+    private UpmsManager upmsManager;
 
     /**
      * 角色前缀
@@ -53,14 +53,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
 
         // 获取用户信息
-        SysUser sysUser = upmsService.getUserByUsername(username);
+        SysUser sysUser = upmsManager.getUserByUsername(username);
 
         if (ObjectUtils.isEmpty(sysUser)) {
             throw new LionException("用户'" + username + "'不存在");
         }
 
         // 获取角色信息
-        List<SysRole> sysRoles = upmsService.getRoleByUserId(sysUser.getId());
+        List<SysRole> sysRoles = upmsManager.getRoleByUserId(sysUser.getId());
         if (ObjectUtils.isEmpty(sysRoles)) {
             throw new LionException("用户'" + username + "'没有对应的角色信息，请配置");
         }
@@ -72,7 +72,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             // 获取菜单列表
             /*
-            List<SysMenu> sysMenus = upmsService.getMenuByRoleId(sysRole.getId());
+            List<SysMenu> sysMenus = upmsManager.getMenuByRoleId(sysRole.getId());
             if (ObjectUtils.isEmpty(sysMenus)) {
                 throw new LionException("用户'" + username + "'所在角色没有菜单信息，请配置");
             } else {
@@ -90,5 +90,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 sysUser.getAccountNonLocked(),
                 grantedAuthorities);
     }
-
 }

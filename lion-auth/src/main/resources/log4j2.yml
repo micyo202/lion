@@ -149,3 +149,10 @@ Configuration:
         - ref: INFO
         - ref: WARN
         - ref: ERROR
+#    Logger:
+#      - name: com.lion
+#        additivity: false
+#        level: DEBUG
+#        AppenderRef:
+#          - ref: CONSOLE
+#          - ref: ALL

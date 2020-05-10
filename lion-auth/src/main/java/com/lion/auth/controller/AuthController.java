@@ -17,7 +17,7 @@ package com.lion.auth.controller;
 
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.constant.SecurityConstant;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

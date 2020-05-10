@@ -17,7 +17,7 @@ package com.lion.gateway.filter;
 
 import com.lion.common.constant.ResponseCode;
 import com.lion.common.constant.SecurityConstant;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

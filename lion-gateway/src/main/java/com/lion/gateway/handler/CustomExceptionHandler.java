@@ -16,7 +16,7 @@
 package com.lion.gateway.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
