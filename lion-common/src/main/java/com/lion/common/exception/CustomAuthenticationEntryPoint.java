@@ -16,7 +16,7 @@
 package com.lion.common.exception;
 
 import com.lion.common.constant.ResponseCode;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import com.lion.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
