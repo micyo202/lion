@@ -13,9 +13,9 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.common.mapper;
+package com.lion.common.schedule.mapper;
 
-import com.lion.common.entity.Schedule;
+import com.lion.common.schedule.entity.Schedule;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

@@ -15,7 +15,7 @@
  */
 package com.lion.common.amqp;
 
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Repository;

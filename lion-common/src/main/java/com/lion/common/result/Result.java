@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.common.entity;
+package com.lion.common.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lion.common.constant.ResponseCode;
