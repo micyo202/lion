@@ -17,9 +17,13 @@ package com.lion.common.config;
 
 import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
 import com.lion.common.gray.interceptor.GrayHttpRequestInterceptor;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -38,7 +42,22 @@ public class RestTemplateConfig {
     @LoadBalanced
     @SentinelRestTemplate
     public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
+
+        /**
+         * 使用 HttpClient 请求
+         */
+        HttpClient httpClient = HttpClientBuilder
+                .create()
+                .setRedirectStrategy(new LaxRedirectStrategy())
+                .build();
+
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectionRequestTimeout(30 * 1000);
+        factory.setConnectTimeout(90 * 1000);
+        factory.setReadTimeout(90 * 1000);
+        factory.setHttpClient(httpClient);
+
+        RestTemplate restTemplate = new RestTemplate(factory);
         // 将自定义的 ClientHttpRequestInterceptor 添加到 RestTemplate 中，可添加多个
         restTemplate.setInterceptors(Collections.singletonList(new GrayHttpRequestInterceptor()));
         return restTemplate;

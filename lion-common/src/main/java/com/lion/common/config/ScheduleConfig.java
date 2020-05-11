@@ -15,8 +15,8 @@
  */
 package com.lion.common.config;
 
-import com.lion.common.entity.Schedule;
-import com.lion.common.mapper.ScheduleMapper;
+import com.lion.common.schedule.entity.Schedule;
+import com.lion.common.schedule.mapper.ScheduleMapper;
 import com.lion.common.util.DateUtil;
 import com.lion.common.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
