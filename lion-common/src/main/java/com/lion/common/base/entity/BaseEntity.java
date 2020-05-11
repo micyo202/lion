@@ -13,60 +13,40 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.entity;
+package com.lion.common.base.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- *
- * </p>
+ * BaseEntity
+ * 实体类基类
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-02-15
+ * @date 2020/4/28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class TempMybatis extends Model<TempMybatis> {
+@ApiModel(value = "Base实体基类", description = "实体类对应数据库中公共属性/字段")
+public class BaseEntity<T extends Model<?>> extends Model<T> {
 
-    private static final long serialVersionUID = 1L;
+    @ApiModelProperty(value = "主键")
+    private Long id;
 
-    /**
-     * 主键
-     */
-    private String id;
-
-    /**
-     * 名称
-     */
-    private String name;
-
-    /**
-     * 有效标志（0：无效，1：有效）
-     */
+    @ApiModelProperty(value = "有效标志（0：无效，1：有效）")
     private Boolean valid;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
 
-    /**
-     * 更新时间
-     */
+    @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
-
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
 
 }

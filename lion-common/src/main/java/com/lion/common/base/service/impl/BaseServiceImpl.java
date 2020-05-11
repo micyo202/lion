@@ -20,7 +20,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.lion.common.base.service.IBaseService;
+import com.lion.common.base.service.BaseService;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,18 +33,18 @@ import java.util.List;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/12
  */
-public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements IBaseService<T> {
+public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
 
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
 
     @Override
-    public PageInfo<T> selectAllByPage(int pageNum, int pageSize) {
-        return selectAllByPage(pageNum, pageSize, null);
+    public PageInfo<T> page(int pageNum, int pageSize) {
+        return page(pageNum, pageSize, null);
     }
 
     @Override
-    public PageInfo<T> selectAllByPage(int pageNum, int pageSize, String orderBy) {
+    public PageInfo<T> page(int pageNum, int pageSize, String orderBy) {
         if (null == orderBy) {
             PageHelper.startPage(pageNum, pageSize);
         } else {
@@ -58,12 +58,12 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     }
 
     @Override
-    public PageInfo<T> selectByWrapperPage(Wrapper<T> queryWrapper, int pageNum, int pageSize) {
-        return selectByWrapperPage(queryWrapper, pageNum, pageSize, null);
+    public PageInfo<T> page(Wrapper<T> queryWrapper, int pageNum, int pageSize) {
+        return page(queryWrapper, pageNum, pageSize, null);
     }
 
     @Override
-    public PageInfo<T> selectByWrapperPage(Wrapper<T> queryWrapper, int pageNum, int pageSize, String orderBy) {
+    public PageInfo<T> page(Wrapper<T> queryWrapper, int pageNum, int pageSize, String orderBy) {
         if (null == orderBy) {
             PageHelper.startPage(pageNum, pageSize);
         } else {
@@ -77,22 +77,22 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     }
 
     @Override
-    public PageInfo selectByStatmentPage(String statement, int pageNum, int pageSize) {
-        return selectByStatmentPage(statement, null, pageNum, pageSize, null);
+    public PageInfo page(String statement, int pageNum, int pageSize) {
+        return page(statement, null, pageNum, pageSize, null);
     }
 
     @Override
-    public PageInfo selectByStatmentPage(String statement, int pageNum, int pageSize, String orderBy) {
-        return selectByStatmentPage(statement, null, pageNum, pageSize, orderBy);
+    public PageInfo page(String statement, int pageNum, int pageSize, String orderBy) {
+        return page(statement, null, pageNum, pageSize, orderBy);
     }
 
     @Override
-    public PageInfo selectByStatmentPage(String statement, Object parameter, int pageNum, int pageSize) {
-        return selectByStatmentPage(statement, parameter, pageNum, pageSize, null);
+    public PageInfo page(String statement, Object parameter, int pageNum, int pageSize) {
+        return page(statement, parameter, pageNum, pageSize, null);
     }
 
     @Override
-    public PageInfo selectByStatmentPage(String statement, Object parameter, int pageNum, int pageSize, String orderBy) {
+    public PageInfo page(String statement, Object parameter, int pageNum, int pageSize, String orderBy) {
         if (null == orderBy) {
             PageHelper.startPage(pageNum, pageSize);
         } else {
@@ -110,6 +110,62 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
         PageInfo pageInfo = new PageInfo<>(list);
 
         return pageInfo;
+    }
+
+    @Override
+    public T getByStatement(String statement) {
+        return getByStatement(statement, null);
+    }
+
+    @Override
+    public T getByStatement(String statement, Object parameter) {
+        if (null == parameter) {
+            return sqlSessionTemplate.selectOne(statement);
+        } else {
+            return sqlSessionTemplate.selectOne(statement, parameter);
+        }
+    }
+
+    @Override
+    public List<T> listByStatement(String statement) {
+        return listByStatement(statement, null);
+    }
+
+    @Override
+    public List<T> listByStatement(String statement, Object parameter) {
+        if (null == parameter) {
+            return sqlSessionTemplate.selectList(statement);
+        } else {
+            return sqlSessionTemplate.selectList(statement, parameter);
+        }
+    }
+
+    @Override
+    public int saveByStatement(String statement) {
+        return saveByStatement(statement, null);
+    }
+
+    @Override
+    public int saveByStatement(String statement, Object parameter) {
+        if (null == parameter) {
+            return sqlSessionTemplate.insert(statement);
+        } else {
+            return sqlSessionTemplate.insert(statement, parameter);
+        }
+    }
+
+    @Override
+    public int updateByStatement(String statement) {
+        return updateByStatement(statement, null);
+    }
+
+    @Override
+    public int updateByStatement(String statement, Object parameter) {
+        if (null == parameter) {
+            return sqlSessionTemplate.update(statement);
+        } else {
+            return sqlSessionTemplate.update(statement, parameter);
+        }
     }
 
 }
