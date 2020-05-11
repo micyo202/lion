@@ -15,8 +15,8 @@
  */
 package com.lion.common.util.secure;
 
-import jodd.crypt.BCrypt;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  * BCryptUtil
