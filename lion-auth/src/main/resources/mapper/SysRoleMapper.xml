@@ -15,22 +15,26 @@
   ~   limitations under the License.
   -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lion.demo.provider.temp.mapper.TempProductMapper">
+<mapper namespace="com.lion.auth.mapper.SysRoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.lion.demo.provider.temp.entity.TempProduct">
-        <id column="id" property="id" />
+    <resultMap id="BaseResultMap" type="com.lion.auth.entity.SysRole">
+    <result column="id" property="id" />
+    <result column="valid" property="valid" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
         <result column="code" property="code" />
         <result column="name" property="name" />
-        <result column="count" property="count" />
-        <result column="valid" property="valid" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        id, code, name, count, valid, create_time, update_time
-    </sql>
+    <!-- 根据用户ID获取角色列表信息 -->
+    <select id="getRoleByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT r.*
+        FROM sys_role r, sys_user_role ur
+        WHERE r.id = ur.role_id
+            AND r.valid = 1
+            AND ur.valid = 1
+            AND ur.user_id = #{0}
+    </select>
 
 </mapper>

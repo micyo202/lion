@@ -13,24 +13,31 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.service;
+package com.lion.auth.mapper;
 
-import com.lion.common.base.service.IBaseService;
-import com.lion.demo.consumer.temp.entity.TempMybatis;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lion.auth.entity.SysMenu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
  * <p>
- * 服务类
+ * 菜单表 Mapper 接口
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-02-15
+ * @since 2020-02-12
  */
-public interface ITempMybatisService extends IBaseService<TempMybatis> {
+public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-    List<TempMybatis> customSqlForMapper();
+    /**
+     * 根据角色ID获取菜单列表信息
+     */
+    List<SysMenu> getMenuByRoleId(Long roleId);
 
-    List<TempMybatis> customSqlForXml();
+    /**
+     * 根据角色Ids获取菜单列表信息
+     */
+    List<SysMenu> getMenuByRoleIds(@Param("roleIds") List<Long> roleIds);
 }

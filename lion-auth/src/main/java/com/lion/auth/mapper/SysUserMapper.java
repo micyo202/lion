@@ -13,19 +13,18 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.mapper;
+package com.lion.auth.mapper;
 
-import com.lion.demo.consumer.temp.entity.TempOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lion.auth.entity.SysUser;
 
 /**
  * <p>
- * 订单表 Mapper 接口
+ * 用户表 Mapper 接口
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @since 2020-02-12
  */
-public interface TempOrderMapper extends BaseMapper<TempOrder> {
-
+public interface SysUserMapper extends BaseMapper<SysUser> {
 }

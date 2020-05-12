@@ -13,19 +13,25 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.provider.temp.mapper;
+package com.lion.auth.mapper;
 
-import com.lion.demo.provider.temp.entity.TempProduct;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lion.auth.entity.SysRole;
+
+import java.util.List;
 
 /**
  * <p>
- * 产品表 Mapper 接口
+ * 角色表 Mapper 接口
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @since 2020-02-12
  */
-public interface TempProductMapper extends BaseMapper<TempProduct> {
+public interface SysRoleMapper extends BaseMapper<SysRole> {
 
+    /**
+     * 根据用户ID获取角色列表信息
+     */
+    List<SysRole> getRoleByUserId(Long userId);
 }
