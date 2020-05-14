@@ -19,11 +19,11 @@ Configuration:
   Properties: # 定义全局变量
     Property:
       - name: log.path
-        value: /tmp/logs
+        value: ./logs
       - name: log.name
         value: lion-admin
       - name: log.pattern
-        value: "%d{yyyy-MM-dd HH:mm:ss,SSS} %p %pid (%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId}) [%t] %C{1.}:%L -> %m%n"
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %p %pid (%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId}) [%t] %C{1.}:%L -> %m%n"
       - name: log.size
         value: 50MB
       - name: log.num
@@ -33,7 +33,7 @@ Configuration:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
-        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} %highlight{%p} %magenta{%pid} %blue{(%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId})} [%t] %cyan{%C{1.}}:%L -> %black{%m%n}"
+        pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%p} %magenta{%pid} %blue{(%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId})} [%t] %cyan{%C{1.}}:%L -> %black{%m%n}"
     # 日志文件输出设置
     RollingFile:
       # 全部日志
