@@ -27,6 +27,7 @@ import com.lion.common.base.service.BaseService;
 import com.lion.common.base.service.impl.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,7 +51,7 @@ public class CodeGenerator {
     public static void main(String[] args) {
 
         String rootDir = System.getProperty("user.dir");
-        String outPath = String.format("%s/%s", rootDir, PROJECT);
+        String outPath = String.format("%s%s%s", rootDir, File.separator, PROJECT);
 
         AutoGenerator autoGenerator = new AutoGenerator();
         /**

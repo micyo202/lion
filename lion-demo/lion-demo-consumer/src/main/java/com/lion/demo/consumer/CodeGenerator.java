@@ -21,11 +21,14 @@ import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.lion.common.base.controller.BaseController;
+import com.lion.common.base.entity.BaseEntity;
+import com.lion.common.base.service.BaseService;
+import com.lion.common.base.service.impl.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -48,7 +51,7 @@ public class CodeGenerator {
     public static void main(String[] args) {
 
         String rootDir = System.getProperty("user.dir");
-        String outPath = String.format("%s/%s", rootDir, PROJECT);
+        String outPath = String.format("%s%s%s", rootDir, File.separator, PROJECT);
 
         AutoGenerator autoGenerator = new AutoGenerator();
         /**
@@ -57,12 +60,13 @@ public class CodeGenerator {
         GlobalConfig globalConfig = new GlobalConfig();
         globalConfig.setAuthor(AUTHOR);
         globalConfig.setOutputDir(outPath + "/src/main/java");
+        globalConfig.setServiceName("%sService");
         globalConfig.setFileOverride(true);     // 是否覆盖同名文件（默认false）
         globalConfig.setActiveRecord(true);
-        //globalConfig.setSwagger2(true);
+        globalConfig.setSwagger2(true);
         globalConfig.setEnableCache(false);      // XML 二级缓存
         globalConfig.setBaseResultMap(true);    // XML ResultMap
-        globalConfig.setBaseColumnList(true);   // XML ColumList
+        globalConfig.setBaseColumnList(false);   // XML ColumList
         globalConfig.setOpen(false);
         autoGenerator.setGlobalConfig(globalConfig);
 
@@ -90,8 +94,13 @@ public class CodeGenerator {
          * 包配置
          */
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setModuleName(scanner("模块名"));
+        //packageConfig.setModuleName(scanner("模块名"));
         packageConfig.setParent(PACKAGE);
+        packageConfig.setEntity("entity");
+        packageConfig.setMapper("mapper");
+        packageConfig.setService("service");
+        packageConfig.setServiceImpl("service.impl");
+        packageConfig.setController("controller");
         autoGenerator.setPackageInfo(packageConfig);
 
         /**
@@ -103,12 +112,12 @@ public class CodeGenerator {
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setRestControllerStyle(true);
         // 公共父类
-        strategyConfig.setSuperControllerClass("com.lion.common.base.controller.BaseController");
-        strategyConfig.setSuperServiceClass("com.lion.common.base.service.IBaseService");
-        strategyConfig.setSuperServiceImplClass("com.lion.common.base.service.impl.BaseServiceImpl");
+        strategyConfig.setSuperControllerClass(BaseController.class.getName());
+        strategyConfig.setSuperServiceImplClass(BaseServiceImpl.class.getName());
+        strategyConfig.setSuperServiceClass(BaseService.class.getName());
         //strategyConfig.setSuperMapperClass("父类,没有就不用设置");
-        //strategyConfig.setSuperEntityClass("父类,没有就不用设置");
-        //strategyConfig.setSuperEntityColumns("父类公共字段,没有就不用设置");
+        strategyConfig.setSuperEntityClass(BaseEntity.class.getName());
+        strategyConfig.setSuperEntityColumns("id", "valid", "create_time", "update_time");
         strategyConfig.setControllerMappingHyphenStyle(true);
         //strategyConfig.setTablePrefix(packageConfig.getModuleName() + "_");
         strategyConfig.setInclude(scanner("表名（多个用英文逗号分割）").split(","));
@@ -116,14 +125,16 @@ public class CodeGenerator {
 
         /**
          * 注入配置
-         * 可以在 VM 中使用 cfg.xxx
          */
         InjectionConfig injectionConfig = new InjectionConfig() {
             @Override
             public void initMap() {
-                Map<String, Object> map = new HashMap<>();
-                map.put("xxx", this.getConfig().getGlobalConfig().getAuthor() + "-rb");
-                this.setMap(map);
+                //Map<String, Object> map = new HashMap<>();
+                //在 VM 模板中使用 cfg.xxx
+                //map.put("xxx", this.getConfig().getGlobalConfig().getAuthor() + "-rb");
+                //在 VM 模板中使用 cfg.superColums 获取
+                //map.put("superColums", this.getConfig().getStrategyConfig().getSuperEntityColumns());
+                //this.setMap(map);
             }
         };
 
@@ -135,8 +146,8 @@ public class CodeGenerator {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(outPath)
                         .append("/src/main/resources/mapper/")
-                        .append(packageConfig.getModuleName())
-                        .append("/")
+                        //.append(packageConfig.getModuleName())
+                        //.append("/")
                         .append(tableInfo.getEntityName())
                         .append("Mapper.xml");
                 return stringBuilder.toString();
