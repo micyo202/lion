@@ -23,5 +23,14 @@ package com.lion.common.util.secure;
  * @date 2019/10/21
  */
 public enum RSAKey {
-    PUBLIC, PRIVATE
+
+    /**
+     * 公钥
+     */
+    PUBLIC,
+
+    /**
+     * 私钥
+     */
+    PRIVATE
 }

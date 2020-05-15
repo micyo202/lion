@@ -30,7 +30,7 @@ import org.springframework.messaging.SubscribableChannel;
 public interface AmqpChannel {
 
     String LION_INPUT = "lion-input";
-    String LiON_OUTPUT = "lion-output";
+    String LION_OUTPUT = "lion-output";
 
     /**
      * 接收消息
@@ -41,6 +41,6 @@ public interface AmqpChannel {
     /**
      * 发送消息
      */
-    @Output(LiON_OUTPUT)
+    @Output(LION_OUTPUT)
     MessageChannel lionOutput();
 }
