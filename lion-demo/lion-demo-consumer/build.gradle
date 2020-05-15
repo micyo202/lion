@@ -63,7 +63,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    //implementation 'org.springframework.boot:spring-boot-starter-cache'
 
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
 

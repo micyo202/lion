@@ -31,7 +31,7 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'com.lion'
-    version = '2.0.4'
+    version = '2.0.5'
     sourceCompatibility = '1.8'
 
     ext {
@@ -63,6 +63,7 @@ subprojects {
         set('sentinelVersion', "1.7.1")
         set('feignVersion', "10.4.0")
         set('ribbonVersion', "2.3.0")
+        set('httpClientVersion', "4.5.12")
     }
 
     repositories {
@@ -82,10 +83,8 @@ subprojects {
             extendsFrom annotationProcessor
         }
 
-        // 排除 tomcat 依赖（使用 undertow）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-        // 排除 logback 依赖（使用 log4j2）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'  // 排除 tomcat 依赖（使用 undertow）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // 排除 logback 依赖（使用 log4j2）
     }
 
     dependencies {
@@ -126,8 +125,8 @@ subprojects {
     jacocoTestReport {
         reports {
             xml.enabled true
-            csv.enabled false
-            html.enabled false
+            csv.enabled true
+            html.enabled true
 
             xml.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoXml.xml")
             csv.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoCsv.csv")
