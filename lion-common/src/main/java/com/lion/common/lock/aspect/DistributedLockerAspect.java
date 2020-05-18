@@ -17,6 +17,7 @@ package com.lion.common.lock.aspect;
 
 import com.lion.common.lock.annotation.Locker;
 import com.lion.common.lock.locker.DistributedLocker;
+import com.lion.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -67,7 +68,7 @@ public class DistributedLockerAspect {
         String lockKey = className + methodName;
         boolean isLocked = distributedLocker.tryLock(lockKey, locker.waitTime(), locker.leaseTime());
 
-        Object result = null;
+        Object result;
         if (isLocked) {
             try {
                 result = proceedingJoinPoint.proceed();
@@ -77,6 +78,10 @@ public class DistributedLockerAspect {
             } finally {
                 distributedLocker.unlock(lockKey);  // 释放锁
             }
+        } else {
+            String msg = "分布式锁获取失败/超时";
+            log.error(msg);
+            result = Result.failure(msg);
         }
 
         return result;
