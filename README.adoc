@@ -1,14 +1,6 @@
 = Lion
 
-////
-++++
-<div style="text-align: center;"><img src="https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200" /></div>
-++++
-////
-
-++++
-<center><img src="https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200" /></center>
-++++
+image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png[align="center"]
 
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
