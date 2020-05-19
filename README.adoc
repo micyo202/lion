@@ -1,10 +1,12 @@
 = Lion
 
-image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200[align="center"]
+++++
+<div style="text-align: center;"><img src="https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200" /></div>
+++++
 
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
-image:https://img.shields.io/badge/Version-2.0.4-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
+image:https://img.shields.io/badge/Version-2.0.5-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
 image:https://img.shields.io/badge/Java-8+-yellow.svg["Java", link="https://www.oracle.com/technetwork/java/javase/downloads/index.html"]
 image:https://img.shields.io/badge/Gradle-6.3-01BC7E.svg["Gradle", link="https://gradle.org"]
 image:https://img.shields.io/badge/SpringBoot-2.2.6.RELEASE-FF69B4.svg["Spring Boot", link="https://spring.io/projects/spring-boot"]
@@ -13,13 +15,7 @@ image:https://img.shields.io/badge/Apache&nbsp;License-2.0-lightgrey.svg["Apache
 image:https://img.shields.io/github/stars/micyo202/lion.svg?style=social&label=Stars["GitHub Stars", link="https://github.com/micyo202/lion"]
 image:https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=Fork["GitHub Fork", link="https://github.com/micyo202/lion"]
 
-感谢 https://www.jetbrains.com/?from=lion[JetBrains] 提供的开源许可，推荐使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 进行开发
-
-image:https://upload-images.jianshu.io/upload_images/8015461-018f36fe7effa8ad.gif?imageMogr2/auto-orient/strip|imageView2/2/w/650[align="center"]
-
-'''
-
-==== 项目镜像已经推送至 https://hub.docker.com[Docker Hub]，请前往 https://hub.docker.com/u/micyo202 查看/拉取
+---
 
 *lion* 是基于 *Spring Cloud* 体系实现的一套分布式微服务架构，为了让中小型公司解决当下技术瓶颈，快速将现有应用服务架构拆分改造为分布式微服务架构，只需在本架构上进行相关业务开发即可，大大减少了分布式微服务架构的门槛，达到拿来就用，使架构师及开发人员不必过多的关注架构本身，只需专注于业务开发
 
@@ -41,13 +37,15 @@ image:https://upload-images.jianshu.io/upload_images/8015461-018f36fe7effa8ad.gi
 
 项目后期会不断更新与时俱进，敬请期待...
 
+_项目镜像已经推送至 https://hub.docker.com[Docker Hub]，请前往 https://hub.docker.com/u/micyo202 查看/拉取_
+
 == 项目架构图
 
-image:https://upload-images.jianshu.io/upload_images/8015461-c10225e5f151d9c0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
+image::https://upload-images.jianshu.io/upload_images/8015461-c10225e5f151d9c0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 == 数据库表关系图
 
-image:https://upload-images.jianshu.io/upload_images/8015461-5b7085380d34caa9.png?imageMogr2/auto-orient/strip|imageView2/2/w/878[align="center"]
+image::https://upload-images.jianshu.io/upload_images/8015461-75795f0b6dd09d59.png?imageMogr2/auto-orient/strip|imageView2/2/w/1108[align="center"]
 
 == 分支说明
 
@@ -66,7 +64,6 @@ image:https://upload-images.jianshu.io/upload_images/8015461-5b7085380d34caa9.pn
 
 == 二、相关软件
 
-
 _说明： `√` 表示必要服务， `x` 表示非必要服务_
 
 |===
@@ -74,39 +71,39 @@ _说明： `√` 表示必要服务， `x` 表示非必要服务_
 
 | MySql 8.0.19
 | https://www.mysql.com
-| √
+^| √
 
 | Redis 5.0.7
 | https://redis.io
-| √
+^| √
 
 | RabbitMQ 3.8.2
 | https://www.rabbitmq.com
-| √
+^| √
 
 | Nacos 1.1.4
 | https://nacos.io
-| √
+^| √
 
 | Sentinel 1.7.1
 | https://github.com/alibaba/sentinel
-| √
+^| √
 
 | Seata 1.0.0
 | https://seata.io
-| √
+^| √
 
 | Zipkin 2.20
 | https://zipkin.io
-| x
+^| x
 
 | SkyWalking 6.6.0
 | http://skywalking.apache.org
-| x
+^| x
 
 | ElasticSearch 7.6.1
 | https://www.elastic.co/cn
-| x
+^| x
 |===
 
 _注：在启动项目前，请先确保启动： https://www.mysql.com[MySql 8.0.19]、 https://redis.io[Redis 5.0.7]、 https://www.rabbitmq.com[RabbitMQ 3.8.2]、 https://nacos.io[Nacos 1.1.4]、 https://github.com/alibaba/sentinel[Sentinel 1.7.1]、 https://seata.io[Seata 1.0.0]这 [big]#6# 个必备服务（#需把 *Sentinel* 默认端口 *8080* 改为 *8858*#），启动方式可参考 https://github.com/micyo202/lion/tree/master/docs[docs]文档_
@@ -143,20 +140,17 @@ lion -- 根目录
 
 == 五、项目部署
 
-
 . 下载项目 `git clone --depth 1 https://github.com/micyo202/lion.git`
 
 . 进入项目根目录执行 `./gradlew -x test clean` 命令，使用 *Gradle* 初始化项目
 
 . 初始化完毕后导入到 *IDE* 开发工具中（建议使用 https://www.jetbrains.com/idea?from=lion[IntelliJ IDEA] 作为开发工具）
 
-. 创建 [big]##3## 个数据库分别为 *lion、seata、zipkin* 并分别执行项目根目录下 *database* 中的 *https://github.com/micyo202/lion/blob/master/database/lion.sql[lion.sql]、 https://github.com/micyo202/lion/blob/master/database/seata.sql[seata.sql]、 https://github.com/micyo202/lion/blob/master/database/zipkin.sql[zipkin.sql]* 脚本，该脚本会创建项目所需的表（lion库中包含：用户表、角色表、菜单资源表等，seata库中包含：全局事务表、分支事务表、全局锁表，zipkin库中包含：链路追踪相关表）
-
 . 按照文档中 [big]#[underline]##二、相关软件### 的内容，启动 [big]#6# 个必备服务，否则项目无法正常运行
 
-. 根据自己的服务器情况，修改 *resources* 下 *bootstrap.yml* 配置中的 *nacos* 服务地址，及 *application.yml* 配置中 *mysql、redis、rabbitmq、sentinel* 的服务地址跟用户名/密码（#注：可将 *application.yml* 配置文件注释打开放在项目中，或将 *application.yml* 配置文件放入 *nacos* 配置管理中#）
+. 创建 [big]##3## 个数据库分别为 *lion、seata、zipkin* 并分别执行项目根目录下 *database* 中的 *https://github.com/micyo202/lion/blob/master/database/lion.sql[lion.sql]、 https://github.com/micyo202/lion/blob/master/database/seata.sql[seata.sql]、 https://github.com/micyo202/lion/blob/master/database/zipkin.sql[zipkin.sql]* 脚本，该脚本会创建项目所需的表（lion库中包含：用户表、角色表、菜单资源表等，seata库中包含：全局事务表、分支事务表、全局锁表，zipkin库中包含：链路追踪相关表）
 
-. *Windows* 环境需修改 *resources* 下 *log4j2.yml* 配置中 `-log.path` 的 `value` 日志输出路径（*注： *Mac、Linux、Ubuntu* 环境可忽略此步骤，默认日志输出路径在 `/tmp/logs` 下*）
+. 根据自己的服务器情况，修改 *resources* 下 *bootstrap.yml* 配置中的 *nacos* 服务地址，及 *application.yml* 配置中 *mysql、redis、rabbitmq、sentinel* 的服务地址跟用户名/密码（#注：可将 *application.yml* 配置文件注释打开放在项目中，或将 *application.yml* 配置文件放入 *nacos* 配置管理中#）
 
 . 完成以上步骤就可以正常启动部署服务了
 
@@ -183,75 +177,75 @@ lion -- 根目录
 
 ==== Nacos服务列表
 
-image:https://upload-images.jianshu.io/upload_images/8015461-cda39b98293daeda.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-cda39b98293daeda.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Nacos配置列表
 
-image:https://upload-images.jianshu.io/upload_images/8015461-292c5fab4c1ec93e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-292c5fab4c1ec93e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Nacos服务详情
 
-image:https://upload-images.jianshu.io/upload_images/8015461-438e0e4f34a9a7fa.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-438e0e4f34a9a7fa.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Boot Admin应用监控
 
-image:https://upload-images.jianshu.io/upload_images/8015461-580075f6fe78e5da.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-580075f6fe78e5da.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Boot Admin应用列表
 
-image:https://upload-images.jianshu.io/upload_images/8015461-907900742c6e853b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-907900742c6e853b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Boot Admin应用详情
 
-image:https://upload-images.jianshu.io/upload_images/8015461-be406e234a641713.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-be406e234a641713.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Sentinel服务限流、熔断降级
 
-image:https://upload-images.jianshu.io/upload_images/8015461-dd4e2a23d6cc89c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-dd4e2a23d6cc89c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Zipkin链路信息
 
-image:https://upload-images.jianshu.io/upload_images/8015461-5ce77cf7c8d665a2.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-5ce77cf7c8d665a2.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Zipkin链路追踪
 
-image:https://upload-images.jianshu.io/upload_images/8015461-c2abbd5245a492ab.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-c2abbd5245a492ab.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Zipkin拓扑图
 
-image:https://upload-images.jianshu.io/upload_images/8015461-2a25bd48123b0f21.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-2a25bd48123b0f21.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== SkyWalking监控面板
 
-image:https://upload-images.jianshu.io/upload_images/8015461-2eb4eb73e3e1bca6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-2eb4eb73e3e1bca6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== SkyWalking链路追踪
 
-image:https://upload-images.jianshu.io/upload_images/8015461-77ae0216af3e361f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-77ae0216af3e361f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== SkyWalking拓扑图
 
-image:https://upload-images.jianshu.io/upload_images/8015461-fe35d9af69f6cfa3.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-fe35d9af69f6cfa3.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
-image:https://upload-images.jianshu.io/upload_images/8015461-9150e47753478502.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-9150e47753478502.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Druid SQL监控
 
-image:https://upload-images.jianshu.io/upload_images/8015461-1424e4200d3c7d0a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-1424e4200d3c7d0a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Druid URI监控
 
-image:https://upload-images.jianshu.io/upload_images/8015461-31a12c241db25772.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-31a12c241db25772.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== Druid Spring监控
 
-image:https://upload-images.jianshu.io/upload_images/8015461-b5001ccb2c875735.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-b5001ccb2c875735.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 ==== RESTful APIs文档
 
-image:https://upload-images.jianshu.io/upload_images/8015461-aa89273f6d8f3fa7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-aa89273f6d8f3fa7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
-image:https://upload-images.jianshu.io/upload_images/8015461-c397f97536fade0b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[]
+image::https://upload-images.jianshu.io/upload_images/8015461-c397f97536fade0b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200[align="center"]
 
 == 八、开源协议
 
@@ -264,5 +258,9 @@ https://github.com/micyo202/lion/blob/master/LICENSE[Apache Licence 2.0]（ http
 
 Apache Licence 也是对商业应用友好的许可。使用者也可以在需要的时候修改代码来满足需要并作为开源或商业产品发布/销售
 
+---
 
-TIP: 注：对未经过授权和不遵循 Apache Licence 2.0 开源协议二次开源或者商业化的我们将追究到底
+[TIP]
+====
+注：对未经过授权和不遵循 Apache Licence 2.0 开源协议二次开源或者商业化的我们将追究到底
+====
