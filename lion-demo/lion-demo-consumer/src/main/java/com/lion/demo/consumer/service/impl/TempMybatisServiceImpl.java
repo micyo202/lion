@@ -13,36 +13,34 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.service.impl;
+package com.lion.demo.consumer.service.impl;
 
 import com.lion.common.base.service.impl.BaseServiceImpl;
-import com.lion.demo.consumer.temp.entity.TempMybatis;
-import com.lion.demo.consumer.temp.mapper.TempMybatisMapper;
-import com.lion.demo.consumer.temp.service.ITempMybatisService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lion.demo.consumer.entity.TempMybatis;
+import com.lion.demo.consumer.mapper.TempMybatisMapper;
+import com.lion.demo.consumer.service.TempMybatisService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * <p>
- * 服务实现类
+ * MyBatis示例表 服务实现类
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-02-15
+ * @since 2020-05-09
  */
 @Service
-public class TempMybatisServiceImpl extends BaseServiceImpl<TempMybatisMapper, TempMybatis> implements ITempMybatisService {
+public class TempMybatisServiceImpl extends BaseServiceImpl<TempMybatisMapper, TempMybatis> implements TempMybatisService {
 
-    @Autowired
-    private TempMybatisMapper tempMybatisMapper;
-
-    public List<TempMybatis> customSqlForMapper() {
-        return tempMybatisMapper.selectByCustomSqlForMapper();
+    @Override
+    public List<TempMybatis> listByCustomSql() {
+        return baseMapper.listByCustomSql();
     }
 
-    public List<TempMybatis> customSqlForXml() {
-        return tempMybatisMapper.selectByCustomSqlForXml();
+    @Override
+    public int insertByCustomSql(TempMybatis tempMybatis) {
+        return baseMapper.insertByCustomSql(tempMybatis);
     }
 }

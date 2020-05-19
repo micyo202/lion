@@ -15,7 +15,7 @@
  */
 package com.lion.demo.consumer.handler;
 
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 
 /**
  * FallbackHandler

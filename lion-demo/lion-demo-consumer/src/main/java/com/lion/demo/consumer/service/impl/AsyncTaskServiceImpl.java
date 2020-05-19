@@ -16,7 +16,7 @@
 package com.lion.demo.consumer.service.impl;
 
 import com.lion.common.exception.LionException;
-import com.lion.demo.consumer.service.IAsyncTaskService;
+import com.lion.demo.consumer.service.AsyncTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class AsyncTaskServiceImpl implements IAsyncTaskService {
+public class AsyncTaskServiceImpl implements AsyncTaskService {
 
     /**
      * 异步执行任务

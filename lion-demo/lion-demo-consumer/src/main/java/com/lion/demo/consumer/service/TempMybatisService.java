@@ -13,19 +13,24 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.provider.temp.service;
+package com.lion.demo.consumer.service;
 
-import com.lion.demo.provider.temp.entity.TempProduct;
-import com.lion.common.base.service.IBaseService;
+import com.lion.common.base.service.BaseService;
+import com.lion.demo.consumer.entity.TempMybatis;
+
+import java.util.List;
 
 /**
  * <p>
- * 产品表 服务类
+ * MyBatis示例表 服务类
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @since 2020-05-09
  */
-public interface ITempProductService extends IBaseService<TempProduct> {
+public interface TempMybatisService extends BaseService<TempMybatis> {
 
+    List<TempMybatis> listByCustomSql();
+
+    int insertByCustomSql(TempMybatis tempMybatis);
 }

@@ -13,19 +13,19 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.service;
+package com.lion.demo.provider.service;
+
+import com.lion.demo.provider.entity.TempProduct;
+import com.lion.common.base.service.BaseService;
 
 /**
- * IAsyncTaskService
- * 异步线程任务接口
+ * <p>
+ * 产品表 服务类
+ * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @date 2020/3/31
+ * @since 2020-05-09
  */
-public interface IAsyncTaskService {
+public interface TempProductService extends BaseService<TempProduct> {
 
-    /**
-     * 异步执行任务
-     */
-    void asyncJob(String name);
 }

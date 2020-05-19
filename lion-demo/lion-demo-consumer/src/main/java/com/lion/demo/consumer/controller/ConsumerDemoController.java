@@ -20,12 +20,13 @@ import com.lion.common.amqp.AmqpSender;
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.blockchain.BlockChain;
 import com.lion.common.constant.ResponseCode;
-import com.lion.common.entity.Result;
+import com.lion.common.exception.LionException;
+import com.lion.common.result.Result;
 import com.lion.common.lock.annotation.Locker;
 import com.lion.common.util.DateUtil;
-import com.lion.demo.consumer.client.ProviderDemoClient;
+import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
 import com.lion.demo.consumer.handler.BlockHandler;
-import com.lion.demo.consumer.service.IAsyncTaskService;
+import com.lion.demo.consumer.service.AsyncTaskService;
 import com.netflix.ribbon.hystrix.FallbackHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -69,7 +70,7 @@ public class ConsumerDemoController extends BaseController {
     private String foo;
 
     @Autowired
-    private ProviderDemoClient providerDemoClient;
+    private ProviderDemoFeignClient providerDemoFeignClient;
 
     @ApiOperation("初始化")
     @GetMapping("/init")
@@ -77,7 +78,7 @@ public class ConsumerDemoController extends BaseController {
 
         String msg = applicationName + " -> port: " + port + ", version: " + version + ", foo: " + foo;
 
-        Result providerInitResult = providerDemoClient.initFromProvider();
+        Result providerInitResult = providerDemoFeignClient.initFromProvider();
         if (providerInitResult.getCode() != ResponseCode.SUCCESS) {
             return Result.failure(msg + ", " + providerInitResult.getMsg());
         } else {
@@ -91,7 +92,7 @@ public class ConsumerDemoController extends BaseController {
     @GetMapping("/feign/hi")
     public Result feignHi(String name) {
         log.info("Consumer -> 服务消费者 /feign/hi");
-        return providerDemoClient.hiFromProvider(name);
+        return providerDemoFeignClient.hiFromProvider(name);
     }
 
     @Autowired
@@ -100,7 +101,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("Ribbon服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @SentinelResource(value = "ribbonHi", fallback = "ribbonHiFallback")
-    @GetMapping("/ribbon/hi")
+    @RequestMapping(value = "/ribbon/hi", method = {RequestMethod.GET, RequestMethod.POST})
     public Result ribbonHi(String name) {
 
         String method = this.getRequest().getMethod();
@@ -143,7 +144,7 @@ public class ConsumerDemoController extends BaseController {
     @GetMapping("/sentinel/fallback")
     @SentinelResource(value = "sentinelFallback", fallback = "sentinelFallback", fallbackClass = FallbackHandler.class)
     public Result sentinelFallback() {
-        throw new RuntimeException();
+        throw new LionException("This is sentinel control service fallback");
         //return Result.failure(500, "This is sentinel control service fallback");
     }
 
@@ -188,7 +189,7 @@ public class ConsumerDemoController extends BaseController {
     }
 
     @Autowired
-    private IAsyncTaskService asyncTaskService;
+    private AsyncTaskService asyncTaskService;
 
     @ApiOperation("异步线程执行任务")
     @GetMapping("/async")

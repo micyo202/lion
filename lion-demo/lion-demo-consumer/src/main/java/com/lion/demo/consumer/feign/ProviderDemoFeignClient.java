@@ -13,10 +13,10 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.client;
+package com.lion.demo.consumer.feign;
 
-import com.lion.common.entity.Result;
-import com.lion.demo.consumer.client.fallback.ProviderDemoClientFallback;
+import com.lion.common.result.Result;
+import com.lion.demo.consumer.feign.fallback.ProviderDemoFeignClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/01/05
  */
-@FeignClient(value = "lion-demo-provider", fallback = ProviderDemoClientFallback.class)
-public interface ProviderDemoClient {
+@FeignClient(value = "lion-demo-provider", fallback = ProviderDemoFeignClientFallback.class)
+public interface ProviderDemoFeignClient {
 
     @GetMapping(value = "/init")
     Result initFromProvider();

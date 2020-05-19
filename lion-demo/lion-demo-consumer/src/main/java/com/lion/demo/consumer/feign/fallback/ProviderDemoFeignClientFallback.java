@@ -13,10 +13,10 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.client.fallback;
+package com.lion.demo.consumer.feign.fallback;
 
-import com.lion.common.entity.Result;
-import com.lion.demo.consumer.client.ProviderDemoClient;
+import com.lion.common.result.Result;
+import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * @date 2019/01/05
  */
 @Service
-public class ProviderDemoClientFallback implements ProviderDemoClient {
+public class ProviderDemoFeignClientFallback implements ProviderDemoFeignClient {
 
     @Override
     public Result initFromProvider() {

@@ -13,9 +13,9 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.mapper;
+package com.lion.demo.consumer.mapper;
 
-import com.lion.demo.consumer.temp.entity.TempMybatis;
+import com.lion.demo.consumer.entity.TempMybatis;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -25,19 +25,15 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * MyBatis示例表 Mapper 接口
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-02-15
+ * @since 2020-05-09
  */
 public interface TempMybatisMapper extends BaseMapper<TempMybatis> {
 
-    List<TempMybatis> selectByCustomSqlForXml();
+    List<TempMybatis> listByCustomSql();
 
-    @Select("SELECT * FROM temp_mybatis")
-    List<TempMybatis> selectByCustomSqlForMapper();
-
-    @Insert("insert into temp_mybatis(id, name, valid, create_time, update_time) values(#{id}, #{name}, #{valid}, #{createTime}, #{updateTime})")
-    int insertByCustomSqlForMapper(@Param("id") String id, @Param("name") String name, @Param("valid") Boolean valid, @Param("createTime") String createTime, @Param("updateTime") String updateTime);
+    int insertByCustomSql(TempMybatis tempMybatis);
 }

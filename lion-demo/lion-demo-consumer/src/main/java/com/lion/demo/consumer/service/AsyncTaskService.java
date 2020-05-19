@@ -13,23 +13,19 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.provider.temp.service.impl;
-
-import com.lion.demo.provider.temp.entity.TempProduct;
-import com.lion.demo.provider.temp.mapper.TempProductMapper;
-import com.lion.demo.provider.temp.service.ITempProductService;
-import com.lion.common.base.service.impl.BaseServiceImpl;
-import org.springframework.stereotype.Service;
+package com.lion.demo.consumer.service;
 
 /**
- * <p>
- * 产品表 服务实现类
- * </p>
+ * IAsyncTaskService
+ * 异步线程任务接口
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @date 2020/3/31
  */
-@Service
-public class TempProductServiceImpl extends BaseServiceImpl<TempProductMapper, TempProduct> implements ITempProductService {
+public interface AsyncTaskService {
 
+    /**
+     * 异步执行任务
+     */
+    void asyncJob(String name);
 }

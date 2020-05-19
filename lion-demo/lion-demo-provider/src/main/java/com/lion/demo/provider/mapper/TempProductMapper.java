@@ -13,23 +13,19 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.service.impl;
+package com.lion.demo.provider.mapper;
 
-import com.lion.demo.consumer.temp.entity.TempOrder;
-import com.lion.demo.consumer.temp.mapper.TempOrderMapper;
-import com.lion.demo.consumer.temp.service.ITempOrderService;
-import com.lion.common.base.service.impl.BaseServiceImpl;
-import org.springframework.stereotype.Service;
+import com.lion.demo.provider.entity.TempProduct;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 订单表 服务实现类
+ * 产品表 Mapper 接口
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @since 2020-05-09
  */
-@Service
-public class TempOrderServiceImpl extends BaseServiceImpl<TempOrderMapper, TempOrder> implements ITempOrderService {
+public interface TempProductMapper extends BaseMapper<TempProduct> {
 
 }

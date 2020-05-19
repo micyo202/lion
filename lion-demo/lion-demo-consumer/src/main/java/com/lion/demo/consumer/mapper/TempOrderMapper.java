@@ -13,24 +13,19 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.handler;
+package com.lion.demo.consumer.mapper;
 
-import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.lion.common.constant.ResponseCode;
-import com.lion.common.result.Result;
+import com.lion.demo.consumer.entity.TempOrder;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * BlockHandler
- * sentinel流量控制自定义方法
+ * <p>
+ * 订单表 Mapper 接口
+ * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @date 2019/08/19
+ * @since 2020-05-09
  */
-public class BlockHandler {
-
-    public static Result sentinelBlockHandler(BlockException e) {
-        e.printStackTrace();
-        return Result.failure(ResponseCode.TOO_MANY_REQUESTS, "限流控制（Sentinel is blocked...）");
-    }
+public interface TempOrderMapper extends BaseMapper<TempOrder> {
 
 }

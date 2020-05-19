@@ -34,7 +34,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableKnife4j
 //@EnableTransactionManagement
 //@MapperScan("com.lion.**.mapper")
-@MapperScan(basePackages = {"com.lion.common.mapper", "com.lion.demo.consumer.**.mapper"})
+@MapperScan(basePackages = {"com.lion.common.**.mapper", "com.lion.demo.consumer.**.mapper"})
 //@ComponentScan("com.lion")
 @ComponentScan(basePackages = {"com.lion.common", "com.lion.demo.consumer"})
 public class ConsumerDemoApplication {

@@ -13,14 +13,14 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.provider.temp.controller;
+package com.lion.demo.provider.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lion.common.base.controller.BaseController;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import com.lion.common.exception.LionException;
-import com.lion.demo.provider.temp.entity.TempProduct;
-import com.lion.demo.provider.temp.service.ITempProductService;
+import com.lion.demo.provider.entity.TempProduct;
+import com.lion.demo.provider.service.TempProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TempProductController extends BaseController {
 
     @Autowired
-    private ITempProductService tempProductService;
+    private TempProductService tempProductService;
 
     @ApiOperation(value = "扣减产品库存", notes = "当库存不足时，扣减失败，回滚")
     @RequestMapping(value = "/deduct", method = {RequestMethod.GET, RequestMethod.POST})
@@ -63,4 +63,3 @@ public class TempProductController extends BaseController {
     }
 
 }
-

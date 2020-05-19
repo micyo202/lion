@@ -13,16 +13,16 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.controller;
+package com.lion.demo.consumer.controller;
 
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.constant.ResponseCode;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import com.lion.common.exception.LionException;
 import com.lion.common.util.DateUtil;
-import com.lion.demo.consumer.client.ProviderDemoClient;
-import com.lion.demo.consumer.temp.entity.TempOrder;
-import com.lion.demo.consumer.temp.service.ITempOrderService;
+import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
+import com.lion.demo.consumer.entity.TempOrder;
+import com.lion.demo.consumer.service.TempOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -46,10 +48,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class TempOrderController extends BaseController {
 
     @Autowired
-    private ITempOrderService tempOrderService;
+    private TempOrderService tempOrderService;
 
     @Autowired
-    private ProviderDemoClient providerDemoClient;
+    private ProviderDemoFeignClient providerDemoFeignClient;
 
     @ApiOperation(value = "全局事务，正常下单", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping(value = "/commit", method = {RequestMethod.GET, RequestMethod.POST})
@@ -87,18 +89,21 @@ public class TempOrderController extends BaseController {
      * 下单方法
      */
     private void place(String productCode, int count) {
+
         TempOrder tempOrder = new TempOrder()
                 .setProductCode(productCode)
-                .setCount(count)
-                .setValid(1)
-                .setCreateTime(DateUtil.getCurrentLocalDateTime())
-                .setUpdateTime(DateUtil.getCurrentLocalDateTime());
+                .setCount(count);
+
+        tempOrder.setId(DateUtil.getTimestamp())
+                .setValid(true)
+                .setCreateTime(LocalDateTime.now())
+                .setUpdateTime(LocalDateTime.now());
+
         tempOrderService.save(tempOrder);
-        Result deduct = providerDemoClient.deductFromProvider(productCode, count);
+        Result deduct = providerDemoFeignClient.deductFromProvider(productCode, count);
         if (deduct.getCode() != ResponseCode.SUCCESS) {
             throw new LionException(deduct.getMsg());
         }
     }
 
 }
-

@@ -13,15 +13,16 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.controller;
+package com.lion.demo.consumer.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
 import com.lion.common.base.controller.BaseController;
-import com.lion.common.entity.Result;
-import com.lion.common.entity.ResultPage;
-import com.lion.demo.consumer.temp.entity.TempMybatis;
-import com.lion.demo.consumer.temp.service.ITempMybatisService;
+import com.lion.common.result.Result;
+import com.lion.common.result.ResultPage;
+import com.lion.common.util.DateUtil;
+import com.lion.demo.consumer.entity.TempMybatis;
+import com.lion.demo.consumer.service.TempMybatisService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * TempMybatisController
@@ -48,7 +48,7 @@ import java.util.UUID;
 public class TempMybatisController extends BaseController {
 
     @Autowired
-    private ITempMybatisService tempMybatisService;
+    private TempMybatisService tempMybatisService;
 
     @ApiOperation(value = "Mybatis插入数据", notes = "当 num > 5 时触发事务回滚")
     @ApiParam(name = "num", value = "插入数据条数", defaultValue = "5", required = true)
@@ -72,10 +72,10 @@ public class TempMybatisController extends BaseController {
 
             if (i + 1 < 6) {
                 //正常插入
-                tempMybatis.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+                tempMybatis.setId(DateUtil.getTimestamp());
             } else {
-                //超出范围长度，触发事务回滚
-                tempMybatis.setId(UUID.randomUUID().toString());
+                //主键冲突，触发事务回滚
+                tempMybatis.setId(new Long(1));
             }
 
             // 若使用 Try Catch 需要手动回滚事务：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -84,20 +84,10 @@ public class TempMybatisController extends BaseController {
         return Result.success("temp_mybatis 数据保存成功，执行条数：" + num);
     }
 
-    @ApiOperation("Mybatis自定义API接口，注解SQL、XML方式查询")
-    @ApiParam(name = "type", value = "类型（取值范围：mapper/xml）", defaultValue = "mapper", required = true, type = "String")
-    @RequestMapping(value = "/custom/sql/{type}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result customSql(@PathVariable String type) {
-
-        if (type.equalsIgnoreCase("mapper")) {
-            return Result.success(tempMybatisService.customSqlForMapper());
-        }
-
-        if (type.equalsIgnoreCase("xml")) {
-            return Result.success(tempMybatisService.customSqlForXml());
-        }
-
-        return Result.failure("[type] 参数不正确，取值范围应为：mapper、xml（例：/custom/mapper）");
+    @ApiOperation("Mybatis自定义SQL方式查询")
+    @RequestMapping(value = "/custom/sql", method = {RequestMethod.GET, RequestMethod.POST})
+    public Result customSql() {
+        return Result.success(tempMybatisService.listByCustomSql());
     }
 
     @ApiOperation("Mybatis分页查询")
@@ -109,7 +99,7 @@ public class TempMybatisController extends BaseController {
     @RequestMapping(value = "/page/{version}/{pageNum}/{pageSize}", method = {RequestMethod.GET, RequestMethod.POST})
     public ResultPage page(@PathVariable String version, @PathVariable int pageNum, @PathVariable int pageSize) {
 
-        String statement = "com.lion.demo.consumer.temp.mapper.TempMybatisMapper.selectByCustomSqlForXml";
+        String statement = "com.lion.demo.consumer.mapper.TempMybatisMapper.listByCustomSql";
 
         PageInfo pageInfo;
 
@@ -120,22 +110,22 @@ public class TempMybatisController extends BaseController {
 
         switch (version.toLowerCase()) {
             case "v1":
-                pageInfo = tempMybatisService.selectAllByPage(pageNum, pageSize);
+                pageInfo = tempMybatisService.page(pageNum, pageSize);
                 break;
             case "v2":
-                pageInfo = tempMybatisService.selectAllByPage(pageNum, pageSize, orderBy);
+                pageInfo = tempMybatisService.page(pageNum, pageSize, orderBy);
                 break;
             case "v3":
-                pageInfo = tempMybatisService.selectByStatmentPage(statement, pageNum, pageSize);
+                pageInfo = tempMybatisService.page(statement, pageNum, pageSize);
                 break;
             case "v4":
-                pageInfo = tempMybatisService.selectByStatmentPage(statement, pageNum, pageSize, orderBy);
+                pageInfo = tempMybatisService.page(statement, pageNum, pageSize, orderBy);
                 break;
             case "v5":
-                pageInfo = tempMybatisService.selectByWrapperPage(queryWrapper, pageNum, pageSize);
+                pageInfo = tempMybatisService.page(queryWrapper, pageNum, pageSize);
                 break;
             case "v6":
-                pageInfo = tempMybatisService.selectByWrapperPage(queryWrapper, pageNum, pageSize, orderBy);
+                pageInfo = tempMybatisService.page(queryWrapper, pageNum, pageSize, orderBy);
                 break;
             default:
                 pageInfo = null;
@@ -150,4 +140,3 @@ public class TempMybatisController extends BaseController {
 
     }
 }
-

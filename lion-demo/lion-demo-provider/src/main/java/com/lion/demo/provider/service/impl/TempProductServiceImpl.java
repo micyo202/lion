@@ -13,19 +13,23 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.demo.consumer.temp.service;
+package com.lion.demo.provider.service.impl;
 
-import com.lion.demo.consumer.temp.entity.TempOrder;
-import com.lion.common.base.service.IBaseService;
+import com.lion.demo.provider.entity.TempProduct;
+import com.lion.demo.provider.mapper.TempProductMapper;
+import com.lion.demo.provider.service.TempProductService;
+import com.lion.common.base.service.impl.BaseServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 订单表 服务类
+ * 产品表 服务实现类
  * </p>
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @since 2020-03-30
+ * @since 2020-05-09
  */
-public interface ITempOrderService extends IBaseService<TempOrder> {
+@Service
+public class TempProductServiceImpl extends BaseServiceImpl<TempProductMapper, TempProduct> implements TempProductService {
 
 }

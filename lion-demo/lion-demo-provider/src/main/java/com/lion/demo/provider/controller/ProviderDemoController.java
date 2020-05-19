@@ -16,7 +16,7 @@
 package com.lion.demo.provider.controller;
 
 import com.lion.common.base.controller.BaseController;
-import com.lion.common.entity.Result;
+import com.lion.common.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
