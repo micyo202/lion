@@ -1,7 +1,13 @@
 = Lion
 
+////
 ++++
 <div style="text-align: center;"><img src="https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200" /></div>
+++++
+////
+
+++++
+<center><img src="https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/200" /></center>
 ++++
 
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
@@ -257,8 +263,6 @@ https://github.com/micyo202/lion/blob/master/LICENSE[Apache Licence 2.0]（ http
 * 如果再发布的产品中包含一个 Notice 文件，则在 Notice 文件中需要带有 Apache Licence。你可以在 Notice 中增加自己的许可，但不可以表现为对 Apache Licence 构成更改
 
 Apache Licence 也是对商业应用友好的许可。使用者也可以在需要的时候修改代码来满足需要并作为开源或商业产品发布/销售
-
----
 
 [TIP]
 ====
