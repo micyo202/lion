@@ -51,7 +51,7 @@ public class AESUtil {
     /**
      * 默认秘钥，必须16位
      */
-    private static final String DEFAULT_KEY = "github.com/micyo";
+    private static final String DEFAULT_KEY = "70pQxrWV7NWgGRXQ";
 
     /**
      * 指定加密的算法、工作模式和填充方式

@@ -15,8 +15,8 @@
  */
 package com.lion.common.util.secure;
 
+import jodd.crypt.BCrypt;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  * BCryptUtil
@@ -42,7 +42,7 @@ public class BCryptUtil {
     }
 
     public static void main(String[] args) {
-        String password = "Yanzheng -> github.com/micyo202";
+        String password = "Yanzheng -> https://github.com/micyo202";
         String encrypt = BCryptUtil.encrypt(password);
         boolean verify = BCryptUtil.verify(password, encrypt);
         System.out.println("原文：" + password);

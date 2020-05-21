@@ -48,7 +48,7 @@ public class DESUtil {
     /**
      * 秘钥
      */
-    private final static String DEFAULT_KEY = "github.com/micyo";
+    private final static String DEFAULT_KEY = "https://github.com/micyo202";
 
     /**
      * 加密方法
