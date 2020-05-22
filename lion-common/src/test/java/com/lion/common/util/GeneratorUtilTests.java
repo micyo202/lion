@@ -27,9 +27,10 @@ import org.junit.jupiter.api.Test;
 public class GeneratorUtilTests {
 
     @Test
-    public void testUUID() {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(GeneratorUtil.getUUID());
+    public void testGenerator() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(GeneratorUtil.getSeqNo());
+            System.out.println(GeneratorUtil.getRandomKey(16));
         }
     }
 }

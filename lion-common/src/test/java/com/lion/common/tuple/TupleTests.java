@@ -28,15 +28,15 @@ public class TupleTests {
 
     @Test
     public void testTuple() {
-        Tuple2 tuple2 = Tuple2.apply(1, 2);
-        Tuple3 tuple3 = Tuple3.apply(1, 2, 3);
-        Tuple4 tuple4 = Tuple4.apply(1, 2, 3, 4);
-        Tuple5 tuple5 = Tuple5.apply(1, 2, 3, 4, 5);
-        Tuple6 tuple6 = Tuple6.apply(1, 2, 3, 4, 5, 6);
-        Tuple7 tuple7 = Tuple7.apply(1, 2, 3, 4, 5, 6, 7);
-        Tuple8 tuple8 = Tuple8.apply(1, 2, 3, 4, 5, 6, 7, 8);
-        Tuple9 tuple9 = Tuple9.apply(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        Tuple10 tuple10 = Tuple10.apply(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Tuple2 tuple2 = Tuple.of(1, 2);
+        Tuple3 tuple3 = Tuple.of(1, 2, 3);
+        Tuple4 tuple4 = Tuple.of(1, 2, 3, 4);
+        Tuple5 tuple5 = Tuple.of(1, 2, 3, 4, 5);
+        Tuple6 tuple6 = Tuple.of(1, 2, 3, 4, 5, 6);
+        Tuple7 tuple7 = Tuple.of(1, 2, 3, 4, 5, 6, 7);
+        Tuple8 tuple8 = Tuple.of(1, 2, 3, 4, 5, 6, 7, 8);
+        Tuple9 tuple9 = Tuple.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        Tuple10 tuple10 = Tuple.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         System.out.println(tuple2);
         System.out.println(tuple3);
