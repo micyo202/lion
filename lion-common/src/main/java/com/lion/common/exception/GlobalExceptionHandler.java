@@ -25,15 +25,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * LionExceptionHandler
- * 自定义全局异常处理类
+ * GlobalExceptionHandler
+ * 全局异常处理类
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/07/17
  */
 @RestControllerAdvice
 @Slf4j
-public class LionExceptionHandler {
+public class GlobalExceptionHandler {
 
     /**
      * 声明要捕获的异常
