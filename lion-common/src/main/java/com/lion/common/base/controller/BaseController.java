@@ -51,9 +51,9 @@ public abstract class BaseController extends ApplicationObjectSupport {
     protected String port;
 
     /**
-     * 应用名称（默认：lion-unknown）
+     * 应用名称（默认：unknown）
      */
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:unknown}")
     protected String applicationName;
 
     /**
