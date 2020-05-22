@@ -17,8 +17,10 @@ package com.lion.common.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 /**
  * GeneratorUtil
@@ -31,14 +33,48 @@ public class GeneratorUtil {
 
     private static int increment;
 
-    public synchronized static String getUUID() {
+    /**
+     * 线程同步锁生成seqNo
+     */
+    public synchronized static String getSeqNo() {
         String applicationName = YamlUtil.getBootstrapValue("spring.application.name");
         applicationName = StringUtils.isEmpty(applicationName) ? "lion" : applicationName;
-        int applicationNameHashCode = applicationName.hashCode();
+        int applicationNameHashCode = applicationName.hashCode() < 0 ? applicationName.hashCode() * -1 : applicationName.hashCode();
         increment = increment >= 9999 ? 1 : increment + 1;
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         String uuid = String.format("%s%s%04d", applicationNameHashCode, currentDateTime, increment);
         return uuid;
+    }
+
+    /**
+     * 生成指定长度的随机数
+     */
+    public static String getRandomKey(int len) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new SecureRandom();
+        // 产生16位的强随机数
+        for (int i = 0; i < len; i++) {
+            // 产生0-2的3位随机数
+            int type = random.nextInt(3);
+            switch (type) {
+                case 0:
+                    // 0-9的随机数
+                    stringBuilder.append(random.nextInt(10));
+                    // int randomInt = ThreadLocalRandom.current().ints(0, 10).distinct().limit(1).findFirst().getAsInt();
+                    break;
+                case 1:
+                    // ASCII在65-90之间为大写,获取大写随机
+                    stringBuilder.append((char) (random.nextInt(25) + 65));
+                    break;
+                case 2:
+                    // ASCII在97-122之间为小写，获取小写随机
+                    stringBuilder.append((char) (random.nextInt(25) + 97));
+                    break;
+                default:
+                    break;
+            }
+        }
+        return stringBuilder.toString();
     }
 
 }
