@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package consumer.lambda;
+package com.lion.demo.consumer.lambda;
 
 import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.Test;

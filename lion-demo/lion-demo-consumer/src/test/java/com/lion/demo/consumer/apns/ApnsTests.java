@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package consumer.apns;
+package com.lion.demo.consumer.apns;
 
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;

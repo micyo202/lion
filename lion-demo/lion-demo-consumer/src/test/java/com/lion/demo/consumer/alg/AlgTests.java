@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package consumer.alg;
+package com.lion.demo.consumer.alg;
 
 import org.junit.jupiter.api.Test;
 
