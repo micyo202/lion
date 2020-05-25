@@ -79,6 +79,21 @@ public class TempMybatisController extends BaseController {
             }
 
             // 若使用 Try Catch 需要手动回滚事务：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+
+            // 纯手动方式控制事务
+            /*
+            @Autowired
+            DataSourceTransactionManager dataSourceTransactionManager;
+            @Autowired
+            TransactionDefinition transactionDefinition;
+            // 手动开启事务
+            TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
+            // 手动提交事务
+            dataSourceTransactionManager.commit(transactionStatus);
+            // 手动回滚事务
+            dataSourceTransactionManager.rollback(transactionStatus);
+            */
+
             tempMybatisService.save(tempMybatis);
         }
         return Result.success("temp_mybatis 数据保存成功，执行条数：" + num);

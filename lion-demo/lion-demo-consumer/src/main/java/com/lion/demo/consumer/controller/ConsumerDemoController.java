@@ -21,8 +21,8 @@ import com.lion.common.base.controller.BaseController;
 import com.lion.common.blockchain.BlockChain;
 import com.lion.common.constant.ResponseCode;
 import com.lion.common.exception.LionException;
-import com.lion.common.result.Result;
 import com.lion.common.lock.annotation.Locker;
+import com.lion.common.result.Result;
 import com.lion.common.util.DateUtil;
 import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
 import com.lion.demo.consumer.handler.BlockHandler;
@@ -220,7 +220,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("区块链 - 开采追加块链")
     @ApiParam(name = "data", value = "块内容")
     @PostMapping("/blockchain/mined")
-    public Result minedBlockChain(@RequestParam(name = "data") String data) {
+    public Result blockChainMined(@RequestParam(name = "data") String data) {
         String hash = BlockChain.minedBlockChain(data);
         return Result.success(hash);
     }
@@ -228,7 +228,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("区块链 - 解析块链")
     @ApiParam(name = "blockHash", value = "需解析的块Hash散列值")
     @PostMapping(value = "/blockchain/decrypt/{blockHash}")
-    public Result decryptBlockChain(@PathVariable String blockHash) {
+    public Result blockChainDecrypt(@PathVariable String blockHash) {
         String blockchainJson = BlockChain.decryptBlockchain(blockHash);
         return Result.success(blockchainJson);
     }
