@@ -44,33 +44,33 @@ public class SHAUtil {
      */
     private static final String ENCODEING = "UTF-8";
 
-    public static String encrypt(String data) {
-        return encrypt(data, SHA_1);
+    public static String encrypt(String text) {
+        return encrypt(text, SHA_1);
     }
 
-    public static String encrypt224(String data) {
-        return encrypt(data, SHA_224);
+    public static String encrypt224(String text) {
+        return encrypt(text, SHA_224);
     }
 
-    public static String encrypt256(String data) {
-        return encrypt(data, SHA_256);
+    public static String encrypt256(String text) {
+        return encrypt(text, SHA_256);
     }
 
-    public static String encrypt384(String data) {
-        return encrypt(data, SHA_384);
+    public static String encrypt384(String text) {
+        return encrypt(text, SHA_384);
     }
 
-    public static String encrypt512(String data) {
-        return encrypt(data, SHA_512);
+    public static String encrypt512(String text) {
+        return encrypt(text, SHA_512);
     }
 
-    private static String encrypt(String data, String algorithm) {
-        if (StringUtils.isEmpty(data)) {
+    private static String encrypt(String text, String algorithm) {
+        if (StringUtils.isEmpty(text)) {
             return null;
         }
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-            messageDigest.update(data.getBytes(ENCODEING));
+            messageDigest.update(text.getBytes(ENCODEING));
             byte[] bytes = messageDigest.digest();
             return bytes2Str(bytes);
         } catch (Exception e) {

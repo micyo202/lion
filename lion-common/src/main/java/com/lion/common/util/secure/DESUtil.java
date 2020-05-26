@@ -53,12 +53,12 @@ public class DESUtil {
     /**
      * 加密方法
      */
-    public static String encrypt(String data) {
-        return encrypt(data, DEFAULT_KEY);
+    public static String encrypt(String text) {
+        return encrypt(text, DEFAULT_KEY);
     }
 
-    public static String encrypt(String data, String key) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key)) {
+    public static String encrypt(String text, String key) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key)) {
             return null;
         }
         try {
@@ -73,7 +73,7 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.ENCRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(data.getBytes(ENCODEING));
+            byte[] bytes = cipher.doFinal(text.getBytes(ENCODEING));
             return Base64.getEncoder().encodeToString(bytes);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -85,12 +85,12 @@ public class DESUtil {
     /**
      * 解密 后并用base64解码
      */
-    public static String decrypt(String data) {
-        return decrypt(data, DEFAULT_KEY);
+    public static String decrypt(String ciphertext) {
+        return decrypt(ciphertext, DEFAULT_KEY);
     }
 
-    public static String decrypt(String data, String key) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key)) {
+    public static String decrypt(String ciphertext, String key) {
+        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key)) {
             return null;
         }
         try {
@@ -106,7 +106,7 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.DECRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(data.getBytes(ENCODEING)));
+            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(ciphertext.getBytes(ENCODEING)));
             return new String(bytes, ENCODEING);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

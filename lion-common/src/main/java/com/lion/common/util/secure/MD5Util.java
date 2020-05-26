@@ -44,14 +44,14 @@ public class MD5Util {
     /**
      * 加密方法
      */
-    public static String encrypt(String data) {
-        if (StringUtils.isEmpty(data)) {
+    public static String encrypt(String text) {
+        if (StringUtils.isEmpty(text)) {
             return null;
         }
         /*
         char hexs[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
-            byte[] bytes = data.getBytes(ENCODEING);
+            byte[] bytes = text.getBytes(ENCODEING);
             MessageDigest messageDigest = MessageDigest.getInstance(MD5);
             messageDigest.update(bytes);
             byte[] md = messageDigest.digest();
@@ -71,7 +71,7 @@ public class MD5Util {
         */
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(MD5);
-            byte[] dataBytes = data.getBytes(ENCODEING);
+            byte[] dataBytes = text.getBytes(ENCODEING);
             messageDigest.update(dataBytes);
             return new BigInteger(1, messageDigest.digest()).toString(16);
         } catch (Exception e) {

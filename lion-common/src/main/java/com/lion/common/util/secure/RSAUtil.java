@@ -71,33 +71,37 @@ public class RSAUtil {
             keyPairGen.initialize(KEY_SIZE, new SecureRandom());
             // 生成一个密钥对，保存在keyPair中
             KeyPair keyPair = keyPairGen.generateKeyPair();
-            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();   // 得到私钥
-            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();  // 得到公钥
+            // 得到公钥
+            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+            // 得到私钥
+            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 
-            String publicKeyString = java.util.Base64.getEncoder().encodeToString(publicKey.getEncoded());
+            String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
             // 得到私钥字符串
-            String privateKeyString = java.util.Base64.getEncoder().encodeToString(privateKey.getEncoded());
+            String privateKeyString = Base64.getEncoder().encodeToString(privateKey.getEncoded());
             // 将公钥和私钥保存到Map
-            keyMap.put(RSAKey.PUBLIC, publicKeyString);     // 0表示公钥
-            keyMap.put(RSAKey.PRIVATE, privateKeyString);    // 1表示私钥
+            // 0表示公钥
+            keyMap.put(RSAKey.PUBLIC, publicKeyString);
+            // 1表示私钥
+            keyMap.put(RSAKey.PRIVATE, privateKeyString);
         } catch (NoSuchAlgorithmException e) {
             log.error(e.getMessage(), e);
         }
 
     }
 
-    public static String encrypt(String data, String publicKey) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(publicKey)) {
+    public static String encrypt(String text, String publicKey) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(publicKey)) {
             return null;
         }
         try {
             // base64编码的公钥
-            byte[] decoded = java.util.Base64.getDecoder().decode(publicKey);
+            byte[] decoded = Base64.getDecoder().decode(publicKey);
             RSAPublicKey rsaPublicKey = (RSAPublicKey) KeyFactory.getInstance(RSA).generatePublic(new X509EncodedKeySpec(decoded));
             // RSA加密
             Cipher cipher = Cipher.getInstance(RSA);
             cipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
-            final String result = java.util.Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes(ENCODEING)));
+            final String result = Base64.getEncoder().encodeToString(cipher.doFinal(text.getBytes(ENCODEING)));
             return result;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -105,13 +109,13 @@ public class RSAUtil {
         return null;
     }
 
-    public static String decrypt(String data, String privateKey) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(privateKey)) {
+    public static String decrypt(String ciphertext, String privateKey) {
+        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(privateKey)) {
             return null;
         }
         try {
             //64位解码加密后的字符串
-            final byte[] bytes = java.util.Base64.getDecoder().decode(data.getBytes(ENCODEING));
+            final byte[] bytes = Base64.getDecoder().decode(ciphertext.getBytes(ENCODEING));
             //base64编码的私钥
             byte[] decoded = Base64.getDecoder().decode(privateKey);
             RSAPrivateKey rsaPrivateKey = (RSAPrivateKey) KeyFactory.getInstance(RSA).generatePrivate(new PKCS8EncodedKeySpec(decoded));
@@ -125,19 +129,4 @@ public class RSAUtil {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        //生成公钥和私钥（公钥加密、私钥解密）
-        generatorPairKey();
-        //加密字符串
-        String data = "Yanzheng (https://github.com/micyo202)";
-        System.out.println("随机生成的公钥（public）为：" + keyMap.get(RSAKey.PUBLIC));
-        System.out.println("随机生成的私钥（private）为：" + keyMap.get(RSAKey.PRIVATE));
-        System.out.println("原字符串内容:" + data);
-        String encryptData = encrypt(data, keyMap.get(RSAKey.PUBLIC));
-        System.out.println("公钥加密（encrypt）后的字符串为：" + encryptData);
-        String decryptData = decrypt(encryptData, keyMap.get(RSAKey.PRIVATE));
-        System.out.println("私钥解密（decrypt）后的字符串为：" + decryptData);
-    }
-
 }

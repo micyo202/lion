@@ -61,16 +61,16 @@ public class AESUtil {
     /**
      * 加密
      */
-    public static String encrypt(String data) {
-        return encrypt(data, DEFAULT_KEY);
+    public static String encrypt(String text) {
+        return encrypt(text, DEFAULT_KEY);
     }
 
-    public static String encrypt(String data, String key) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key) || 16 != key.length()) {
+    public static String encrypt(String text, String key) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || 16 != key.length()) {
             return null;
         }
         try {
-            byte[] byteContent = data.getBytes(ENCODEING);
+            byte[] byteContent = text.getBytes(ENCODEING);
             byte[] enCodeFormat = key.getBytes();
             // 注意，为了能与 iOS 统一这里的 key 不可以使用 KeyGenerator、SecureRandom、SecretKey 生成
             SecretKeySpec secretKeySpec = new SecretKeySpec(enCodeFormat, AES);
@@ -89,16 +89,16 @@ public class AESUtil {
     /**
      * 解密
      */
-    public static String decrypt(String data) {
-        return decrypt(data, DEFAULT_KEY);
+    public static String decrypt(String ciphertext) {
+        return decrypt(ciphertext, DEFAULT_KEY);
     }
 
-    public static String decrypt(String data, String key) {
-        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key) || 16 != key.length()) {
+    public static String decrypt(String ciphertext, String key) {
+        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key) || 16 != key.length()) {
             return null;
         }
         try {
-            byte[] encryptedBytes = Base64.getDecoder().decode(data);
+            byte[] encryptedBytes = Base64.getDecoder().decode(ciphertext);
             byte[] enCodeFormat = key.getBytes();
             SecretKeySpec secretKey = new SecretKeySpec(enCodeFormat, AES);
             byte[] initParam = IV_STRING.getBytes();

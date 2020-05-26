@@ -27,27 +27,17 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class BCryptUtil {
 
-    public static String encrypt(String password) {
-        if (StringUtils.isEmpty(password)) {
+    public static String encrypt(String text) {
+        if (StringUtils.isEmpty(text)) {
             return null;
         }
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+        return BCrypt.hashpw(text, BCrypt.gensalt());
     }
 
-    public static boolean verify(String candidate, String encrypt) {
-        if (StringUtils.isEmpty(candidate) || StringUtils.isEmpty(encrypt)) {
+    public static boolean verify(String text, String ciphertext) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(ciphertext)) {
             return false;
         }
-        return BCrypt.checkpw(candidate, encrypt);
+        return BCrypt.checkpw(text, ciphertext);
     }
-
-    public static void main(String[] args) {
-        String password = "Yanzheng -> https://github.com/micyo202";
-        String encrypt = BCryptUtil.encrypt(password);
-        boolean verify = BCryptUtil.verify(password, encrypt);
-        System.out.println("原文：" + password);
-        System.out.println("加密后：" + encrypt);
-        System.out.println("验证结果：" + verify);
-    }
-
 }
