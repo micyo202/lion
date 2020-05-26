@@ -51,9 +51,11 @@ public class JsonUtil {
             // 使用 JackSon 解析
             String str;
             if (pretty) {
-                str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj); // 格式化输出（默认）
+                // 格式化输出（默认）
+                str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
             } else {
-                str = objectMapper.writeValueAsString(jsonObj); // 普通输出
+                // 普通输出
+                str = objectMapper.writeValueAsString(jsonObj);
             }
             return str;
         } catch (JsonProcessingException e) {
