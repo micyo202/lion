@@ -51,9 +51,9 @@ public class SecureUtilTests {
         System.out.println("DES加密：" + encryptDES);
         System.out.println("DES解密：" + decryptDES);
 
-        String encryptHmacMD5 = HmacUtil.encryptHmacMD5(text, GeneratorUtil.getRandomKey(16));
-        String encryptHmacSHA1 = HmacUtil.encryptHmacSHA1(text, GeneratorUtil.getRandomKey(16));
-        String encryptHmacSHA224 = HmacUtil.encryptHmacSHA224(text, GeneratorUtil.getRandomKey(16));
+        String encryptHmacMD5 = HmacUtil.encryptHmacMD5(text);
+        String encryptHmacSHA1 = HmacUtil.encryptHmacSHA1(text);
+        String encryptHmacSHA224 = HmacUtil.encryptHmacSHA224(text);
         String encryptHmacSHA256 = HmacUtil.encryptHmacSHA256(text, GeneratorUtil.getRandomKey(16));
         String encryptHmacSHA384 = HmacUtil.encryptHmacSHA384(text, GeneratorUtil.getRandomKey(16));
         String encryptHmacSHA512 = HmacUtil.encryptHmacSHA512(text, GeneratorUtil.getRandomKey(16));
