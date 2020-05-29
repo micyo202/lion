@@ -78,10 +78,11 @@ public abstract class BaseController extends ApplicationObjectSupport {
     }
 
     protected boolean isAjaxRequest(HttpServletRequest request) {
-        if (!(request.getHeader("Accept").contains("application/json")
+        boolean isAjax = request.getHeader("Accept").contains("application/json")
                 || (request.getHeader("X-Requested-With") != null
                 && request.getHeader("X-Requested-With").contains("XMLHttpRequest"))
-                || "XMLHttpRequest".equalsIgnoreCase(request.getParameter("X_REQUESTED_WITH")))) {
+                || "XMLHttpRequest".equalsIgnoreCase(request.getParameter("X_REQUESTED_WITH"));
+        if (!isAjax) {
             return false;
         }
         return true;

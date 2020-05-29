@@ -76,7 +76,8 @@ public class DistributedLockerAspect {
                 log.error(throwable.getMessage(), throwable);
                 result = throwable.getMessage();
             } finally {
-                distributedLocker.unlock(lockKey);  // 释放锁
+                // 释放锁
+                distributedLocker.unlock(lockKey);
             }
         } else {
             String msg = "分布式锁获取失败/超时";

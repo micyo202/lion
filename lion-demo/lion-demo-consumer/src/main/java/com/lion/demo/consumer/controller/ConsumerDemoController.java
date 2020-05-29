@@ -107,7 +107,7 @@ public class ConsumerDemoController extends BaseController {
         String method = this.getRequest().getMethod();
         Result result = null;
         if ("GET".equals(method)) {
-            Map<String, Object> params = new HashMap<>();
+            Map<String, Object> params = new HashMap<>(2);
             params.put("name", name);
 
             String url = "http://lion-demo-provider/hi?name={name}";
@@ -205,7 +205,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("AMQP消息发送/接收")
     @RequestMapping(value = "/amqp", method = {RequestMethod.GET, RequestMethod.POST})
     public Result amqp() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(6);
         map.put("id", 1);
         map.put("msg", "AMQP发送消息");
         map.put("valid", true);

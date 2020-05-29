@@ -24,9 +24,14 @@ package com.lion.common.constant;
  */
 public interface GrayConstant {
 
+    /**
+     * 版本
+     */
     String VERSION = "version";
 
-    // 默认版本号
+    /**
+     * 默认版本号
+     */
     String DEFAULT_VERSION = "v1";
 
 }

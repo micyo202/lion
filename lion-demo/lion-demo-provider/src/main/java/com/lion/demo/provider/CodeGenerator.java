@@ -45,8 +45,10 @@ public class CodeGenerator {
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "lion";
     private static final String PASSWORD = "lion";
-    private static final String PACKAGE = "com.lion.demo.provider";         // 根据实际项目包路径修改
-    private static final String PROJECT = "lion-demo/lion-demo-provider";   // 根据实际项目根路径修改
+    // 根据实际项目包路径修改
+    private static final String PACKAGE = "com.lion.demo.provider";
+    // 根据实际项目根路径修改
+    private static final String PROJECT = "lion-demo/lion-demo-provider";
 
     public static void main(String[] args) {
 
@@ -61,12 +63,16 @@ public class CodeGenerator {
         globalConfig.setAuthor(AUTHOR);
         globalConfig.setOutputDir(outPath + "/src/main/java");
         globalConfig.setServiceName("%sService");
-        globalConfig.setFileOverride(true);     // 是否覆盖同名文件（默认false）
+        // 是否覆盖同名文件（默认false）
+        globalConfig.setFileOverride(true);
         globalConfig.setActiveRecord(true);
         globalConfig.setSwagger2(true);
-        globalConfig.setEnableCache(false);      // XML 二级缓存
-        globalConfig.setBaseResultMap(true);    // XML ResultMap
-        globalConfig.setBaseColumnList(false);   // XML ColumList
+        // XML 二级缓存
+        globalConfig.setEnableCache(false);
+        // XML ResultMap
+        globalConfig.setBaseResultMap(true);
+        // XML ColumList
+        globalConfig.setBaseColumnList(false);
         globalConfig.setOpen(false);
         autoGenerator.setGlobalConfig(globalConfig);
 

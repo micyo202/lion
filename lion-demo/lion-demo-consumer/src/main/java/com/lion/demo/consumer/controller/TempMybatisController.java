@@ -19,7 +19,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.result.Result;
-import com.lion.common.result.ResultPage;
 import com.lion.common.util.DateUtil;
 import com.lion.demo.consumer.entity.TempMybatis;
 import com.lion.demo.consumer.service.TempMybatisService;
@@ -112,7 +111,7 @@ public class TempMybatisController extends BaseController {
             @ApiImplicitParam(name = "pageSize", value = "每页条数", defaultValue = "3", dataType = "String")
     })
     @RequestMapping(value = "/page/{version}/{pageNum}/{pageSize}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ResultPage page(@PathVariable String version, @PathVariable int pageNum, @PathVariable int pageSize) {
+    public Result page(@PathVariable String version, @PathVariable int pageNum, @PathVariable int pageSize) {
 
         String statement = "com.lion.demo.consumer.mapper.TempMybatisMapper.listByCustomSql";
 
@@ -148,9 +147,9 @@ public class TempMybatisController extends BaseController {
         }
 
         if (null == pageInfo) {
-            return ResultPage.failure("[version] 参数不正确，取值范围应为：v1~v6（例：/page/v1/1/10）");
+            return Result.failure("[version] 参数不正确，取值范围应为：v1~v6（例：/page/v1/1/10）");
         } else {
-            return ResultPage.success(pageInfo);
+            return Result.success(pageInfo);
         }
 
     }

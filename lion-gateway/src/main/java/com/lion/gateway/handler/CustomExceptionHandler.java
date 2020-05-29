@@ -108,7 +108,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
          * 按照异常类型进行处理
          */
         HttpStatus httpStatus;
-        String body = null;
+        String body;
         if (ex instanceof BlockException) {
             httpStatus = HttpStatus.TOO_MANY_REQUESTS;
             // Too Many Request Server
@@ -141,11 +141,12 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
         }
         exceptionHandlerResult.set(result);
         ServerRequest newRequest = ServerRequest.create(exchange, this.messageReaders);
-        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse).route(newRequest)
+        Mono<Void> mono = RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse).route(newRequest)
                 .switchIfEmpty(Mono.error(ex))
                 .flatMap((handler) -> handler.handle(newRequest))
                 .flatMap((response) -> write(exchange, response));
-
+        exceptionHandlerResult.remove();
+        return mono;
     }
 
     /**
@@ -161,7 +162,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
     /**
      * 参考AbstractErrorWebExceptionHandler
      */
-    private Mono<? extends Void> write(ServerWebExchange exchange, ServerResponse response) {
+    private Mono<Void> write(ServerWebExchange exchange, ServerResponse response) {
         exchange.getResponse().getHeaders()
                 .setContentType(response.headers().getContentType());
         return response.writeTo(exchange, new ResponseContext());

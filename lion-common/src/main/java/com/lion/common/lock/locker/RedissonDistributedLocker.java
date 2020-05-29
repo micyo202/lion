@@ -35,10 +35,12 @@ import java.util.concurrent.TimeUnit;
 public class RedissonDistributedLocker implements DistributedLocker {
 
     private final static String KEY_PREFIX = "LOCK:";
-    private final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;    // 默认秒数单位，毫秒
+    // 默认秒数单位，毫秒
+    private final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 
+    // RedissonClient已经由配置类生成，这里自动装配即可
     @Autowired
-    private RedissonClient redissonClient;  // RedissonClient已经由配置类生成，这里自动装配即可
+    private RedissonClient redissonClient;
 
     /**
      * 拿不到lock就不罢休，不然线程就一直block
