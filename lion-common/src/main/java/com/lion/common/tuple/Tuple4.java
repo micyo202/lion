@@ -35,4 +35,20 @@ public class Tuple4<T1, T2, T3, T4> implements Serializable {
     final T2 _2;
     final T3 _3;
     final T4 _4;
+
+    public T1 _1() {
+        return _1;
+    }
+
+    public T2 _2() {
+        return _2;
+    }
+
+    public T3 _3() {
+        return _3;
+    }
+
+    public T4 _4() {
+        return _4;
+    }
 }

@@ -33,4 +33,12 @@ public class Tuple2<T1, T2> implements Serializable {
 
     final T1 _1;
     final T2 _2;
+
+    public T1 _1() {
+        return _1;
+    }
+
+    public T2 _2() {
+        return _2;
+    }
 }
