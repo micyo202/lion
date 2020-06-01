@@ -13,6 +13,8 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -83,8 +85,10 @@ subprojects {
             extendsFrom annotationProcessor
         }
 
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'  // 排除 tomcat 依赖（使用 undertow）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // 排除 logback 依赖（使用 log4j2）
+        // 排除 tomcat 依赖（使用 undertow）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        // 排除 logback 依赖（使用 log4j2）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
     dependencies {
@@ -117,6 +121,7 @@ subprojects {
 
     test {
         useJUnitPlatform()
+        ignoreFailures = true
     }
 
     /**
@@ -136,23 +141,20 @@ subprojects {
     tasks.check.dependsOn jacocoTestReport
 
     /**
-     * clean 命令时删除 out 目录
+     * clean 命令时删除 logs 目录
      */
     task cleanOutDir(type: Delete) {
-        delete "${projectDir}/out"
-        delete "${rootDir}/out"
+        delete "${projectDir}/logs"
+        delete "${rootDir}/logs"
     }
     tasks.clean.dependsOn(cleanOutDir)
 
     /**
      * 根据环境打包默认dev开发环境，命令：./gradlew -x test clean bootJar -Denv=dev
      */
-    /*
-    import org.apache.tools.ant.filters.ReplaceTokens
     def env = System.getProperty("env") ?: "dev"
     processResources {
         filter ReplaceTokens, tokens: [env: env]
     }
-    */
 
 }
