@@ -109,6 +109,8 @@
 #mybatis-plus:
 #  #type-aliases-package: com.lion.demo.consumer..*.entity
 #  mapper-locations: classpath:mapper/**/*.xml
+#  global-config:
+#    banner: off
 #  configuration:
 #    #将执行的sql打印出来，生产需关闭
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
