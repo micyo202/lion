@@ -21,7 +21,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Repository;
 
 /**
- * MessageSender
+ * AmqpSender
  * 消息发送器
  *
  * @author Yanzheng (https://github.com/micyo202)
@@ -35,6 +35,7 @@ public class AmqpSender {
 
     /**
      * 发送消息
+     * @param result 消息对象
      */
     public void send(Result result) {
         amqpChannel.lionOutput().send(MessageBuilder.withPayload(result).build());

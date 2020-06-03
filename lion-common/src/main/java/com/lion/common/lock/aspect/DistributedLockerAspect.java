@@ -42,15 +42,15 @@ public class DistributedLockerAspect {
     @Autowired
     private DistributedLocker distributedLocker;
 
+    /**
+     * 切面表达式
+     */
     @Pointcut("@annotation(com.lion.common.lock.annotation.Locker)")
     public void lockerPointCut() {
     }
 
     /**
      * 环绕通知
-     *
-     * @param proceedingJoinPoint
-     * @return
      */
     @Around("lockerPointCut()")
     public Object aroundMethod(ProceedingJoinPoint proceedingJoinPoint) {

@@ -35,10 +35,23 @@ public class JsonUtil {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * json对象转json字符串
+     *
+     * @param jsonObj json对象
+     * @return json字符串
+     */
     public static String jsonObj2Str(Object jsonObj) {
         return jsonObj2Str(jsonObj, true);
     }
 
+    /**
+     * json对象转json字符串
+     *
+     * @param jsonObj json对象
+     * @param pretty  是否格式化
+     * @return json字符串
+     */
     public static String jsonObj2Str(Object jsonObj, boolean pretty) {
 
         if (null == jsonObj) {
@@ -64,6 +77,13 @@ public class JsonUtil {
         return null;
     }
 
+    /**
+     * json字符串转json对象
+     *
+     * @param jsonStr json字符串
+     * @param objType json对象类型
+     * @return json对象
+     */
     public static <T> T jsonStr2Obj(String jsonStr, Class<T> objType) {
         if (StringUtils.isEmpty(jsonStr) || null == objType) {
             return null;
@@ -77,12 +97,19 @@ public class JsonUtil {
         return null;
     }
 
-    public static String getJsonStr(String json, String key) {
-        if (StringUtils.isEmpty(json) || StringUtils.isEmpty(key)) {
+    /**
+     * 根据key获取json字符串中的值
+     *
+     * @param jsonStr json字符串
+     * @param key     键
+     * @return 值
+     */
+    public static String getJsonStr(String jsonStr, String key) {
+        if (StringUtils.isEmpty(jsonStr) || StringUtils.isEmpty(key)) {
             return null;
         }
         try {
-            final JsonNode jsonNode = objectMapper.readTree(json);
+            final JsonNode jsonNode = objectMapper.readTree(jsonStr);
             return getJsonNodeValue(jsonNode, key);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -90,6 +117,13 @@ public class JsonUtil {
         return null;
     }
 
+    /**
+     * 根据key获取jsonNode对象中的值
+     *
+     * @param jsonNode jsonNode对象
+     * @param key      键
+     * @return 值
+     */
     private static String getJsonNodeValue(JsonNode jsonNode, String key) {
         if (null == jsonNode || StringUtils.isEmpty(key)) {
             return null;

@@ -32,6 +32,12 @@ import java.util.Properties;
 @Slf4j
 public class PropertiesUtil {
 
+    /**
+     * 获取指定 properties 文件内容
+     * 
+     * @param fileName 文件名
+     * @param key 键
+     */
     public static String getValue(String fileName, String key) {
 
         if (StringUtils.isAnyEmpty(fileName, key)) {

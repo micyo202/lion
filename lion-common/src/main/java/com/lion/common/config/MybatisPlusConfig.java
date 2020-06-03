@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MybatisPlusConfig
- * MybatisPlus 配置类
+ * MybatisPlus 配置
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/19

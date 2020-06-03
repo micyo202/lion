@@ -30,35 +30,155 @@ import java.util.List;
  */
 public interface BaseService<T> extends IService<T> {
 
+    /**
+     * 分页查询
+     *
+     * @param pageNum  页码值
+     * @param pageSize 每页大小
+     * @return PageInfo 分页对象
+     */
     PageInfo<T> page(int pageNum, int pageSize);
 
+    /**
+     * 分页查询
+     *
+     * @param pageNum  页码值
+     * @param pageSize 每页大小
+     * @param orderBy  排序字段
+     * @return PageInfo 分页对象
+     */
     PageInfo<T> page(int pageNum, int pageSize, String orderBy);
 
+    /**
+     * 分页查询
+     *
+     * @param queryWrapper 条件构造器
+     * @param pageNum      页码值
+     * @param pageSize     每页大小
+     * @return PageInfo 分页对象
+     */
     PageInfo<T> page(Wrapper<T> queryWrapper, int pageNum, int pageSize);
 
+    /**
+     * 分页查询
+     *
+     * @param queryWrapper 条件构造器
+     * @param pageNum      页码值
+     * @param pageSize     每页大小
+     * @param orderBy      排序字段
+     * @return PageInfo 分页对象
+     */
     PageInfo<T> page(Wrapper<T> queryWrapper, int pageNum, int pageSize, String orderBy);
 
+    /**
+     * 分页查询
+     *
+     * @param statement Mapper声明
+     * @param pageNum   页码值
+     * @param pageSize  每页大小
+     * @return PageInfo 分页对象
+     */
     PageInfo page(String statement, int pageNum, int pageSize);
 
+    /**
+     * 分页查询
+     *
+     * @param statement Mapper声明
+     * @param pageNum   页码值
+     * @param pageSize  每页大小
+     * @param orderBy   排序字段
+     * @return PageInfo 分页对象
+     */
     PageInfo page(String statement, int pageNum, int pageSize, String orderBy);
 
+    /**
+     * 分页查询
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @param pageNum   页码值
+     * @param pageSize  每页大小
+     * @return PageInfo 分页对象
+     */
     PageInfo page(String statement, Object parameter, int pageNum, int pageSize);
 
+    /**
+     * 分页查询
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @param pageNum   页码值
+     * @param pageSize  每页大小
+     * @param orderBy   排序字段
+     * @return PageInfo 分页对象
+     */
     PageInfo page(String statement, Object parameter, int pageNum, int pageSize, String orderBy);
 
+    /**
+     * 查询单个对象
+     *
+     * @param statement Mapper声明
+     * @return T 对象
+     */
     T getByStatement(String statement);
 
+    /**
+     * 查询单个对象
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @return T 对象
+     */
     T getByStatement(String statement, Object parameter);
 
+    /**
+     * 查询对象集合
+     *
+     * @param statement Mapper声明
+     * @return List 对象集合
+     */
     List<T> listByStatement(String statement);
 
+    /**
+     * 查询对象集合
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @return List 对象集合
+     */
     List<T> listByStatement(String statement, Object parameter);
 
+    /**
+     * 保存
+     *
+     * @param statement Mapper声明
+     * @return int 保存条数
+     */
     int saveByStatement(String statement);
 
+    /**
+     * 保存
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @return int 保存条数
+     */
     int saveByStatement(String statement, Object parameter);
 
+    /**
+     * 修改
+     *
+     * @param statement Mapper声明
+     * @return int 更新条数
+     */
     int updateByStatement(String statement);
 
+    /**
+     * 修改
+     *
+     * @param statement Mapper声明
+     * @param parameter 参数
+     * @return int 更新条数
+     */
     int updateByStatement(String statement, Object parameter);
 }

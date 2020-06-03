@@ -27,6 +27,12 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class BCryptUtil {
 
+    /**
+     * BCrypt 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt(String text) {
         if (StringUtils.isEmpty(text)) {
             return null;
@@ -34,6 +40,13 @@ public class BCryptUtil {
         return BCrypt.hashpw(text, BCrypt.gensalt());
     }
 
+    /**
+     * BCrypt 校验
+     *
+     * @param text       明文
+     * @param ciphertext 密文
+     * @return 是否正确
+     */
     public static boolean verify(String text, String ciphertext) {
         if (StringUtils.isEmpty(text) || StringUtils.isEmpty(ciphertext)) {
             return false;

@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 
 /**
  * Locker
- * 分布式锁注解类
+ * 分布式锁注解
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/05/08
@@ -29,7 +29,13 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 public @interface Locker {
 
-    long waitTime() default 5000;   // 等待时间
+    /**
+     * 等待时间
+     */
+    long waitTime() default 5000;
 
-    long leaseTime() default 10000; // 单笔业务锁持有时长，防止死锁
+    /**
+     * 单笔业务锁持有时长，防止死锁
+     */
+    long leaseTime() default 10000;
 }

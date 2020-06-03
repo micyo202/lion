@@ -59,9 +59,7 @@ public class RSAUtil {
     public static Map<RSAKey, String> keyMap = new HashMap<>();
 
     /**
-     * 随机生成密钥对
-     *
-     * @throws NoSuchAlgorithmException
+     * 随机生成密钥对（公钥、私钥）
      */
     public static void generatorPairKey() {
         try {
@@ -90,6 +88,13 @@ public class RSAUtil {
 
     }
 
+    /**
+     * RSA 加密
+     *
+     * @param text      明文
+     * @param publicKey 公钥
+     * @return 密文
+     */
     public static String encrypt(String text, String publicKey) {
         if (StringUtils.isEmpty(text) || StringUtils.isEmpty(publicKey)) {
             return null;
@@ -109,6 +114,13 @@ public class RSAUtil {
         return null;
     }
 
+    /**
+     * RSA 解密
+     *
+     * @param ciphertext 密文
+     * @param privateKey 私钥
+     * @return 明文
+     */
     public static String decrypt(String ciphertext, String privateKey) {
         if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(privateKey)) {
             return null;

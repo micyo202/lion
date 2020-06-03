@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * RedissonDistributedLocker
- * 分布式锁方法实现类
+ * 分布式锁方法实现
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/05/08
@@ -34,16 +34,29 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RedissonDistributedLocker implements DistributedLocker {
 
+    /**
+     * 锁key值前缀
+     */
     private final static String KEY_PREFIX = "LOCK:";
-    // 默认秒数单位，毫秒
+
+    /**
+     * 默认秒数单位，毫秒
+     */
     private final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 
-    // RedissonClient已经由配置类生成，这里自动装配即可
+    /**
+     * RedissonClient已经由配置类生成，这里自动装配即可
+     */
     @Autowired
     private RedissonClient redissonClient;
 
     /**
+     * 强制加锁
+     *
      * 拿不到lock就不罢休，不然线程就一直block
+     *
+     * @param lockKey 锁的key值
+     * @return 锁信息
      */
     @Override
     public RLock lock(String lockKey) {
@@ -53,7 +66,11 @@ public class RedissonDistributedLocker implements DistributedLocker {
     }
 
     /**
-     * leaseTime为加锁时间，默认单位毫秒
+     * 强制加锁
+     *
+     * @param lockKey   锁的key值
+     * @param leaseTime 加锁时间（默认单位毫秒）
+     * @return 锁信息
      */
     @Override
     public RLock lock(String lockKey, long leaseTime) {
@@ -63,7 +80,12 @@ public class RedissonDistributedLocker implements DistributedLocker {
     }
 
     /**
-     * leaseTime为加锁时间，时间单位由unit确定
+     * 强制加锁
+     *
+     * @param lockKey   锁的key值
+     * @param unit      时间单位
+     * @param leaseTime 加锁时间
+     * @return 锁信息
      */
     @Override
     public RLock lock(String lockKey, TimeUnit unit, long leaseTime) {
@@ -73,8 +95,13 @@ public class RedissonDistributedLocker implements DistributedLocker {
     }
 
     /**
-     * 马上返回，拿到lock就返回true，不然返回false。
-     * 带时间限制的tryLock()，拿不到lock，就等一段时间，超时返回false.
+     * 尝试加锁
+     *
+     * 马上返回，拿到lock就返回true，不然返回false
+     * 带时间限制的tryLock()，拿不到lock，就等一段时间，超时返回false
+     *
+     * @param lockKey 锁的key值
+     * @return 是否拿到
      */
     @Override
     public boolean tryLock(String lockKey) {
@@ -82,6 +109,14 @@ public class RedissonDistributedLocker implements DistributedLocker {
         return lock.tryLock();
     }
 
+    /**
+     * 尝试加锁
+     *
+     * @param lockKey   锁的key值
+     * @param waitTime  等待时间
+     * @param leaseTime 加锁时间
+     * @return 是否拿到标志
+     */
     @Override
     public boolean tryLock(String lockKey, long waitTime, long leaseTime) {
         RLock lock = redissonClient.getLock(KEY_PREFIX + lockKey);
@@ -92,6 +127,15 @@ public class RedissonDistributedLocker implements DistributedLocker {
         }
     }
 
+    /**
+     * 尝试加锁
+     *
+     * @param lockKey   锁的key值
+     * @param unit      时间单位
+     * @param waitTime  等待时间
+     * @param leaseTime 加锁时间
+     * @return 是否拿到标志
+     */
     @Override
     public boolean tryLock(String lockKey, TimeUnit unit, long waitTime, long leaseTime) {
         RLock lock = redissonClient.getLock(KEY_PREFIX + lockKey);
@@ -103,15 +147,24 @@ public class RedissonDistributedLocker implements DistributedLocker {
         }
     }
 
+    /**
+     * 解锁
+     *
+     * @param lockKey 锁的key值
+     */
     @Override
     public void unlock(String lockKey) {
         RLock lock = redissonClient.getLock(KEY_PREFIX + lockKey);
         lock.unlock();
     }
 
+    /**
+     * 解锁
+     *
+     * @param lock 锁信息
+     */
     @Override
     public void unlock(RLock lock) {
         lock.unlock();
     }
-
 }

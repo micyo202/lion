@@ -29,9 +29,11 @@ public class Block {
 
     public String hash;
     public String previousHash;
-    // 区块链数据，基本的数据
+
+    /**
+     * 区块链数据，基本的数据
+     */
     private String data;
-    // 时间戳
     private long timestamp;
     private int nonce;
 

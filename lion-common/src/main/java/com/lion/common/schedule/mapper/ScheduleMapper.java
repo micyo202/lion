@@ -29,6 +29,10 @@ import java.util.List;
  */
 public interface ScheduleMapper {
 
+    /**
+     * 查询定时任务列表
+     * @param appName 应用名称
+     */
     @Select("select id, name, cron, app_name appName, class_name className, method, valid from sys_schedule where valid=1 and app_name=#{appName} order by id")
     List<Schedule> getScheduleListByAppName(String appName);
 }

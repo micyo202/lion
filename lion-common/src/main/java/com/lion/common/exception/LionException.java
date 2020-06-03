@@ -22,7 +22,7 @@ import lombok.Setter;
 
 /**
  * LionException
- * 自定义异常类
+ * 自定义异常
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/07/17
@@ -37,21 +37,43 @@ public class LionException extends RuntimeException {
      */
     private int code;
 
+    /**
+     * 构造方法
+     *
+     * @param code 异常码
+     * @param msg  异常提示信息
+     */
     public LionException(int code, String msg) {
         super(msg);
         this.code = code;
     }
 
+    /**
+     * 构造方法
+     *
+     * @param msg 异常提示信息
+     */
     public LionException(String msg) {
         super(msg);
         this.code = ResponseCode.FAILURE;
     }
 
+    /**
+     * 构造方法
+     *
+     * @param cause 抛出异常
+     */
     public LionException(Throwable cause) {
         super(cause);
         this.code = ResponseCode.FAILURE;
     }
 
+    /**
+     * 构造方法
+     *
+     * @param msg   异常提示信息
+     * @param cause 抛出异常
+     */
     public LionException(String msg, Throwable cause) {
         super(msg, cause);
         this.code = ResponseCode.FAILURE;

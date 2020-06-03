@@ -21,7 +21,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 /**
- * MessageChannel
+ * AmqpChannel
  * 消息通道
  *
  * @author Yanzheng (https://github.com/micyo202)

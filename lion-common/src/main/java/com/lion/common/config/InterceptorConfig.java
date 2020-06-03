@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * InterceptorConfig
- * 拦截器配置类
+ * 拦截器配置
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/24

@@ -51,12 +51,22 @@ public class DESUtil {
     private final static String DEFAULT_KEY = "https://github.com/micyo202";
 
     /**
-     * 加密方法
+     * DES 使用默认秘钥加密
+     *
+     * @param text 明文
+     * @return 密文
      */
     public static String encrypt(String text) {
         return encrypt(text, DEFAULT_KEY);
     }
 
+    /**
+     * DES 使用自定义秘钥加密
+     *
+     * @param text 明文
+     * @param key  秘钥
+     * @return 密文
+     */
     public static String encrypt(String text, String key) {
         if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key)) {
             return null;
@@ -83,12 +93,22 @@ public class DESUtil {
 
 
     /**
-     * 解密 后并用base64解码
+     * DES 使用默认秘钥解密
+     *
+     * @param ciphertext 密文
+     * @return 明文
      */
     public static String decrypt(String ciphertext) {
         return decrypt(ciphertext, DEFAULT_KEY);
     }
 
+    /**
+     * DES 使用自定义秘钥解密
+     *
+     * @param ciphertext 密文
+     * @param key        秘钥
+     * @return 明文
+     */
     public static String decrypt(String ciphertext, String key) {
         if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key)) {
             return null;

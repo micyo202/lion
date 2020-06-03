@@ -28,19 +28,78 @@ import java.util.concurrent.TimeUnit;
  */
 public interface DistributedLocker {
 
+    /**
+     * 强制加锁
+     *
+     * 拿不到lock就不罢休，不然线程就一直block
+     *
+     * @param lockKey 锁的key值
+     * @return 锁信息
+     */
     RLock lock(String lockKey);
 
+    /**
+     * 强制加锁
+     *
+     * @param lockKey   锁的key值
+     * @param leaseTime 加锁时间（默认单位毫秒）
+     * @return 锁信息
+     */
     RLock lock(String lockKey, long leaseTime);
 
+    /**
+     * 强制加锁
+     *
+     * @param lockKey   锁的key值
+     * @param unit      时间单位
+     * @param leaseTime 加锁时间
+     * @return 锁信息
+     */
     RLock lock(String lockKey, TimeUnit unit, long leaseTime);
 
+    /**
+     * 尝试加锁
+     *
+     * 马上返回，拿到lock就返回true，不然返回false
+     * 带时间限制的tryLock()，拿不到lock，就等一段时间，超时返回false
+     *
+     * @param lockKey 锁的key值
+     * @return 是否拿到
+     */
     boolean tryLock(String lockKey);
 
+    /**
+     * 尝试加锁
+     *
+     * @param lockKey   锁的key值
+     * @param waitTime  等待时间
+     * @param leaseTime 加锁时间
+     * @return 是否拿到标志
+     */
     boolean tryLock(String lockKey, long waitTime, long leaseTime);
 
+    /**
+     * 尝试加锁
+     *
+     * @param lockKey   锁的key值
+     * @param unit      时间单位
+     * @param waitTime  等待时间
+     * @param leaseTime 加锁时间
+     * @return 是否拿到标志
+     */
     boolean tryLock(String lockKey, TimeUnit unit, long waitTime, long leaseTime);
 
+    /**
+     * 解锁
+     *
+     * @param lockKey 锁的key值
+     */
     void unlock(String lockKey);
 
+    /**
+     * 解锁
+     *
+     * @param lock 锁信息
+     */
     void unlock(RLock lock);
 }

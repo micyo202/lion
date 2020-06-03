@@ -44,26 +44,63 @@ public class SHAUtil {
      */
     private static final String ENCODEING = "UTF-8";
 
+    /**
+     * SHA1 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt(String text) {
         return encrypt(text, SHA_1);
     }
 
+    /**
+     * SHA1 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt224(String text) {
         return encrypt(text, SHA_224);
     }
 
+    /**
+     * SHA1 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt256(String text) {
         return encrypt(text, SHA_256);
     }
 
+    /**
+     * SHA1 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt384(String text) {
         return encrypt(text, SHA_384);
     }
 
+    /**
+     * SHA1 加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encrypt512(String text) {
         return encrypt(text, SHA_512);
     }
 
+    /**
+     * SHA 通用加密算法
+     *
+     * @param text      明文
+     * @param algorithm 加密类型
+     * @return 密文
+     */
     private static String encrypt(String text, String algorithm) {
         if (StringUtils.isEmpty(text)) {
             return null;
@@ -79,6 +116,12 @@ public class SHAUtil {
         return null;
     }
 
+    /**
+     * 字节转字符串
+     *
+     * @param bytes 字节
+     * @return 字符串
+     */
     private static String bytes2Str(byte[] bytes) {
         StringBuffer stringBuffer = new StringBuffer();
         String str;

@@ -77,15 +77,19 @@ public abstract class BaseController extends ApplicationObjectSupport {
         return this.getApplicationContext().getBean(name);
     }
 
+    /**
+     * 是否Ajax请求
+     * @param request 请求对象
+     */
     protected boolean isAjaxRequest(HttpServletRequest request) {
         boolean isAjax = request.getHeader("Accept").contains("application/json")
                 || (request.getHeader("X-Requested-With") != null
                 && request.getHeader("X-Requested-With").contains("XMLHttpRequest"))
                 || "XMLHttpRequest".equalsIgnoreCase(request.getParameter("X_REQUESTED_WITH"));
-        if (!isAjax) {
-            return false;
+        if (isAjax) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -130,6 +134,8 @@ public abstract class BaseController extends ApplicationObjectSupport {
 
     /**
      * 文件上传（支持多个文件上传）
+     *
+     * @param request 请求对象
      */
     protected List<String> fileUpload(HttpServletRequest request) {
 

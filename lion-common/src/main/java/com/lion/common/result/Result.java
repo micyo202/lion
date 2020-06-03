@@ -35,7 +35,7 @@ import java.util.Map;
 
 /**
  * Result
- * 结果实体类
+ * 结果实体
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/04/13
@@ -108,35 +108,61 @@ public class Result implements Serializable {
     private Integer pages;
 
     /**
-     * 自定义相关getter、setter方法
+     * 编码
      */
     public int getCode() {
         return code;
     }
 
+    /**
+     * 设置编码
+     *
+     * @param code 编码
+     */
     public Result setCode(int code) {
         this.code = code;
         return this;
     }
 
+    /**
+     * 提示信息
+     */
     public String getMsg() {
         return msg;
     }
 
+    /**
+     * 设置提示信息
+     *
+     * @param msg 提示信息
+     */
     public Result setMsg(String msg) {
         this.msg = msg;
         return this;
     }
 
+    /**
+     * 时间戳
+     */
     public long getTimestamp() {
         return timestamp;
     }
 
+    /**
+     * 设置时间戳
+     *
+     * @param timestamp 时间戳
+     */
     public Result setTimestamp(long timestamp) {
         this.timestamp = timestamp;
         return this;
     }
 
+    /**
+     * 设置对象（根据对象类obj类型转换为数据data）
+     *
+     * @param obj 对象
+     */
     public Result setObj(Object obj) {
         this.obj = obj;
 
@@ -172,6 +198,9 @@ public class Result implements Serializable {
         return this;
     }
 
+    /**
+     * 数据
+     */
     public Object getData() {
         return data;
     }
@@ -180,15 +209,26 @@ public class Result implements Serializable {
         this.data = data;
     }
 
+    /**
+     * 获取扩展数据
+     */
     public Map<String, Object> getExtra() {
         return extra;
     }
 
+    /**
+     * 设置扩展数据
+     *
+     * @param extra 扩展数据
+     */
     public Result setExtra(Map<String, Object> extra) {
         this.extra = extra;
         return this;
     }
 
+    /**
+     * 总条数
+     */
     public Long getTotal() {
         return total;
     }
@@ -197,6 +237,9 @@ public class Result implements Serializable {
         this.total = total;
     }
 
+    /**
+     * 页码值
+     */
     public Integer getPageNum() {
         return pageNum;
     }
@@ -205,6 +248,9 @@ public class Result implements Serializable {
         this.pageNum = pageNum;
     }
 
+    /**
+     * 每页大小
+     */
     public Integer getPageSize() {
         return pageSize;
     }
@@ -213,6 +259,9 @@ public class Result implements Serializable {
         this.pageSize = pageSize;
     }
 
+    /**
+     * 总页码
+     */
     public Integer getPages() {
         return pages;
     }
@@ -222,7 +271,10 @@ public class Result implements Serializable {
     }
 
     /**
-     * 自定义扩展方法
+     * 添加扩展数据
+     *
+     * @param key   键
+     * @param value 值
      */
     public Result addExtra(String key, Object value) {
         if (null == this.extra) {
@@ -232,20 +284,35 @@ public class Result implements Serializable {
         return this;
     }
 
-    public Result addExtra(Tuple2 tuple2) {
+    /**
+     * 添加扩展数据
+     *
+     * @param tuple 元组
+     */
+    public Result addExtra(Tuple2 tuple) {
         if (null == this.extra) {
             this.extra = new HashMap<>(8);
         }
-        this.extra.put(tuple2._1().toString(), tuple2._2());
+        this.extra.put(tuple._1().toString(), tuple._2());
         return this;
     }
 
+    /**
+     * 设置状态
+     *
+     * @param responseStatus 响应枚举状态
+     */
     public Result setStatus(ResponseStatus responseStatus) {
         this.setCode(responseStatus.code());
         this.setMsg(responseStatus.msg());
         return this;
     }
 
+    /**
+     * 设置状态
+     *
+     * @param responseStatus 响应枚举状态
+     */
     public static Result status(ResponseStatus responseStatus) {
         Result result = new Result();
         result.setCode(responseStatus.code());
@@ -253,16 +320,30 @@ public class Result implements Serializable {
         return result;
     }
 
+    /**
+     * 成功
+     */
     public static Result success() {
         return new Result();
     }
 
+    /**
+     * 成功
+     *
+     * @param obj 对象
+     */
     public static Result success(Object obj) {
         Result result = new Result();
         result.setObj(obj);
         return result;
     }
 
+    /**
+     * 成功
+     *
+     * @param obj   对象
+     * @param extra 扩展数据
+     */
     public static Result success(Object obj, Map<String, Object> extra) {
         Result result = new Result();
         result.setObj(obj);
@@ -270,6 +351,11 @@ public class Result implements Serializable {
         return result;
     }
 
+    /**
+     * 失败
+     *
+     * @param msg  失败提示信息
+     */
     public static Result failure(String msg) {
         Result result = new Result();
         result.setCode(ResponseCode.FAILURE);
@@ -277,6 +363,12 @@ public class Result implements Serializable {
         return result;
     }
 
+    /**
+     * 失败
+     *
+     * @param code 错误编码
+     * @param msg  失败提示信息
+     */
     public static Result failure(int code, String msg) {
         Result result = new Result();
         result.setCode(code);

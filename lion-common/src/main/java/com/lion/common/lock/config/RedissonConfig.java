@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * RedissonConfig
- * 分布式锁配置类
+ * 分布式锁配置
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/24
@@ -42,7 +42,7 @@ public class RedissonConfig {
     private String password;
 
     @Bean
-    public RedissonClient getRedisson() {
+    public RedissonClient redissonClient() {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
         //.setTimeout(3000)

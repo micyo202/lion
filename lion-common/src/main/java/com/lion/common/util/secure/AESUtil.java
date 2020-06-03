@@ -59,12 +59,22 @@ public class AESUtil {
     private static final String CIPHER = "AES/CBC/PKCS5Padding";
 
     /**
-     * 加密
+     * AES 使用默认秘钥加密
+     *
+     * @param text 明文
+     * @return 密文
      */
     public static String encrypt(String text) {
         return encrypt(text, DEFAULT_KEY);
     }
 
+    /**
+     * AES 自定义秘钥加密
+     *
+     * @param text 明文
+     * @param key  秘钥（必须16位）
+     * @return 密文
+     */
     public static String encrypt(String text, String key) {
         if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || 16 != key.length()) {
             return null;
@@ -87,12 +97,22 @@ public class AESUtil {
     }
 
     /**
-     * 解密
+     * AES 默认秘钥解密
+     *
+     * @param ciphertext 密文
+     * @return 明文
      */
     public static String decrypt(String ciphertext) {
         return decrypt(ciphertext, DEFAULT_KEY);
     }
 
+    /**
+     * AES 自定义秘钥解密
+     *
+     * @param ciphertext 密文
+     * @param key        秘钥（必须16位）
+     * @return 明文
+     */
     public static String decrypt(String ciphertext, String key) {
         if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key) || 16 != key.length()) {
             return null;

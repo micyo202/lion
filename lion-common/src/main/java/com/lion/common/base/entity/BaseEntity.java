@@ -37,15 +37,27 @@ import java.time.LocalDateTime;
 @ApiModel(value = "Base实体基类", description = "实体类对应数据库中公共属性/字段")
 public class BaseEntity<T extends Model<?>> extends Model<T> {
 
+    /**
+     * 主键
+     */
     @ApiModelProperty(value = "主键")
     private Long id;
 
+    /**
+     * 有效标志（0：无效，1：有效）
+     */
     @ApiModelProperty(value = "有效标志（0：无效，1：有效）")
     private Boolean valid;
 
+    /**
+     * 创建时间
+     */
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
 
+    /**
+     * 更新时间
+     */
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
 

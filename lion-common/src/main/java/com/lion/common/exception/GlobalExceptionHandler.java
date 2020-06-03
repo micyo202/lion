@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * GlobalExceptionHandler
- * 全局异常处理类
+ * 全局异常处理
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/07/17
@@ -37,6 +37,8 @@ public class GlobalExceptionHandler {
 
     /**
      * 声明要捕获的异常
+     *
+     * @param e 异常
      */
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {

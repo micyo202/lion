@@ -42,7 +42,7 @@ public class MD5Util {
     private static final String ENCODEING = "UTF-8";
 
     /**
-     * 加密方法
+     * MD5 加密方法
      */
     public static String encrypt(String text) {
         if (StringUtils.isEmpty(text)) {

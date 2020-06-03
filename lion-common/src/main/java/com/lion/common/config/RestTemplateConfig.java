@@ -30,7 +30,7 @@ import java.util.Collections;
 
 /**
  * RestTemplateConfig
- * RestTemplate 配置类
+ * RestTemplate 配置
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/24

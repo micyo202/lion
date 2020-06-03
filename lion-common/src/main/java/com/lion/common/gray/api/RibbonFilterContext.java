@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * RibbonFilterContext
- * 灰度负载过滤上下文接口类
+ * 灰度负载过滤上下文接口
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/09

@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Scope;
 
 /**
  * RibbonDiscoveryRuleAutoConfiguration
- * 灰度服务发现负载规则配置类
+ * 灰度服务发现负载规则配置
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/09/09

@@ -37,14 +37,30 @@ public class YamlUtil {
     private static final String BOOTSTRAP_YML = "bootstrap.yml";
     private static final String APPLICATION_YML = "application.yml";
 
+    /**
+     * 获取 bootstrap.yml 配置内容
+     *
+     * @param key 键
+     */
     public static String getBootstrapValue(String key) {
         return getValueByYaml(BOOTSTRAP_YML, key);
     }
 
+    /**
+     * 获取 application.yml 配置内容
+     *
+     * @param key 键
+     */
     public static String getApplicationValue(String key) {
         return getValueByYaml(APPLICATION_YML, key);
     }
 
+    /**
+     * 获取指定 yml 配置内容
+     *
+     * @param fileName yml文件名
+     * @param key 键
+     */
     public static String getValueByYaml(String fileName, String key) {
 
         if (StringUtils.isAnyEmpty(fileName, key)) {

@@ -36,6 +36,12 @@ public class Base64Util {
      */
     private static final String ENCODEING = "UTF-8";
 
+    /**
+     * Base64 编码
+     *
+     * @param text 明文
+     * @return 密文
+     */
     public static String encode(String text) {
         if (StringUtils.isEmpty(text)) {
             return null;
@@ -48,6 +54,12 @@ public class Base64Util {
         return null;
     }
 
+    /**
+     * Base64 解码
+     *
+     * @param ciphertext 密文
+     * @return 明文
+     */
     public static String decode(String ciphertext) {
         if (StringUtils.isEmpty(ciphertext)) {
             return null;
