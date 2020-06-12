@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value = "Base实体基类", description = "实体类对应数据库中公共属性/字段")
-public class BaseEntity<T extends Model<?>> extends Model<T> {
+public abstract class BaseEntity<T extends Model<?>> extends Model<T> {
 
     /**
      * 主键
