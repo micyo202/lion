@@ -33,10 +33,10 @@ import java.util.List;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/2/12
  */
-public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
+public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
 
     @Autowired
-    SqlSessionTemplate sqlSessionTemplate;
+    protected SqlSessionTemplate sqlSessionTemplate;
 
     /**
      * 分页查询

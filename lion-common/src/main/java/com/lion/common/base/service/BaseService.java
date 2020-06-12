@@ -78,7 +78,7 @@ public interface BaseService<T> extends IService<T> {
      * @param pageSize  每页大小
      * @return PageInfo 分页对象
      */
-    PageInfo page(String statement, int pageNum, int pageSize);
+    PageInfo<T> page(String statement, int pageNum, int pageSize);
 
     /**
      * 分页查询
@@ -89,7 +89,7 @@ public interface BaseService<T> extends IService<T> {
      * @param orderBy   排序字段
      * @return PageInfo 分页对象
      */
-    PageInfo page(String statement, int pageNum, int pageSize, String orderBy);
+    PageInfo<T> page(String statement, int pageNum, int pageSize, String orderBy);
 
     /**
      * 分页查询
@@ -100,7 +100,7 @@ public interface BaseService<T> extends IService<T> {
      * @param pageSize  每页大小
      * @return PageInfo 分页对象
      */
-    PageInfo page(String statement, Object parameter, int pageNum, int pageSize);
+    PageInfo<T> page(String statement, Object parameter, int pageNum, int pageSize);
 
     /**
      * 分页查询
@@ -112,7 +112,7 @@ public interface BaseService<T> extends IService<T> {
      * @param orderBy   排序字段
      * @return PageInfo 分页对象
      */
-    PageInfo page(String statement, Object parameter, int pageNum, int pageSize, String orderBy);
+    PageInfo<T> page(String statement, Object parameter, int pageNum, int pageSize, String orderBy);
 
     /**
      * 查询单个对象
