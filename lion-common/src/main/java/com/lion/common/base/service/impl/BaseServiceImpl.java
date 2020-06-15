@@ -117,7 +117,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      * @return PageInfo 分页对象
      */
     @Override
-    public PageInfo page(String statement, int pageNum, int pageSize) {
+    public PageInfo<T> page(String statement, int pageNum, int pageSize) {
         return page(statement, null, pageNum, pageSize, null);
     }
 
@@ -131,7 +131,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      * @return PageInfo 分页对象
      */
     @Override
-    public PageInfo page(String statement, int pageNum, int pageSize, String orderBy) {
+    public PageInfo<T> page(String statement, int pageNum, int pageSize, String orderBy) {
         return page(statement, null, pageNum, pageSize, orderBy);
     }
 
@@ -145,7 +145,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      * @return PageInfo 分页对象
      */
     @Override
-    public PageInfo page(String statement, Object parameter, int pageNum, int pageSize) {
+    public PageInfo<T> page(String statement, Object parameter, int pageNum, int pageSize) {
         return page(statement, parameter, pageNum, pageSize, null);
     }
 
@@ -160,14 +160,14 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      * @return PageInfo 分页对象
      */
     @Override
-    public PageInfo page(String statement, Object parameter, int pageNum, int pageSize, String orderBy) {
+    public PageInfo<T> page(String statement, Object parameter, int pageNum, int pageSize, String orderBy) {
         if (null == orderBy) {
             PageHelper.startPage(pageNum, pageSize);
         } else {
             PageHelper.startPage(pageNum, pageSize, orderBy);
         }
 
-        List<Object> list;
+        List<T> list;
 
         if (null == parameter) {
             list = sqlSessionTemplate.selectList(statement);
@@ -175,7 +175,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
             list = sqlSessionTemplate.selectList(statement, parameter);
         }
 
-        PageInfo pageInfo = new PageInfo<>(list);
+        PageInfo<T> pageInfo = new PageInfo<>(list);
 
         return pageInfo;
     }
