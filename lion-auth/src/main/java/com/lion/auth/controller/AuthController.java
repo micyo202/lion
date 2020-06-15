@@ -39,7 +39,7 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "初始化", response = Result.class)
     @GetMapping("/init")
-    public Result init() {
+    public Result<String> init() {
         return Result.success(applicationName + " -> port: " + port + ", version: " + version);
     }
 
@@ -48,11 +48,11 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "注销凭证信息", response = Result.class)
     @DeleteMapping(value = "/revoke")
-    public Result revoke() {
+    public Result<String> revoke() {
         String accessToken = getRequest().getHeader(SecurityConstant.ACCESS_TOKEN);
         String formatToken = accessToken.replace(SecurityConstant.BEARER_PREFIX, "");
         if (consumerTokenServices.revokeToken(formatToken)) {
-            return Result.success();
+            return Result.success("注销凭证信息成功");
         } else {
             return Result.failure("注销凭证信息失败");
         }
