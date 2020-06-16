@@ -17,8 +17,8 @@ package com.lion.demo.provider.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lion.common.base.controller.BaseController;
-import com.lion.common.result.Result;
 import com.lion.common.exception.LionException;
+import com.lion.common.result.Result;
 import com.lion.demo.provider.entity.TempProduct;
 import com.lion.demo.provider.service.TempProductService;
 import io.swagger.annotations.Api;
@@ -48,7 +48,7 @@ public class TempProductController extends BaseController {
     @ApiOperation(value = "扣减产品库存", notes = "当库存不足时，扣减失败，回滚")
     @RequestMapping(value = "/deduct", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
-    public Result deduct(String productCode, int count) {
+    public Result<String> deduct(String productCode, int count) {
 
         QueryWrapper<TempProduct> wrapper = new QueryWrapper<>();
         wrapper.setEntity(new TempProduct().setCode(productCode));

@@ -37,14 +37,14 @@ public class ProviderDemoController extends BaseController {
 
     @ApiOperation("初始化")
     @GetMapping("/init")
-    public Result init() {
+    public Result<String> init() {
         return Result.success(applicationName + " -> port: " + port + ", version: " + version);
     }
 
     @ApiOperation("返回Hi文本内容")
     @ApiParam(name = "name", value = "名称", defaultValue = "lion")
     @RequestMapping(value = "/hi", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result hi(@RequestParam(defaultValue = "lion") String name) {
+    public Result<String> hi(@RequestParam(defaultValue = "lion") String name) {
         log.info("Provider -> 服务提供者 /hi");
         return Result.success("Hi '" + name + "', I'm Provider, From port: " + port + ", version: " + version);
     }
