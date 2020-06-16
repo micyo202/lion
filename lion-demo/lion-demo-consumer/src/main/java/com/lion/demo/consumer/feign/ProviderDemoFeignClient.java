@@ -33,11 +33,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ProviderDemoFeignClient {
 
     @GetMapping(value = "/init")
-    Result initFromProvider();
+    Result<String> initFromProvider();
 
     @GetMapping(value = "/hi")
-    Result hiFromProvider(@RequestParam(value = "name") String name);
+    Result<String> hiFromProvider(@RequestParam(value = "name") String name);
 
     @RequestMapping("/temp/product/deduct")
-    Result deductFromProvider(@RequestParam("productCode") String productCode, @RequestParam("count") int count);
+    Result<String> deductFromProvider(@RequestParam("productCode") String productCode, @RequestParam("count") int count);
 }
