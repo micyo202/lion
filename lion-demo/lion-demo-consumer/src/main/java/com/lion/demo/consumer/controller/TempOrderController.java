@@ -17,11 +17,11 @@ package com.lion.demo.consumer.controller;
 
 import com.lion.common.base.controller.BaseController;
 import com.lion.common.constant.ResponseCode;
-import com.lion.common.result.Result;
 import com.lion.common.exception.LionException;
+import com.lion.common.result.Result;
 import com.lion.common.util.DateUtil;
-import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
 import com.lion.demo.consumer.entity.TempOrder;
+import com.lion.demo.consumer.feign.ProviderDemoFeignClient;
 import com.lion.demo.consumer.service.TempOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import io.swagger.annotations.Api;
@@ -57,7 +57,7 @@ public class TempOrderController extends BaseController {
     @RequestMapping(value = "/commit", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
     @Transactional
-    public Result commit() {
+    public Result<String> commit() {
         place("product-1", 1);
         return Result.success("下单成功");
     }
@@ -69,7 +69,7 @@ public class TempOrderController extends BaseController {
     @RequestMapping(value = "/rollback", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
     @Transactional
-    public Result rollback() {
+    public Result<String> rollback() {
         place("product-1", 1);
         throw new LionException("全局事务 -> 模拟回滚（数据正常）...");
     }
@@ -80,7 +80,7 @@ public class TempOrderController extends BaseController {
     @ApiOperation(value = "无全局事务，无法回滚，数据错乱", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping(value = "/exception", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional
-    public Result exception() {
+    public Result<String> exception() {
         place("product-1", 1);
         throw new LionException("无全局事务 -> 无法回滚（数据已错乱）...");
     }
@@ -100,7 +100,7 @@ public class TempOrderController extends BaseController {
                 .setUpdateTime(LocalDateTime.now());
 
         tempOrderService.save(tempOrder);
-        Result deduct = providerDemoFeignClient.deductFromProvider(productCode, count);
+        Result<String> deduct = providerDemoFeignClient.deductFromProvider(productCode, count);
         if (deduct.getCode() != ResponseCode.SUCCESS) {
             throw new LionException(deduct.getMsg());
         }

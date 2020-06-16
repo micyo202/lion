@@ -74,11 +74,11 @@ public class ConsumerDemoController extends BaseController {
 
     @ApiOperation("初始化")
     @GetMapping("/init")
-    public Result init() {
+    public Result<String> init() {
 
         String msg = applicationName + " -> port: " + port + ", version: " + version + ", foo: " + foo;
 
-        Result providerInitResult = providerDemoFeignClient.initFromProvider();
+        Result<String> providerInitResult = providerDemoFeignClient.initFromProvider();
         if (providerInitResult.getCode() != ResponseCode.SUCCESS) {
             return Result.failure(msg + ", " + providerInitResult.getMsg());
         } else {
@@ -90,7 +90,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("Feign服务调用，返回Hi文本内容")
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @GetMapping("/feign/hi")
-    public Result feignHi(String name) {
+    public Result<String> feignHi(String name) {
         log.info("Consumer -> 服务消费者 /feign/hi");
         return providerDemoFeignClient.hiFromProvider(name);
     }
@@ -102,10 +102,10 @@ public class ConsumerDemoController extends BaseController {
     @ApiParam(name = "name", value = "名称（默认lion）", defaultValue = "lion", required = true)
     @SentinelResource(value = "ribbonHi", fallback = "ribbonHiFallback")
     @RequestMapping(value = "/ribbon/hi", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result ribbonHi(String name) {
+    public Result<String> ribbonHi(String name) {
 
         String method = this.getRequest().getMethod();
-        Result result = null;
+        Result<String> result = null;
         if ("GET".equals(method)) {
             Map<String, Object> params = new HashMap<>(2);
             params.put("name", name);
@@ -129,28 +129,28 @@ public class ConsumerDemoController extends BaseController {
     /**
      * Ribbon服务熔断降级
      */
-    public Result ribbonHiFallback(String name) {
+    public Result<String> ribbonHiFallback(String name) {
         return Result.failure("Ribbon Hi: '" + name + "', fallback sentinel");
     }
 
     @ApiOperation("Sentinel流量控制")
     @GetMapping("/sentinel/block")
     @SentinelResource(value = "sentinelBlock", blockHandler = "sentinelBlockHandler", blockHandlerClass = BlockHandler.class)
-    public Result sentinelBlock() {
+    public Result<String> sentinelBlock() {
         return Result.success("This is sentinel control service flow");
     }
 
     @ApiOperation("Sentinel服务熔断降级")
     @GetMapping("/sentinel/fallback")
     @SentinelResource(value = "sentinelFallback", fallback = "sentinelFallback", fallbackClass = FallbackHandler.class)
-    public Result sentinelFallback() {
+    public Result<String> sentinelFallback() {
         throw new LionException("This is sentinel control service fallback");
         //return Result.failure(500, "This is sentinel control service fallback");
     }
 
     @ApiOperation("获取用户凭证信息")
     @RequestMapping(value = "/principle", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
+    public Result<OAuth2Authentication> getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
         log.info(oAuth2Authentication.toString());
         log.info("principal.toString() " + principal.toString());
@@ -163,7 +163,7 @@ public class ConsumerDemoController extends BaseController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     //@PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/admin", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getAdmin() {
+    public Result<String> getAdmin() {
         return Result.success("当前用户，拥有Admin权限可访问");
     }
 
@@ -171,14 +171,14 @@ public class ConsumerDemoController extends BaseController {
     //@PreAuthorize("hasAuthority('ROLE_USER')")
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(value = "/user", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getUser() {
+    public Result<String> getUser() {
         return Result.success("当前用户，拥有User权限可访问......");
     }
 
     @ApiOperation("Redisson分布式锁")
     @Locker
     @RequestMapping(value = "/lock", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result lock() {
+    public Result<String> lock() {
         try {
             log.info("执行锁中业务逻辑");
             Thread.sleep(5000);
@@ -193,7 +193,7 @@ public class ConsumerDemoController extends BaseController {
 
     @ApiOperation("异步线程执行任务")
     @GetMapping("/async")
-    public Result async() {
+    public Result<String> async() {
         asyncTaskService.asyncJob("A");
         asyncTaskService.asyncJob("B");
         return Result.success("异步线程任务调用完成，请查看日志结果");
@@ -204,13 +204,13 @@ public class ConsumerDemoController extends BaseController {
 
     @ApiOperation("AMQP消息发送/接收")
     @RequestMapping(value = "/amqp", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result amqp() {
+    public Result<Object> amqp() {
         Map<String, Object> map = new HashMap<>(6);
         map.put("id", 1);
         map.put("msg", "AMQP发送消息");
         map.put("valid", true);
         map.put("sendTime", DateUtil.getCurrentDateTime());
-        Result result = Result.success(map);
+        Result<Map<String, Object>> result = Result.success(map);
 
         amqpSender.send(result);
 
@@ -220,7 +220,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("区块链 - 开采追加块链")
     @ApiParam(name = "data", value = "块内容")
     @PostMapping("/blockchain/mined")
-    public Result blockChainMined(@RequestParam(name = "data") String data) {
+    public Result<String> blockChainMined(@RequestParam(name = "data") String data) {
         String hash = BlockChain.minedBlockChain(data);
         return Result.success(hash);
     }
@@ -228,7 +228,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("区块链 - 解析块链")
     @ApiParam(name = "blockHash", value = "需解析的块Hash散列值")
     @PostMapping(value = "/blockchain/decrypt/{blockHash}")
-    public Result blockChainDecrypt(@PathVariable String blockHash) {
+    public Result<String> blockChainDecrypt(@PathVariable String blockHash) {
         String blockchainJson = BlockChain.decryptBlockchain(blockHash);
         return Result.success(blockchainJson);
     }
@@ -236,7 +236,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("文件上传")
     @ApiParam(name = "file", value = "附件内容")
     @PostMapping("/upload")
-    public Result upload(HttpServletRequest request) {
+    public Result<List<String>> upload(HttpServletRequest request) {
         List<String> list = fileUpload(request);
         return Result.success(list);
     }
@@ -244,7 +244,7 @@ public class ConsumerDemoController extends BaseController {
     @ApiOperation("文件下载")
     @ApiParam(name = "fileName", value = "文件名称", required = true)
     @GetMapping("/download/{fileName}")
-    public Result download(@PathVariable String fileName, HttpServletResponse response) {
+    public Result<String> download(@PathVariable String fileName, HttpServletResponse response) {
         boolean result = fileDownload(fileName, response);
         return result ? Result.success("文件下载成功") : Result.failure("文件下载失败");
     }
