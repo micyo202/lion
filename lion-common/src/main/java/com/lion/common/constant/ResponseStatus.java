@@ -78,8 +78,14 @@ public enum ResponseStatus {
      */
     TOO_MANY_REQUESTS(ResponseCode.TOO_MANY_REQUESTS, "Too Many Requests");
 
+    /**
+     * 代码
+     */
     private final int code;
 
+    /**
+     * 信息
+     */
     private final String msg;
 
     ResponseStatus(int code, String msg) {

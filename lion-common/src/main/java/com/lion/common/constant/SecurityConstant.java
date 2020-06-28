@@ -24,12 +24,24 @@ package com.lion.common.constant;
  */
 public interface SecurityConstant {
 
+    /**
+     * 认证url
+     */
     String OAUTH_URL = "/oauth/";
 
+    /**
+     * token 名称
+     */
     String ACCESS_TOKEN = "Authorization";
 
+    /**
+     * bearer 前缀
+     */
     String BEARER_PREFIX = "Bearer ";
 
+    /**
+     * access 前缀
+     */
     String ACCESS_PREFIX = "access:";
 
     /**
@@ -46,5 +58,4 @@ public interface SecurityConstant {
             "/swagger-ui.html",
             "/doc.html"
     };
-
 }

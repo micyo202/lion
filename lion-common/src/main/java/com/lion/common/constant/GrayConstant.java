@@ -33,5 +33,4 @@ public interface GrayConstant {
      * 默认版本号
      */
     String DEFAULT_VERSION = "v1";
-
 }
