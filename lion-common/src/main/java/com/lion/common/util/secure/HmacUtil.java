@@ -177,7 +177,7 @@ public class HmacUtil {
      * @return 密文
      */
     private static String encryptHmac(String text, String key, String type) {
-        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || StringUtils.isEmpty(type)) {
+        if (StringUtils.isAnyBlank(text, key, type)) {
             return null;
         }
         try {
@@ -243,5 +243,4 @@ public class HmacUtil {
         }
         return new String(out);
     }
-
 }

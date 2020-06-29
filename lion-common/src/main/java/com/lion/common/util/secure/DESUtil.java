@@ -68,7 +68,7 @@ public class DESUtil {
      * @return 密文
      */
     public static String encrypt(String text, String key) {
-        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key)) {
+        if (StringUtils.isAnyBlank(text, key)) {
             return null;
         }
         try {
@@ -110,7 +110,7 @@ public class DESUtil {
      * @return 明文
      */
     public static String decrypt(String ciphertext, String key) {
-        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key)) {
+        if (StringUtils.isAnyBlank(ciphertext, key)) {
             return null;
         }
         try {
@@ -133,5 +133,4 @@ public class DESUtil {
         }
         return null;
     }
-
 }

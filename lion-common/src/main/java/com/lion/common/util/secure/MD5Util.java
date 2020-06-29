@@ -45,7 +45,7 @@ public class MD5Util {
      * MD5 加密方法
      */
     public static String encrypt(String text) {
-        if (StringUtils.isEmpty(text)) {
+        if (StringUtils.isBlank(text)) {
             return null;
         }
         /*
@@ -79,5 +79,4 @@ public class MD5Util {
         }
         return null;
     }
-
 }

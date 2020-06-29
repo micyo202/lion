@@ -102,7 +102,7 @@ public class SHAUtil {
      * @return 密文
      */
     private static String encrypt(String text, String algorithm) {
-        if (StringUtils.isEmpty(text)) {
+        if (StringUtils.isBlank(text)) {
             return null;
         }
         try {
@@ -135,5 +135,4 @@ public class SHAUtil {
         }
         return stringBuffer.toString();
     }
-
 }

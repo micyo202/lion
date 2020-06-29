@@ -76,7 +76,7 @@ public class AESUtil {
      * @return 密文
      */
     public static String encrypt(String text, String key) {
-        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || 16 != key.length()) {
+        if (StringUtils.isAnyBlank(text, key) || 16 != key.length()) {
             return null;
         }
         try {
@@ -114,7 +114,7 @@ public class AESUtil {
      * @return 明文
      */
     public static String decrypt(String ciphertext, String key) {
-        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(key) || 16 != key.length()) {
+        if (StringUtils.isAnyBlank(ciphertext, key) || 16 != key.length()) {
             return null;
         }
         try {
@@ -132,5 +132,4 @@ public class AESUtil {
         }
         return null;
     }
-
 }

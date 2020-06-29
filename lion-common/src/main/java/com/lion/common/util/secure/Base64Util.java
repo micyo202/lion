@@ -43,7 +43,7 @@ public class Base64Util {
      * @return 密文
      */
     public static String encode(String text) {
-        if (StringUtils.isEmpty(text)) {
+        if (StringUtils.isBlank(text)) {
             return null;
         }
         try {
@@ -61,7 +61,7 @@ public class Base64Util {
      * @return 明文
      */
     public static String decode(String ciphertext) {
-        if (StringUtils.isEmpty(ciphertext)) {
+        if (StringUtils.isBlank(ciphertext)) {
             return null;
         }
         try {
@@ -72,5 +72,4 @@ public class Base64Util {
         }
         return null;
     }
-
 }

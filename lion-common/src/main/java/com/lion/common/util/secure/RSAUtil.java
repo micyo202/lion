@@ -96,7 +96,7 @@ public class RSAUtil {
      * @return 密文
      */
     public static String encrypt(String text, String publicKey) {
-        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(publicKey)) {
+        if (StringUtils.isAnyBlank(text, publicKey)) {
             return null;
         }
         try {
@@ -122,7 +122,7 @@ public class RSAUtil {
      * @return 明文
      */
     public static String decrypt(String ciphertext, String privateKey) {
-        if (StringUtils.isEmpty(ciphertext) || StringUtils.isEmpty(privateKey)) {
+        if (StringUtils.isAnyBlank(ciphertext, privateKey)) {
             return null;
         }
         try {
