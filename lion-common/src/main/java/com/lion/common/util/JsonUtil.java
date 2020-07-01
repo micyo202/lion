@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -38,39 +39,38 @@ public class JsonUtil {
     /**
      * json对象转json字符串
      *
-     * @param jsonObj json对象
+     * @param obj json对象
      * @return json字符串
      */
-    public static String jsonObj2Str(Object jsonObj) {
-        return jsonObj2Str(jsonObj, true);
+    public static String obj2Json(Object obj) {
+        return obj2Json(obj, true);
     }
 
     /**
      * json对象转json字符串
      *
-     * @param jsonObj json对象
-     * @param pretty  是否格式化
+     * @param obj    json对象
+     * @param pretty 是否格式化
      * @return json字符串
      */
-    public static String jsonObj2Str(Object jsonObj, boolean pretty) {
-
-        if (null == jsonObj) {
+    public static String obj2Json(Object obj, boolean pretty) {
+        if (ObjectUtils.isEmpty(obj)) {
             return null;
         }
         try {
             // 使用 Gson 解析
-            // final String str =  new GsonBuilder().setPrettyPrinting().create().toJson(obj);
+            // final String json =  new GsonBuilder().setPrettyPrinting().create().toJson(object);
 
             // 使用 JackSon 解析
-            String str;
+            String json;
             if (pretty) {
                 // 格式化输出（默认）
-                str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
+                json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
             } else {
                 // 普通输出
-                str = objectMapper.writeValueAsString(jsonObj);
+                json = objectMapper.writeValueAsString(obj);
             }
-            return str;
+            return json;
         } catch (JsonProcessingException e) {
             log.error(e.getMessage(), e);
         }
@@ -80,16 +80,16 @@ public class JsonUtil {
     /**
      * json字符串转json对象
      *
-     * @param jsonStr json字符串
-     * @param objType json对象类型
+     * @param json  json字符串
+     * @param clazz json对象类型
      * @return json对象
      */
-    public static <T> T jsonStr2Obj(String jsonStr, Class<T> objType) {
-        if (StringUtils.isEmpty(jsonStr) || null == objType) {
+    public static <T> T json2Obj(String json, Class<T> clazz) {
+        if (StringUtils.isBlank(json) || null == clazz) {
             return null;
         }
         try {
-            final T obj = objectMapper.readValue(jsonStr, objType);
+            T obj = objectMapper.readValue(json, clazz);
             return obj;
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -100,17 +100,17 @@ public class JsonUtil {
     /**
      * 根据key获取json字符串中的值
      *
-     * @param jsonStr json字符串
-     * @param key     键
+     * @param json json字符串
+     * @param key  键
      * @return 值
      */
-    public static String getJsonStr(String jsonStr, String key) {
-        if (StringUtils.isEmpty(jsonStr) || StringUtils.isEmpty(key)) {
+    public static String getJsonValueByKey(String json, String key) {
+        if (StringUtils.isAnyBlank(json, key)) {
             return null;
         }
         try {
-            final JsonNode jsonNode = objectMapper.readTree(jsonStr);
-            return getJsonNodeValue(jsonNode, key);
+            final JsonNode jsonNode = objectMapper.readTree(json);
+            return getJsonValueByKey(jsonNode, key);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
@@ -120,25 +120,24 @@ public class JsonUtil {
     /**
      * 根据key获取jsonNode对象中的值
      *
-     * @param jsonNode jsonNode对象
-     * @param key      键
+     * @param json jsonNode对象
+     * @param key  键
      * @return 值
      */
-    private static String getJsonNodeValue(JsonNode jsonNode, String key) {
-        if (null == jsonNode || StringUtils.isEmpty(key)) {
+    private static String getJsonValueByKey(JsonNode json, String key) {
+        if (null == json || StringUtils.isBlank(key)) {
             return null;
         }
         int index = key.indexOf('.');
         if (index == -1) {
-            if (null != jsonNode && null != jsonNode.get(key)) {
-                return jsonNode.get(key).toString();
+            if (null != json.get(key)) {
+                return json.get(key).toString();
             }
             return null;
         } else {
             String s1 = key.substring(0, index);
             String s2 = key.substring(index + 1);
-            return getJsonNodeValue(jsonNode.get(s1), s2);
+            return getJsonValueByKey(json.get(s1), s2);
         }
     }
-
 }

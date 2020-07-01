@@ -38,7 +38,7 @@ public class GeneratorUtil {
      */
     public synchronized static String getSeqNo() {
         String applicationName = YamlUtil.getBootstrapValue("spring.application.name");
-        applicationName = StringUtils.isEmpty(applicationName) ? "lion" : applicationName;
+        applicationName = StringUtils.isBlank(applicationName) ? "lion" : applicationName;
         int applicationNameHashCode = applicationName.hashCode() < 0 ? applicationName.hashCode() * -1 : applicationName.hashCode();
         increment = increment >= 9999 ? 1 : increment + 1;
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
@@ -76,5 +76,4 @@ public class GeneratorUtil {
         }
         return stringBuilder.toString();
     }
-
 }

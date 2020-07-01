@@ -63,7 +63,7 @@ public class YamlUtil {
      */
     public static String getValueByYaml(String fileName, String key) {
 
-        if (StringUtils.isAnyEmpty(fileName, key)) {
+        if (StringUtils.isAnyBlank(fileName, key)) {
             return null;
         }
 
@@ -96,5 +96,4 @@ public class YamlUtil {
 
         return result;
     }
-
 }

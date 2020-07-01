@@ -16,6 +16,8 @@
 package com.lion.common.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -36,7 +38,7 @@ public class SpringUtil implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if (SpringUtil.applicationContext == null) {
+        if (null == SpringUtil.applicationContext) {
             SpringUtil.applicationContext = applicationContext;
         }
         log.info("ApplicationContext配置成功，在普通类可以通过调用 SpringUtil.getAppContext() 获取 applicationContext 对象，applicationContext = " + SpringUtil.applicationContext);
@@ -53,9 +55,11 @@ public class SpringUtil implements ApplicationContextAware {
      * 通过name获取bean
      *
      * @param name 名称
-     * @return
      */
     public static Object getBean(String name) {
+        if (StringUtils.isBlank(name)) {
+            return null;
+        }
         return getApplicationContext().getBean(name);
     }
 
@@ -65,17 +69,22 @@ public class SpringUtil implements ApplicationContextAware {
      * @param clazz 类型
      */
     public static <T> T getBean(Class<T> clazz) {
+        if (ObjectUtils.isEmpty(clazz)) {
+            return null;
+        }
         return getApplicationContext().getBean(clazz);
     }
 
     /**
      * 通过name及clazz返回指定的bean
      *
-     * @param name 名称
+     * @param name  名称
      * @param clazz 类型
      */
     public static <T> T getBean(String name, Class<T> clazz) {
+        if (StringUtils.isBlank(name) || ObjectUtils.isEmpty(clazz)) {
+            return null;
+        }
         return getApplicationContext().getBean(name, clazz);
     }
-
 }

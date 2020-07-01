@@ -387,5 +387,4 @@ public class RandomUtil {
         buffer.append(first).append(second).append(third);
         return buffer.toString();
     }
-
 }

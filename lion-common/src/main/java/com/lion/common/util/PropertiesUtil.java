@@ -40,7 +40,7 @@ public class PropertiesUtil {
      */
     public static String getValue(String fileName, String key) {
 
-        if (StringUtils.isAnyEmpty(fileName, key)) {
+        if (StringUtils.isAnyBlank(fileName, key)) {
             return null;
         }
 
@@ -62,5 +62,4 @@ public class PropertiesUtil {
 
         return result;
     }
-
 }

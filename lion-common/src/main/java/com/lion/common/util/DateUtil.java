@@ -554,5 +554,4 @@ public class DateUtil {
     public static Long toSelectEpochMilli(LocalDateTime localDateTime, ZoneId zoneId) {
         return localDateTime.atZone(zoneId).toInstant().toEpochMilli();
     }
-
 }
