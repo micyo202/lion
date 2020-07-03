@@ -186,7 +186,7 @@ public abstract class BaseController extends ApplicationObjectSupport {
      */
     protected boolean fileDownload(String fileName, HttpServletResponse response) {
 
-        if (StringUtils.isEmpty(fileName)) {
+        if (StringUtils.isBlank(fileName)) {
             return false;
         }
 
