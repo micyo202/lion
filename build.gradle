@@ -50,6 +50,7 @@ subprojects {
         set('commonsLangVersion', "3.10")
         set('lombokVersion', "1.18.12")
         set('jacksonVersion', "2.10.3")
+        set('xstreamVersion', "1.4.12")
         set('slf4jVersion', "1.7.30")
         set('yamlVersion', "1.26")
         set('aspectjVersion', "1.9.5")
