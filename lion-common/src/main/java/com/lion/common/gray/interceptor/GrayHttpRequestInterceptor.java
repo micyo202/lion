@@ -51,7 +51,7 @@ public class GrayHttpRequestInterceptor implements ClientHttpRequestInterceptor 
                 String name = headerNames.nextElement();
                 String value = servletRequest.getHeader(name);
                 // 若version版本号为空，则赋值默认版本号
-                if (name.equals(GrayConstant.VERSION) && StringUtils.isEmpty(value)) {
+                if (name.equals(GrayConstant.VERSION) && StringUtils.isBlank(value)) {
                     value = GrayConstant.DEFAULT_VERSION;
                 }
                 request.getHeaders().add(name, value);

@@ -30,18 +30,19 @@ import java.util.stream.Collectors;
  */
 public class BlockChain {
 
-    private static List<Block> blockchain = new ArrayList<>();
-    private static int difficulty = 5;
+    private static final List<Block> BLOCKCHAIN = new ArrayList<>();
+
+    private static final int DIFFICULTY = 5;
 
     /**
      * 开采块链
      */
     public static String minedBlockChain(String data) {
         String hash;
-        if (blockchain.isEmpty()) {
+        if (BLOCKCHAIN.isEmpty()) {
             hash = addBlock(new Block(data, "0"));
         } else {
-            hash = addBlock(new Block(data, blockchain.get(blockchain.size() - 1).hash));
+            hash = addBlock(new Block(data, BLOCKCHAIN.get(BLOCKCHAIN.size() - 1).hash));
         }
         return hash;
     }
@@ -51,15 +52,15 @@ public class BlockChain {
      */
     public static String decryptBlockchain(String blockHash) {
         if ("all".equals(blockHash)) {
-            String blockchainJson = JsonUtil.jsonObj2Str(blockchain);
+            String blockchainJson = JsonUtil.obj2Json(BLOCKCHAIN);
             return blockchainJson;
         } else {
-            List<Block> blockList = blockchain
+            List<Block> blockList = BLOCKCHAIN
                     .parallelStream()
                     .filter(b -> b.hash.equals(blockHash))
                     .collect(Collectors.toList());
             if (null != blockList && !blockList.isEmpty()) {
-                String blockJson = JsonUtil.jsonObj2Str(blockList);
+                String blockJson = JsonUtil.obj2Json(blockList);
                 return blockJson;
             } else {
                 return null;
@@ -73,12 +74,12 @@ public class BlockChain {
     public static Boolean isChainValid() {
         Block currentBlock;
         Block previousBlock;
-        String hashTarget = new String(new char[difficulty]).replace('\0', '0');
+        String hashTarget = new String(new char[DIFFICULTY]).replace('\0', '0');
 
         // 循环通过区块链来检查散列
-        for (int i = 1; i < blockchain.size(); i++) {
-            currentBlock = blockchain.get(i);
-            previousBlock = blockchain.get(i - 1);
+        for (int i = 1; i < BLOCKCHAIN.size(); i++) {
+            currentBlock = BLOCKCHAIN.get(i);
+            previousBlock = BLOCKCHAIN.get(i - 1);
             // 比较注册Hash散列和计算哈希
             if (!currentBlock.hash.equals(currentBlock.calculateHash())) {
                 System.out.println("当前的Hash散列不相等");
@@ -90,7 +91,7 @@ public class BlockChain {
                 return false;
             }
             // 检查哈希是否已开采
-            if (!currentBlock.hash.substring(0, difficulty).equals(hashTarget)) {
+            if (!currentBlock.hash.substring(0, DIFFICULTY).equals(hashTarget)) {
                 System.out.println("当前块链还没有被开采");
                 return false;
             }
@@ -100,27 +101,8 @@ public class BlockChain {
     }
 
     private static String addBlock(Block block) {
-        String hash = block.mineBlock(difficulty);
-        blockchain.add(block);
+        String hash = block.mineBlock(DIFFICULTY);
+        BLOCKCHAIN.add(block);
         return hash;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("创建第1个块...");
-        addBlock(new Block("Hello 我是第一个块", "0"));
-
-        System.out.println("创建第2个块...");
-        addBlock(new Block("Hi 我是第二个块", blockchain.get(blockchain.size() - 1).hash));
-
-        System.out.println("创建第3个块...");
-        addBlock(new Block("Hey 我是第三个块", blockchain.get(blockchain.size() - 1).hash));
-
-        System.out.println("\n块链:" + blockchain);
-
-        System.out.println("\n块链是否有效: isChainValid() = " + isChainValid());
-
-        String blockchainJson = JsonUtil.jsonObj2Str(blockchain);
-        System.out.println("\n块链内容: ");
-        System.out.println(blockchainJson);
     }
 }

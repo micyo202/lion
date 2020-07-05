@@ -46,7 +46,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().print(JsonUtil.jsonObj2Str(Result.failure(ResponseCode.FORBIDDEN, "权限不足无法访问")));
+        response.getWriter().print(JsonUtil.obj2Json(Result.failure(ResponseCode.FORBIDDEN, "权限不足无法访问")));
     }
 
 }

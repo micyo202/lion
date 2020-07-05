@@ -16,13 +16,11 @@
 package com.lion.common.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lion.common.base.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Schedule
@@ -35,13 +33,9 @@ import java.util.Date;
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "定时任务实体类")
-public class Schedule implements Serializable {
+public class Schedule extends BaseEntity<Schedule> {
 
-    /**
-     * 主键
-     */
-    @ApiModelProperty(value = "主键")
-    private Integer id;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 任务名称
@@ -72,22 +66,4 @@ public class Schedule implements Serializable {
      */
     @ApiModelProperty(value = "执行方法")
     private String method;
-
-    /**
-     * 是否有效: true 有效/未删除, false 无效/已删除
-     */
-    @ApiModelProperty(value = "是否有效: true 有效/未删除, false 无效/已删除")
-    private Boolean valid;
-
-    /**
-     * 创建时间
-     */
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
 }

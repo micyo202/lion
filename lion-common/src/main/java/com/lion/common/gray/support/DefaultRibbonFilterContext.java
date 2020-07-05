@@ -37,7 +37,7 @@ public class DefaultRibbonFilterContext implements RibbonFilterContext {
     @Override
     public RibbonFilterContext add(String key, String value) {
         // 若version版本号为空，则赋值默认版本号
-        if (key.equals(GrayConstant.VERSION) && StringUtils.isEmpty(value)) {
+        if (key.equals(GrayConstant.VERSION) && StringUtils.isBlank(value)) {
             value = GrayConstant.DEFAULT_VERSION;
         }
         attributes.put(key, value);

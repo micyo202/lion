@@ -106,8 +106,10 @@ public class Result<T> implements Serializable {
      */
     public static <T> Result<T> status(ResponseStatus responseStatus) {
         Result<T> result = new Result<>();
-        result.setCode(responseStatus.code());
-        result.setMsg(responseStatus.msg());
+        result
+                .setCode(responseStatus.code())
+                .setMsg(responseStatus.msg())
+                .setTimestamp(DateUtil.getTimestamp());
         return result;
     }
 
@@ -135,7 +137,8 @@ public class Result<T> implements Serializable {
      */
     public static <T> Result<T> success(T data, Map<String, Object> extra) {
         Result<T> result = new Result<>();
-        result.setCode(ResponseCode.SUCCESS)
+        result
+                .setCode(ResponseCode.SUCCESS)
                 .setMsg(ResponseStatus.SUCCESS.msg())
                 .setTimestamp(DateUtil.getTimestamp())
                 .setData(data)
@@ -167,7 +170,8 @@ public class Result<T> implements Serializable {
      */
     public static <T> Result<T> failure(int code, String msg) {
         Result<T> result = new Result<>();
-        result.setCode(code)
+        result
+                .setCode(code)
                 .setMsg(msg)
                 .setTimestamp(DateUtil.getTimestamp());
         return result;
