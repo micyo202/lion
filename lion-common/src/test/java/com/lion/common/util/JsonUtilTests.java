@@ -31,20 +31,20 @@ public class JsonUtilTests {
 
     @Test
     public void testJson() {
-        Map<String, Object> jsonObj = new HashMap<>();
-        jsonObj.put("id", "1001");
-        jsonObj.put("name", "张三");
-        jsonObj.put("sex", true);
-        jsonObj.put("age", 20);
+        Map<String, Object> object = new HashMap<>();
+        object.put("id", "1001");
+        object.put("name", "张三");
+        object.put("sex", true);
+        object.put("age", 20);
 
-        String jsonObj2Str = JsonUtil.jsonObj2Str(jsonObj);
-        System.out.println("jsonObj2Str: " + jsonObj2Str);
+        String obj2Json = JsonUtil.obj2Json(object);
+        System.out.println("obj2Json: " + obj2Json);
 
-        String jsonStr = "{\"sex\":true,\"name\":\"张三\",\"id\":\"1001\",\"age\":20}";
-        Map jsonStr2Obj = JsonUtil.jsonStr2Obj(jsonStr, Map.class);
-        System.out.println("jsonStr2Obj: " + jsonStr2Obj);
+        String json = "{\"sex\":true,\"name\":\"张三\",\"id\":\"1001\",\"age\":20}";
+        Map<String, Object> json2Obj = JsonUtil.json2Obj(json, Map.class);
+        System.out.println("json2Obj: " + json2Obj);
 
-        String getJsonStr = JsonUtil.getJsonStr(jsonObj2Str, "name");
-        System.out.println("getJsonStr: " + getJsonStr);
+        String getJsonValueByKey = JsonUtil.getJsonValueByKey(obj2Json, "name");
+        System.out.println("getJsonValueByKey: " + getJsonValueByKey);
     }
 }
