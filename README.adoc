@@ -2,6 +2,7 @@
 
 image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png[align="center"]
 
+//image:https://github.com/micyo202/lion/workflows/Java%20CI%20with%20Gradle/badge.svg["Lion CI with Gradle", link="https://github.com/micyo202/lion/runs/775396303?check_suite_focus=true"]
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
 image:https://img.shields.io/badge/Version-2.0.6-blue.svg["Version", link="https://github.com/micyo202/lion/releases"]
@@ -84,7 +85,7 @@ _说明： `√` 表示必要服务， `x` 表示非必要服务_
 ^| √
 
 | Sentinel 1.7.1
-| https://github.com/alibaba/sentinel
+| https://sentinelguard.io
 ^| √
 
 | Seata 1.0.0
