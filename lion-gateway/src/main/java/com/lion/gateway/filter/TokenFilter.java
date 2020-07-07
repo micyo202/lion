@@ -69,16 +69,16 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
         // 从请求头信息获取 access_token 进行检查
         String accessToken = exchange.getRequest().getHeaders().getFirst(SecurityConstant.ACCESS_TOKEN);
-        if (StringUtils.isEmpty(accessToken)) {
+        if (StringUtils.isBlank(accessToken)) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 不能为空"));
+            String jsonString = JsonUtil.obj2Json(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 不能为空"));
             return getVoidMono(response, jsonString);
         }
 
         // 判断 access_token 是否 Bearer  开头
         if (!accessToken.startsWith(SecurityConstant.BEARER_PREFIX)) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 格式不正确"));
+            String jsonString = JsonUtil.obj2Json(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 格式不正确"));
             return getVoidMono(response, jsonString);
         }
 
@@ -89,14 +89,14 @@ public class TokenFilter implements GlobalFilter, Ordered {
         final Boolean hasKey = stringRedisTemplate.hasKey(formatKey);
         if (!hasKey) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Access Token"));
+            String jsonString = JsonUtil.obj2Json(Result.failure(ResponseCode.UNAUTHORIZED, "无效的 Access Token"));
             return getVoidMono(response, jsonString);
         }
 
         final Long expire = stringRedisTemplate.getExpire(formatKey);
         if (0 >= expire) {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            String jsonString = JsonUtil.jsonObj2Str(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 已过期"));
+            String jsonString = JsonUtil.obj2Json(Result.failure(ResponseCode.UNAUTHORIZED, "Access Token 已过期"));
             return getVoidMono(response, jsonString);
         }
 
