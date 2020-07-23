@@ -28,6 +28,21 @@
 #            - Path=/auth/**
 #          filters:
 #            - StripPrefix=1
+#            - PreserveHostHeader
+#
+#        - id: lion-auth-login
+#          uri: lb://lion-auth
+#          predicates:
+#            - Path=/login
+#          filters:
+#            - PreserveHostHeader
+#
+#        - id: lion-auth-authorize
+#          uri: lb://lion-auth
+#          predicates:
+#            - Path=/oauth/authorize
+#          filters:
+#            - PreserveHostHeader
 #
 #        - id: lion-demo-provider
 #          uri: lb://lion-demo-provider
@@ -35,6 +50,7 @@
 #            - Path=/demo/provider/**
 #          filters:
 #            - StripPrefix=2
+#            - PreserveHostHeader
 #
 #        - id: lion-demo-consumer
 #          uri: lb://lion-demo-consumer
@@ -42,6 +58,7 @@
 #            - Path=/demo/consumer/**
 #          filters:
 #            - StripPrefix=2
+#            - PreserveHostHeader
 #
 #    sentinel:
 #      transport:
