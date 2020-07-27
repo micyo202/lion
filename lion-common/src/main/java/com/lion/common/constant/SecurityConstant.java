@@ -25,6 +25,11 @@ package com.lion.common.constant;
 public interface SecurityConstant {
 
     /**
+     * 登录url
+     */
+    String LOGIN_URL = "/login";
+
+    /**
      * 认证url
      */
     String OAUTH_URL = "/oauth/";

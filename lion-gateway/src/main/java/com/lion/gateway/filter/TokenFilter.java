@@ -59,9 +59,9 @@ public class TokenFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        // 获取当前请求url，若为包含 /oauth/ 则不检查 access_token
+        // 获取当前请求url，若为包含 /login 或 /oauth/ 则不检查 access_token
         String requestUrl = exchange.getRequest().getURI().toString();
-        if (requestUrl.contains(SecurityConstant.OAUTH_URL)) {
+        if (requestUrl.contains(SecurityConstant.OAUTH_URL) || requestUrl.contains(SecurityConstant.LOGIN_URL)) {
             return chain.filter(exchange);
         }
 
