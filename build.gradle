@@ -55,7 +55,7 @@ subprojects {
         set('yamlVersion', "1.26")
         set('aspectjVersion', "1.9.5")
         set('redissonVersion', "3.12.4")
-        set('druidVersion', "1.1.21")
+        set('druidVersion', "1.1.23")
         set('mybatisPlusVersion', "3.3.1")
         set('velocityEngineVersion', "2.2")
         set('pagehelperSpringVersion', "1.2.13")
