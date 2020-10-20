@@ -30,6 +30,8 @@ configurations {
 dependencies {
     implementation project(':lion-common')
 
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
 
@@ -51,27 +53,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
-    implementation "com.alibaba.csp:sentinel-spring-cloud-gateway-adapter:${sentinelVersion}"
+
+    implementation 'com.alibaba.csp:sentinel-spring-cloud-gateway-adapter'
 }
 
 docker {
-    //如果url不指定的话
-    //Unix默认: url = unix:///var/run/docker.sock
-    //Windows默认: url = tcp://127.0.0.1:2375
     registryCredentials {
-        url = 'https://index.docker.io/v1/'
-        username = 'micyo202'
-        password = ''
-        email = 'micyo202@163.com'
+        url = "${dockerUrl}"
+        username = "${dockerUsername}"
+        password = "${dockerPassword}"
+        email = "${dockerEmail}"
     }
     springBootApplication {
-        baseImage = 'openjdk:8'
-        //baseImage = 'openjdk:11.0.6'
-        //baseImage = 'openjdk:13.0.2'
-        maintainer = 'Yanzheng (https://github.com/micyo202)'
+        baseImage = "${dockerBaseImage}"
+        maintainer = "${dockerMaintainer}"
         ports = [8400]
         images = ["micyo202/${project.name}:${project.version}"]
         jvmArgs = ['-Dspring.profiles.active=$env', '-Djava.security.egd=file:/dev/./urandom', '-Xmx512m']
-        mainClassName = 'com.lion.gateway.GatewayApplication'
+        mainClassName = "${project.mainClassName}"
     }
 }

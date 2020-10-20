@@ -20,49 +20,31 @@ configurations {
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2'
     implementation.exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-yaml'
-    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-actuator'
     testImplementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-test'
 }
 
 dependencies {
-    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+    implementation 'org.apache.commons:commons-lang3'
 
-    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation 'com.thoughtworks.xstream:xstream'
 
-    implementation "com.thoughtworks.xstream:xstream:${xstreamVersion}"
+    implementation 'org.apache.httpcomponents:httpclient'
 
-    compileOnly "org.slf4j:slf4j-api:${slf4jVersion}"
+    compileOnly 'javax.servlet:javax.servlet-api'
 
-    compileOnly "org.yaml:snakeyaml:${yamlVersion}"
+    compileOnly 'com.baomidou:mybatis-plus-boot-starter'
+    compileOnly 'com.github.pagehelper:pagehelper-spring-boot-starter'
 
-    compileOnly "javax.servlet:javax.servlet-api:${servletVersion}"
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.redisson:redisson'
 
-    implementation "org.apache.httpcomponents:httpclient:${httpClientVersion}"
-
-    compileOnly "org.springframework:spring-web:${springFrameworkVersion}"
-    compileOnly "org.springframework:spring-context:${springFrameworkVersion}"
-    compileOnly "org.springframework:spring-messaging:${springFrameworkVersion}"
-
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-oauth2'
     compileOnly 'org.springframework.cloud:spring-cloud-stream'
 
-    compileOnly "org.springframework.security.oauth:spring-security-oauth2:${springOauth2Version}"
-    compileOnly "org.springframework.security:spring-security-config:${springSecurityVersion}"
-
-    compileOnly "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
     compileOnly 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
-    compileOnly 'com.alibaba.cloud:spring-cloud-alibaba-sentinel'
-    compileOnly 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
-    compileOnly "io.github.openfeign:feign-core:${feignVersion}"
-    compileOnly "com.netflix.ribbon:ribbon-loadbalancer:${ribbonVersion}"
+    compileOnly 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+    compileOnly 'com.netflix.servo:servo-core'
 
-    compileOnly "org.springframework.data:spring-data-redis:${springBootVersion}"
-    implementation "org.redisson:redisson:${redissonVersion}"
-
-    compileOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
-
-    compileOnly "com.baomidou:mybatis-plus:${mybatisPlusVersion}"
-
-    compileOnly "com.github.pagehelper:pagehelper:${pagehelperVersion}"
-
-    compileOnly "io.springfox:springfox-swagger2:${swagger2Version}"
+    compileOnly 'com.github.xiaoymin:knife4j-spring-boot-starter'
 }

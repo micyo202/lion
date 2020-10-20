@@ -20,6 +20,5 @@ configurations {
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-undertow'
     implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-log4j2'
     implementation.exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-yaml'
-    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-actuator'
     testImplementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-test'
 }
