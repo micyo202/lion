@@ -145,7 +145,6 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
                 .switchIfEmpty(Mono.error(ex))
                 .flatMap((handler) -> handler.handle(newRequest))
                 .flatMap((response) -> write(exchange, response));
-        exceptionHandlerResult.remove();
         return mono;
     }
 
@@ -154,6 +153,7 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
      */
     protected Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
         Map<String, Object> result = exceptionHandlerResult.get();
+        exceptionHandlerResult.remove();
         return ServerResponse.status((HttpStatus) result.get("httpStatus"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(result.get("body")));
