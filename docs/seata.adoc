@@ -50,7 +50,7 @@ store {
   }
 }
 ----
-创建上述配置中的数据库及表
+创建数据库及表，脚本地址： https://github.com/seata/seata/blob/develop/script/server/db/mysql.sql
 [source,sql]
 ----
 -- the table to store GlobalSession data
