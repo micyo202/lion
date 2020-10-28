@@ -1,5 +1,7 @@
 = Lion
 
+image:https://api.codacy.com/project/badge/Grade/d5e76ecd5c324094a9781bd6c668142d[link="https://app.codacy.com/gh/micyo202/lion?utm_source=github.com&utm_medium=referral&utm_content=micyo202/lion&utm_campaign=Badge_Grade"]
+
 image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.png[align="center"]
 
 //image:https://github.com/micyo202/lion/workflows/Java%20CI%20with%20Gradle/badge.svg["Lion CI with Gradle", link="https://github.com/micyo202/lion/runs/775396303?check_suite_focus=true"]
