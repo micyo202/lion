@@ -16,7 +16,6 @@
 package com.lion.auth.entity;
 
 import com.lion.common.base.entity.BaseEntity;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDate;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
