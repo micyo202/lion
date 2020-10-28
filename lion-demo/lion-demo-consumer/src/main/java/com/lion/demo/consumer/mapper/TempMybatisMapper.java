@@ -17,9 +17,6 @@ package com.lion.demo.consumer.mapper;
 
 import com.lion.demo.consumer.entity.TempMybatis;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

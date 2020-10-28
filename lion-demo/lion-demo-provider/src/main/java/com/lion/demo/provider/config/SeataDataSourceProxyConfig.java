@@ -16,6 +16,7 @@
 package com.lion.demo.provider.config;
 
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.lion.common.exception.LionException;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +53,7 @@ public class SeataDataSourceProxyConfig {
         try {
             factory = bean.getObject();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new LionException(e);
         }
         return factory;
     }

@@ -51,8 +51,8 @@ public class SentinelConfig {
     private static final int COUNT = 10;
     private static final int INTERVAL_SEC = 1;
 
-    private final List<ViewResolver> viewResolvers;
-    private final ServerCodecConfigurer serverCodecConfigurer;
+    final List<ViewResolver> viewResolvers;
+    final ServerCodecConfigurer serverCodecConfigurer;
 
     public SentinelConfig(ObjectProvider<List<ViewResolver>> viewResolversProvider, ServerCodecConfigurer serverCodecConfigurer) {
         this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
