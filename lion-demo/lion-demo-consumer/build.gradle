@@ -40,9 +40,7 @@ dependencies {
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
 
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
-    implementation 'org.springframework.cloud:spring-cloud-stream'
-    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+    implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 
     // 使用 Skywalking 时，依赖 spring-cloud-starter-sleuth 即可
     //implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
