@@ -4,6 +4,7 @@ image::https://upload-images.jianshu.io/upload_images/8015461-16e4831f4de664c7.p
 
 //image:https://github.com/micyo202/lion/workflows/Java%20CI%20with%20Gradle/badge.svg["Lion CI with Gradle", link="https://github.com/micyo202/lion/runs/775396303?check_suite_focus=true"]
 image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link="https://travis-ci.org/micyo202/lion"]
+image:https://badges.gitter.im/micyo202/lion.svg["Gitter", link="https://gitter.im/micyo202/lion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"]
 image:https://app.codacy.com/project/badge/Grade/bcb58d648e0e4e15a90fade3f96278ed["Codacy Badge", link="https://www.codacy.com/gh/micyo202/lion/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=micyo202/lion&amp;utm_campaign=Badge_Grade"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
 image:https://img.shields.io/badge/Version-2.0.7-DAA520.svg["Version", link="https://github.com/micyo202/lion/releases"]
@@ -17,9 +18,9 @@ image:https://img.shields.io/github/forks/micyo202/lion.svg?style=social&label=F
 
 ---
 
-*lion* 是基于 *Spring Cloud* 体系实现的一套分布式微服务架构，为了让中小型公司解决当下技术瓶颈，快速将现有应用服务架构拆分改造为分布式微服务架构，只需在本架构上进行相关业务开发即可，大大减少了分布式微服务架构的门槛，达到拿来就用，使架构师及开发人员不必过多的关注架构本身，只需专注于业务开发
+*lion* 是基于 *Spring Cloud* 体系实现的一套支持云原生的分布式微服务架构，为了让中小型公司解决当下技术瓶颈，快速将现有应用服务架构拆分改造为分布式微服务架构，进入 *All-in-Cloud* 时代，只需在本架构上进行相关业务开发即可，大大减少了分布式微服务架构的门槛，使架构师及开发人员不必过多的关注架构本身，只需专注于业务开发
 
-项目采用 *Gradle* 构建，基于 *Java 8/11/13、SpringBoot 2.2.6.RELEASE、SpringCloud Hoxton.SR2、Spring Cloud Alibaba 2.2.0.RELEASE、MyBatis Plus 3.3.1* 等核心技术体系实现的一套分布式微服务架构，包含 *OAuth2/JWT* 权限认证、支持 *Docker* 容器化部署、镜像交付、限流、灰度等
+项目采用 *Gradle* 构建，基于 *Java 8/11/13、SpringBoot 2.2.6.RELEASE、SpringCloud Hoxton.SR2、Spring Cloud Alibaba 2.2.0.RELEASE、MyBatis Plus 3.3.1* 等核心技术体系实现的一套支持云原生的分布式微服务架构，提供 *OAuth2/JWT* 权限认证、分布式事务、灰度、限流、熔断降级、分布式锁、链路追踪、MQ等功能，支持 *Docker* 容器化部署、镜像交付、K8S容器编排
 
 使用 *Nacos* 作为服务注册/发现、配置中心
 
