@@ -37,7 +37,7 @@ public class GeneratorUtil {
      * 线程同步锁生成seqNo
      */
     public synchronized static String getSeqNo() {
-        String applicationName = YamlUtil.getBootstrapValue("spring.application.name");
+        String applicationName = YamlUtil.getBootstrapValue("spring.application.name").toString();
         applicationName = StringUtils.isBlank(applicationName) ? "lion" : applicationName;
         int applicationNameHashCode = applicationName.hashCode() < 0 ? applicationName.hashCode() * -1 : applicationName.hashCode();
         increment = increment >= 9999 ? 1 : increment + 1;

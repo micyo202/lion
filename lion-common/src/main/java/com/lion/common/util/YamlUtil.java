@@ -42,7 +42,7 @@ public class YamlUtil {
      *
      * @param key 键
      */
-    public static String getBootstrapValue(String key) {
+    public static Object getBootstrapValue(String key) {
         return getValueByYaml(BOOTSTRAP_YML, key);
     }
 
@@ -51,7 +51,7 @@ public class YamlUtil {
      *
      * @param key 键
      */
-    public static String getApplicationValue(String key) {
+    public static Object getApplicationValue(String key) {
         return getValueByYaml(APPLICATION_YML, key);
     }
 
@@ -61,13 +61,13 @@ public class YamlUtil {
      * @param fileName yml文件名
      * @param key 键
      */
-    public static String getValueByYaml(String fileName, String key) {
+    public static Object getValueByYaml(String fileName, String key) {
 
         if (StringUtils.isAnyBlank(fileName, key)) {
             return null;
         }
 
-        String result = null;
+        Object result = null;
 
         InputStream inputStream = YamlUtil.class.getClassLoader().getResourceAsStream(fileName);
         if (null == inputStream) {
@@ -83,7 +83,7 @@ public class YamlUtil {
                 if (o instanceof Map) {
                     map = (Map<String, Object>) o;
                 } else {
-                    result = o.toString();
+                    result = o;
                 }
             }
         }
