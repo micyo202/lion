@@ -25,6 +25,7 @@ configurations {
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3'
+    implementation "org.apache.commons:commons-collections4"
 
     implementation 'com.thoughtworks.xstream:xstream'
 

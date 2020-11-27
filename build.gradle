@@ -66,6 +66,7 @@ allprojects {
 
         set('redissonVersion', "3.12.4")
         set('commonsLangVersion', "3.10")
+        set('commonsCollections4Version', "4.4")
         set('xstreamVersion', "1.4.12")
         set('httpclientVersion', "4.5.12")
         set('servletVersion', "4.0.1")
@@ -91,6 +92,7 @@ allprojects {
             dependency "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
             dependency "org.redisson:redisson:${redissonVersion}"
             dependency "org.apache.commons:commons-lang3:${commonsLangVersion}"
+            dependency "org.apache.commons:commons-collections4:${commonsCollections4Version}"
             dependency "com.thoughtworks.xstream:xstream:${xstreamVersion}"
             dependency "org.apache.httpcomponents:httpclient:${httpclientVersion}"
             dependency "javax.servlet:javax.servlet-api:${servletVersion}"

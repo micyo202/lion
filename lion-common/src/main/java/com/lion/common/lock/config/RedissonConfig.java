@@ -41,11 +41,20 @@ public class RedissonConfig {
     @Value("${spring.redis.password:}")
     private String password;
 
+    @Value("${spring.redis.timeout:3000}")
+    private int timeout;
+
+    @Value("${spring.redis.database:0}")
+    private int database;
+
     @Bean
     public RedissonClient redissonClient() {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
-        //.setTimeout(3000)
+        config.useSingleServer()
+                .setAddress("redis://" + host + ":" + port)
+                .setPassword(password)
+                .setTimeout(timeout)
+                .setDatabase(database);
         //.setConnectionPoolSize(10)
         //.setConnectionMinimumIdleSize(8)
         return Redisson.create(config);
