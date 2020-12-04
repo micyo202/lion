@@ -45,7 +45,7 @@ public class CustomOAuth2ExceptionSerializer extends StdSerializer<CustomOAuth2E
         gen.writeStringField("msg", value.getMessage());
         gen.writeNumberField("timestamp", LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
 
-        if (value.getAdditionalInformation() != null) {
+        if (null != value.getAdditionalInformation()) {
             for (Map.Entry<String, String> entry : value.getAdditionalInformation().entrySet()) {
                 String key = entry.getKey();
                 String add = entry.getValue();
