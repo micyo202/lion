@@ -53,9 +53,6 @@ public class UpmsManager {
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
-    //@Autowired
-    //private RedisTemplate redisTemplate;
-
     private static final String CACHE_KEY = "CACHE_UPMS";
 
     @ApiOperation("根据用户名获取用户对象信息")
@@ -66,12 +63,11 @@ public class UpmsManager {
         // redis 自定义代码方式缓存使用
         /*
         String redisKey = "upms_user_" + username;
-        ValueOperations<String, SysUser> operations = redisTemplate.opsForValue();
-        Boolean hasKey = redisTemplate.hasKey(redisKey);
+        boolean hasKey = RedisUtil.hasKey(redisKey);
         if (hasKey) {
-            SysUser user = operations.get(redisKey);
-            operations.set(redisKey, user, 1000 * 5, TimeUnit.MILLISECONDS);    // 设置缓存及有效时间
-            redisTemplate.delete(redisKey); // 删除缓存
+            SysUser user = RedisUtil.getValue(redisKey, SysUser.class);
+            RedisUtil.expire(redisKey, 300);    // 设置缓存及有效时间
+            RedisUtil.delete(redisKey); // 删除缓存
         }
         */
 
