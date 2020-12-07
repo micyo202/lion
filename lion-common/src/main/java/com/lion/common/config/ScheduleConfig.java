@@ -20,6 +20,7 @@ import com.lion.common.schedule.mapper.ScheduleMapper;
 import com.lion.common.util.DateUtil;
 import com.lion.common.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.Trigger;
@@ -62,7 +63,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
 
         final List<Schedule> scheduleList = scheduleMapper.getScheduleListByAppName(applicationName);
 
-        if (null != scheduleList && !scheduleList.isEmpty()) {
+        if (CollectionUtils.isNotEmpty(scheduleList)) {
             log.info("定时任务即将启动，预计启动任务数量[" + scheduleList.size() + "]，时间：" + DateUtil.getCurrentDateTime());
             for (Schedule schedule : scheduleList) {
                 // 判断任务是否有效

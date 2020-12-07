@@ -38,6 +38,21 @@ import java.util.Collections;
 @Configuration
 public class RestTemplateConfig {
 
+    /**
+     * 设置请求连接超时时间（毫秒）
+     */
+    private static final int CONNECTION_REQUEST_TIMEOUT = 30 * 1000;
+
+    /**
+     * 设置连接超时时间（毫秒）
+     */
+    private static final int CONNECT_TIMEOUT = 90 * 1000;
+
+    /**
+     * 设置读取超时时间（毫秒）
+     */
+    private static final int READ_TIMEOUT = 90 * 1000;
+
     @Bean
     @LoadBalanced
     @SentinelRestTemplate
@@ -52,9 +67,9 @@ public class RestTemplateConfig {
                 .build();
 
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectionRequestTimeout(30 * 1000);
-        factory.setConnectTimeout(90 * 1000);
-        factory.setReadTimeout(90 * 1000);
+        factory.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
+        factory.setConnectTimeout(CONNECT_TIMEOUT);
+        factory.setReadTimeout(READ_TIMEOUT);
         factory.setHttpClient(httpClient);
 
         RestTemplate restTemplate = new RestTemplate(factory);
