@@ -22,37 +22,39 @@ package com.lion.common.constant;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/17
  */
-public interface SecurityConstant {
+public final class SecurityConstant {
+
+    private SecurityConstant() {}
 
     /**
      * 登录url
      */
-    String LOGIN_URL = "/login";
+    public static final String LOGIN_URL = "/login";
 
     /**
      * 认证url
      */
-    String OAUTH_URL = "/oauth/";
+    public static final String OAUTH_URL = "/oauth/";
 
     /**
      * token 名称
      */
-    String ACCESS_TOKEN = "Authorization";
+    public static final String ACCESS_TOKEN = "Authorization";
 
     /**
      * bearer 前缀
      */
-    String BEARER_PREFIX = "Bearer ";
+    public static final String BEARER_PREFIX = "Bearer ";
 
     /**
      * access 前缀
      */
-    String ACCESS_PREFIX = "access:";
+    public static final String ACCESS_PREFIX = "access:";
 
     /**
      * 系统固定不进行认证，直接放行的URL，供WebSecurityConfig、ResourceServerConfig公用
      */
-    String[] PATTERN_URLS = {
+    public static final String[] PATTERN_URLS = {
             "/actuator/**",
             "/druid/**",
 

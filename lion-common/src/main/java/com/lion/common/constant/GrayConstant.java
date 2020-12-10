@@ -22,15 +22,17 @@ package com.lion.common.constant;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/3/20
  */
-public interface GrayConstant {
+public final class GrayConstant {
+
+    private GrayConstant() {}
 
     /**
      * 版本
      */
-    String VERSION = "version";
+    public static final String VERSION = "version";
 
     /**
      * 默认版本号
      */
-    String DEFAULT_VERSION = "v1";
+    public static final String DEFAULT_VERSION = "v1";
 }
