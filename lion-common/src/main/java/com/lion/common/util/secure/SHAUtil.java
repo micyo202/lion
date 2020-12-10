@@ -18,6 +18,7 @@ package com.lion.common.util.secure;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -30,6 +31,8 @@ import java.security.MessageDigest;
 @Slf4j
 public class SHAUtil {
 
+    private SHAUtil(){}
+
     /**
      * 加密、解密方式：SHA-1、SHA-224、SHA-256、SHA-384、SHA-512
      */
@@ -38,11 +41,6 @@ public class SHAUtil {
     private static final String SHA_256 = "SHA-256";
     private static final String SHA_384 = "SHA-384";
     private static final String SHA_512 = "SHA-512";
-
-    /**
-     * 字符编码
-     */
-    private static final String ENCODEING = "UTF-8";
 
     /**
      * SHA1 加密
@@ -107,7 +105,7 @@ public class SHAUtil {
         }
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-            messageDigest.update(text.getBytes(ENCODEING));
+            messageDigest.update(text.getBytes(StandardCharsets.UTF_8));
             byte[] bytes = messageDigest.digest();
             return bytes2Str(bytes);
         } catch (Exception e) {
@@ -123,16 +121,16 @@ public class SHAUtil {
      * @return 字符串
      */
     private static String bytes2Str(byte[] bytes) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         String str;
         for (int i = 0; i < bytes.length; i++) {
             str = Integer.toHexString(bytes[i] & 0xFF);
             if (str.length() == 1) {
                 // 1得到一位的进行补0操作
-                stringBuffer.append("0");
+                stringBuilder.append("0");
             }
-            stringBuffer.append(str);
+            stringBuilder.append(str);
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }

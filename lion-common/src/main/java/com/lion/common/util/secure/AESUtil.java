@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
@@ -33,15 +34,12 @@ import java.util.Base64;
 @Slf4j
 public class AESUtil {
 
+    private AESUtil() {}
+
     /**
      * 加密、解密方式
      */
     private static final String AES = "AES";
-
-    /**
-     * 字符编码
-     */
-    private static final String ENCODEING = "UTF-8";
 
     /**
      * 初始向量值，必须16位
@@ -80,7 +78,7 @@ public class AESUtil {
             return null;
         }
         try {
-            byte[] byteContent = text.getBytes(ENCODEING);
+            byte[] byteContent = text.getBytes(StandardCharsets.UTF_8);
             byte[] enCodeFormat = key.getBytes();
             // 注意，为了能与 iOS 统一这里的 key 不可以使用 KeyGenerator、SecureRandom、SecretKey 生成
             SecretKeySpec secretKeySpec = new SecretKeySpec(enCodeFormat, AES);
@@ -126,7 +124,7 @@ public class AESUtil {
             Cipher cipher = Cipher.getInstance(CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
             byte[] result = cipher.doFinal(encryptedBytes);
-            return new String(result, ENCODEING);
+            return new String(result, StandardCharsets.UTF_8);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

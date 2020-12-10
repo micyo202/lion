@@ -32,6 +32,8 @@ import java.util.Properties;
 @Slf4j
 public class PropertiesUtil {
 
+    private PropertiesUtil() {}
+
     /**
      * 获取指定 properties 文件内容
      * 
@@ -44,22 +46,16 @@ public class PropertiesUtil {
             return null;
         }
 
-        InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName);
-        Properties properties = new Properties();
-        String result = null;
-        try {
-            properties.load(inputStream);
-            result = properties.getProperty(key);
-        } catch (IOException e) {
-            log.error("获取 properties 配置文件内容失败", e);
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                log.error("输入流 inputStream 关闭失败", e);
+        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName)) {
+            if (null == inputStream) {
+                return null;
             }
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            return properties.getProperty(key);
+        } catch (IOException e) {
+            log.error("IO流处理失败", e);
         }
-
-        return result;
+        return null;
     }
 }

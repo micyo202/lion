@@ -28,6 +28,8 @@ import java.time.temporal.TemporalAdjusters;
  */
 public class DateUtil {
 
+    private DateUtil() {}
+
     /**
      * 自定义格式化
      */

@@ -21,6 +21,7 @@ import com.thoughtworks.xstream.mapper.MapperWrapper;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 /**
  * XmlUtil
@@ -31,14 +32,15 @@ import java.io.File;
  */
 public class XmlUtil {
 
-    private static final String ENCODING = "UTF-8";
+    private XmlUtil(){}
+
     private static final String XML_TAG = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
     /**
      * 单例方法
      */
     private static XStream getInstance() {
-        XStream xStream = new XStream(new DomDriver(ENCODING)) {
+        XStream xStream = new XStream(new DomDriver(StandardCharsets.UTF_8.name())) {
             /**
              * 忽略xml中多余字段
              */
@@ -93,8 +95,7 @@ public class XmlUtil {
         xStream.alias(rootElement, clazz);
         xStream.ignoreUnknownElements();
         Object object = xStream.fromXML(xml);
-        T cast = clazz.cast(object);
-        return cast;
+        return clazz.cast(object);
     }
 
     /**
@@ -120,8 +121,7 @@ public class XmlUtil {
         xStream.alias(rootElement, clazz);
         xStream.ignoreUnknownElements();
         Object object = xStream.fromXML(xml);
-        T cast = clazz.cast(object);
-        return cast;
+        return clazz.cast(object);
     }
 
     /**
@@ -130,8 +130,7 @@ public class XmlUtil {
      * @param object java对象
      */
     public static String obj2XmlWithTag(Object object) {
-        String xml = obj2XmlWithTag(object, object.getClass().getSimpleName());
-        return xml;
+        return obj2XmlWithTag(object, object.getClass().getSimpleName());
     }
 
     /**
@@ -140,8 +139,7 @@ public class XmlUtil {
      * @param object java对象
      */
     public static String obj2XmlWithTag(Object object, String rootElement) {
-        String xml = XML_TAG + "\n" + obj2Xml(object, rootElement);
-        return xml;
+        return XML_TAG + "\n" + obj2Xml(object, rootElement);
     }
 
     /**
@@ -163,7 +161,6 @@ public class XmlUtil {
         xStream.alias(rootElement, object.getClass());
         xStream.processAnnotations(object.getClass());
         xStream.ignoreUnknownElements();
-        String xml = xStream.toXML(object);
-        return xml;
+        return xStream.toXML(object);
     }
 }

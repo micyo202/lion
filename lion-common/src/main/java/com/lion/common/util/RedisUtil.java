@@ -39,6 +39,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisUtil {
 
+    private RedisUtil() {}
+
     /**
      * 获取 redisTemplate 模板
      */

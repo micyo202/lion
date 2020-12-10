@@ -27,6 +27,8 @@ import org.slf4j.MDC;
  */
 public class LogUtil {
 
+    private LogUtil() {}
+
     public static String getTraceId() {
         return getValueByKey(LogConstant.TRACE_ID);
     }

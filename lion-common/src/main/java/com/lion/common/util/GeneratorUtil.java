@@ -31,19 +31,20 @@ import java.util.Random;
  */
 public class GeneratorUtil {
 
+    private GeneratorUtil() {}
+
     private static int increment;
 
     /**
      * 线程同步锁生成seqNo
      */
-    public synchronized static String getSeqNo() {
-        String applicationName = YamlUtil.getBootstrapValue("spring.application.name").toString();
+    public static synchronized String getSeqNo() {
+        String applicationName = YmlUtil.getBootstrapValue("spring.application.name").toString();
         applicationName = StringUtils.isBlank(applicationName) ? "lion" : applicationName;
         int applicationNameHashCode = applicationName.hashCode() < 0 ? applicationName.hashCode() * -1 : applicationName.hashCode();
         increment = increment >= 9999 ? 1 : increment + 1;
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        String uuid = String.format("%s%s%04d", applicationNameHashCode, currentDateTime, increment);
-        return uuid;
+        return String.format("%s%s%04d", applicationNameHashCode, currentDateTime, increment);
     }
 
     /**

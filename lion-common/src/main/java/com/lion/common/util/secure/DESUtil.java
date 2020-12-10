@@ -22,6 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -35,20 +36,17 @@ import java.util.Base64;
 @Slf4j
 public class DESUtil {
 
+    private DESUtil() {}
+
     /**
      * 加密解密方式
      */
-    private final static String DES = "DES";
-
-    /**
-     * 字符编码
-     */
-    private final static String ENCODEING = "UTF-8";
+    private static final String DES = "DES";
 
     /**
      * 秘钥
      */
-    private final static String DEFAULT_KEY = "https://github.com/micyo202";
+    private static final String DEFAULT_KEY = "https://github.com/micyo202";
 
     /**
      * DES 使用默认秘钥加密
@@ -75,7 +73,7 @@ public class DESUtil {
             // 生成一个可信任的随机数源
             SecureRandom secureRandom = new SecureRandom();
             // 从原始密钥数据创建DESKeySpec对象
-            DESKeySpec keySpec = new DESKeySpec(key.getBytes(ENCODEING));
+            DESKeySpec keySpec = new DESKeySpec(key.getBytes(StandardCharsets.UTF_8));
             // 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
             SecretKey securekey = keyFactory.generateSecret(keySpec);
@@ -83,7 +81,7 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.ENCRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(text.getBytes(ENCODEING));
+            byte[] bytes = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
             return Base64.getEncoder().encodeToString(bytes);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -118,7 +116,7 @@ public class DESUtil {
             // 生成一个可信任的随机数源
             SecureRandom secureRandom = new SecureRandom();
             // 从原始密钥数据创建DESKeySpec对象
-            DESKeySpec keySpec = new DESKeySpec(key.getBytes(ENCODEING));
+            DESKeySpec keySpec = new DESKeySpec(key.getBytes(StandardCharsets.UTF_8));
             // 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
             SecretKey securekey = keyFactory.generateSecret(keySpec);
@@ -126,8 +124,8 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.DECRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(ciphertext.getBytes(ENCODEING)));
-            return new String(bytes, ENCODEING);
+            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(ciphertext.getBytes(StandardCharsets.UTF_8)));
+            return new String(bytes, StandardCharsets.UTF_8);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

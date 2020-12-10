@@ -76,7 +76,7 @@ public class SpringUtil implements ApplicationContextAware {
     }
 
     /**
-     * 通过name及clazz返回指定的bean
+     * 通过name及clazz获取bean
      *
      * @param name  名称
      * @param clazz 类型

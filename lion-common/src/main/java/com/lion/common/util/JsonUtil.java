@@ -34,6 +34,8 @@ import java.io.IOException;
 @Slf4j
 public class JsonUtil {
 
+    private JsonUtil() {}
+
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     /**
