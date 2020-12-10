@@ -15,6 +15,7 @@
  */
 package com.lion.common.amqp;
 
+import com.lion.common.constant.AmqpConstant;
 import com.lion.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -35,7 +36,7 @@ public class AmqpReceiver {
      * 接收消息
      * @param result 消息对象
      */
-    @StreamListener(AmqpChannel.LION_INPUT)
+    @StreamListener(AmqpConstant.LION_INPUT)
     public void receive(Result result) {
         log.info("AMQP -> 接收到消息：" + result);
     }

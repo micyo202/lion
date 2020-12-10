@@ -15,6 +15,7 @@
  */
 package com.lion.common.amqp;
 
+import com.lion.common.constant.AmqpConstant;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
@@ -29,18 +30,15 @@ import org.springframework.messaging.SubscribableChannel;
  */
 public interface AmqpChannel {
 
-    String LION_INPUT = "lion-input";
-    String LION_OUTPUT = "lion-output";
-
     /**
      * 接收消息
      */
-    @Input(LION_INPUT)
+    @Input(AmqpConstant.LION_INPUT)
     SubscribableChannel lionInput();
 
     /**
      * 发送消息
      */
-    @Output(LION_OUTPUT)
+    @Output(AmqpConstant.LION_OUTPUT)
     MessageChannel lionOutput();
 }
