@@ -17,6 +17,7 @@ package com.lion.common.blockchain;
 
 import com.lion.common.util.DateUtil;
 import com.lion.common.util.secure.SHAUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Block
@@ -25,6 +26,7 @@ import com.lion.common.util.secure.SHAUtil;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/04/08
  */
+@Slf4j
 public class Block {
 
     public String hash;
@@ -52,11 +54,10 @@ public class Block {
      * 使用 sha256 算法让一个输入转变成256位的hash值
      */
     public String calculateHash() {
-        String calculatedhash = SHAUtil.encrypt256(previousHash +
-                Long.toString(timestamp) +
-                Integer.toString(nonce) +
+        return SHAUtil.encrypt256(previousHash +
+                timestamp +
+                nonce +
                 data);
-        return calculatedhash;
     }
 
     /**
@@ -69,7 +70,7 @@ public class Block {
             nonce++;
             hash = calculateHash();
         }
-        System.out.println("Block Mined: " + hash);
+        log.info("Block Mined: " + hash);
         return hash;
     }
 

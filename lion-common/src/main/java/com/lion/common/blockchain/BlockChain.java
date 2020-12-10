@@ -16,6 +16,8 @@
 package com.lion.common.blockchain;
 
 import com.lion.common.util.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +30,12 @@ import java.util.stream.Collectors;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/04/08
  */
+@Slf4j
 public class BlockChain {
 
-    private static final List<Block> BLOCKCHAIN = new ArrayList<>();
+    private BlockChain() {}
+
+    private static final List<Block> BLOCK_CHAIN = new ArrayList<>();
 
     private static final int DIFFICULTY = 5;
 
@@ -39,10 +44,10 @@ public class BlockChain {
      */
     public static String minedBlockChain(String data) {
         String hash;
-        if (BLOCKCHAIN.isEmpty()) {
+        if (BLOCK_CHAIN.isEmpty()) {
             hash = addBlock(new Block(data, "0"));
         } else {
-            hash = addBlock(new Block(data, BLOCKCHAIN.get(BLOCKCHAIN.size() - 1).hash));
+            hash = addBlock(new Block(data, BLOCK_CHAIN.get(BLOCK_CHAIN.size() - 1).hash));
         }
         return hash;
     }
@@ -51,17 +56,15 @@ public class BlockChain {
      * 解析块链
      */
     public static String decryptBlockchain(String blockHash) {
-        if ("all".equals(blockHash)) {
-            String blockchainJson = JsonUtil.obj2Json(BLOCKCHAIN);
-            return blockchainJson;
+        if ("ALL".equalsIgnoreCase(blockHash)) {
+            return JsonUtil.obj2Json(BLOCK_CHAIN);
         } else {
-            List<Block> blockList = BLOCKCHAIN
+            List<Block> blockList = BLOCK_CHAIN
                     .parallelStream()
                     .filter(b -> b.hash.equals(blockHash))
                     .collect(Collectors.toList());
-            if (null != blockList && !blockList.isEmpty()) {
-                String blockJson = JsonUtil.obj2Json(blockList);
-                return blockJson;
+            if (CollectionUtils.isNotEmpty(blockList)) {
+                return JsonUtil.obj2Json(blockList);
             } else {
                 return null;
             }
@@ -77,22 +80,22 @@ public class BlockChain {
         String hashTarget = new String(new char[DIFFICULTY]).replace('\0', '0');
 
         // 循环通过区块链来检查散列
-        for (int i = 1; i < BLOCKCHAIN.size(); i++) {
-            currentBlock = BLOCKCHAIN.get(i);
-            previousBlock = BLOCKCHAIN.get(i - 1);
+        for (int i = 1; i < BLOCK_CHAIN.size(); i++) {
+            currentBlock = BLOCK_CHAIN.get(i);
+            previousBlock = BLOCK_CHAIN.get(i - 1);
             // 比较注册Hash散列和计算哈希
             if (!currentBlock.hash.equals(currentBlock.calculateHash())) {
-                System.out.println("当前的Hash散列不相等");
+                log.warn("当前的Hash散列不相等");
                 return false;
             }
             // 比较以前的Hash散列和注册的以前的Hash散列
             if (!previousBlock.hash.equals(currentBlock.previousHash)) {
-                System.out.println("以前的Hash散列不相等");
+                log.warn("以前的Hash散列不相等");
                 return false;
             }
             // 检查哈希是否已开采
             if (!currentBlock.hash.substring(0, DIFFICULTY).equals(hashTarget)) {
-                System.out.println("当前块链还没有被开采");
+                log.warn("当前块链还没有被开采");
                 return false;
             }
 
@@ -102,7 +105,7 @@ public class BlockChain {
 
     private static String addBlock(Block block) {
         String hash = block.mineBlock(DIFFICULTY);
-        BLOCKCHAIN.add(block);
+        BLOCK_CHAIN.add(block);
         return hash;
     }
 }
