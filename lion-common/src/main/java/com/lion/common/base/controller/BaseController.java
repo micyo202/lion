@@ -78,18 +78,33 @@ public abstract class BaseController extends ApplicationObjectSupport {
     }
 
     /**
+     * 根据类型获取bean对象
+     *
+     * @param clazz 类型
+     */
+    protected <T> T getBean(Class<T> clazz) {
+        return this.getApplicationContext().getBean(clazz);
+    }
+
+    /**
+     * 根据名称、类型获取bean对象
+     *
+     * @param name  名称
+     * @param clazz 类型
+     */
+    protected <T> T getBean(String name, Class<T> clazz) {
+        return this.getApplicationContext().getBean(name, clazz);
+    }
+
+    /**
      * 是否Ajax请求
      * @param request 请求对象
      */
     protected boolean isAjaxRequest(HttpServletRequest request) {
-        boolean isAjax = request.getHeader("Accept").contains("application/json")
+        return request.getHeader("Accept").contains("application/json")
                 || (request.getHeader("X-Requested-With") != null
                 && request.getHeader("X-Requested-With").contains("XMLHttpRequest"))
                 || "XMLHttpRequest".equalsIgnoreCase(request.getParameter("X_REQUESTED_WITH"));
-        if (isAjax) {
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -191,7 +206,7 @@ public abstract class BaseController extends ApplicationObjectSupport {
         }
 
         // 获取文件名称（上传的时间戳）
-        long filePrefix = Long.valueOf(fileName.substring(0, fileName.lastIndexOf(".")));
+        long filePrefix = Long.parseLong(fileName.substring(0, fileName.lastIndexOf(".")));
         String uploadDate = DateUtil.formatLocalDateTime(DateUtil.timestampToLocalDateTime(filePrefix), "yyyy/MM/dd");
 
         //设置文件路径
@@ -242,7 +257,6 @@ public abstract class BaseController extends ApplicationObjectSupport {
                     }
                 }
             }
-
         }
 
         return false;

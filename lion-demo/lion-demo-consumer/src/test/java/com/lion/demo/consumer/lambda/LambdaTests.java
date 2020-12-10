@@ -28,10 +28,10 @@ import java.util.List;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/03/29
  */
-public class LambdaTests {
+class LambdaTests {
 
     @Test
-    public void test() {
+    void test() {
         // 使用 stream、parallelStream 对集合进行操作
         List<String> strings = Arrays.asList("hello tom", "hello jerry", "hello tom", "hello tom", "hello world", "hello jerry");
         List<Integer> integers = Arrays.asList(6, 3, 2, 4, 5, 9, 8, 1, 7);

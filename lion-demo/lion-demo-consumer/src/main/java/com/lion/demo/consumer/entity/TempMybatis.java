@@ -15,8 +15,8 @@
  */
 package com.lion.demo.consumer.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lion.common.base.entity.BaseEntity;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,6 +37,7 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="TempMybatis对象", description="MyBatis示例表")
 public class TempMybatis extends BaseEntity<TempMybatis> {
 

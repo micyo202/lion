@@ -47,7 +47,7 @@ public class TempProductController extends BaseController {
 
     @ApiOperation(value = "扣减产品库存", notes = "当库存不足时，扣减失败，回滚")
     @RequestMapping(value = "/deduct", method = {RequestMethod.GET, RequestMethod.POST})
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Result<String> deduct(String productCode, int count) {
 
         QueryWrapper<TempProduct> wrapper = new QueryWrapper<>();

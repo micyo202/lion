@@ -26,6 +26,8 @@ import com.lion.common.result.Result;
  */
 public class FallbackHandler {
 
+    private FallbackHandler() {}
+
     public static Result sentinelFallback() {
         return Result.failure(500, "服务熔断降级（Sentinel is fallback...）");
     }

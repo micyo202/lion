@@ -104,8 +104,7 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         if (code == ResponseCode.UNAUTHORIZED || (e instanceof InsufficientScopeException)) {
             headers.set("WWW-Authenticate", String.format("%s %s", OAuth2AccessToken.BEARER_TYPE, e.getSummary()));
         }
-        ResponseEntity<CustomOAuth2Exception> response = new ResponseEntity(e, headers, HttpStatus.valueOf(code));
-        return response;
+        return new ResponseEntity(e, headers, HttpStatus.valueOf(code));
     }
 
 }

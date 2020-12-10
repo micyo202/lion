@@ -39,7 +39,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  */
 //@SpringBootTest(classes = ConsumerDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@AutoConfigureMockMvc
-public class ConsumerDemoApplicationTests {
+class ConsumerDemoApplicationTests {
 
     @LocalServerPort
     private int port;
@@ -52,7 +52,7 @@ public class ConsumerDemoApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void restTestInit() {
+    void restTestInit() {
         String url = getUrl();
         ResponseEntity<Result> response = this.restTemplate.getForEntity(
                 url + "/init", Result.class);
@@ -63,7 +63,7 @@ public class ConsumerDemoApplicationTests {
     private MockMvc mockMvc;
 
     @Test
-    public void mockTestInit() throws Exception {
+    void mockTestInit() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/init")
                         .accept(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestFeignHi() throws Exception {
+    void mockTestFeignHi() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/feign/hi")
                         .param("name", "lion")
@@ -88,7 +88,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestRibbonHi() throws Exception {
+    void mockTestRibbonHi() throws Exception {
         MvcResult mvcResultGet = mockMvc.perform(
                 MockMvcRequestBuilders.get("/ribbon/hi")
                         .param("name", "lion")
@@ -111,7 +111,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestSentinelBlock() throws Exception {
+    void mockTestSentinelBlock() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/sentinel/block")
                         .accept(MediaType.APPLICATION_JSON)
@@ -123,7 +123,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestSentinelFallback() throws Exception {
+    void mockTestSentinelFallback() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/sentinel/fallback")
                         .accept(MediaType.APPLICATION_JSON)
@@ -135,7 +135,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestLock() throws Exception {
+    void mockTestLock() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/lock")
                         .accept(MediaType.APPLICATION_JSON)
@@ -147,7 +147,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestAsync() throws Exception {
+    void mockTestAsync() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/async")
                         .accept(MediaType.APPLICATION_JSON)
@@ -159,7 +159,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestAMQP() throws Exception {
+    void mockTestAMQP() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/amqp")
                         .accept(MediaType.APPLICATION_JSON)
@@ -171,7 +171,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestBlockChainMined() throws Exception {
+    void mockTestBlockChainMined() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/blockchain/mined")
                         .param("data", "lion")
@@ -184,7 +184,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestBlockChainDecrypt() throws Exception {
+    void mockTestBlockChainDecrypt() throws Exception {
         String blockHash = "a0395b258720152e33155253297b182e";
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/blockchain/decrypt/" + blockHash)
@@ -197,7 +197,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempMybatisSave() throws Exception {
+    void mockTestTempMybatisSave() throws Exception {
         String num = "3";
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/temp/mybatis/save/" + num)
@@ -210,7 +210,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempMybatisCustomSql() throws Exception {
+    void mockTestTempMybatisCustomSql() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/temp/mybatis/custom/sql")
                         .accept(MediaType.APPLICATION_JSON)
@@ -222,7 +222,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempMybatisPage() throws Exception {
+    void mockTestTempMybatisPage() throws Exception {
         String version = "v1";
         String pageNum = "1";
         String pageSize = "3";
@@ -238,7 +238,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempOrderCommit() throws Exception {
+    void mockTestTempOrderCommit() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/temp/order/commit")
                         .accept(MediaType.APPLICATION_JSON)
@@ -250,7 +250,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempOrderRollback() throws Exception {
+    void mockTestTempOrderRollback() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/temp/order/rollback")
                         .accept(MediaType.APPLICATION_JSON)
@@ -262,7 +262,7 @@ public class ConsumerDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempOrderException() throws Exception {
+    void mockTestTempOrderException() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.post("/temp/order/exception")
                         .accept(MediaType.APPLICATION_JSON)

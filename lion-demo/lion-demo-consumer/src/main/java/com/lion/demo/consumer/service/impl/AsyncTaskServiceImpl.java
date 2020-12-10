@@ -45,7 +45,9 @@ public class AsyncTaskServiceImpl implements AsyncTaskService {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                throw new LionException("线程sleep异常" + e.getMessage());
+                //throw new LionException("线程sleep异常" + e.getMessage());
+                log.error("线程sleep异常", e);
+                Thread.currentThread().interrupt();
             }
         }
 

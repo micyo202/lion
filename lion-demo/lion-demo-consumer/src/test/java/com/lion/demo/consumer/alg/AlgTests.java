@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/03/29
  */
-public class AlgTests {
+class AlgTests {
 
     @Test
-    public void test() {
+    void test() {
         int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int value = binary(a, 9);
         System.out.println(value);

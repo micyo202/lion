@@ -15,6 +15,7 @@
  */
 package com.lion.auth.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lion.common.base.entity.BaseEntity;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -36,6 +37,7 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="SysMenu对象", description="菜单表")
 public class SysMenu extends BaseEntity<SysMenu> {
 

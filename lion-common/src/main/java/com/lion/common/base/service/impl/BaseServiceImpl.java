@@ -18,9 +18,11 @@ package com.lion.common.base.service.impl;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import com.lion.common.base.service.BaseService;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,16 +62,14 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public PageInfo<T> page(int pageNum, int pageSize, String orderBy) {
-        if (null == orderBy) {
-            PageHelper.startPage(pageNum, pageSize);
+        if (StringUtils.isBlank(orderBy)) {
+            PageMethod.startPage(pageNum, pageSize);
         } else {
-            PageHelper.startPage(pageNum, pageSize, orderBy);
+            PageMethod.startPage(pageNum, pageSize, orderBy);
         }
 
         List<T> list = list();
-        PageInfo<T> pageInfo = new PageInfo<>(list);
-
-        return pageInfo;
+        return new PageInfo<>(list);
     }
 
     /**
@@ -96,16 +96,15 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public PageInfo<T> page(Wrapper<T> queryWrapper, int pageNum, int pageSize, String orderBy) {
-        if (null == orderBy) {
-            PageHelper.startPage(pageNum, pageSize);
+        if (StringUtils.isBlank(orderBy)) {
+            PageMethod.startPage(pageNum, pageSize);
         } else {
-            PageHelper.startPage(pageNum, pageSize, orderBy);
+            PageMethod.startPage(pageNum, pageSize, orderBy);
         }
 
         List<T> list = list(queryWrapper);
-        PageInfo<T> pageInfo = new PageInfo<>(list);
 
-        return pageInfo;
+        return new PageInfo<>(list);
     }
 
     /**
@@ -161,23 +160,21 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public PageInfo<T> page(String statement, Object parameter, int pageNum, int pageSize, String orderBy) {
-        if (null == orderBy) {
-            PageHelper.startPage(pageNum, pageSize);
+        if (StringUtils.isBlank(orderBy)) {
+            PageMethod.startPage(pageNum, pageSize);
         } else {
-            PageHelper.startPage(pageNum, pageSize, orderBy);
+            PageMethod.startPage(pageNum, pageSize, orderBy);
         }
 
         List<T> list;
 
-        if (null == parameter) {
+        if (ObjectUtils.isEmpty(parameter)) {
             list = sqlSessionTemplate.selectList(statement);
         } else {
             list = sqlSessionTemplate.selectList(statement, parameter);
         }
 
-        PageInfo<T> pageInfo = new PageInfo<>(list);
-
-        return pageInfo;
+        return new PageInfo<>(list);
     }
 
     /**
@@ -200,7 +197,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public T getByStatement(String statement, Object parameter) {
-        if (null == parameter) {
+        if (ObjectUtils.isEmpty(parameter)) {
             return sqlSessionTemplate.selectOne(statement);
         } else {
             return sqlSessionTemplate.selectOne(statement, parameter);
@@ -227,7 +224,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public List<T> listByStatement(String statement, Object parameter) {
-        if (null == parameter) {
+        if (ObjectUtils.isEmpty(parameter)) {
             return sqlSessionTemplate.selectList(statement);
         } else {
             return sqlSessionTemplate.selectList(statement, parameter);
@@ -254,7 +251,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public int saveByStatement(String statement, Object parameter) {
-        if (null == parameter) {
+        if (ObjectUtils.isEmpty(parameter)) {
             return sqlSessionTemplate.insert(statement);
         } else {
             return sqlSessionTemplate.insert(statement, parameter);
@@ -281,7 +278,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      */
     @Override
     public int updateByStatement(String statement, Object parameter) {
-        if (null == parameter) {
+        if (ObjectUtils.isEmpty(parameter)) {
             return sqlSessionTemplate.update(statement);
         } else {
             return sqlSessionTemplate.update(statement, parameter);

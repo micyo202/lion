@@ -28,6 +28,8 @@ import com.lion.common.result.Result;
  */
 public class BlockHandler {
 
+    private BlockHandler() {}
+
     public static Result sentinelBlockHandler(BlockException e) {
         e.printStackTrace();
         return Result.failure(ResponseCode.TOO_MANY_REQUESTS, "限流控制（Sentinel is blocked...）");

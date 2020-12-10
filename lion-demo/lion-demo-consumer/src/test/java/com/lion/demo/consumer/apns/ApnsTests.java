@@ -17,6 +17,7 @@ package com.lion.demo.consumer.apns;
 
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
+import org.junit.jupiter.api.Test;
 
 /**
  * ApnsTests
@@ -25,9 +26,10 @@ import com.notnoop.apns.ApnsService;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/03/29
  */
-public class ApnsTests {
+class ApnsTests {
 
-    public void test() {
+    @Test
+    void test() {
         ApnsService service =
                 APNS.newService()
                         .withCert("~/apns_development.p12", "666666") // 指定p12文件及密钥

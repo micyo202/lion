@@ -53,7 +53,7 @@ public class TempMybatisController extends BaseController {
     @ApiOperation(value = "Mybatis插入数据", notes = "当 num > 5 时触发事务回滚")
     @ApiParam(name = "num", value = "插入数据条数", defaultValue = "5", required = true)
     @RequestMapping(value = "/save/{num}", method = {RequestMethod.GET, RequestMethod.POST})
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Result<String> save(@PathVariable int num) {
 
         if (0 >= num) {

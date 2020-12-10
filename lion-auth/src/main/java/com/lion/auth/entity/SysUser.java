@@ -15,6 +15,11 @@
  */
 package com.lion.auth.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.lion.common.base.entity.BaseEntity;
 import java.time.LocalDate;
 import java.io.Serializable;
@@ -37,6 +42,7 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="SysUser对象", description="用户表")
 public class SysUser extends BaseEntity<SysUser> {
 
@@ -52,6 +58,8 @@ public class SysUser extends BaseEntity<SysUser> {
     private String name;
 
     @ApiModelProperty(value = "出生日期")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthday;
 
     @ApiModelProperty(value = "性别")

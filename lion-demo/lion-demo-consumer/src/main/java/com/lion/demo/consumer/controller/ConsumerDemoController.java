@@ -183,7 +183,8 @@ public class ConsumerDemoController extends BaseController {
             log.info("执行锁中业务逻辑");
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
+            Thread.currentThread().interrupt();
         }
         return Result.success("分布式锁方法执行成功");
     }

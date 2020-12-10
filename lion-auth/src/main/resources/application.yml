@@ -102,7 +102,7 @@
 #    banner: off
 #  configuration:
 #    #将执行的sql打印出来，生产需关闭
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: com.lion.common.logging.stdout.StdOutImpl
 #
 ##开启sentinel断路器
 #feign:

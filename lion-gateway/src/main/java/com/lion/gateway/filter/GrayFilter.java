@@ -46,9 +46,9 @@ public class GrayFilter implements GlobalFilter, Ordered {
         String version = exchange.getRequest().getHeaders().getFirst(GrayConstant.VERSION);
         RibbonFilterContextHolder.getCurrentContext().add(GrayConstant.VERSION, version);
 
-        return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-            RibbonFilterContextHolder.getCurrentContext().remove(GrayConstant.VERSION);
-        }));
+        return chain.filter(exchange).then(Mono.fromRunnable(() ->
+                RibbonFilterContextHolder.getCurrentContext().remove(GrayConstant.VERSION)
+        ));
     }
 
 }

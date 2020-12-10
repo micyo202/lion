@@ -39,7 +39,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  */
 //@SpringBootTest(classes = ProviderDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@AutoConfigureMockMvc
-public class ProviderDemoApplicationTests {
+class ProviderDemoApplicationTests {
 
     @LocalServerPort
     private int port;
@@ -52,7 +52,7 @@ public class ProviderDemoApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void restTestInit() {
+    void restTestInit() {
         String url = getUrl();
         ResponseEntity<Result> response = this.restTemplate.getForEntity(
                 url + "/init", Result.class);
@@ -63,7 +63,7 @@ public class ProviderDemoApplicationTests {
     private MockMvc mockMvc;
 
     @Test
-    public void mockTestInit() throws Exception {
+    void mockTestInit() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/init")
                         .accept(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ public class ProviderDemoApplicationTests {
     }
 
     @Test
-    public void mockTestHi() throws Exception {
+    void mockTestHi() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/hi")
                         .param("name", "lion")
@@ -88,7 +88,7 @@ public class ProviderDemoApplicationTests {
     }
 
     @Test
-    public void mockTestTempProductDeduct() throws Exception {
+    void mockTestTempProductDeduct() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/deduct")
                         .param("productCode", "product-1")

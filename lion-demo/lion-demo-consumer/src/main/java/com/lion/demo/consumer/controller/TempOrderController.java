@@ -53,12 +53,14 @@ public class TempOrderController extends BaseController {
     @Autowired
     private ProviderDemoFeignClient providerDemoFeignClient;
 
+    private static final String PRODUCT_CODE = "product-1";
+
     @ApiOperation(value = "全局事务，正常下单", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping(value = "/commit", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Result<String> commit() {
-        place("product-1", 1);
+        place(PRODUCT_CODE, 1);
         return Result.success("下单成功");
     }
 
@@ -68,9 +70,9 @@ public class TempOrderController extends BaseController {
     @ApiOperation(value = "全局事务，模拟回滚", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping(value = "/rollback", method = {RequestMethod.GET, RequestMethod.POST})
     @GlobalTransactional
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Result<String> rollback() {
-        place("product-1", 1);
+        place(PRODUCT_CODE, 1);
         throw new LionException("全局事务 -> 模拟回滚（数据正常）...");
     }
 
@@ -79,9 +81,9 @@ public class TempOrderController extends BaseController {
      */
     @ApiOperation(value = "无全局事务，无法回滚，数据错乱", notes = "执行：插入订单表、扣减库存表")
     @RequestMapping(value = "/exception", method = {RequestMethod.GET, RequestMethod.POST})
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Result<String> exception() {
-        place("product-1", 1);
+        place(PRODUCT_CODE, 1);
         throw new LionException("无全局事务 -> 无法回滚（数据已错乱）...");
     }
 

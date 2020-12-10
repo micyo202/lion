@@ -141,11 +141,10 @@ public class CustomExceptionHandler implements ErrorWebExceptionHandler {
         }
         exceptionHandlerResult.set(result);
         ServerRequest newRequest = ServerRequest.create(exchange, this.messageReaders);
-        Mono<Void> mono = RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse).route(newRequest)
+        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse).route(newRequest)
                 .switchIfEmpty(Mono.error(ex))
-                .flatMap((handler) -> handler.handle(newRequest))
-                .flatMap((response) -> write(exchange, response));
-        return mono;
+                .flatMap(handler -> handler.handle(newRequest))
+                .flatMap(response -> write(exchange, response));
     }
 
     /**
