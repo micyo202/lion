@@ -35,7 +35,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class AsynExecutorConfig {
 
     @Bean("asynExecutor")
-    public Executor AsynExecutor() {
+    public Executor asynExecutor() {
 
         /**
          * setCorePoolSize核心线程数10：线程池创建时候初始化的线程数

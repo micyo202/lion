@@ -93,8 +93,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
         return triggerContext -> {
             // 将Cron 0/1 * * * * ? 输入取得下一次执行的时间
             final CronTrigger cronTrigger = new CronTrigger(schedule.getCron());
-            final Date date = cronTrigger.nextExecutionTime(triggerContext);
-            return date;
+            return cronTrigger.nextExecutionTime(triggerContext);
         };
     }
 

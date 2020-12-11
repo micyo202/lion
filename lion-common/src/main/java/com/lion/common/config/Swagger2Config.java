@@ -52,7 +52,7 @@ public class Swagger2Config {
      */
     @Bean
     public Docket api() {
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .groupName(version)
                 .select()
@@ -64,7 +64,6 @@ public class Swagger2Config {
                 .build()
                 .securityContexts(Lists.newArrayList(securityContext()))
                 .securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
-        return docket;
     }
 
     private ApiInfo apiInfo() {
@@ -76,7 +75,7 @@ public class Swagger2Config {
                 .termsOfServiceUrl("https://github.com/micyo202/lion")
                 //创建人
                 .contact(new Contact("Yanzheng", "https://github.com/micyo202/lion", "micyo202@163.com"))
-                .version("2.0.7")
+                .version("2.0.8")
                 .build();
     }
 
