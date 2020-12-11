@@ -37,12 +37,12 @@ public class RedissonDistributedLocker implements DistributedLocker {
     /**
      * 锁key值前缀
      */
-    private final static String KEY_PREFIX = "LOCK:";
+    private static final String KEY_PREFIX = "LOCK:";
 
     /**
      * 默认秒数单位，毫秒
      */
-    private final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
+    private static final TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 
     /**
      * RedissonClient已经由配置类生成，这里自动装配即可
@@ -123,6 +123,7 @@ public class RedissonDistributedLocker implements DistributedLocker {
         try {
             return lock.tryLock(waitTime, leaseTime, TIME_UNIT);
         } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
             return false;
         }
     }

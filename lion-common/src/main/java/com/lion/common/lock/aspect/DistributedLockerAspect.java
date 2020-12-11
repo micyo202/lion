@@ -46,8 +46,7 @@ public class DistributedLockerAspect {
      * 切面表达式
      */
     @Pointcut("@annotation(com.lion.common.lock.annotation.Locker)")
-    public void lockerPointCut() {
-    }
+    public void lockerPointCut() {}
 
     /**
      * 环绕通知

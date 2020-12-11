@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.apache.commons.collections4.MapUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -79,7 +80,7 @@ public class Result<T> implements Serializable {
      * @param value 值
      */
     public Result<T> addExtra(String key, Object value) {
-        if (null == this.extra) {
+        if (MapUtils.isEmpty(this.extra)) {
             this.extra = new HashMap<>(8);
         }
         this.extra.put(key, value);
@@ -92,7 +93,7 @@ public class Result<T> implements Serializable {
      * @param tuple 元组
      */
     public Result<T> addExtra(Tuple2 tuple) {
-        if (null == this.extra) {
+        if (MapUtils.isEmpty(this.extra)) {
             this.extra = new HashMap<>(8);
         }
         this.extra.put(tuple._1().toString(), tuple._2());

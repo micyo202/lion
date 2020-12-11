@@ -26,6 +26,9 @@ import com.lion.common.gray.api.RibbonFilterContext;
  */
 public class RibbonFilterContextHolder {
 
+    private RibbonFilterContextHolder() {
+    }
+
     private static final ThreadLocal<RibbonFilterContext> CONTEXT_HOLDER = new InheritableThreadLocal() {
         @Override
         protected RibbonFilterContext initialValue() {

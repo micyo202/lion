@@ -29,6 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * CustomAuthenticationEntryPoint
@@ -45,7 +46,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         log.error(authException.getMessage());
 
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         response.setContentType("application/json;charset=UTF-8");
 
         Throwable cause = authException.getCause();

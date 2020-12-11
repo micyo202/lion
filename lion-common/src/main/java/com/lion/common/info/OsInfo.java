@@ -15,6 +15,8 @@
  */
 package com.lion.common.info;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 /**
@@ -221,7 +223,7 @@ public class OsInfo implements Serializable {
      * 匹配OS名称
      */
     private boolean getOSMatches(String osNamePrefix) {
-        if (OS_NAME == null) {
+        if (StringUtils.isBlank(OS_NAME)) {
             return false;
         }
 
@@ -232,7 +234,7 @@ public class OsInfo implements Serializable {
      * 匹配OS名称
      */
     private boolean getOSMatches(String osNamePrefix, String osVersionPrefix) {
-        if ((OS_NAME == null) || (OS_VERSION == null)) {
+        if (StringUtils.isAnyBlank(OS_NAME, (OS_VERSION))) {
             return false;
         }
 

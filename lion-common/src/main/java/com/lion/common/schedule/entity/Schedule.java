@@ -20,6 +20,8 @@ import com.lion.common.base.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -30,6 +32,8 @@ import lombok.experimental.Accessors;
  * @date 2019/08/09
  */
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "定时任务实体类")

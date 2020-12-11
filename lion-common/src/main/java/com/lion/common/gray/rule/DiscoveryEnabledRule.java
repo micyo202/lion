@@ -33,7 +33,7 @@ public abstract class DiscoveryEnabledRule extends PredicateBasedRule {
 
     private final CompositePredicate predicate;
 
-    public DiscoveryEnabledRule(DiscoveryEnabledPredicate discoveryEnabledPredicate) {
+    protected DiscoveryEnabledRule(DiscoveryEnabledPredicate discoveryEnabledPredicate) {
         Assert.notNull(discoveryEnabledPredicate, "Parameter 'discoveryEnabledPredicate' can't be null");
         this.predicate = createCompositePredicate(discoveryEnabledPredicate, new AvailabilityPredicate(this, null));
     }
