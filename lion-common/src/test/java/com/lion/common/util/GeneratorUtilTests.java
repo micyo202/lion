@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/9
  */
-public class GeneratorUtilTests {
+class GeneratorUtilTests {
 
     @Test
-    public void testGenerator() {
+    void testGenerator() {
         for (int i = 0; i < 10; i++) {
             System.out.println(GeneratorUtil.getSeqNo());
             System.out.println(GeneratorUtil.getRandomKey(16));

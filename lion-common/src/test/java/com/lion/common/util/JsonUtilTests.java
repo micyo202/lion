@@ -27,10 +27,10 @@ import java.util.Map;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/9
  */
-public class JsonUtilTests {
+class JsonUtilTests {
 
     @Test
-    public void testJson() {
+    void testJson() {
         Map<String, Object> object = new HashMap<>();
         object.put("id", "1001");
         object.put("name", "张三");

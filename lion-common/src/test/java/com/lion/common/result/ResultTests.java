@@ -30,10 +30,10 @@ import java.util.Map;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/6/17
  */
-public class ResultTests {
+class ResultTests {
 
     @Test
-    public void testResult() {
+    void testResult() {
 
         Map<String, Object> extra = new HashMap<>();
         extra.put("ext_1", "扩展属性1");

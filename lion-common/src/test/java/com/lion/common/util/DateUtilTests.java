@@ -27,10 +27,10 @@ import java.time.LocalDateTime;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/3
  */
-public class DateUtilTests {
+class DateUtilTests {
 
     @Test
-    public void testDate() {
+    void testDate() {
         System.out.println(DateUtil.getCurrentYear());
         System.out.println(DateUtil.getCurrentYearMonth());
         System.out.println(DateUtil.getCurrentDate());

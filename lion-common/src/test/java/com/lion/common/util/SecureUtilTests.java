@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/5/19
  */
-public class SecureUtilTests {
+class SecureUtilTests {
 
     @Test
-    public void testSecure() {
+    void testSecure() {
         String text = "https://github.com/micyo202";
         System.out.println("原文：" + text);
         String encryptAES = AESUtil.encrypt(text);
@@ -69,11 +69,11 @@ public class SecureUtilTests {
 
         // 生成 RSA 公钥、私钥
         RSAUtil.generatorPairKey();
-        System.out.println("随机生成的 RSA 公钥（public）为：" + RSAUtil.keyMap.get(RSAKey.PUBLIC));
-        System.out.println("随机生成的 RSA 私钥（private）为：" + RSAUtil.keyMap.get(RSAKey.PRIVATE));
-        String encryptData = RSAUtil.encrypt(text, RSAUtil.keyMap.get(RSAKey.PUBLIC));
+        System.out.println("随机生成的 RSA 公钥（public）为：" + RSAUtil.KEY_MAP.get(RSAKey.PUBLIC));
+        System.out.println("随机生成的 RSA 私钥（private）为：" + RSAUtil.KEY_MAP.get(RSAKey.PRIVATE));
+        String encryptData = RSAUtil.encrypt(text, RSAUtil.KEY_MAP.get(RSAKey.PUBLIC));
         System.out.println("RSA 公钥加密：" + encryptData);
-        String decryptData = RSAUtil.decrypt(encryptData, RSAUtil.keyMap.get(RSAKey.PRIVATE));
+        String decryptData = RSAUtil.decrypt(encryptData, RSAUtil.KEY_MAP.get(RSAKey.PRIVATE));
         System.out.println("RSA 私钥解密：" + decryptData);
 
         String encryptSHA = SHAUtil.encrypt(text);

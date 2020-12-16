@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/3
  */
-public class TupleTests {
+class TupleTests {
 
     @Test
-    public void testTuple() {
+    void testTuple() {
         Tuple2 tuple2 = Tuple.of(1, 2);
         Tuple3 tuple3 = Tuple.of(1, 2, 3);
         Tuple4 tuple4 = Tuple.of(1, 2, 3, 4);

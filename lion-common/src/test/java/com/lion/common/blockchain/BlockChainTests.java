@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/6/17
  */
-public class BlockChainTests {
+class BlockChainTests {
 
     @Test
-    public void testBlockChain() {
+    void testBlockChain() {
         System.out.println("创建第1个块...");
         String blockHash_1 = BlockChain.minedBlockChain("Hello 我是第一个块");
 

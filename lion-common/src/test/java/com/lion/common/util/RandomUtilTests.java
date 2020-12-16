@@ -26,10 +26,10 @@ import java.util.Random;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/9
  */
-public class RandomUtilTests {
+class RandomUtilTests {
 
     @Test
-    public void testRandom() {
+    void testRandom() {
         System.out.println(RandomUtil.randomInt());
         System.out.println(RandomUtil.randomLong());
         System.out.println(RandomUtil.randomDouble());

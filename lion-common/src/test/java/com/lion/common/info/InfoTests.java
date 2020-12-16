@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/4/3
  */
-public class InfoTests {
+class InfoTests {
 
     @Test
-    public void testUserInfo() {
+    void testUserInfo() {
         UserInfo userInfo = new UserInfo();
 
         System.out.println(userInfo.getName());
@@ -41,7 +41,7 @@ public class InfoTests {
     }
 
     @Test
-    public void testOsInfo() {
+    void testOsInfo() {
         OsInfo osInfo = new OsInfo();
 
         System.out.println(osInfo.getArch());
@@ -55,7 +55,7 @@ public class InfoTests {
     }
 
     @Test
-    public void testJavaInfo() {
+    void testJavaInfo() {
         JavaInfo javaInfo = new JavaInfo();
 
         System.out.println(javaInfo.getVersion());
@@ -66,7 +66,7 @@ public class InfoTests {
     }
 
     @Test
-    public void testJvmInfo() {
+    void testJvmInfo() {
         JvmInfo jvmInfo = new JvmInfo();
 
         System.out.println(jvmInfo.getName());
@@ -78,7 +78,7 @@ public class InfoTests {
     }
 
     @Test
-    public void testRuntimeInfo() {
+    void testRuntimeInfo() {
         RuntimeInfo runtimeInfo = new RuntimeInfo();
 
         System.out.println(runtimeInfo.getRuntime());
@@ -91,7 +91,7 @@ public class InfoTests {
     }
 
     @Test
-    public void testSystemInfo() {
+    void testSystemInfo() {
         SystemInfo systemInfo = new SystemInfo();
         System.out.println(systemInfo);
     }
