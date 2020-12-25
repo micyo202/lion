@@ -16,8 +16,6 @@ kind: Deployment
 metadata:
   name: lion-deploy
   namespace: default
-  labels:
-    name: lion-label
 spec:
   replicas: 1 # 副本数量
   revisionHistoryLimit: 3 # 设置保留的历史版本个数，默认是 10
@@ -29,11 +27,11 @@ spec:
       maxUnavailable: 30% # 更新时允许最大 unavailable 容器数，可以是个数，也可以是百分比（默认 replicas 的 1/4 向上取整）
   selector:
     matchLabels:
-      name: lion-label
+      name: lion
   template:
     metadata:
       labels:
-        name: lion-label
+        name: lion
     spec:
       containers:
         - name: lion-admin
@@ -127,14 +125,14 @@ metadata:
   namespace: default
 spec:
   selector:
-    name: lion-label
+    name: lion
   type: NodePort
   ports:
     - name: lion-admin
       protocol: TCP
-      port: 8200
-      targetPort: 8200
-      nodePort: 31820
+      port: 8200  # Service端口
+      targetPort: 8200  # 容器端口
+      nodePort: 31820 # 对外暴露访问端口
 
     - name: lion-gateway
       protocol: TCP
@@ -162,7 +160,7 @@ spec:
 
 ---
 
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: lion-hpa
@@ -174,4 +172,38 @@ spec:
     name: lion-deploy
   minReplicas: 1 # pod可伸缩最小范围
   maxReplicas: 3 # pod可伸缩最大范围
-  targetCPUUtilizationPercentage: 50 # 指定 CPU 使用率（自动扩容/缩容的触发条件）
+  metrics:
+    # Resource类型指标
+    - type: Resource
+      resource:
+        name: cpu # CPU指标
+        target:
+          type: Utilization # Utilization类型的目标值，Resource类型的指标支持Utilization和AverageValue类型的目标值
+          averageUtilization: 50  # 指定 CPU 使用率（自动扩容/缩容的触发条件）
+    - type: Resource
+      resource:
+        name: memory  # 内存指标
+        target:
+          type: Utilization # Utilization类型的目标值，Resource类型的指标支持Utilization和AverageValue类型的目标值
+          averageUtilization: 60  # 指定内存使用率（自动扩容/缩容的触发条件）
+    # Pods类型指标
+    - type: Pods
+      pods:
+        metric:
+          name: packets-per-second  # 每秒数据包
+        target:
+          type: AverageValue  # AverageValue类型的目标值，Pods指标类型下只支持AverageValue类型的目标值
+          averageValue: 1k  # 指定每秒数据包平均值（自动扩容/缩容的触发条件）
+    # Object类型指标
+    - type: Object
+      object:
+        # 监控指标的对象描述，指标数据来源于该对象
+        describedObject:
+          apiVersion: networking.k8s.io/v1beta1
+          kind: Ingress
+          name: main-route
+        metric:
+          name: requests-per-second # 每秒请求数
+        target:
+          type: Value # Value类型的目标值，Object类型的指标只支持Value和AverageValue类型的目标值
+          value: 10k  # 每秒请求数平均值（自动扩容/缩容的触发条件）
