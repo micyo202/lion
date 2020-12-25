@@ -170,11 +170,10 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: lion-deploy
-  minReplicas: 1 # pod可伸缩最小范围
-  maxReplicas: 3 # pod可伸缩最大范围
+  minReplicas: 3  # pod可伸缩最小范围
+  maxReplicas: 10 # pod可伸缩最大范围
   metrics:
-    # Resource类型指标
-    - type: Resource
+    - type: Resource  # Resource类型指标
       resource:
         name: cpu # CPU指标
         target:
@@ -186,16 +185,14 @@ spec:
         target:
           type: Utilization # Utilization类型的目标值，Resource类型的指标支持Utilization和AverageValue类型的目标值
           averageUtilization: 60  # 指定内存使用率（自动扩容/缩容的触发条件）
-    # Pods类型指标
-    - type: Pods
+    - type: Pods  # Pods类型指标
       pods:
         metric:
           name: packets-per-second  # 每秒数据包
         target:
           type: AverageValue  # AverageValue类型的目标值，Pods指标类型下只支持AverageValue类型的目标值
           averageValue: 1k  # 指定每秒数据包平均值（自动扩容/缩容的触发条件）
-    # Object类型指标
-    - type: Object
+    - type: Object  # Object类型指标
       object:
         # 监控指标的对象描述，指标数据来源于该对象
         describedObject:
