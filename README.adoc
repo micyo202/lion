@@ -7,7 +7,7 @@ image:https://travis-ci.org/micyo202/lion.svg?branch=master["Build Status", link
 image:https://badges.gitter.im/micyo202/lion.svg["Gitter", link="https://gitter.im/micyo202/lion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"]
 image:https://app.codacy.com/project/badge/Grade/bcb58d648e0e4e15a90fade3f96278ed["Codacy Badge", link="https://www.codacy.com/gh/micyo202/lion/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=micyo202/lion&amp;utm_campaign=Badge_Grade"]
 image:https://codecov.io/gh/micyo202/lion/branch/master/graph/badge.svg["Codecov", link="https://codecov.io/gh/micyo202/lion"]
-image:https://img.shields.io/badge/Version-2.0.7-DAA520.svg["Version", link="https://github.com/micyo202/lion/releases"]
+image:https://img.shields.io/badge/Version-2.0.8-DAA520.svg["Version", link="https://github.com/micyo202/lion/releases"]
 image:https://img.shields.io/badge/Java-8/11/13-DA001C.svg["Java", link="https://www.oracle.com/technetwork/java/javase/downloads/index.html"]
 image:https://img.shields.io/badge/Gradle-6.6-01BC7E.svg["Gradle", link="https://gradle.org"]
 image:https://img.shields.io/badge/SpringBoot-2.2.6.RELEASE-4682B4.svg["Spring Boot", link="https://spring.io/projects/spring-boot"]
