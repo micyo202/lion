@@ -15,7 +15,7 @@
 #  http:
 #    encoding:
 #      force-response: on
-#  #处理 FeignClient 重名问题
+#  #允许相同名称的 bean 覆盖
 #  #main:
 #    #allow-bean-definition-overriding: on
 #  cloud:

@@ -15,7 +15,7 @@
 #  http:
 #    encoding:
 #      force-response: on
-#  #处理 FeignClient 重名问题
+#  #允许相同名称的 bean 覆盖
 #  #main:
 #    #allow-bean-definition-overriding: on
 #  cloud:
@@ -126,6 +126,16 @@
 #feign:
 #  sentinel:
 #    enabled: on
+#
+##线程池配置
+#thread-pool:
+#  core-pool-size: 10
+#  max-pool-size: 100
+#  queue-capacity: 200
+#  keep-alive-seconds: 60
+#  thread-name-prefix: threadPool-
+#  wait_tasks_complete_shutdown: on
+#  await_termination_seconds: 60
 #
 ##配置无需认证的url
 #pattern:
