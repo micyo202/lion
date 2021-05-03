@@ -13,8 +13,6 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -177,6 +175,6 @@ subprojects {
      */
     def env = System.getProperty("env") ?: "dev"
     processResources {
-        filter ReplaceTokens, tokens: [env: env]
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [env: env]
     }
 }
