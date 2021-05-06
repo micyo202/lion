@@ -20,11 +20,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -46,6 +49,7 @@ import java.time.Duration;
  */
 @Configuration
 @EnableCaching
+@Slf4j
 public class RedisConfig extends CachingConfigurerSupport {
 
     /**
@@ -53,6 +57,32 @@ public class RedisConfig extends CachingConfigurerSupport {
      */
     @Value("${spring.cache.redis.time-to-live:300000}")
     private Duration timeToLive;
+
+    /**
+     * 自定义缓存异常处理
+     * 当缓存读写异常时，忽略异常
+     */
+    @Override
+    public CacheErrorHandler errorHandler() {
+        return new CacheErrorHandler() {
+            @Override
+            public void handleCacheGetError(RuntimeException e, Cache cache, Object o) {
+                log.error(e.getMessage(), e);
+            }
+            @Override
+            public void handleCachePutError(RuntimeException e, Cache cache, Object o, Object o1) {
+                log.error(e.getMessage(), e);
+            }
+            @Override
+            public void handleCacheEvictError(RuntimeException e, Cache cache, Object o) {
+                log.error(e.getMessage(), e);
+            }
+            @Override
+            public void handleCacheClearError(RuntimeException e, Cache cache) {
+                log.error(e.getMessage(), e);
+            }
+        };
+    }
 
     /**
      * 配置 Redis 缓存
@@ -81,6 +111,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        log.info("初始化 Redis");
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         // 配置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);

@@ -19,9 +19,12 @@ import lombok.SneakyThrows;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -37,14 +40,28 @@ import java.util.concurrent.TimeUnit;
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2020/11/25
  */
+@Component
 public class RedisUtil {
 
     private RedisUtil() {}
 
+    //private static RedisTemplate<String, Object> redisTemplate = SpringUtil.getBean("redisTemplate", RedisTemplate.class);
+    private static RedisTemplate<String, Object> redisTemplate;
+
     /**
      * 获取 redisTemplate 模板
      */
-    private static RedisTemplate<String, Object> redisTemplate = SpringUtil.getBean("redisTemplate", RedisTemplate.class);
+    @Autowired
+    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
+        RedisUtil.redisTemplate = redisTemplate;
+    }
+
+    /**
+     * 暴露 RedisTemplate 模板
+     */
+    public static RedisTemplate<String, Object> getRedisTemplate() {
+        return redisTemplate;
+    }
 
     /**
      * 设置值
@@ -214,6 +231,48 @@ public class RedisUtil {
     }
 
     /**
+     * 往ZSet中存入数据
+     *
+     * @param key   Redis键
+     * @param value 值
+     * @param score 分数
+     */
+    public static Boolean zsetAdd(final String key, final Object value, final double score) {
+        return redisTemplate.opsForZSet().add(key, value, score);
+    }
+
+    /**
+     * 从ZSet中获取range在start到end之间的元素
+     *
+     * @param key   Redis键
+     * @param start 开始位置
+     * @param end   结束位置（start=0，end=-1表示获取全部元素）
+     */
+    public static Set<Object> zsetGet(final String key, final long start, final long end) {
+        return redisTemplate.opsForZSet().range(key, start, end);
+    }
+
+    /**
+     * 从ZSet中获取score在min到max之间的元素
+     *
+     * @param key Redis键
+     * @param min 最小分数
+     * @param max 最大分数
+     */
+    public static Set<Object> zsetGet(final String key, final double min, final double max) {
+        return redisTemplate.opsForZSet().rangeByScore(key, min, max);
+    }
+
+    /**
+     * 从ZSet中获取所有元素
+     *
+     * @param key Redis键
+     */
+    public static Set<Object> zsetGetAll(final String key) {
+        return redisTemplate.opsForZSet().range(key, 0, -1);
+    }
+
+    /**
      * 删除ZSet中的数据
      *
      * @param key    Redis键
@@ -259,13 +318,13 @@ public class RedisUtil {
     }
 
     /**
-     * 从List中获取begin到end之间的元素
+     * 从List中获取start到end之间的元素
      *
      * @param key   Redis键
      * @param start 开始位置
      * @param end   结束位置（start=0，end=-1表示获取全部元素）
      */
-    public static List<Object> listGet(final String key, final int start, final int end) {
+    public static List<Object> listGet(final String key, final long start, final long end) {
         return redisTemplate.opsForList().range(key, start, end);
     }
 
@@ -316,7 +375,7 @@ public class RedisUtil {
         final HashOperations<String, Object, Object> ops = redisTemplate.opsForHash();
         // 缓存 Key
         final Map<Object, Object> entries = ops.entries(CACHE_KEY_PREFIX + Objects.requireNonNull(fileName, "文件名不能为空"));
-        if (MapUtils.isEmpty(entries)) {
+        if (ObjectUtils.isEmpty(entries)) {
             return null;
         }
         final String cachedFileName = MapUtils.getString(entries, FIELD_FILE_NAME);
@@ -388,5 +447,4 @@ public class RedisUtil {
     public static boolean expire(String key, long seconds) {
         return Optional.ofNullable(redisTemplate.expire(key, seconds, TimeUnit.SECONDS)).orElse(false);
     }
-
 }

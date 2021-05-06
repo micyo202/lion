@@ -13,8 +13,10 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.lion.common.lock.config;
+package com.lion.common.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -30,6 +32,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/3/24
  */
 @Configuration
+@Slf4j
 public class RedissonConfig {
 
     @Value("${spring.redis.host:localhost}")
@@ -49,12 +52,15 @@ public class RedissonConfig {
 
     @Bean
     public RedissonClient redissonClient() {
+        log.info("初始化 Redisson");
         Config config = new Config();
         config.useSingleServer()
                 .setAddress("redis://" + host + ":" + port)
-                .setPassword(password)
                 .setTimeout(timeout)
                 .setDatabase(database);
+        if (StringUtils.isNotBlank(password)) {
+            config.useSingleServer().setPassword(password);
+        }
         //.setConnectionPoolSize(10)
         //.setConnectionMinimumIdleSize(8)
         return Redisson.create(config);
