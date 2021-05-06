@@ -17,6 +17,7 @@ package com.lion.common.util;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 
 /**
@@ -242,6 +243,46 @@ public class DateUtil {
     }
 
     /**
+     * 日期时间转日期
+     *
+     * @param localDateTime 日期时间
+     */
+    public static LocalDate localDateTimeToLocalDate(LocalDateTime localDateTime) {
+        return localDateTime.toLocalDate();
+    }
+
+    /**
+     * 日期转日期时间
+     *
+     * @param localDate 日期
+     */
+    public static LocalDateTime localDateToLocalDateTime(LocalDate localDate) {
+        return localDate.atStartOfDay();
+    }
+
+    /**
+     * 日期转日期时间
+     *
+     * @param localDate 日期
+     * @param hour      小时
+     * @param minute    分钟
+     * @param second    秒
+     */
+    public static LocalDateTime localDateToLocalDateTime(LocalDate localDate, int hour, int minute, int second) {
+        return localDate.atTime(hour, minute, second);
+    }
+
+    /**
+     * 日期转日期时间
+     *
+     * @param localDate 日期
+     * @param localTime 时间
+     */
+    public static LocalDateTime localDateToLocalDateTime(LocalDate localDate, LocalTime localTime) {
+        return localDate.atTime(LocalTime.now());
+    }
+
+    /**
      * 日期格式化字符串
      *
      * @param localDate 日期
@@ -441,7 +482,7 @@ public class DateUtil {
     /**
      * 获取指定月份月第一天
      *
-     * @param localDate
+     * @param localDate 日期
      */
     public static LocalDate getMonthFirstDate(LocalDate localDate) {
         return localDate.with(TemporalAdjusters.firstDayOfMonth());
@@ -487,7 +528,17 @@ public class DateUtil {
     }
 
     /**
-     * 日期相隔小时
+     * 日期时间相隔天数
+     *
+     * @param startLocalDateTime 起日期时间
+     * @param endLocalDateTime   止日期时间
+     */
+    public static long intervalDays(LocalDateTime startLocalDateTime, LocalDateTime endLocalDateTime) {
+        return Duration.between(startLocalDateTime, endLocalDateTime).toDays();
+    }
+
+    /**
+     * 日期时间相隔小时
      *
      * @param startLocalDateTime 起日期时间
      * @param endLocalDateTime   止日期时间
@@ -497,7 +548,7 @@ public class DateUtil {
     }
 
     /**
-     * 日期相隔分钟
+     * 日期时间相隔分钟
      *
      * @param startLocalDateTime 起日期时间
      * @param endLocalDateTime   止日期时间
@@ -507,7 +558,7 @@ public class DateUtil {
     }
 
     /**
-     * 日期相隔毫秒数
+     * 日期时间相隔毫秒
      *
      * @param startLocalDateTime 起日期时间
      * @param endLocalDateTime   止日期时间
@@ -555,5 +606,43 @@ public class DateUtil {
      */
     public static Long toSelectEpochMilli(LocalDateTime localDateTime, ZoneId zoneId) {
         return localDateTime.atZone(zoneId).toInstant().toEpochMilli();
+    }
+
+    /**
+     * 给日期增加指定单位数量
+     *
+     * 支持单位：
+     * Years
+     * Months
+     * Weeks
+     * Days
+     *
+     * @param localDate 日期
+     * @param unit      单位
+     * @param amount    增加值
+     */
+    public static LocalDate datePlus(LocalDate localDate, ChronoUnit unit, int amount) {
+        return localDate.plus(amount, unit);
+    }
+
+    /**
+     * 给日期时间增加指定单位数量
+     *
+     * 支持单位：
+     * Years
+     * Months
+     * Weeks
+     * Days
+     * Hours
+     * Minutes
+     * Seconds
+     * Nanos
+     *
+     * @param localDateTime 日期
+     * @param unit          单位
+     * @param amount        增加值
+     */
+    public static LocalDateTime dateTimePlus(LocalDateTime localDateTime, ChronoUnit unit, int amount) {
+        return localDateTime.plus(amount, unit);
     }
 }
