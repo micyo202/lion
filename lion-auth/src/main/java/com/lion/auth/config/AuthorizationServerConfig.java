@@ -61,7 +61,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private RedisConnectionFactory redisConnectionFactory;
 
     @Bean
-    public ClientDetailsService clientDetailsService() {
+    public ClientDetailsService jdbcClientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
     }
 
@@ -117,7 +117,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 通过jdbc去查询数据库oauth_client_details表验证clientId信息
-        clients.withClientDetails(clientDetailsService());
+        clients.withClientDetails(jdbcClientDetailsService());
     }
 
     @Override
@@ -131,7 +131,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
          */
         //tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(clientDetailsService());
+        tokenServices.setClientDetailsService(jdbcClientDetailsService());
         // 设置access_token有效时长12小时，默认12小时
         tokenServices.setAccessTokenValiditySeconds(60 * 60 * 12);
         // 设置refresh_token有效时长7天，默认30天

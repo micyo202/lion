@@ -38,7 +38,7 @@ import org.springframework.context.annotation.FilterType;
 @EnableFeignClients
 @EnableKnife4j
 @MapperScan("com.lion.auth.mapper")
-@ComponentScan(basePackages = {"com.lion.auth", "com.lion.common"},
+@ComponentScan(basePackages = "com.lion",
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
                 classes = {ResourceServerConfig.class, ScheduleConfig.class, AmqpSender.class, AmqpReceiver.class})})
 public class AuthApplication {
