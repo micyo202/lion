@@ -49,7 +49,7 @@ import java.util.Set;
 public class SentinelConfig {
 
     private static final int COUNT = 10;
-    private static final int INTERVAL_SEC = 1;
+    private static final int INTERVAL_SEC = 10;
 
     final List<ViewResolver> viewResolvers;
     final ServerCodecConfigurer serverCodecConfigurer;
@@ -120,9 +120,9 @@ public class SentinelConfig {
     private void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
         rules.add(new GatewayFlowRule("lion-auth")
-                // 限流阈值QPS
+                // 限流阈值 QPS，默认 10
                 .setCount(COUNT)
-                // 统计时间窗口，单位是秒，默认是 1 秒
+                // 统计时间窗口，单位是秒，默认 10 秒
                 .setIntervalSec(INTERVAL_SEC)
         );
         rules.add(new GatewayFlowRule("lion-demo-provider")
