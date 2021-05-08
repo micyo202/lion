@@ -15,7 +15,6 @@
  */
 package com.lion.demo.consumer.service.impl;
 
-import com.lion.common.exception.LionException;
 import com.lion.demo.consumer.service.AsyncTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -35,7 +34,7 @@ public class AsyncTaskServiceImpl implements AsyncTaskService {
     /**
      * 异步执行任务
      */
-    @Async("asynExecutor")
+    @Async("executor")
     @Override
     public void asyncJob(String name) {
         log.info("Async -> 异步任务：'" + name + "'，开始执行...");
