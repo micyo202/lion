@@ -33,10 +33,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @EnableKnife4j
 //@EnableTransactionManagement
-//@MapperScan("com.lion.**.mapper")
-@MapperScan(basePackages = {"com.lion.common.**.mapper", "com.lion.demo.consumer.**.mapper"})
-//@ComponentScan("com.lion")
-@ComponentScan(basePackages = {"com.lion.common", "com.lion.demo.consumer"})
+//@MapperScan(basePackages = {"com.lion.common.**.mapper", "com.lion.demo.consumer.**.mapper"})
+@MapperScan("com.lion.**.mapper")
+//@ComponentScan(basePackages = {"com.lion.common", "com.lion.demo.consumer"})
+@ComponentScan("com.lion")
 public class ConsumerDemoApplication {
 
     public static void main(String[] args) {
