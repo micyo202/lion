@@ -9,6 +9,8 @@ https://github.com/alibaba/Sentinel[https://github.com/alibaba/Sentinel]
 java -Dserver.port=8858 \
 -Dcsp.sentinel.dashboard.server=localhost:8858 \
 -Dproject.name=sentinel-dashboard \
+-Dsentinel.dashboard.auth.username=sentinel \
+-Dsentinel.dashboard.auth.password=sentinel \
 -jar sentinel-dashboard-1.7.1.jar
 ----
 
