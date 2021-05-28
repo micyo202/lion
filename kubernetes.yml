@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: lion-admin
-          image: micyo202/lion-admin:2.0.8
+          image: micyo202/lion-admin:2.0.8.GA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8200
@@ -51,7 +51,7 @@ spec:
               memory: 1024Mi
 
         - name: lion-gateway
-          image: micyo202/lion-gateway:2.0.8
+          image: micyo202/lion-gateway:2.0.8.GA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8400
@@ -67,7 +67,7 @@ spec:
               memory: 1024Mi
 
         - name: lion-auth
-          image: micyo202/lion-auth:2.0.8
+          image: micyo202/lion-auth:2.0.8.GA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8888
@@ -83,7 +83,7 @@ spec:
               memory: 1024Mi
 
         - name: lion-demo-provider
-          image: micyo202/lion-demo-provider:2.0.8
+          image: micyo202/lion-demo-provider:2.0.8.GA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8601
@@ -99,7 +99,7 @@ spec:
               memory: 1024Mi
 
         - name: lion-demo-consumer
-          image: micyo202/lion-demo-consumer:2.0.8
+          image: micyo202/lion-demo-consumer:2.0.8.GA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8701
