@@ -15,14 +15,23 @@
  */
 package com.lion.common.config;
 
+import com.lion.common.properties.RedisProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
+import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
-import org.springframework.beans.factory.annotation.Value;
+import org.redisson.config.SentinelServersConfig;
+import org.redisson.config.SingleServerConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * RedissonConfig
@@ -32,37 +41,76 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/3/24
  */
 @Configuration
+@EnableConfigurationProperties(RedisProperties.class)
 @Slf4j
 public class RedissonConfig {
 
-    @Value("${spring.redis.host:localhost}")
-    private String host;
+    private static final String REDIS_PREFIX = "redis://";
 
-    @Value("${spring.redis.port:6379}")
-    private String port;
-
-    @Value("${spring.redis.password:}")
-    private String password;
-
-    @Value("${spring.redis.timeout:3000}")
-    private int timeout;
-
-    @Value("${spring.redis.database:0}")
-    private int database;
+    @Autowired
+    private RedisProperties redisProperties;
 
     @Bean
     public RedissonClient redissonClient() {
+
         log.info("初始化 Redisson");
+
         Config config = new Config();
-        config.useSingleServer()
-                .setAddress("redis://" + host + ":" + port)
-                .setTimeout(timeout)
-                .setDatabase(database);
-        if (StringUtils.isNotBlank(password)) {
-            config.useSingleServer().setPassword(password);
+
+        /**
+         * 单机模式
+         */
+        if (StringUtils.isNotBlank(redisProperties.getHost())) {
+            SingleServerConfig singleServerConfig = config.useSingleServer()
+                    .setAddress(REDIS_PREFIX + redisProperties.getHost() + ":" + redisProperties.getPort());
+            if (redisProperties.getTimeout() > 0) {
+                singleServerConfig.setTimeout(redisProperties.getTimeout());
+            }
+            if (redisProperties.getDatabase() > 0) {
+                singleServerConfig.setDatabase(redisProperties.getDatabase());
+            }
+            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+                singleServerConfig.setPassword(redisProperties.getPassword());
+            }
         }
-        //.setConnectionPoolSize(10)
-        //.setConnectionMinimumIdleSize(8)
+
+        /**
+         * 集群模式
+         */
+        if (null != redisProperties.getCluster() && CollectionUtils.isNotEmpty(redisProperties.getCluster().getNodes())) {
+            List<String> clusterNodes = new ArrayList<>();
+            //String[] nodes = redisProperties.getCluster().getNodes().split(",");
+            //Arrays.stream(nodes).forEach((node) -> clusterNodes.add(node.startsWith(REDIS_PREFIX) ? node : REDIS_PREFIX + node));
+            redisProperties.getCluster().getNodes()
+                    .forEach(node -> clusterNodes.add(node.startsWith(REDIS_PREFIX) ? node : REDIS_PREFIX + node));
+            ClusterServersConfig clusterServersConfig = config.useClusterServers()
+                    .addNodeAddress(clusterNodes.toArray(new String[clusterNodes.size()]));
+            if (redisProperties.getTimeout() > 0) {
+                clusterServersConfig.setTimeout(redisProperties.getTimeout());
+            }
+            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+                clusterServersConfig.setPassword(redisProperties.getPassword());
+            }
+        }
+
+        /**
+         * 哨兵模式
+         */
+        if (null != redisProperties.getSentinel() && StringUtils.isNotBlank(redisProperties.getSentinel().getMaster())) {
+            List<String> sentinelNodes = new ArrayList<>();
+            redisProperties.getSentinel().getNodes()
+                    .forEach(node -> sentinelNodes.add(node.startsWith(REDIS_PREFIX) ? node : REDIS_PREFIX + node));
+            SentinelServersConfig sentinelServersConfig = config.useSentinelServers()
+                    .addSentinelAddress(sentinelNodes.toArray(new String[0]))
+                    .setMasterName(redisProperties.getSentinel().getMaster());
+            if (redisProperties.getTimeout() > 0) {
+                sentinelServersConfig.setTimeout(redisProperties.getTimeout());
+            }
+            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+                sentinelServersConfig.setPassword(redisProperties.getPassword());
+            }
+        }
+
         return Redisson.create(config);
     }
 

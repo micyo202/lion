@@ -53,7 +53,7 @@ import java.time.Duration;
 public class RedisConfig extends CachingConfigurerSupport {
 
     /**
-     * 缓存失效时间，默认 5 分钟
+     * 缓存失效时间，默认 5 分钟（5 * 60 * 1000）
      */
     @Value("${spring.cache.redis.time-to-live:300000}")
     private Duration timeToLive;
