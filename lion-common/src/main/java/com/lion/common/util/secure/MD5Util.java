@@ -40,16 +40,18 @@ public class MD5Util {
     private static final String MD5 = "MD5";
 
     /**
-     * MD5 加密方法
+     * MD5 加密
+     *
+     * @param text 明文
+     * @return 密文
      */
     public static String encrypt(String text) {
-        if (StringUtils.isBlank(text)) {
+        if (StringUtils.isEmpty(text)) {
             return null;
         }
-        /*
-        char hexs[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        char[] hexs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
-            byte[] bytes = text.getBytes(ENCODEING);
+            byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
             MessageDigest messageDigest = MessageDigest.getInstance(MD5);
             messageDigest.update(bytes);
             byte[] md = messageDigest.digest();
@@ -66,15 +68,20 @@ public class MD5Util {
             log.error(e.getMessage(), e);
         }
         return null;
-        */
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance(MD5);
-            byte[] dataBytes = text.getBytes(StandardCharsets.UTF_8);
-            messageDigest.update(dataBytes);
-            return new BigInteger(1, messageDigest.digest()).toString(16);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
+
+        /**
+         * 首位是0会被忽略
+         */
+        /**
+         * try {
+         *     MessageDigest messageDigest = MessageDigest.getInstance(MD5);
+         *     byte[] dataBytes = text.getBytes(StandardCharsets.UTF_8);
+         *     messageDigest.update(dataBytes);
+         *     return new BigInteger(1, messageDigest.digest()).toString(16);
+         * } catch (Exception e) {
+         *     log.error(e.getMessage(), e);
+         * }
+         * return null;
+         */
     }
 }

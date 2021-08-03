@@ -175,7 +175,7 @@ public class HmacUtil {
      * @return 密文
      */
     private static String encryptHmac(String text, String key, String type) {
-        if (StringUtils.isAnyBlank(text, key, type)) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || StringUtils.isEmpty(type)) {
             return null;
         }
         try {
@@ -192,8 +192,7 @@ public class HmacUtil {
             // 4、数据加密
             byte[] bytes = mac.doFinal(dataBytes);
             // 5、生成数据
-            String encodeHex = encodeHex(bytes, true);
-            return encodeHex;
+            return encodeHex(bytes, false);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -206,39 +205,50 @@ public class HmacUtil {
      * @param type 类型
      * @return 字节流key
      */
-    private static byte[] getHmacKey(String type) {
+    public static byte[] getHmacKey(String type) {
+        byte[] bytes = new byte[0];
         try {
             // 1、创建密钥生成器
             KeyGenerator keyGenerator = KeyGenerator.getInstance(type);
             // 2、产生密钥
             SecretKey secretKey = keyGenerator.generateKey();
             // 3、获取密钥
-            byte[] encoded = secretKey.getEncoded();
-            return encoded;
+            bytes = secretKey.getEncoded();
+            return bytes;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        return null;
+        return bytes;
     }
 
     /**
-     * 数据转16进制编码
+     * 私有方法 - 数据转16进制编码
      *
-     * @param data        数据流
-     * @param toLowerCase 是否转小写
-     * @return 16进制编码字符
+     * @param bytes       数据
+     * @param toUpperCase 是否转大写
+     * @return 16进制编码
      */
-    private static String encodeHex(final byte[] data, final boolean toLowerCase) {
-        final char[] DIGITS_LOWER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-        final char[] DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-        final char[] toDigits = toLowerCase ? DIGITS_LOWER : DIGITS_UPPER;
-        final int l = data.length;
-        final char[] out = new char[l << 1];
-        // two characters form the hex value.
-        for (int i = 0, j = 0; i < l; i++) {
-            out[j++] = toDigits[(0xF0 & data[i]) >>> 4];
-            out[j++] = toDigits[0x0F & data[i]];
+    private static String encodeHex(final byte[] bytes, final boolean toUpperCase) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (byte b : bytes) {
+            stringBuilder.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
         }
-        return new String(out);
+        if (toUpperCase) {
+            return stringBuilder.toString().toUpperCase();
+        }
+        return stringBuilder.toString();
+        /**
+         * final char[] digitsUpper = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+         * final char[] digitsLower = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+         * final char[] toDigits = toUpperCase ? digitsLower : digitsUpper;
+         * final int len = bytes.length;
+         * final char[] out = new char[len << 1];
+         * int k = 0;
+         * for (int i = 0; i < len; i++) {
+         *    out[k++] = toDigits[(0xF0 & bytes[i]) >>> 4];
+         *    out[k++] = toDigits[0x0F & bytes[i]];
+         * }
+         * return new String(out);
+         */
     }
 }

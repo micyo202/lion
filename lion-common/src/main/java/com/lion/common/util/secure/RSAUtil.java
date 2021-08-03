@@ -26,6 +26,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,18 +53,13 @@ public class RSAUtil {
     private static final int KEY_SIZE = 1024;
 
     /**
-     * 用于封装随机产生的公钥与私钥
-     */
-    public static final Map<RSAKey, String> KEY_MAP = new HashMap<>();
-
-    /**
      * 随机生成密钥对（公钥、私钥）
      */
-    public static void generatorPairKey() {
+    public static Map<RSAKey, String> generatorPairKey() {
         try {
             // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
             KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(RSA);
-            // 初始化密钥对生成器，密钥大小为96-1024位
+            // 初始化密钥对生成器，密钥大小为 96-1024 位
             keyPairGen.initialize(KEY_SIZE, new SecureRandom());
             // 生成一个密钥对，保存在keyPair中
             KeyPair keyPair = keyPairGen.generateKeyPair();
@@ -75,15 +71,17 @@ public class RSAUtil {
             String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
             // 得到私钥字符串
             String privateKeyString = Base64.getEncoder().encodeToString(privateKey.getEncoded());
-            // 将公钥和私钥保存到Map
-            // 0表示公钥
-            KEY_MAP.put(RSAKey.PUBLIC, publicKeyString);
-            // 1表示私钥
-            KEY_MAP.put(RSAKey.PRIVATE, privateKeyString);
+            // 将随机生成的公钥和私钥保存到Map
+            Map<RSAKey, String> pairKeyMap = new EnumMap<>(RSAKey.class);
+            // 0、表示公钥
+            pairKeyMap.put(RSAKey.PUBLIC, publicKeyString);
+            // 1、表示私钥
+            pairKeyMap.put(RSAKey.PRIVATE, privateKeyString);
+            return pairKeyMap;
         } catch (NoSuchAlgorithmException e) {
             log.error(e.getMessage(), e);
         }
-
+        return null;
     }
 
     /**
