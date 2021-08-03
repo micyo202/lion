@@ -15,6 +15,7 @@
  */
 package com.lion.common.util;
 
+import com.lion.common.exception.LionException;
 import lombok.SneakyThrows;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
@@ -43,7 +44,8 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
 
-    private RedisUtil() {}
+    private RedisUtil() {
+    }
 
     //private static RedisTemplate<String, Object> redisTemplate = SpringUtil.getBean("redisTemplate", RedisTemplate.class);
     private static RedisTemplate<String, Object> redisTemplate;
@@ -340,7 +342,6 @@ public class RedisUtil {
     /**
      * 文件操作常量
      */
-    private static final String CACHE_KEY_PREFIX = "file:";
     private static final String FIELD_FILE_NAME = "fileName";
     private static final String FIELD_FILE_CONTENT = "fileContent";
 
@@ -349,32 +350,39 @@ public class RedisUtil {
      * 将文件对象读入内存, 获取字节数组, 最后 Base64 编码
      * 以缓存前缀 + 文件名 作为缓存 key
      *
-     * @param file (Required) 文件对象
+     * @param key  Redis键
+     * @param file 文件对象
      */
     @SneakyThrows
-    public static void fileSet(File file) {
+    public static void fileSet(final String key, final File file) {
         final HashOperations<String, Object, Object> ops = redisTemplate.opsForHash();
-        final String fileName = Objects.requireNonNull(file, "文件不能为空").getName();
+        Objects.requireNonNull(key, "文件key不能为空");
+        // 文件大小，单位：Bytes
+        final long fileSize = Objects.requireNonNull(file, "文件对象不能为空").length();
+        if (fileSize <= 5 * 1024 * 1024) {
+            throw new LionException("上传文件不得超过5MB");
+        }
+        final String fileName = Objects.requireNonNull(file, "文件对象不能为空").getName();
         final String fileContent = new String(
                 Base64.getEncoder().encode(IOUtils.toByteArray(FileUtils.openInputStream(Objects.requireNonNull(file, "文件对象不能为空")))),
                 StandardCharsets.UTF_8
         );
-        final HashMap<String, String> map = new HashMap<>(2);
+        final HashMap<String, String> map = new HashMap<>(4);
         map.put(FIELD_FILE_NAME, fileName);
         map.put(FIELD_FILE_CONTENT, fileContent);
-        ops.putAll(CACHE_KEY_PREFIX + fileName, map);
+        ops.putAll(key, map);
     }
 
     /**
      * 获取文件
      *
-     * @param fileName (Required) 文件名
+     * @param key Redis键
      */
     @SneakyThrows
-    public static File fileGet(String fileName) {
+    public static File fileGet(final String key) {
         final HashOperations<String, Object, Object> ops = redisTemplate.opsForHash();
         // 缓存 Key
-        final Map<Object, Object> entries = ops.entries(CACHE_KEY_PREFIX + Objects.requireNonNull(fileName, "文件名不能为空"));
+        final Map<Object, Object> entries = ops.entries(Objects.requireNonNull(key, "文件key不能为空"));
         if (ObjectUtils.isEmpty(entries)) {
             return null;
         }
@@ -393,11 +401,11 @@ public class RedisUtil {
     /**
      * 获取文件的字节数组
      *
-     * @param fileName (Required) 文件名
+     * @param key Redis键
      */
-    public static byte[] fileGetBytes(final String fileName) {
+    public static byte[] fileGetBytes(final String key) {
         final HashOperations<String, Object, Object> ops = redisTemplate.opsForHash();
-        final Map<Object, Object> entries = ops.entries(CACHE_KEY_PREFIX + Objects.requireNonNull(fileName, "文件名不能为空"));
+        final Map<Object, Object> entries = ops.entries(Objects.requireNonNull(key, "文件key不能为空"));
         return Base64.getDecoder().decode(MapUtils.getString(entries, FIELD_FILE_CONTENT));
     }
 
