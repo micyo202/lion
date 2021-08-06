@@ -18,6 +18,8 @@ package com.lion.common.util;
 import com.lion.common.util.secure.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 /**
  * SecureUtil
  * TODO
@@ -68,12 +70,12 @@ class SecureUtilTests {
         System.out.println("MD5加密：" + encryptMD5);
 
         // 生成 RSA 公钥、私钥
-        RSAUtil.generatorPairKey();
-        System.out.println("随机生成的 RSA 公钥（public）为：" + RSAUtil.KEY_MAP.get(RSAKey.PUBLIC));
-        System.out.println("随机生成的 RSA 私钥（private）为：" + RSAUtil.KEY_MAP.get(RSAKey.PRIVATE));
-        String encryptData = RSAUtil.encrypt(text, RSAUtil.KEY_MAP.get(RSAKey.PUBLIC));
+        Map<RSAKey, String> pairKeyMap = RSAUtil.generatorPairKey();
+        System.out.println("随机生成的 RSA 公钥（public）为：" + pairKeyMap.get(RSAKey.PUBLIC));
+        System.out.println("随机生成的 RSA 私钥（private）为：" + pairKeyMap.get(RSAKey.PRIVATE));
+        String encryptData = RSAUtil.encrypt(text, pairKeyMap.get(RSAKey.PUBLIC));
         System.out.println("RSA 公钥加密：" + encryptData);
-        String decryptData = RSAUtil.decrypt(encryptData, RSAUtil.KEY_MAP.get(RSAKey.PRIVATE));
+        String decryptData = RSAUtil.decrypt(encryptData, pairKeyMap.get(RSAKey.PRIVATE));
         System.out.println("RSA 私钥解密：" + decryptData);
 
         String encryptSHA = SHAUtil.encrypt(text);
