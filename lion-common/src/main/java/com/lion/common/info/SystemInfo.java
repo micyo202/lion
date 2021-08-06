@@ -35,10 +35,10 @@ public class SystemInfo implements Serializable {
         RuntimeInfo runtimeInfo = new RuntimeInfo();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[UserInfo]\n").append(userInfo.toString()).append("\n---------")
-                .append("\n[OsInfo]\n").append(osInfo.toString()).append("\n---------")
-                .append("\n[JavaInfo]\n").append(javaInfo.toString()).append("\n---------")
-                .append("\n[JvmInfo]\n").append(jvmInfo.toString()).append("\n---------")
+        stringBuilder.append("[UserInfo]\n").append(userInfo.toString()).append("\n")
+                .append("\n[OsInfo]\n").append(osInfo.toString()).append("\n")
+                .append("\n[JavaInfo]\n").append(javaInfo.toString()).append("\n")
+                .append("\n[JvmInfo]\n").append(jvmInfo.toString()).append("\n")
                 .append("\n[RuntimeInfo]\n").append(runtimeInfo.toString()).append("\n");
 
         return stringBuilder.toString();

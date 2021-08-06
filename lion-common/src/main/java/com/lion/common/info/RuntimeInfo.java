@@ -26,7 +26,7 @@ import java.io.Serializable;
  */
 public class RuntimeInfo implements Serializable {
 
-    private Runtime currentRuntime = Runtime.getRuntime();
+    private transient Runtime currentRuntime = Runtime.getRuntime();
 
     /**
      * 获得运行时对象
