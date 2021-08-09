@@ -16,7 +16,7 @@ server:
 
 spring:
   profiles:
-    active: @env@
+    active: dev
   application:
     name: lion-demo-consumer
   cloud:
