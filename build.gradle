@@ -154,9 +154,9 @@ subprojects {
             csv.enabled true
             html.enabled true
 
-            xml.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoXml.xml")
-            csv.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoCsv.csv")
-            html.destination file("${buildDir}/reports/jacoco/jacocoReport/jacocoHtml")
+            xml.destination file("${buildDir}/jacoco/coverage-reports/jacoco.xml")
+            csv.destination file("${buildDir}/jacoco/coverage-reports/jacoco.csv")
+            html.destination file("${buildDir}/jacoco/coverage-reports/html")
         }
     }
     tasks.check.dependsOn jacocoTestReport
@@ -171,10 +171,13 @@ subprojects {
     tasks.clean.dependsOn(cleanOutDir)
 
     /**
+     * 该过滤器会导致resource下文件编码错误
      * 根据环境打包默认dev开发环境，命令：./gradlew -x test clean bootJar -Denv=dev
      */
+    /*
     def env = System.getProperty("env") ?: "dev"
     processResources {
         filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [env: env]
     }
+    */
 }
