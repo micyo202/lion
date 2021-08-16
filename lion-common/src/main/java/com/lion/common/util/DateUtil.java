@@ -34,14 +34,14 @@ public class DateUtil {
     /**
      * 自定义格式化
      */
-    private static final String YEAR_MONTH_FORMATTER = "yyyy-MM";
-    private static final String DATE_FORMATTER = "yyyy-MM-dd";
-    private static final String DATETIME_FORMATTER = "yyyy-MM-dd HH:mm:ss";
-    private static final String TIME_FORMATTER = "HH:mm:ss";
-    private static final String YEAR_MONTH_FORMATTER_SHORT = "yyyyMM";
-    private static final String DATE_FORMATTER_SHORT = "yyyyMMdd";
-    private static final String DATETIME_FORMATTER_SHORT = "yyyyMMddHHmmss";
-    private static final String TIME_FORMATTER_SHORT = "HHmmss";
+    public static final String YEAR_MONTH_FORMATTER = "yyyy-MM";
+    public static final String DATE_FORMATTER = "yyyy-MM-dd";
+    public static final String DATETIME_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+    public static final String TIME_FORMATTER = "HH:mm:ss";
+    public static final String YEAR_MONTH_FORMATTER_SHORT = "yyyyMM";
+    public static final String DATE_FORMATTER_SHORT = "yyyyMMdd";
+    public static final String DATETIME_FORMATTER_SHORT = "yyyyMMddHHmmss";
+    public static final String TIME_FORMATTER_SHORT = "HHmmss";
 
     /**
      * 获取当前时间戳
@@ -49,10 +49,12 @@ public class DateUtil {
      * @return timestamp
      */
     public static long getTimestamp() {
-        // LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
-        // LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        // Timestamp.valueOf(LocalDateTime.now()).getTime();
-        // Instant.now().toEpochMilli();
+        /**
+         * LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+         * LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+         * Timestamp.valueOf(LocalDateTime.now()).getTime();
+         * Instant.now().toEpochMilli();
+         */
         return Instant.now().toEpochMilli();
     }
 
@@ -279,7 +281,7 @@ public class DateUtil {
      * @param localTime 时间
      */
     public static LocalDateTime localDateToLocalDateTime(LocalDate localDate, LocalTime localTime) {
-        return localDate.atTime(LocalTime.now());
+        return localDate.atTime(localTime);
     }
 
     /**

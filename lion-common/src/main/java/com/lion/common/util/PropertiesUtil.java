@@ -17,7 +17,10 @@ package com.lion.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.system.ApplicationHome;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -32,13 +35,15 @@ import java.util.Properties;
 @Slf4j
 public class PropertiesUtil {
 
-    private PropertiesUtil() {}
+    private PropertiesUtil() {
+    }
 
     /**
-     * 获取指定 properties 文件内容
-     * 
+     * 获取值
+     *
      * @param fileName 文件名
-     * @param key 键
+     * @param key      键
+     * @return 值
      */
     public static String getValue(String fileName, String key) {
 
@@ -46,16 +51,63 @@ public class PropertiesUtil {
             return null;
         }
 
-        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName)) {
+        /**
+         * 按默认优先级读取配置，优先级顺序如下
+         *
+         * file:./config
+         * file:./
+         * classpath:config
+         * classpath:
+         */
+        String filePath;
+        File file;
+        Properties properties = new Properties();
+        // file:./config
+        filePath = new ApplicationHome().getDir().getPath() + "/config/" + fileName;
+        file = new File(filePath);
+        if (file.exists()) {
+            try (InputStream inputStream = new FileInputStream(file)) {
+                properties.load(inputStream);
+                return properties.getProperty(key);
+            } catch (IOException e) {
+                log.error("IO流处理失败", e);
+            }
+        }
+
+        // file:./
+        filePath = new ApplicationHome().getDir().getPath() + "/" + fileName;
+        file = new File(filePath);
+        if (file.exists()) {
+            try (InputStream inputStream = new FileInputStream(file)) {
+                properties.load(inputStream);
+                return properties.getProperty(key);
+            } catch (IOException e) {
+                log.error("IO流处理失败", e);
+            }
+        }
+
+        // classpath:config
+        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("config/" + fileName)) {
             if (null == inputStream) {
                 return null;
             }
-            Properties properties = new Properties();
             properties.load(inputStream);
             return properties.getProperty(key);
         } catch (IOException e) {
             log.error("IO流处理失败", e);
         }
+
+        // classpath:
+        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName)) {
+            if (null == inputStream) {
+                return null;
+            }
+            properties.load(inputStream);
+            return properties.getProperty(key);
+        } catch (IOException e) {
+            log.error("IO流处理失败", e);
+        }
+
         return null;
     }
 }

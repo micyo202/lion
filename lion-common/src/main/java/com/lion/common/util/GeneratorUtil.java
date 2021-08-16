@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -39,7 +40,7 @@ public class GeneratorUtil {
      * 线程同步锁生成seqNo
      */
     public static synchronized String getSeqNo() {
-        String applicationName = YmlUtil.getBootstrapValue("spring.application.name").toString();
+        String applicationName = Optional.ofNullable(YmlUtil.getApplicationValue("spring.application.name")).orElse("UNKNOWN").toString();
         applicationName = StringUtils.isBlank(applicationName) ? "lion" : applicationName;
         int applicationNameHashCode = applicationName.hashCode() < 0 ? applicationName.hashCode() * -1 : applicationName.hashCode();
         increment = increment >= 9999 ? 1 : increment + 1;

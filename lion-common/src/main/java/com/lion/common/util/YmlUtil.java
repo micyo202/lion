@@ -19,8 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.system.ApplicationHome;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -70,6 +73,7 @@ public class YmlUtil {
      */
     public static Object getValueByYml(String fileName, String key) {
         Map<String, Object> map = getYml(fileName);
+
         if (MapUtils.isEmpty(map)) {
             return null;
         }
@@ -102,16 +106,57 @@ public class YmlUtil {
         if (StringUtils.isBlank(fileName)) {
             return null;
         }
-        try (InputStream inputStream = YmlUtil.class.getClassLoader().getResourceAsStream(fileName)) {
-            if (ObjectUtils.isEmpty(inputStream)) {
-                return null;
+        /**
+         * 按默认优先级读取配置，优先级顺序如下
+         *
+         * file:./config
+         * file:./
+         * classpath:config
+         * classpath:
+         */
+        String filePath;
+        File file;
+        Yaml yaml = new Yaml();
+        // file:./config
+        filePath = new ApplicationHome().getDir().getPath() + "/config/" + fileName;
+        file = new File(filePath);
+        if (file.exists()) {
+            try (InputStream inputStream = new FileInputStream(file)) {
+                return yaml.loadAs(inputStream, Map.class);
+            } catch (IOException e) {
+                log.error("IO流处理失败", e);
             }
-            Yaml yaml = new Yaml();
-            return yaml.loadAs(inputStream, Map.class);
+        }
+
+        // file:./
+        filePath = new ApplicationHome().getDir().getPath() + "/" + fileName;
+        file = new File(filePath);
+        if (file.exists()) {
+            try (InputStream inputStream = new FileInputStream(file)) {
+                return yaml.loadAs(inputStream, Map.class);
+            } catch (IOException e) {
+                log.error("IO流处理失败", e);
+            }
+        }
+
+        // classpath:config
+        try (InputStream inputStream = YmlUtil.class.getClassLoader().getResourceAsStream("config/" + fileName)) {
+            if (null != inputStream) {
+                return yaml.loadAs(inputStream, Map.class);
+            }
         } catch (IOException e) {
             log.error("IO流处理失败", e);
         }
+
+        // classpath:
+        try (InputStream inputStream = YmlUtil.class.getClassLoader().getResourceAsStream(fileName)) {
+            if (null != inputStream) {
+                return yaml.loadAs(inputStream, Map.class);
+            }
+        } catch (IOException e) {
+            log.error("IO流处理失败", e);
+        }
+
         return null;
     }
-
 }
