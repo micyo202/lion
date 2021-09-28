@@ -20,7 +20,7 @@ plugins {
 }
 
 allprojects {
-    version '2.0.8.GA'
+    version '2.0.9'
     group 'com.lion'
     description 'Lion project for Spring Boot / Spring Cloud / Alibaba Cloud'
 
