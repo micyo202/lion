@@ -15,6 +15,7 @@
  */
 package com.lion.common.util.secure;
 
+import com.lion.common.util.HexUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -31,7 +32,8 @@ import java.security.MessageDigest;
 @Slf4j
 public class SHAUtil {
 
-    private SHAUtil(){}
+    private SHAUtil() {
+    }
 
     /**
      * 加密、解密方式：SHA-1、SHA-224、SHA-256、SHA-384、SHA-512
@@ -48,7 +50,7 @@ public class SHAUtil {
      * @param text 明文
      * @return 密文
      */
-    public static String encrypt(String text) {
+    public static String encrypt1(String text) {
         return encrypt(text, SHA_1);
     }
 
@@ -107,30 +109,11 @@ public class SHAUtil {
             MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
             messageDigest.update(text.getBytes(StandardCharsets.UTF_8));
             byte[] bytes = messageDigest.digest();
-            return bytes2Str(bytes);
+            return HexUtil.bytes2Hex(bytes);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
         return null;
     }
 
-    /**
-     * 字节转字符串
-     *
-     * @param bytes 字节
-     * @return 字符串
-     */
-    private static String bytes2Str(byte[] bytes) {
-        StringBuilder stringBuilder = new StringBuilder();
-        String str;
-        for (int i = 0; i < bytes.length; i++) {
-            str = Integer.toHexString(bytes[i] & 0xFF);
-            if (str.length() == 1) {
-                // 1得到一位的进行补0操作
-                stringBuilder.append("0");
-            }
-            stringBuilder.append(str);
-        }
-        return stringBuilder.toString();
-    }
 }

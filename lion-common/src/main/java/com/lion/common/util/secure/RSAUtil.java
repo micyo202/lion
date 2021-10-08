@@ -27,7 +27,6 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -40,7 +39,8 @@ import java.util.Map;
 @Slf4j
 public class RSAUtil {
 
-    private RSAUtil() {}
+    private RSAUtil() {
+    }
 
     /**
      * 加密、解密方式
@@ -55,33 +55,38 @@ public class RSAUtil {
     /**
      * 随机生成密钥对（公钥、私钥）
      */
-    public static Map<RSAKey, String> generatorPairKey() {
+    public static KeyPair generatorKeyPair() {
         try {
             // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
             KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(RSA);
             // 初始化密钥对生成器，密钥大小为 96-1024 位
             keyPairGen.initialize(KEY_SIZE, new SecureRandom());
             // 生成一个密钥对，保存在keyPair中
-            KeyPair keyPair = keyPairGen.generateKeyPair();
-            // 得到公钥
-            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-            // 得到私钥
-            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-
-            String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
-            // 得到私钥字符串
-            String privateKeyString = Base64.getEncoder().encodeToString(privateKey.getEncoded());
-            // 将随机生成的公钥和私钥保存到Map
-            Map<RSAKey, String> pairKeyMap = new EnumMap<>(RSAKey.class);
-            // 0、表示公钥
-            pairKeyMap.put(RSAKey.PUBLIC, publicKeyString);
-            // 1、表示私钥
-            pairKeyMap.put(RSAKey.PRIVATE, privateKeyString);
-            return pairKeyMap;
+            return keyPairGen.generateKeyPair();
         } catch (NoSuchAlgorithmException e) {
             log.error(e.getMessage(), e);
         }
         return null;
+    }
+
+    /**
+     * 随机生成密钥对（公钥、私钥）
+     */
+    public static Map<RSAKey, String> generatorKeyPairMap() {
+        KeyPair keyPair = generatorKeyPair();
+        // 得到公钥
+        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+        String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+        // 得到私钥
+        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+        String privateKeyString = Base64.getEncoder().encodeToString(privateKey.getEncoded());
+        // 将随机生成的公钥和私钥保存到Map
+        Map<RSAKey, String> keyPairMap = new EnumMap<>(RSAKey.class);
+        // 0、表示公钥
+        keyPairMap.put(RSAKey.PUBLIC, publicKeyString);
+        // 1、表示私钥
+        keyPairMap.put(RSAKey.PRIVATE, privateKeyString);
+        return keyPairMap;
     }
 
     /**

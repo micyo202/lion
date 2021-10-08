@@ -17,7 +17,7 @@ package com.lion.common.util.secure;
 
 /**
  * RSAKey
- * RSA公钥、私钥常量类
+ * RSA公钥、私钥枚举类
  *
  * @author Yanzheng (https://github.com/micyo202)
  * @date 2019/10/21
