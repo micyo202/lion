@@ -16,12 +16,13 @@
 package com.lion.common.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * SpringUtil
@@ -32,20 +33,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class SpringUtil implements ApplicationContextAware {
+public class SpringUtil implements ApplicationContextAware, DisposableBean {
 
-    private static ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext = null;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (null == SpringUtil.applicationContext) {
             SpringUtil.applicationContext = applicationContext;
         }
-        log.info("ApplicationContext配置成功，在普通类可以通过调用 SpringUtil.getAppContext() 获取 applicationContext 对象，applicationContext = " + SpringUtil.applicationContext);
+        log.info("ApplicationContext配置成功，在普通类可以通过调用 SpringUtil.getAppContext() 获取 applicationContext 对象，applicationContext = {}", SpringUtil.applicationContext);
     }
 
     /**
      * 获取applicationContext
+     *
+     * @return 应用上下文
      */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -55,36 +58,54 @@ public class SpringUtil implements ApplicationContextAware {
      * 通过name获取bean
      *
      * @param name 名称
+     * @return bean对象
      */
     public static Object getBean(String name) {
-        if (StringUtils.isBlank(name)) {
-            return null;
-        }
         return getApplicationContext().getBean(name);
     }
 
     /**
-     * 通过clazz获取bean
+     * 通过class获取bean
      *
-     * @param clazz 类型
+     * @param clazz class类
+     * @return bean对象
      */
     public static <T> T getBean(Class<T> clazz) {
-        if (ObjectUtils.isEmpty(clazz)) {
-            return null;
-        }
         return getApplicationContext().getBean(clazz);
     }
 
     /**
-     * 通过name及clazz获取bean
+     * 通过name,以及clazz返回指定的bean
      *
      * @param name  名称
-     * @param clazz 类型
+     * @param clazz class类
+     * @return bean对象
      */
     public static <T> T getBean(String name, Class<T> clazz) {
-        if (StringUtils.isBlank(name) || ObjectUtils.isEmpty(clazz)) {
-            return null;
-        }
         return getApplicationContext().getBean(name, clazz);
+    }
+
+    /**
+     * 通过类型,返回指定的bean集合
+     *
+     * @param clazz 类型
+     * @param <T>   泛型
+     * @return bean对象集合
+     */
+    public static <T> Map<String, T> getBeansOfType(Class<T> clazz) {
+        return getApplicationContext().getBeansOfType(clazz);
+    }
+
+    /**
+     * 获取applicationContext
+     */
+    public static synchronized void clear() {
+        log.info("清除applicationContext = {}", SpringUtil.applicationContext);
+        SpringUtil.applicationContext = null;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        SpringUtil.clear();
     }
 }
