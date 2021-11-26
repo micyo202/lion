@@ -24,7 +24,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
-import java.util.Base64;
 
 /**
  * DESUtil
@@ -36,7 +35,8 @@ import java.util.Base64;
 @Slf4j
 public class DESUtil {
 
-    private DESUtil() {}
+    private DESUtil() {
+    }
 
     /**
      * 加密解密方式
@@ -49,24 +49,24 @@ public class DESUtil {
     private static final String DEFAULT_KEY = "https://github.com/micyo202";
 
     /**
-     * DES 使用默认秘钥加密
+     * DES 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encrypt(String text) {
-        return encrypt(text, DEFAULT_KEY);
+    public static String encrypt(String data) {
+        return encrypt(data, DEFAULT_KEY);
     }
 
     /**
-     * DES 使用自定义秘钥加密
+     * DES 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encrypt(String text, String key) {
-        if (StringUtils.isAnyBlank(text, key)) {
+    public static String encrypt(String data, String key) {
+        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key)) {
             return null;
         }
         try {
@@ -81,8 +81,8 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.ENCRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
-            return Base64.getEncoder().encodeToString(bytes);
+            byte[] bytes = cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
+            return Base64Util.encodeStr(bytes);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -91,28 +91,27 @@ public class DESUtil {
 
 
     /**
-     * DES 使用默认秘钥解密
+     * DES 解密
      *
-     * @param ciphertext 密文
+     * @param data 密文
      * @return 明文
      */
-    public static String decrypt(String ciphertext) {
-        return decrypt(ciphertext, DEFAULT_KEY);
+    public static String decrypt(String data) {
+        return decrypt(data, DEFAULT_KEY);
     }
 
     /**
-     * DES 使用自定义秘钥解密
+     * DES 解密
      *
-     * @param ciphertext 密文
-     * @param key        秘钥
+     * @param data 密文
+     * @param key  秘钥
      * @return 明文
      */
-    public static String decrypt(String ciphertext, String key) {
-        if (StringUtils.isAnyBlank(ciphertext, key)) {
+    public static String decrypt(String data, String key) {
+        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key)) {
             return null;
         }
         try {
-
             // 生成一个可信任的随机数源
             SecureRandom secureRandom = new SecureRandom();
             // 从原始密钥数据创建DESKeySpec对象
@@ -124,7 +123,7 @@ public class DESUtil {
             Cipher cipher = Cipher.getInstance(DES);
             // 用密钥初始化Cipher对象
             cipher.init(Cipher.DECRYPT_MODE, securekey, secureRandom);
-            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(ciphertext.getBytes(StandardCharsets.UTF_8)));
+            byte[] bytes = cipher.doFinal(Base64Util.decode(data));
             return new String(bytes, StandardCharsets.UTF_8);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

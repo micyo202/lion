@@ -31,32 +31,95 @@ import java.util.Base64;
 @Slf4j
 public class Base64Util {
 
-    private Base64Util() {}
+    private Base64Util() {
+    }
 
     /**
      * Base64 编码
      *
-     * @param text 明文
-     * @return 密文
+     * @param data 字符串
+     * @return base64编码字符串
      */
-    public static String encode(String text) {
-        if (StringUtils.isBlank(text)) {
+    public static String encodeStr(String data) {
+        if (StringUtils.isEmpty(data)) {
             return null;
         }
-        return Base64.getEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
+        return encodeStr(data.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Base64 编码
+     *
+     * @param bytes 字节
+     * @return base64编码字符串
+     */
+    public static String encodeStr(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    /**
+     * Base64 编码
+     *
+     * @param data 字符串
+     * @return base64编码字节
+     */
+    public static byte[] encode(String data) {
+        if (StringUtils.isEmpty(data)) {
+            return null;
+        }
+        return encode(data.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Base64 编码
+     *
+     * @param bytes 字节
+     * @return base64编码字节
+     */
+    public static byte[] encode(byte[] bytes) {
+        return Base64.getEncoder().encode(bytes);
     }
 
     /**
      * Base64 解码
      *
-     * @param ciphertext 密文
-     * @return 明文
+     * @param base64 base64编码字符串
+     * @return 字符串
      */
-    public static String decode(String ciphertext) {
-        if (StringUtils.isBlank(ciphertext)) {
+    public static String decodeStr(String base64) {
+        if (StringUtils.isEmpty(base64)) {
             return null;
         }
-        final byte[] decode = Base64.getDecoder().decode(ciphertext);
-        return new String(decode, StandardCharsets.UTF_8);
+        return new String(Base64.getDecoder().decode(base64), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Base64 解码
+     *
+     * @param bytes base64编码字节
+     * @return 字符串
+     */
+    public static String decodeStr(byte[] bytes) {
+        return new String(Base64.getDecoder().decode(bytes), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Base64 解码
+     *
+     * @param base64 base64编码字符串
+     * @return 字节
+     */
+    public static byte[] decode(String base64) {
+        return Base64.getDecoder().decode(base64);
+    }
+
+    /**
+     * Base64 解码
+     *
+     * @param bytes base64编码字节
+     * @return 字节
+     */
+    public static byte[] decode(byte[] bytes) {
+        return Base64.getDecoder().decode(bytes);
     }
 }

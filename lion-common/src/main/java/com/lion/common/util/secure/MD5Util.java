@@ -18,7 +18,6 @@ package com.lion.common.util.secure;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -32,7 +31,8 @@ import java.security.MessageDigest;
 @Slf4j
 public class MD5Util {
 
-    private MD5Util() {}
+    private MD5Util() {
+    }
 
     /**
      * 加密、解密方式
@@ -42,46 +42,57 @@ public class MD5Util {
     /**
      * MD5 加密
      *
-     * @param text 明文
-     * @return 密文
+     * @param data 明文
+     * @return 16位字符串密文
      */
-    public static String encrypt(String text) {
-        if (StringUtils.isEmpty(text)) {
+    public static String encryptHex16(String data) {
+        return encryptHex(data).substring(8, 24);
+    }
+
+    /**
+     * MD5 加密
+     *
+     * @param data 明文
+     * @return 32位字符串密文
+     */
+    public static String encryptHex(String data) {
+        byte[] encrypt = encrypt(data);
+        return HexUtil.bytes2Hex(encrypt);
+        // 首位0会忽略
+        //return new BigInteger(1, encrypt).toString(16);
+    }
+
+    /**
+     * MD5 加密
+     *
+     * @param data 明文
+     * @return 字节密文
+     */
+    public static byte[] encrypt(String data) {
+        if (StringUtils.isEmpty(data)) {
             return null;
         }
-        char[] hexs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
-            byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
             MessageDigest messageDigest = MessageDigest.getInstance(MD5);
-            messageDigest.update(bytes);
-            byte[] md = messageDigest.digest();
-            int j = md.length;
+            byte[] dataBytes = data.getBytes(StandardCharsets.UTF_8);
+            messageDigest.update(dataBytes);
+            byte[] digest = messageDigest.digest();
+            /*
+            char[] hexs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+            int j = digest.length;
             char[] chars = new char[j * 2];
             int k = 0;
             for (int i = 0; i < j; i++) {
-                byte byte0 = md[i];
+                byte byte0 = digest[i];
                 chars[k++] = hexs[byte0 >>> 4 & 0xf];
                 chars[k++] = hexs[byte0 & 0xf];
             }
             return String.valueOf(chars);
+            */
+            return digest;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
         return null;
-
-        /**
-         * 首位是0会被忽略
-         */
-        /**
-         * try {
-         *     MessageDigest messageDigest = MessageDigest.getInstance(MD5);
-         *     byte[] dataBytes = text.getBytes(StandardCharsets.UTF_8);
-         *     messageDigest.update(dataBytes);
-         *     return new BigInteger(1, messageDigest.digest()).toString(16);
-         * } catch (Exception e) {
-         *     log.error(e.getMessage(), e);
-         * }
-         * return null;
-         */
     }
 }

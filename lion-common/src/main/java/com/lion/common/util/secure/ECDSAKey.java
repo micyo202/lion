@@ -15,45 +15,22 @@
  */
 package com.lion.common.util.secure;
 
-import jodd.crypt.BCrypt;
-import org.apache.commons.lang3.StringUtils;
-
 /**
- * BCryptUtil
- * BCrypt工具类
+ * ECDSAKey
+ * ECDSA公钥、私钥枚举类
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @date 2019/10/21
+ * @date 2021/10/8
  */
-public class BCryptUtil {
-
-    private BCryptUtil() {
-    }
+public enum ECDSAKey {
 
     /**
-     * BCrypt 加密
-     *
-     * @param text 明文
-     * @return 密文
+     * 公钥
      */
-    public static String encrypt(String text) {
-        if (StringUtils.isBlank(text)) {
-            return null;
-        }
-        return BCrypt.hashpw(text, BCrypt.gensalt());
-    }
+    PUBLIC,
 
     /**
-     * BCrypt 校验
-     *
-     * @param text       明文
-     * @param ciphertext 密文
-     * @return 是否正确
+     * 私钥
      */
-    public static boolean verify(String text, String ciphertext) {
-        if (StringUtils.isAnyBlank(text, ciphertext)) {
-            return false;
-        }
-        return BCrypt.checkpw(text, ciphertext);
-    }
+    PRIVATE
 }

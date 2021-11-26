@@ -17,108 +17,86 @@ package com.lion.common.util.secure;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.Security;
 
 /**
- * SHAUtil
- * SHA哈希散列工具类
+ * RipeMDUtil
+ * RipeMD工具类
+ * 依赖 org.bouncycastle:bcprov-jdk15on 库
  *
  * @author Yanzheng (https://github.com/micyo202)
- * @date 2019/10/21
+ * @date 2021/9/30
  */
 @Slf4j
-public class SHAUtil {
+public class RipeMDUtil {
 
-    private SHAUtil() {
+    private RipeMDUtil() {
+    }
+
+    static {
+        Security.addProvider(new BouncyCastleProvider());
     }
 
     /**
-     * 加密、解密方式：SHA-1
+     * 加密方式
      */
-    private static final String SHA_1 = "SHA-1";
+    private static final String RIPEMD_128 = "RipeMD128";
+    private static final String RIPEMD_160 = "RipeMD160";
+    private static final String RIPEMD_256 = "RipeMD256";
+    private static final String RIPEMD_320 = "RipeMD320";
 
     /**
-     * 加密、解密方式：SHA-224
-     */
-    private static final String SHA_224 = "SHA-224";
-
-    /**
-     * 加密、解密方式：SHA-256
-     */
-    private static final String SHA_256 = "SHA-256";
-
-    /**
-     * 加密、解密方式：SHA-384
-     */
-    private static final String SHA_384 = "SHA-384";
-
-    /**
-     * 加密、解密方式：SHA-512
-     */
-    private static final String SHA_512 = "SHA-512";
-
-    /**
-     * SHA1 加密
+     * Ripemd128 通用加密
      *
      * @param data 明文
      * @return 密文
      */
-    public static String encrypt(String data) {
-        return encrypt(data, SHA_1);
+    public static String encrypt128(String data) {
+        return encrypt(data, RIPEMD_128);
     }
 
     /**
-     * SHA224 加密
+     * Ripemd160 通用加密
      *
      * @param data 明文
      * @return 密文
      */
-    public static String encrypt224(String data) {
-        return encrypt(data, SHA_224);
+    public static String encrypt160(String data) {
+        return encrypt(data, RIPEMD_160);
     }
 
     /**
-     * SHA256 加密
+     * Ripemd256 通用加密
      *
      * @param data 明文
      * @return 密文
      */
     public static String encrypt256(String data) {
-        return encrypt(data, SHA_256);
+        return encrypt(data, RIPEMD_256);
     }
 
     /**
-     * SHA384 加密
+     * Ripemd320 通用加密
      *
      * @param data 明文
      * @return 密文
      */
-    public static String encrypt384(String data) {
-        return encrypt(data, SHA_384);
+    public static String encrypt320(String data) {
+        return encrypt(data, RIPEMD_320);
     }
 
     /**
-     * SHA512 加密
+     * Ripemd 通用加密
      *
      * @param data 明文
-     * @return 密文
-     */
-    public static String encrypt512(String data) {
-        return encrypt(data, SHA_512);
-    }
-
-
-    /**
-     * 私有方法 - 加密
-     *
-     * @param data      密文
-     * @param algorithm 加密方式
      * @return 密文
      */
     private static String encrypt(String data, String algorithm) {
-        if (StringUtils.isEmpty(data)) {
+        if (StringUtils.isBlank(data)) {
             return null;
         }
         try {

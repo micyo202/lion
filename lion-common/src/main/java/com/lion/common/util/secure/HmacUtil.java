@@ -34,16 +34,37 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class HmacUtil {
 
-    private HmacUtil() {}
+    private HmacUtil() {
+    }
 
     /**
-     * 加密、解密方式：SHA-1、SHA-224、SHA-256、SHA-384、SHA-512
+     * 加密、解密方式：MD5
      */
     private static final String HMAC_MD5 = "HmacMD5";
+
+    /**
+     * 加密、解密方式：SHA-1
+     */
     private static final String HMAC_SHA1 = "HmacSHA1";
+
+    /**
+     * 加密、解密方式：SHA-224
+     */
     private static final String HMAC_SHA224 = "HmacSHA224";
+
+    /**
+     * 加密、解密方式：SHA-256
+     */
     private static final String HMAC_SHA256 = "HmacSHA256";
+
+    /**
+     * 加密、解密方式：SHA-384
+     */
     private static final String HMAC_SHA384 = "HmacSHA384";
+
+    /**
+     * 加密、解密方式：SHA-512
+     */
     private static final String HMAC_SHA512 = "HmacSHA512";
 
     /**
@@ -52,136 +73,136 @@ public class HmacUtil {
     private static final String DEFAULT_KEY = "MkI3I1YlFOFr57YL";
 
     /**
-     * HMAC MD5 加密
+     * MD5 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacMD5(String text) {
-        return encryptHmac(text, DEFAULT_KEY, HMAC_MD5);
+    public static String encryptHmacMD5(String data) {
+        return encryptHmac(data, DEFAULT_KEY, HMAC_MD5);
     }
 
     /**
-     * HMAC SHA1 加密
+     * SHA1 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacSHA1(String text) {
-        return encryptHmacSHA1(text, DEFAULT_KEY);
+    public static String encryptHmacSHA1(String data) {
+        return encryptHmacSHA1(data, DEFAULT_KEY);
     }
 
     /**
-     * HMAC SHA1 加密
+     * SHA1 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encryptHmacSHA1(String text, String key) {
-        return encryptHmac(text, key, HMAC_SHA1);
+    public static String encryptHmacSHA1(String data, String key) {
+        return encryptHmac(data, key, HMAC_SHA1);
     }
 
     /**
-     * HMAC SHA224 加密
+     * SHA224 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacSHA224(String text) {
-        return encryptHmacSHA224(text, DEFAULT_KEY);
+    public static String encryptHmacSHA224(String data) {
+        return encryptHmacSHA224(data, DEFAULT_KEY);
     }
 
     /**
-     * HMAC SHA224 加密
+     * SHA224 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encryptHmacSHA224(String text, String key) {
-        return encryptHmac(text, key, HMAC_SHA224);
+    public static String encryptHmacSHA224(String data, String key) {
+        return encryptHmac(data, key, HMAC_SHA224);
     }
 
     /**
-     * HMAC SHA2564 加密
+     * SHA256 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacSHA256(String text) {
-        return encryptHmacSHA256(text, DEFAULT_KEY);
+    public static String encryptHmacSHA256(String data) {
+        return encryptHmacSHA256(data, DEFAULT_KEY);
     }
 
     /**
-     * HMAC SHA256 加密
+     * SHA256 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encryptHmacSHA256(String text, String key) {
-        return encryptHmac(text, key, HMAC_SHA256);
+    public static String encryptHmacSHA256(String data, String key) {
+        return encryptHmac(data, key, HMAC_SHA256);
     }
 
     /**
-     * HMAC SHA384 加密
+     * SHA384 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacSHA384(String text) {
-        return encryptHmacSHA384(text, DEFAULT_KEY);
+    public static String encryptHmacSHA384(String data) {
+        return encryptHmacSHA384(data, DEFAULT_KEY);
     }
 
     /**
-     * HMAC SHA384 加密
+     * SHA384 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encryptHmacSHA384(String text, String key) {
-        return encryptHmac(text, key, HMAC_SHA384);
+    public static String encryptHmacSHA384(String data, String key) {
+        return encryptHmac(data, key, HMAC_SHA384);
     }
 
     /**
-     * HMAC SHA521 加密
+     * SHA521 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @return 密文
      */
-    public static String encryptHmacSHA512(String text) {
-        return encryptHmacSHA512(text, DEFAULT_KEY);
+    public static String encryptHmacSHA512(String data) {
+        return encryptHmacSHA512(data, DEFAULT_KEY);
     }
 
     /**
-     * HMAC SHA521 加密
+     * SHA521 加密
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @return 密文
      */
-    public static String encryptHmacSHA512(String text, String key) {
-        return encryptHmac(text, key, HMAC_SHA512);
+    public static String encryptHmacSHA512(String data, String key) {
+        return encryptHmac(data, key, HMAC_SHA512);
     }
 
     /**
-     * HMAC 加密基本算法
+     * 私有方法 - HMAC 基础算法
      *
-     * @param text 明文
+     * @param data 明文
      * @param key  秘钥
      * @param type 类型
      * @return 密文
      */
-    private static String encryptHmac(String text, String key, String type) {
-        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(key) || StringUtils.isEmpty(type)) {
+    private static String encryptHmac(String data, String key, String type) {
+        if (StringUtils.isEmpty(data) || StringUtils.isEmpty(key) || StringUtils.isEmpty(type)) {
             return null;
         }
         try {
             // byte[] key = getHmacKey(type);   // 随机生成秘钥
             byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
-            byte[] dataBytes = text.getBytes(StandardCharsets.UTF_8);
+            byte[] dataBytes = data.getBytes(StandardCharsets.UTF_8);
 
             // 1、还原密钥
             SecretKey secretKey = new SecretKeySpec(keyBytes, type);
@@ -192,7 +213,7 @@ public class HmacUtil {
             // 4、数据加密
             byte[] bytes = mac.doFinal(dataBytes);
             // 5、生成数据
-            return encodeHex(bytes, false);
+            return HexUtil.bytes2Hex(bytes);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -200,10 +221,10 @@ public class HmacUtil {
     }
 
     /**
-     * HMAC Key 获取
+     * 私有方法 - HMAC 秘钥生成
      *
      * @param type 类型
-     * @return 字节流key
+     * @return 秘钥
      */
     public static byte[] getHmacKey(String type) {
         byte[] bytes = new byte[0];
@@ -228,27 +249,28 @@ public class HmacUtil {
      * @param toUpperCase 是否转大写
      * @return 16进制编码
      */
-    private static String encodeHex(final byte[] bytes, final boolean toUpperCase) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (byte b : bytes) {
-            stringBuilder.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
-        }
-        if (toUpperCase) {
-            return stringBuilder.toString().toUpperCase();
-        }
-        return stringBuilder.toString();
-        /**
-         * final char[] digitsUpper = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-         * final char[] digitsLower = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-         * final char[] toDigits = toUpperCase ? digitsLower : digitsUpper;
-         * final int len = bytes.length;
-         * final char[] out = new char[len << 1];
-         * int k = 0;
-         * for (int i = 0; i < len; i++) {
-         *    out[k++] = toDigits[(0xF0 & bytes[i]) >>> 4];
-         *    out[k++] = toDigits[0x0F & bytes[i]];
-         * }
-         * return new String(out);
-         */
-    }
+//    private static String encodeHex(final byte[] bytes, final boolean toUpperCase) {
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (byte b : bytes) {
+//            stringBuilder.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
+//        }
+//        if (toUpperCase) {
+//            return stringBuilder.toString().toUpperCase();
+//        }
+//        return stringBuilder.toString();
+//
+//        /**
+//         * final char[] digitsUpper = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+//         * final char[] digitsLower = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+//         * final char[] toDigits = toUpperCase ? digitsLower : digitsUpper;
+//         * final int len = bytes.length;
+//         * final char[] out = new char[len << 1];
+//         * int k = 0;
+//         * for (int i = 0; i < len; i++) {
+//         *    out[k++] = toDigits[(0xF0 & bytes[i]) >>> 4];
+//         *    out[k++] = toDigits[0x0F & bytes[i]];
+//         * }
+//         * return new String(out);
+//         */
+//    }
 }
