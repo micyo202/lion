@@ -44,6 +44,9 @@ class JsonUtilTests {
         Map<String, Object> json2Obj = JsonUtil.json2Obj(json, Map.class);
         System.out.println("json2Obj: " + json2Obj);
 
+        Map<String, Object> jsonMap = JsonUtil.json2Map(json, String.class, Object.class);
+        System.out.println("jsonMap: " + jsonMap);
+
         String getJsonValueByKey = JsonUtil.getJsonValueByKey(obj2Json, "name");
         System.out.println("getJsonValueByKey: " + getJsonValueByKey);
     }
