@@ -69,6 +69,7 @@ allprojects {
         set('httpclientVersion', "4.5.12")
         set('servletVersion', "4.0.1")
         set('servoVersion', "0.13.0")
+        set('bouncyCastleVersion', "1.69")
     }
 
     dependencyManagement {
@@ -92,6 +93,7 @@ allprojects {
             dependency "org.apache.commons:commons-lang3:${commonsLangVersion}"
             dependency "org.apache.commons:commons-collections4:${commonsCollections4Version}"
             dependency "com.thoughtworks.xstream:xstream:${xstreamVersion}"
+            dependency "org.bouncycastle:bcprov-jdk15on:${bouncyCastleVersion}"
             dependency "org.apache.httpcomponents:httpclient:${httpclientVersion}"
             dependency "javax.servlet:javax.servlet-api:${servletVersion}"
             dependency "com.netflix.servo:servo-core:${servoVersion}"
